@@ -113,12 +113,21 @@
 	},	
 	
 	"Student": {
+<<<<<<< niklas
 		"student_16":{
 			"Account_Id": "acc_16",
 			"Name":"Thomas",
 			"Nachname":"Meier",
 			"Geb_Datum":"20.04.1996",
 			"Uni":"RWTH Aachen",
+=======
+		"student_1":{
+			"Account_Id": "acc_1",
+			"Name":"Julia",
+			"Nachname":"Mödinger",
+			"Geb_Datum":"",
+			"Uni":"Fontys",
+>>>>>>> Auto stash before merge of "master" and "origin/master"
 			"Studiengang":"Wirtschaftsinformatik",
 			"Vertiefung":"Projektmanagement",
 			"Abschluss_Datum": "09-2020",
@@ -140,6 +149,21 @@
 			"Abschluss":"Bachelor of Arts",
 			"Beschreibung":"",
 			"Semester":"3",
+			"Beschäftigung":"",
+			"Zeitstempel":"2017-10-10"
+		},
+		"student_2":{
+			"Account_Id": "acc_2",
+			"Name":"Moritz",
+			"Nachname":"Richter",
+			"Geb_Datum":"",
+			"Uni":"Fontys",
+			"Studiengang":"Wirtschaftsinformatik",
+			"Vertiefung":"",
+			"Abschluss_Datum": "09-2019",
+			"Abschluss":"Bachelor of Science",
+			"Beschreibung":"",
+			"Semester":"7",
 			"Beschäftigung":"",
 			"Zeitstempel":"2017-10-10"
 		}	
