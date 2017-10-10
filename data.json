@@ -59,24 +59,81 @@
 			"Ort": "Köln",
 			"PLZ":"50560",
 			"Land":"Deutschland"
-		}
+		},
+		"a_16": {
+			"Straße":"Vennstraße 15",
+			"Ort":"Kaldenkirchen",
+			"PLZ":"41334"		
+		},
+		"a_17": {
+			"Straße":"Neuer Weg 10",
+			"Ort":"Wolfenbüttel",
+			"PLZ":"41334"		
+		},
+		"a_112": {
+			"Straße":"Neuer Weg 8",
+			"Ort":"Wolfsburg",
+			"PLZ":"32976"		
+		},
+		"a_19": {
+			"Straße":"Haller Strasse 2",
+			"Ort":"Aachen",
+			"PLZ":"67976",		
+			"Land":"Niederlande"	
+		},	
+		"a_7": {
+			"Straße":"Koninginnesingel 82",
+			"Ort":"Venlo",
+			"PLZ":"5911 KG",	
+			"Land":"Niederlande"	
+		},
+		"a_10": {
+			"Straße":"Walstraat ",
+			"Ort":"Venlo",
+			"PLZ":"5912 AR",	
+			"Land":"Niederlande"	
+		}, 
+		"a_11": {
+			"Straße":"Testweg 77",
+			"Ort":"Erfurt",
+			"PLZ":"32816",
+			"Land":"Deutschland"	
+		},
+		"a_12": {
+			"Straße":"Tegelseweg 255",
+			"Ort":"New York",
+			"PLZ":"946379",
+			"Land":"United States of America"	
+		},
+		"a_13": {
+			"Straße":"Tegelseweg 255",
+			"Ort":"Moskau",
+			"PLZ":"9BBSE6",
+			"Land":"Russland"	
+} 
 	},	
 	
 	"Account":{
-		"acc_1":{
-			"Email":"test@mail.com",
+		"acc_16":{
+			"Email":"hallo123@mail.com",
 			"Passwort":"test",
 			"Usergruppe": "gruppe_1",
-			"Adresse_id": "a_1"		
+			"Adresse_id": "a_16"		
 		},
-		"acc_2":{
-			"Email":"test2@mail.com",
+		"acc_17":{
+			"Email":"testwf@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_1",
+			"Adresse_id": "a_17"		
+		},
+		"acc_18":{
+			"Email":"volkswagen@mail.com",
 			"Passwort":"test",
 			"Usergruppe": "gruppe_2",
-			"Adresse_id": "a_1"		
+			"Adresse_id": "a_112"		
 		},
-		"acc_3":{
-			"Email":"test3@mail.com",
+		"acc_122":{
+			"Email":"rwth@mail.com",
 			"Passwort":"test",
 			"Usergruppe": "gruppe_3",
 			"Adresse_id": "a_1"		
@@ -145,7 +202,38 @@
 			"Email":"test30@mail.com",
 			"Passwort":"test",
 			"Usergruppe": "gruppe_3",
-			"Adresse_id": "a_1"	
+			"Adresse_id": "a_19"		
+		},
+		"acc_7":{
+			"Email":"test3@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_2",
+			"Adresse_id": "a_7"		
+		},
+
+		"acc_10":{
+			"Email":"test3@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_1",
+			"Adresse_id": "a_10"		
+		}, 
+		"acc_8":{
+			"Email":"test3@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_3",
+			"Adresse_id": "a_8"		
+		},
+		"acc_11":{
+			"Email":"test11@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_2",
+			"Adresse_id": "a_11"		
+		},
+		"acc_12":{
+			"Email":"test12@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_2",
+			"Adresse_id": "a_12"		
 		}
 	},
 	
@@ -169,7 +257,23 @@
 		"sf_27":{
 			"Account_Id":"acc_27",
 			"Fähigkeit_Id":"f_27"
-		}			
+		}, 	
+		"sf_7":{
+			"Account_Id":"acc_7",
+			"Fähigkeit_Id":"f_7"
+		}, 	
+		"sf_10":{
+			"Account_Id":"acc_10",
+			"Fähigkeit_Id":"f_1"
+		},
+		"sf_11":{
+			"Account_Id":"acc_11",
+			"Fähigkeit_Id":"f_11"
+		},
+		"sf_12":{
+			"Account_Id":"acc_12",
+			"Fähigkeit_Id":"f_12"
+		}
 	},	
 	
 	"Fähigkeit":{
@@ -190,6 +294,24 @@
 		},
 		"f_27":{
 			"Fähigkeit":"SQL"
+		},
+		"f_19":{
+			"Fähigkeit_Id":"SAP"
+		},
+		"f_20":{
+			"Fähigkeit_Id":"Projektmanagement"
+		},
+		"f_7":{
+			"Fähigkeit":"Prozessoptimierung"
+		},
+		"f_10":{
+			"Fähigkeit":"ITIL V.3.0"
+		},
+		"f_11":{
+			"Fähigkeit":"CSS"
+		},
+		"f_12":{
+			"Fähigkeit":"C#"
 		}
 	},
 	
@@ -213,6 +335,30 @@
 		"sl_27":{
 			"Account_Id": "acc_27",
 			"Leidenschaft_Id": "l_27"		
+		},
+		"sl_16":{
+			"Account_Id": "acc_16",
+			"Leidenschaft_Id": "l_15"		
+		},
+		"sl_17":{
+			"Account_Id": "acc_17",
+			"Leidenschaft_Id": "l_16"		
+		}, 
+		"sl_7":{
+			"Account_Id": "acc_7",
+			"Leidenschaft_Id": "l_7"		
+		}, 
+		"sl_10":{
+			"Account_Id": "acc_10",
+			"Leidenschaft_Id": "l_10"		
+		},
+		"sl_11":{
+			"Account_Id": "acc_11",
+			"Leidenschaft_Id": "l_11"		
+		},
+		"sl_12":{
+			"Account_Id": "acc_12",
+			"Leidenschaft_Id": "l_12"		
 		}
 	},
 	
@@ -233,7 +379,25 @@
 		},
 		"l_27":{
 			"Leidenschaft":"Basketball"		
-		}	
+		},
+		"l_15":{
+			"Leidenschaft":"Bouldern"		
+		},
+		"l_16":{
+			"Leidenschaft":"Squash"		
+		}, 
+		"l_7":{
+			"Leidenschaft":"Fitnessstudio"		
+		},	
+		"l_10":{
+			"Leidenschaft":"Fussball"		
+		},
+		"l_11":{
+			"Leidenschaft":"Surfen"		
+		},
+		"l_12":{
+			"Leidenschaft":"Tauchen"		
+		}
 	},	
 	
 	"Student": {
@@ -244,11 +408,41 @@
 			"Geb_Datum":"",
 			"Uni":"Fontys",
 			"Studiengang":"Wirtschaftsinformatik",
-			"Vertiefung":"",
-			"Abschluss_Datum": "09-2019",
+			"Vertiefung":"Projektmanagement",
+			"Abschluss_Datum": "09-2020",
 			"Abschluss":"Bachelor of Science",
 			"Beschreibung":"",
-			"Semester":"7",
+			"Semester":"5",
+			"Beschäftigung":"",
+			"Zeitstempel":"2017-10-08"
+		},
+		"student_16":{
+			"Account_Id": "acc_16",
+			"Name":"Thomas",
+			"Nachname":"Meier",
+			"Geb_Datum":"20.04.1996",
+			"Uni":"RWTH Aachen",
+			"Studiengang":"Wirtschaftsinformatik",
+			"Vertiefung":"Projektmanagement",
+			"Abschluss_Datum": "09-2020",
+			"Abschluss":"Bachelor of Science",
+			"Beschreibung":"",
+			"Semester":"5",
+			"Beschäftigung":"",
+			"Zeitstempel":"2017-10-08"
+		},
+		"student_17":{
+			"Account_Id": "acc_17",
+			"Name":"Smithy Werben",
+			"Nachname":"Jaggermann Jensen",
+			"Geb_Datum":"",
+			"Uni":"Toronto University",
+			"Studiengang":"International Business",
+			"Vertiefung":"",
+			"Abschluss_Datum": "09-2021",
+			"Abschluss":"Bachelor of Arts",
+			"Beschreibung":"",
+			"Semester":"3",
 			"Beschäftigung":"",
 			"Zeitstempel":"2017-10-10"
 		},
@@ -326,7 +520,67 @@
 			"Semester":"4",
 			"Beschäftigung":"",
 			"Zeitstempel":"2017-10-10"
-		}
+		}, 
+		"student_7":{
+			"Account_Id": "acc_7",
+			"Name":"Thilo",
+			"Nachname":"Ritzerfeld",
+			"Geb_Datum":"",
+			"Uni":"Fontys Hogeschool Techniek en Logistiek, Venlo",
+			"Studiengang":"Wirtschaftsinformatik",
+			"Vertiefung":"",
+			"Abschluss_Datum": "07-2018",
+			"Abschluss":"Bachelor of Science",
+			"Beschreibung":"",
+			"Semester":"7",
+			"Beschäftigung":"",
+			"Zeitstempel":"2017-10-10"
+		}, 
+		"student_10":{
+			"Account_Id": "acc_10",
+			"Name":"Nils",
+			"Nachname":"Nieuwenhuis",
+			"Geb_Datum":"",
+			"Uni":"Fontys Hogeschool Techniek en Logistiek, Venlo",
+			"Studiengang":"Wirtschaftsinformatik",
+			"Vertiefung":"",
+			"Abschluss_Datum": "07-2018",
+			"Abschluss":"Bachelor of Science",
+			"Beschreibung":"",
+			"Semester":"7",
+			"Beschäftigung":"",
+			"Zeitstempel":"2017-10-10"
+		},
+		"student_11":{
+			"Account_Id": "acc_11",
+			"Name":"Max",
+			"Nachname":"Musterjunge",
+			"Geb_Datum":"",
+			"Uni":"Fontys",
+			"Studiengang":"Lanschaftsgartenbau",
+			"Vertiefung":"",
+			"Abschluss_Datum": "09-2019",
+			"Abschluss":"Bachelor of Science",
+			"Beschreibung":"",
+			"Semester":"2",
+			"Beschäftigung":"",
+			"Zeitstempel":"2017-10-10"
+		},
+		"student_12":{
+			"Account_Id": "acc_1",
+			"Name":"Michelle",
+			"Nachname":"Mustermädchen",
+			"Geb_Datum":"",
+			"Uni":"Fontys",
+			"Studiengang":"Marketing",
+			"Vertiefung":"",
+			"Abschluss_Datum": "09-2019",
+			"Abschluss":"Bachelor of Art",
+			"Beschreibung":"",
+			"Semester":"17",
+			"Beschäftigung":"",
+			"Zeitstempel":"2017-10-10"
+		}			
 	},
 
 	"Unternehmen":{
@@ -359,7 +613,31 @@
 			"Unternehmen":"Lufthansa Industry Solutions",
 			"Weibseite":"https://www.Lufthansa-Industry-Solutions.de",
 			"Branche":"IT Consulting"
-		}
+		},
+		"unt_18":{
+			"Account_id":"acc_18",
+			"Unternehmen":"Volkswagen",
+			"Weibseite":"https://www.volkswagen.de",
+			"Branche":"Automobil"
+		}, 
+		"unt_7":{
+			"Account_id":"acc_7",
+			"Unternehmen":"Copaco",
+			"Weibseite":"https://www.copaco.com",
+			"Branche":"IT"
+		},
+		"unt_11":{
+			"Account_id":"acc_11",
+			"Unternehmen":"Masterio",
+			"Weibseite":"https://www.masterio.eu",
+			"Branche":"Blumen"
+		},
+		"unt_12":{
+			"Account_id":"acc_12",
+			"Unternehmen":"Orintonio",
+			"Weibseite":"https://www.orintonio.eu",
+			"Branche":"Nahrungsmittel"
+}
 	},
 
 	"Universität":{
@@ -382,6 +660,16 @@
 			"Account_Id":"acc_30",
 			"Universität":"Universität Köln",
 			"Fachrichtungen":"Naturwissenschaften, Business, Technik"
+		},
+		"uni_333":{
+			"Account_Id":"acc_122",
+			"Universität":"RWTH Aachen",
+			"Fachrichtungen":"Business, Brauerei"
+		}, 
+		"uni_2":{
+			"Account_Id":"acc_8",
+			"Universität":"Fontys Eindhoven",
+			"Fachrichtungen":"Business, IT, Logistik, Mechatronik"
 		}
 	},
 
@@ -405,15 +693,31 @@
 		"konv_27":{
 			"Account_Id_1":"acc_26",
 			"Account_Id_2": "acc_28"
-		}	
+		},	
+		"konv_18":{
+			"Account_Id_1":"acc_16",
+			"Account_Id_2": "acc_17"
+		}, 
+		"konv_7":{
+			"Account_Id_1":"acc_1",
+			"Account_Id_7": "acc_7"
+		},
+		"konv_11":{
+			"Account_Id_1":"acc_11",
+			"Account_Id_2": "acc_12"
+		},
+		"konv_12":{
+			"Account_Id_1":"acc_1",
+			"Account_Id_2": "acc_12"
+}
 	},
 
 	"Nachricht":{
-		"n_1":{
-			"Konversation_Id":"konv_1",
+		"n_18":{
+			"Konversation_Id":"konv_18",
 			"Betreff":"Hallo",
-			"Inhalt":"blabla",
-			"Sender_Id":"acc_2",
+			"Inhalt":"Hallo schreib doch zurück",
+			"Sender_Id":"acc_16",
 			"Zeitstempel":"2017-10-10",
 			"Anhang_Id": "a_1" 
 		},
@@ -447,15 +751,53 @@
 			"Inhalt":"blabla",
 			"Sender_Id":"acc_28",
 			"Zeitstempel":"2017-10-10",
+			"Anhang_Id": "a_17" 
+		},
+		"n_19":{
+			"Konversation_Id":"konv_18",
+			"Betreff":"Hallo",
+			"Inhalt":"Hallo ja mache ich",
+			"Sender_Id":"acc_17",
+			"Zeitstempel":"2017-10-11",
 			"Anhang_Id": "" 
+		}, 
+		"n_7":{
+			"Konversation_Id":"konv_7",
+			"Betreff":"Kontaktaufnahme",
+			"Inhalt":"Lorem Impsum",
+			"Sender_Id":"acc_7",
+			"Zeitstempel":"2017-10-10",
+			"Anhang_Id": "a_7" 
+		},
+		"n_11":{
+			"Konversation_Id":"konv_11",
+			"Betreff":"Hallo",
+			"Inhalt":"blabla",
+			"Sender_Id":"acc_12",
+			"Zeitstempel":"2017-10-10",
+			"Anhang_Id": "" 
+		},
+		"n_12":{
+			"Konversation_Id":"konv_12",
+			"Betreff":"Hallo",
+			"Inhalt":"blabla",
+			"Sender_Id":"acc_12",
+			"Zeitstempel":"2017-10-10",
+			"Anhang_Id": "a_11" 
 		}
 	},
 
 	"Anhang":{
-		"a_1":{
-			"Account_Id":"acc_2",
+		"a_17":{
+			"Account_Id":"acc_16",
 			"Datei_Name":"Bild",
 			"Datei_Typ":"png",
+			"Beschreibung":""
+		}, 
+		"a_7":{
+			"Account_Id":"acc_7",
+			"Datei_Name":"CV",
+			"Datei_Typ":"pdf",
 			"Beschreibung":"",
 			"Anhang":"https://my-anhang-url.com/sjflisf"
 		},
@@ -471,7 +813,14 @@
 			"Datei_Name":"Bild",
 			"Datei_Typ":"png",
 			"Beschreibung":"",
-			"Anhang":"https://my-anhang-url.com/sjflisf"
+			"Anhang":"https://cvmkr.com"
+		},
+		"a_11":{
+			"Account_Id":"acc_12",
+			"Datei_Name":"Bild",
+			"Datei_Typ":"gif",
+			"Beschreibung":"",
+			"Anhang":"https://my-anhang-url.com/sjkhkf"
 		}
 	},
 
@@ -481,6 +830,12 @@
 		},
 		"b_26":{
 			"Block_Name":"Persönlich"
+		}, 
+		"b_7":{
+			"Block_Name":"Arbeitserfahrung"
+		},
+		"b_11":{
+			"Block_Name":"Rest"
 		}
 	},
 
@@ -508,6 +863,26 @@
 		"p_28":{
 			"Info":"Universität",
 			"Block_Id":"b_26"
+		}, 
+		"p_info_5":{
+			"Info":"Unternehmen xyz",
+			"Block_Id":"b_7"
+		},
+		"p_info_6":{
+			"Info":"Taetigkeit",
+			"Block_Id":"b_7"
+		},
+		"p_info_7":{
+			"Info":"Dauer",
+			"Block_Id":"b_7"
+		},
+		"p_info_11":{
+			"Info":"Schub",
+			"Block_Id":"b_11"
+		},
+		"p_info_12":{
+			"Info":"Didu",
+			"Block_Id":"b_11"
 		}
 	},
 
@@ -548,7 +923,26 @@
 			"Block_Id": "b_26",
 			"Sichtbar": false,
 			"Gruppe_Id": "gruppe_1"
+		}, 
+		"s_7":{
+			"Account_Id":"acc_10",
+			"Block_Id": "b_7",
+			"Sichtbar": true,
+			"Gruppe_Id": "gruppe_2"
+		},
+		"s_11":{
+			"Account_Id":"acc_11",
+			"Block_Id": "b_11",
+			"Sichtbar": false,
+			"Gruppe_Id": "gruppe_2"
+		},
+		"s_12":{
+			"Account_Id":"acc_11",
+			"Block_Id": "b_11",
+			"Sichtbar": true,
+			"Gruppe_Id": "gruppe_1"
 		}
-	}	
-	
+	} 	
 }
+
+
