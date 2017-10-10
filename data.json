@@ -15,8 +15,21 @@
 		"a_1": {
 			"Straße":"Tegelseweg 255",
 			"Ort":"Venlo",
-			"PLZ":"5912 BG"		
-		}	
+			"PLZ":"5912 BG",	
+			"Land": "Niederlande"
+		},
+		"a_21": {
+			"Straße":"Poststraße 12",
+			"Ort":"Hamburg",
+			"PLZ":"20355",
+			"Land": "Deutschland"		
+		},
+		"a_22": {
+			"Straße":"Kankaistenkatu 33C",
+			"Ort":"Hämeenlinna",
+			"PLZ":"13110",
+			"Land": "Finnland"		
+		}		
 	},	
 	
 	"Account":{
@@ -37,6 +50,42 @@
 			"Passwort":"test",
 			"Usergruppe": "gruppe_3",
 			"Adresse_id": "a_1"		
+		},
+		"acc_21":{
+			"Email":"test21@mail.com",
+			"Passwort":"TEST",
+			"Usergruppe": "gruppe_1",
+			"Adresse_id": "a_21"		
+		},
+		"acc_22":{
+			"Email":"test22@mail.com",
+			"Passwort":"TEST",
+			"Usergruppe": "gruppe_1",
+			"Adresse_id": "a_22"		
+		},
+		"acc_23":{
+			"Email":"test22@mail.com",
+			"Passwort":"TEST",
+			"Usergruppe": "gruppe_2",
+			"Adresse_id": "a_22"		
+		},
+		"acc_24":{
+			"Email":"test22@mail.com",
+			"Passwort":"TEST",
+			"Usergruppe": "gruppe_2",
+			"Adresse_id": "a_22"		
+		},
+		"acc_25":{
+			"Email":"test22@mail.com",
+			"Passwort":"TEST",
+			"Usergruppe": "gruppe_3",
+			"Adresse_id": "a_22"		
+		},
+		"acc_126":{
+			"Email":"test22@mail.com",
+			"Passwort":"TEST",
+			"Usergruppe": "gruppe_3",
+			"Adresse_id": "a_22"		
 		}
 	},
 	
@@ -44,12 +93,29 @@
 		"sf_1":{
 			"Account_Id":"acc_1",
 			"Fähigkeit_Id":"f_1"
+		},
+		"sf_21":{
+			"Account_Id":"acc_21",
+			"Fähigkeit_Id":"f_1"
+		},
+		"sf_22":{
+			"Account_Id":"acc_22",
+			"Fähigkeit_Id":"f_21"
 		}	
 	},	
 	
 	"Fähigkeit":{
 		"f_1":{
 			"Fähigkeit":"Java"
+		},
+		"f_21":{
+			"Fähigkeit":"LaTex"
+		},
+		"f_22":{
+			"Fähigkeit":"Projekt Management"
+		},
+		"f_23":{
+			"Fähigkeit":"ARIS"
 		}
 	},
 	
@@ -57,12 +123,28 @@
 		"sl_1":{
 			"Account_Id": "acc_1",
 			"Leidenschaft_Id": "l_1"		
+		},
+		"sl_21":{
+			"Account_Id": "acc_21",
+			"Leidenschaft_Id": "l_1"		
+		},
+		"sl_22":{
+			"Account_Id": "acc_22",
+			"Leidenschaft_Id": "l_21"		
 		}
 	},
 	
 	"Leidenschaft":{
 		"l_1":{
 			"Leidenschaft":"Reisen"		
+		},
+		"l_21":{
+			"Leidenschaft":"Fallschirm springen"		
+		},
+		"l_22":{
+			"Leidenschaft":"Ski langlaufen"		
+		},"l_23":{
+			"Leidenschaft":"Yoga"		
 		}	
 	},	
 	
@@ -81,6 +163,36 @@
 			"Semester":"7",
 			"Beschäftigung":"",
 			"Zeitstempel":"2017-10-10"
+		},
+		"student_21":{
+			"Account_Id": "acc_21",
+			"Name":"Hannah",
+			"Nachname":"Müller",
+			"Geb_Datum":"31.01.1980",
+			"Uni":"FHDW",
+			"Studiengang":"Betriebswirtschaftslehre",
+			"Vertiefung":"Steuerwesen",
+			"Abschluss_Datum": "05-2018",
+			"Abschluss":"Bachelor of Arts",
+			"Beschreibung":"Ich arbeite gerne!",
+			"Semester":"10",
+			"Beschäftigung":"Abschlussarbeit",
+			"Zeitstempel":"2017-10-10"
+		},
+		"student_22":{
+			"Account_Id": "acc_22",
+			"Name":"Harald Hermann",
+			"Nachname":"Hausmann",
+			"Geb_Datum":"03.03.1992",
+			"Uni":"Universität zu Köln",
+			"Studiengang":"Philosophie",
+			"Vertiefung":"",
+			"Abschluss_Datum": "12-2016",
+			"Abschluss":"Bachelor of Philosophy",
+			"Beschreibung":"",
+			"Semester":"12",
+			"Beschäftigung":"",
+			"Zeitstempel":"2017-10-10"
 		}	
 	},
 
@@ -90,6 +202,18 @@
 			"Unternehmen":"Screenware",
 			"Weibseite":"https://www.screenware.eu",
 			"Branche":"IT"
+		},
+		"unt_23":{
+			"Account_id":"acc_23",
+			"Unternehmen":"Haribo",
+			"Weibseite":"https://www.haribo.de",
+			"Branche":"Gummibärchen"
+		},
+		"unt_24":{
+			"Account_id":"acc_23",
+			"Unternehmen":"Apple",
+			"Weibseite":"https://www.apple.com",
+			"Branche":"IT"
 		}
 	},
 
@@ -98,6 +222,16 @@
 			"Account_Id":"acc_3",
 			"Universität":"Fontys Venlo",
 			"Fachrichtungen":"Business, IT, Logistik, Mechatronik"
+		},
+		"uni_25":{
+			"Account_Id":"acc_25",
+			"Universität":"FHDW",
+			"Fachrichtungen":"Betriebswirtschaft, Volkswirtschaft und IT"
+		},
+		"uni_126":{
+			"Account_Id":"acc_126",
+			"Universität":"Universität zu ´Köln",
+			"Fachrichtungen":"Alle"
 		}
 	},
 
@@ -105,6 +239,14 @@
 		"konv_1":{
 			"Account_Id_1":"acc_1",
 			"Account_Id_2": "acc_2"
+		},
+		"konv_21":{
+			"Account_Id_1":"acc_21",
+			"Account_Id_2": "acc_23"
+		},
+		"konv_22":{
+			"Account_Id_1":"acc_22",
+			"Account_Id_2": "acc_23"
 		}
 	},
 
@@ -116,12 +258,42 @@
 			"Sender_Id":"acc_2",
 			"Zeitstempel":"2017-10-10",
 			"Anhang_Id": "a_1" 
+		},
+		"n_21":{
+			"Konversation_Id":"konv_21",
+			"Betreff":"Hallo",
+			"Inhalt":"blabla",
+			"Sender_Id":"acc_21",
+			"Zeitstempel":"2017-10-10",
+			"Anhang_Id": "a_21" 
+		},
+		"n_22":{
+			"Konversation_Id":"konv_22",
+			"Betreff":"Hallo",
+			"Inhalt":"blabla",
+			"Sender_Id":"acc_22",
+			"Zeitstempel":"2017-10-10",
+			"Anhang_Id": "a_22" 
 		}
 	},
 
 	"Anhang":{
 		"a_1":{
 			"Account_Id":"acc_2",
+			"Datei_Name":"Bild",
+			"Datei_Typ":"png",
+			"Beschreibung":"",
+			"Anhang":"https://my-anhang-url.com/sjflisf"
+		},
+		"a_21":{
+			"Account_Id":"acc_21",
+			"Datei_Name":"Bild",
+			"Datei_Typ":"png",
+			"Beschreibung":"",
+			"Anhang":"https://my-anhang-url.com/sjflisf"
+		},
+		"a_22":{
+			"Account_Id":"acc_22",
 			"Datei_Name":"Bild",
 			"Datei_Typ":"png",
 			"Beschreibung":"",
@@ -153,6 +325,18 @@
 	"Sichtbarkeit":{
 		"s_1":{
 			"Account_Id":"acc_1",
+			"Block_Id": "b_1",
+			"Sichtbar": true,
+			"Gruppe_Id": "gruppe_1"
+		},
+		"s_21":{
+			"Account_Id":"acc_21",
+			"Block_Id": "b_1",
+			"Sichtbar": false,
+			"Gruppe_Id": "gruppe_1"
+		},
+		"s_22":{
+			"Account_Id":"acc_21",
 			"Block_Id": "b_1",
 			"Sichtbar": true,
 			"Gruppe_Id": "gruppe_1"
