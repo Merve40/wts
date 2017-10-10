@@ -1,0 +1,161 @@
+{
+	"User_Gruppe":{
+		"gruppe_1":{
+			"Gruppe":"Student"			
+		},
+		"gruppe_2":{
+			"Gruppe":"Unternehmen"			
+		},
+		"gruppe_3":{
+			"Gruppe":"Universität"
+		}		
+	},
+	
+	"Adresse":{
+		"a_1": {
+			"Straße":"Tegelseweg 255",
+			"Ort":"Venlo",
+			"PLZ":"5912 BG"		
+		}	
+	},	
+	
+	"Account":{
+		"acc_1":{
+			"Email":"test@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_1",
+			"Adresse_id": "a_1"		
+		},
+		"acc_2":{
+			"Email":"test2@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_2",
+			"Adresse_id": "a_1"		
+		},
+		"acc_3":{
+			"Email":"test3@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_3",
+			"Adresse_id": "a_1"		
+		}
+	},
+	
+	"Student_Fähigkeit":{
+		"sf_1":{
+			"Account_Id":"acc_1",
+			"Fähigkeit_Id":"f_1"
+		}	
+	},	
+	
+	"Fähigkeit":{
+		"f_1":{
+			"Fähigkeit":"Java"
+		}
+	},
+	
+	"Student_Leidenschaft":{
+		"sl_1":{
+			"Account_Id": "acc_1",
+			"Leidenschaft_Id": "l_1"		
+		}
+	},
+	
+	"Leidenschaft":{
+		"l_1":{
+			"Leidenschaft":"Reisen"		
+		}	
+	},	
+	
+	"Student": {
+		"student_2":{
+			"Account_Id": "acc_1",
+			"Name":"Julia",
+			"Nachname":"Mödinger",
+			"Geb_Datum":"",
+			"Uni":"Fontys",
+			"Studiengang":"Wirtschaftsinformatik",
+			"Vertiefung":"",
+			"Abschluss_Datum": "09-2019",
+			"Abschluss":"Bachelor of Science",
+			"Beschreibung":"",
+			"Semester":"7",
+			"Beschäftigung":"",
+			"Zeitstempel":"2017-10-10"
+		}	
+	},
+
+	"Unternehmen":{
+		"unt_1":{
+			"Account_id":"acc_2",
+			"Unternehmen":"Screenware",
+			"Weibseite":"https://www.screenware.eu",
+			"Branche":"IT"
+		}
+	},
+
+	"Universität":{
+		"uni_1":{
+			"Account_Id":"acc_3",
+			"Universität":"Fontys Venlo",
+			"Fachrichtungen":"Business, IT, Logistik, Mechatronik"
+		}
+	},
+
+	"Konversation":{
+		"konv_1":{
+			"Account_Id_1":"acc_1",
+			"Account_Id_2": "acc_2"
+		}
+	},
+
+	"Nachricht":{
+		"n_1":{
+			"Konversation_Id":"konv_1",
+			"Betreff":"Hallo",
+			"Inhalt":"blabla",
+			"Sender_Id":"acc_2",
+			"Zeitstempel":"2017-10-10",
+			"Anhang_Id": "a_1" 
+		}
+	},
+
+	"Anhang":{
+		"a_1":{
+			"Account_Id":"acc_2",
+			"Datei_Name":"Bild",
+			"Datei_Typ":"png",
+			"Beschreibung":"",
+			"Anhang":"https://my-anhang-url.com/sjflisf"
+		}
+	},
+
+	"Block":{
+		"b_1":{
+			"Block_Name":"Adresse"
+		}
+	},
+
+	"Profil_Info":{
+		"p_info_1":{
+			"Info":"Straße",
+			"Block_Id":"b_1"
+		},
+		"p_info_2":{
+			"Info":"Ort",
+			"Block_Id":"b_1"
+		},
+		"p_info_3":{
+			"Info":"PLZ",
+			"Block_Id":"b_1"
+		}
+	},
+
+	"Sichtbarkeit":{
+		"s_1":{
+			"Account_Id":"acc_1",
+			"Block_Id": "b_1",
+			"Sichtbar": true,
+			"Gruppe_Id": "gruppe_1"
+		}
+	}	
+}
