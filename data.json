@@ -15,8 +15,21 @@
 		"a_1": {
 			"Straße":"Tegelseweg 255",
 			"Ort":"Venlo",
-			"PLZ":"5912 BG"		
-		}	
+			"PLZ":"5912 BG",	
+			"Land":"Niederlande"	
+		},	
+		"a_7": {
+			"Straße":"Koninginnesingel 82",
+			"Ort":"Venlo",
+			"PLZ":"5911 KG",	
+			"Land":"Niederlande"	
+		},
+		"a_10": {
+			"Straße":"Walstraat ",
+			"Ort":"Venlo",
+			"PLZ":"5912 AR",	
+			"Land":"Niederlande"	
+		}
 	},	
 	
 	"Account":{
@@ -37,6 +50,25 @@
 			"Passwort":"test",
 			"Usergruppe": "gruppe_3",
 			"Adresse_id": "a_1"		
+		},
+		"acc_7":{
+			"Email":"test3@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_2",
+			"Adresse_id": "a_7"		
+		},
+
+		"acc_10":{
+			"Email":"test3@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_1",
+			"Adresse_id": "a_10"		
+		}, 
+		"acc_8":{
+			"Email":"test3@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_3",
+			"Adresse_id": "a_8"		
 		}
 	},
 	
@@ -44,26 +76,53 @@
 		"sf_1":{
 			"Account_Id":"acc_1",
 			"Fähigkeit_Id":"f_1"
-		}	
+		}, 	
+		"sf_7":{
+			"Account_Id":"acc_7",
+			"Fähigkeit_Id":"f_7"
+		}, 	
+		"sf_1":{
+			"Account_Id":"acc_10",
+			"Fähigkeit_Id":"f_1"
+		}
 	},	
 	
 	"Fähigkeit":{
 		"f_1":{
 			"Fähigkeit":"Java"
-		}
+		},
+		"f_7":{
+			"Fähigkeit":"Prozessoptimierung"
+		},
+		"f_10":{
+			"Fähigkeit":"ITIL V.3.0"
+		},
 	},
 	
 	"Student_Leidenschaft":{
 		"sl_1":{
 			"Account_Id": "acc_1",
 			"Leidenschaft_Id": "l_1"		
+		}, 
+		"sl_7":{
+			"Account_Id": "acc_7",
+			"Leidenschaft_Id": "l_7"		
+		}, 
+		"sl_10":{
+			"Account_Id": "acc_10",
+			"Leidenschaft_Id": "l_10"		
 		}
 	},
 	
 	"Leidenschaft":{
 		"l_1":{
 			"Leidenschaft":"Reisen"		
-		}	
+		}, 
+		"l_7":{
+			"Leidenschaft":"Fitnessstudio"		
+		},	"l_10":{
+			"Leidenschaft":"Fussball"		
+		}
 	},	
 	
 	"Student": {
@@ -81,7 +140,37 @@
 			"Semester":"7",
 			"Beschäftigung":"",
 			"Zeitstempel":"2017-10-10"
-		}	
+		}, 
+		"student_7":{
+			"Account_Id": "acc_7",
+			"Name":"Thilo",
+			"Nachname":"Ritzerfeld",
+			"Geb_Datum":"",
+			"Uni":"Fontys Hogeschool Techniek en Logistiek, Venlo",
+			"Studiengang":"Wirtschaftsinformatik",
+			"Vertiefung":"",
+			"Abschluss_Datum": "07-2018",
+			"Abschluss":"Bachelor of Science",
+			"Beschreibung":"",
+			"Semester":"7",
+			"Beschäftigung":"",
+			"Zeitstempel":"2017-10-10"
+		}, 
+		"student_10":{
+			"Account_Id": "acc_10",
+			"Name":"Nils",
+			"Nachname":"Nieuwenhuis",
+			"Geb_Datum":"",
+			"Uni":"Fontys Hogeschool Techniek en Logistiek, Venlo",
+			"Studiengang":"Wirtschaftsinformatik",
+			"Vertiefung":"",
+			"Abschluss_Datum": "07-2018",
+			"Abschluss":"Bachelor of Science",
+			"Beschreibung":"",
+			"Semester":"7",
+			"Beschäftigung":"",
+			"Zeitstempel":"2017-10-10"
+		}			
 	},
 
 	"Unternehmen":{
@@ -90,13 +179,24 @@
 			"Unternehmen":"Screenware",
 			"Weibseite":"https://www.screenware.eu",
 			"Branche":"IT"
-		}
+		}, 
+		"unt_7":{
+			"Account_id":"acc_7",
+			"Unternehmen":"Copaco",
+			"Weibseite":"https://www.copaco.com",
+			"Branche":"IT"
+		}, 
 	},
 
 	"Universität":{
 		"uni_1":{
 			"Account_Id":"acc_3",
 			"Universität":"Fontys Venlo",
+			"Fachrichtungen":"Business, IT, Logistik, Mechatronik"
+		}, 
+		"uni_2":{
+			"Account_Id":"acc_8",
+			"Universität":"Fontys Eindhoven",
 			"Fachrichtungen":"Business, IT, Logistik, Mechatronik"
 		}
 	},
@@ -105,6 +205,10 @@
 		"konv_1":{
 			"Account_Id_1":"acc_1",
 			"Account_Id_2": "acc_2"
+		}, 
+		"konv_1":{
+			"Account_Id_1":"acc_1",
+			"Account_Id_7": "acc_7"
 		}
 	},
 
@@ -116,7 +220,15 @@
 			"Sender_Id":"acc_2",
 			"Zeitstempel":"2017-10-10",
 			"Anhang_Id": "a_1" 
-		}
+		}, 
+		"n_7":{
+			"Konversation_Id":"konv_7",
+			"Betreff":"Kontaktaufnahme",
+			"Inhalt":"Lorem Impsum",
+			"Sender_Id":"acc_7",
+			"Zeitstempel":"2017-10-10",
+			"Anhang_Id": "a_1" 
+		}, 
 	},
 
 	"Anhang":{
@@ -126,13 +238,24 @@
 			"Datei_Typ":"png",
 			"Beschreibung":"",
 			"Anhang":"https://my-anhang-url.com/sjflisf"
+		}, 
+		"a_7":{
+			"Account_Id":"acc_7",
+			"Datei_Name":"CV",
+			"Datei_Typ":"pdf",
+			"Beschreibung":"",
+			"Anhang":"https://cvmkr.com"
 		}
 	},
 
 	"Block":{
 		"b_1":{
 			"Block_Name":"Adresse"
-		}
+		}, 
+		"b_7":{
+			"Block_Name":"Arbeitserfahrung"
+		}, 
+
 	},
 
 	"Profil_Info":{
@@ -147,6 +270,18 @@
 		"p_info_3":{
 			"Info":"PLZ",
 			"Block_Id":"b_1"
+		}, 
+		"p_info_5":{
+			"Info":"Unternehmen xyz",
+			"Block_Id":"b_7"
+		},
+		"p_info_6":{
+			"Info":"Taetigkeit",
+			"Block_Id":"b_7"
+		},
+		"p_info_7":{
+			"Info":"Dauer",
+			"Block_Id":"b_7"
 		}
 	},
 
@@ -156,6 +291,14 @@
 			"Block_Id": "b_1",
 			"Sichtbar": true,
 			"Gruppe_Id": "gruppe_1"
+		}, 
+		"s_7":{
+			"Account_Id":"acc_10",
+			"Block_Id": "b_7",
+			"Sichtbar": true,
+			"Gruppe_Id": "gruppe_2"
 		}
-	}	
+	} 	
 }
+
+
