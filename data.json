@@ -15,6 +15,7 @@
 		"a_1": {
 			"Straße":"Tegelseweg 255",
 			"Ort":"Venlo",
+<<<<<<< niklas
 			"PLZ":"5912 BG"		
 		},
 		"a_16": {
@@ -37,6 +38,11 @@
 			"Ort":"Aachen",
 			"PLZ":"67976"		
 		}
+=======
+			"PLZ":"5912 BG",	
+			"Land": "Niederlande"	
+		}	
+>>>>>>> land added
 	},	
 	
 	"Account":{
