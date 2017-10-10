@@ -15,8 +15,55 @@
 		"a_1": {
 			"Straße":"Tegelseweg 255",
 			"Ort":"Venlo",
+<<<<<<< HEAD
 <<<<<<< niklas
 			"PLZ":"5912 BG"		
+=======
+			"PLZ":"5912 BG",
+			"Land": "Niederlande"
+		},
+		"a_21": {
+			"Straße":"Poststraße 12",
+			"Ort":"Hamburg",
+			"PLZ":"20355",
+			"Land": "Deutschland"		
+		},
+		"a_22": {
+			"Straße":"Kankaistenkatu 33C",
+			"Ort":"Hämeenlinna",
+			"PLZ":"13110",
+			"Land": "Finnland"		
+		},
+		"a_26":{
+			"Straße":"Düsseldorfer Str. 10",
+			"Ort":"Düsseldorf",
+			"PLZ":"1234",
+			"Land": "Deutschland"
+		},
+		"a_27":{
+			"Straße":"Venloer Str. 75",
+			"Ort": "Kaldenkirchen",
+			"PLZ":"1234",
+			"Land":"Deutschland"
+		},
+		"a_28":{
+			"Straße":"Lindenallee 56",
+			"Ort": "Oldenburg",
+			"PLZ":"42394",
+			"Land":"Deutschland"
+		},
+		"a_29":{
+			"Straße":"Uhlandstraße 101",
+			"Ort": "Duisburg",
+			"PLZ":"47226",
+			"Land":"Deutschland"
+		},
+		"a_30":{
+			"Straße":"Beethovenstraße 103",
+			"Ort": "Köln",
+			"PLZ":"50560",
+			"Land":"Deutschland"
+>>>>>>> master
 		},
 		"a_16": {
 			"Straße":"Vennstraße 15",
@@ -36,6 +83,7 @@
 		"a_19": {
 			"Straße":"Haller Strasse 2",
 			"Ort":"Aachen",
+<<<<<<< HEAD
 			"PLZ":"67976"		
 		}
 =======
@@ -43,6 +91,41 @@
 			"Land": "Niederlande"	
 		}	
 >>>>>>> land added
+=======
+			"PLZ":"67976",		
+			"Land":"Niederlande"	
+		},	
+		"a_7": {
+			"Straße":"Koninginnesingel 82",
+			"Ort":"Venlo",
+			"PLZ":"5911 KG",	
+			"Land":"Niederlande"	
+		},
+		"a_10": {
+			"Straße":"Walstraat ",
+			"Ort":"Venlo",
+			"PLZ":"5912 AR",	
+			"Land":"Niederlande"	
+		}, 
+		"a_11": {
+			"Straße":"Testweg 77",
+			"Ort":"Erfurt",
+			"PLZ":"32816",
+			"Land":"Deutschland"	
+		},
+		"a_12": {
+			"Straße":"Tegelseweg 255",
+			"Ort":"New York",
+			"PLZ":"946379",
+			"Land":"United States of America"	
+		},
+		"a_13": {
+			"Straße":"Tegelseweg 255",
+			"Ort":"Moskau",
+			"PLZ":"9BBSE6",
+			"Land":"Russland"	
+} 
+>>>>>>> master
 	},	
 	
 	"Account":{
@@ -68,31 +151,206 @@
 			"Email":"rwth@mail.com",
 			"Passwort":"test",
 			"Usergruppe": "gruppe_3",
+			"Adresse_id": "a_1"		
+		},
+		"acc_21":{
+			"Email":"test21@mail.com",
+			"Passwort":"TEST",
+			"Usergruppe": "gruppe_1",
+			"Adresse_id": "a_21"		
+		},
+		"acc_22":{
+			"Email":"test22@mail.com",
+			"Passwort":"TEST",
+			"Usergruppe": "gruppe_1",
+			"Adresse_id": "a_22"		
+		},
+		"acc_23":{
+			"Email":"test22@mail.com",
+			"Passwort":"TEST",
+			"Usergruppe": "gruppe_2",
+			"Adresse_id": "a_22"		
+		},
+		"acc_24":{
+			"Email":"test22@mail.com",
+			"Passwort":"TEST",
+			"Usergruppe": "gruppe_2",
+			"Adresse_id": "a_22"		
+		},
+		"acc_25":{
+			"Email":"test22@mail.com",
+			"Passwort":"TEST",
+			"Usergruppe": "gruppe_3",
+			"Adresse_id": "a_22"		
+		},
+		"acc_126":{
+			"Email":"test22@mail.com",
+			"Passwort":"TEST",
+			"Usergruppe": "gruppe_3",
+			"Adresse_id": "a_22"		
+		}, 
+		"acc_26":{
+			"Email":"test26@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_1",
+			"Adresse_id": "a_1"	
+		},
+		"acc_27":{
+			"Email":"test27@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_1",
+			"Adresse_id": "a_1"	
+		},
+		"acc_28":{
+			"Email":"test28@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_2",
+			"Adresse_id": "a_1"	
+		},
+		"acc_29":{
+			"Email":"test29@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_2",
+			"Adresse_id": "a_1"	
+		},
+		"acc_30":{
+			"Email":"test30@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_3",
 			"Adresse_id": "a_19"		
+		},
+		"acc_7":{
+			"Email":"test3@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_2",
+			"Adresse_id": "a_7"		
+		},
+
+		"acc_10":{
+			"Email":"test3@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_1",
+			"Adresse_id": "a_10"		
+		}, 
+		"acc_8":{
+			"Email":"test3@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_3",
+			"Adresse_id": "a_8"		
+		},
+		"acc_11":{
+			"Email":"test11@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_2",
+			"Adresse_id": "a_11"		
+		},
+		"acc_12":{
+			"Email":"test12@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_2",
+			"Adresse_id": "a_12"		
 		}
 	},
 	
 	"Student_Fähigkeit":{
-		"sf_19":{
-			"Account_Id":"acc_16",
-			"Fähigkeit_Id":"f_18"
+		"sf_1":{
+			"Account_Id":"acc_1",
+			"Fähigkeit_Id":"f_1"
 		},
-		"sf_20":{
-			"Account_Id":"acc_17",
-			"Fähigkeit_Id":"f_19"
-		}	
+		"sf_21":{
+			"Account_Id":"acc_21",
+			"Fähigkeit_Id":"f_1"
+		},
+		"sf_22":{
+			"Account_Id":"acc_22",
+			"Fähigkeit_Id":"f_21"
+		},	
+		"sf_26":{
+			"Account_Id":"acc_26",
+			"Fähigkeit_Id":"f_26"
+		}, 
+		"sf_27":{
+			"Account_Id":"acc_27",
+			"Fähigkeit_Id":"f_27"
+		}, 	
+		"sf_7":{
+			"Account_Id":"acc_7",
+			"Fähigkeit_Id":"f_7"
+		}, 	
+		"sf_10":{
+			"Account_Id":"acc_10",
+			"Fähigkeit_Id":"f_1"
+		},
+		"sf_11":{
+			"Account_Id":"acc_11",
+			"Fähigkeit_Id":"f_11"
+		},
+		"sf_12":{
+			"Account_Id":"acc_12",
+			"Fähigkeit_Id":"f_12"
+		}
 	},	
 	
 	"Fähigkeit":{
-		"f_18":{
-			"Fähigkeit":"SAP"
+		"f_1":{
+			"Fähigkeit":"Java"
+		},
+		"f_21":{
+			"Fähigkeit":"LaTex"
+		},
+		"f_22":{
+			"Fähigkeit":"Projekt Management"
+		},
+		"f_23":{
+			"Fähigkeit":"ARIS"
+		},
+		"f_26":{
+			"Fähigkeit":"UML"
+		},
+		"f_27":{
+			"Fähigkeit":"SQL"
 		},
 		"f_19":{
-			"Fähigkeit":"Projektmanagement"
+			"Fähigkeit_Id":"SAP"
+		},
+		"f_20":{
+			"Fähigkeit_Id":"Projektmanagement"
+		},
+		"f_7":{
+			"Fähigkeit":"Prozessoptimierung"
+		},
+		"f_10":{
+			"Fähigkeit":"ITIL V.3.0"
+		},
+		"f_11":{
+			"Fähigkeit":"CSS"
+		},
+		"f_12":{
+			"Fähigkeit":"C#"
 		}
 	},
 	
 	"Student_Leidenschaft":{
+		"sl_1":{
+			"Account_Id": "acc_1",
+			"Leidenschaft_Id": "l_1"		
+		},
+		"sl_21":{
+			"Account_Id": "acc_21",
+			"Leidenschaft_Id": "l_1"		
+		},
+		"sl_22":{
+			"Account_Id": "acc_22",
+			"Leidenschaft_Id": "l_21"		
+		},
+		"sl_26":{
+			"Account_Id": "acc_26",
+			"Leidenschaft_Id": "l_26"		
+		},
+		"sl_27":{
+			"Account_Id": "acc_27",
+			"Leidenschaft_Id": "l_27"		
+		},
 		"sl_16":{
 			"Account_Id": "acc_16",
 			"Leidenschaft_Id": "l_15"		
@@ -100,20 +358,83 @@
 		"sl_17":{
 			"Account_Id": "acc_17",
 			"Leidenschaft_Id": "l_16"		
+		}, 
+		"sl_7":{
+			"Account_Id": "acc_7",
+			"Leidenschaft_Id": "l_7"		
+		}, 
+		"sl_10":{
+			"Account_Id": "acc_10",
+			"Leidenschaft_Id": "l_10"		
+		},
+		"sl_11":{
+			"Account_Id": "acc_11",
+			"Leidenschaft_Id": "l_11"		
+		},
+		"sl_12":{
+			"Account_Id": "acc_12",
+			"Leidenschaft_Id": "l_12"		
 		}
 	},
 	
 	"Leidenschaft":{
+		"l_1":{
+			"Leidenschaft":"Reisen"		
+		},
+		"l_21":{
+			"Leidenschaft":"Fallschirm springen"		
+		},
+		"l_22":{
+			"Leidenschaft":"Ski langlaufen"		
+		},"l_23":{
+			"Leidenschaft":"Yoga"
+		},
+		"l_26":{
+			"Leidenschaft":"Feiern"		
+		},
+		"l_27":{
+			"Leidenschaft":"Basketball"		
+		},
 		"l_15":{
 			"Leidenschaft":"Bouldern"		
 		},
 		"l_16":{
 			"Leidenschaft":"Squash"		
-		}	
+		}, 
+		"l_7":{
+			"Leidenschaft":"Fitnessstudio"		
+		},	
+		"l_10":{
+			"Leidenschaft":"Fussball"		
+		},
+		"l_11":{
+			"Leidenschaft":"Surfen"		
+		},
+		"l_12":{
+			"Leidenschaft":"Tauchen"		
+		}
 	},	
 	
 	"Student": {
+<<<<<<< HEAD
 <<<<<<< niklas
+=======
+		"student_1":{
+			"Account_Id": "acc_1",
+			"Name":"Julia",
+			"Nachname":"Mödinger",
+			"Geb_Datum":"",
+			"Uni":"Fontys",
+			"Studiengang":"Wirtschaftsinformatik",
+			"Vertiefung":"Projektmanagement",
+			"Abschluss_Datum": "09-2020",
+			"Abschluss":"Bachelor of Science",
+			"Beschreibung":"",
+			"Semester":"5",
+			"Beschäftigung":"",
+			"Zeitstempel":"2017-10-08"
+		},
+>>>>>>> master
 		"student_16":{
 			"Account_Id": "acc_16",
 			"Name":"Thomas",
@@ -152,6 +473,39 @@
 			"Beschäftigung":"",
 			"Zeitstempel":"2017-10-10"
 		},
+<<<<<<< HEAD
+=======
+		"student_21":{
+			"Account_Id": "acc_21",
+			"Name":"Hannah",
+			"Nachname":"Müller",
+			"Geb_Datum":"31.01.1980",
+			"Uni":"FHDW",
+			"Studiengang":"Betriebswirtschaftslehre",
+			"Vertiefung":"Steuerwesen",
+			"Abschluss_Datum": "05-2018",
+			"Abschluss":"Bachelor of Arts",
+			"Beschreibung":"Ich arbeite gerne!",
+			"Semester":"10",
+			"Beschäftigung":"Abschlussarbeit",
+			"Zeitstempel":"2017-10-10"
+		},
+		"student_22":{
+			"Account_Id": "acc_22",
+			"Name":"Harald Hermann",
+			"Nachname":"Hausmann",
+			"Geb_Datum":"03.03.1992",
+			"Uni":"Universität zu Köln",
+			"Studiengang":"Philosophie",
+			"Vertiefung":"",
+			"Abschluss_Datum": "12-2016",
+			"Abschluss":"Bachelor of Philosophy",
+			"Beschreibung":"",
+			"Semester":"12",
+			"Beschäftigung":"",
+			"Zeitstempel":"2017-10-10"
+		},	
+>>>>>>> master
 		"student_2":{
 			"Account_Id": "acc_2",
 			"Name":"Moritz",
@@ -166,31 +520,230 @@
 			"Semester":"7",
 			"Beschäftigung":"",
 			"Zeitstempel":"2017-10-10"
+<<<<<<< HEAD
 		}	
+=======
+		},	
+		"student_26":{
+			"Account_Id": "acc_26",
+			"Name":"Merve",
+			"Nachname":"Sahin",
+			"Geb_Datum":"1994-05-03",
+			"Uni":"Fontys",
+			"Studiengang":"Software Engineering",
+			"Vertiefung":"",
+			"Abschluss_Datum": "09-2018",
+			"Abschluss":"Bachelor of Science",
+			"Beschreibung":"I'm a super brain!",
+			"Semester":"7",
+			"Beschäftigung":"",
+			"Zeitstempel":"2017-10-10"
+		},
+		"student_27":{
+			"Account_Id": "acc_27",
+			"Name":"Max",
+			"Nachname":"Mustermann",
+			"Geb_Datum":"1996-08-21",
+			"Uni":"Uni Köln",
+			"Studiengang":"Informatik",
+			"Vertiefung":"",
+			"Abschluss_Datum": "09-2018",
+			"Abschluss":"Bachelor of Science",
+			"Beschreibung":"",
+			"Semester":"4",
+			"Beschäftigung":"",
+			"Zeitstempel":"2017-10-10"
+		}, 
+		"student_7":{
+			"Account_Id": "acc_7",
+			"Name":"Thilo",
+			"Nachname":"Ritzerfeld",
+			"Geb_Datum":"",
+			"Uni":"Fontys Hogeschool Techniek en Logistiek, Venlo",
+			"Studiengang":"Wirtschaftsinformatik",
+			"Vertiefung":"",
+			"Abschluss_Datum": "07-2018",
+			"Abschluss":"Bachelor of Science",
+			"Beschreibung":"",
+			"Semester":"7",
+			"Beschäftigung":"",
+			"Zeitstempel":"2017-10-10"
+		}, 
+		"student_10":{
+			"Account_Id": "acc_10",
+			"Name":"Nils",
+			"Nachname":"Nieuwenhuis",
+			"Geb_Datum":"",
+			"Uni":"Fontys Hogeschool Techniek en Logistiek, Venlo",
+			"Studiengang":"Wirtschaftsinformatik",
+			"Vertiefung":"",
+			"Abschluss_Datum": "07-2018",
+			"Abschluss":"Bachelor of Science",
+			"Beschreibung":"",
+			"Semester":"7",
+			"Beschäftigung":"",
+			"Zeitstempel":"2017-10-10"
+		},
+		"student_11":{
+			"Account_Id": "acc_11",
+			"Name":"Max",
+			"Nachname":"Musterjunge",
+			"Geb_Datum":"",
+			"Uni":"Fontys",
+			"Studiengang":"Lanschaftsgartenbau",
+			"Vertiefung":"",
+			"Abschluss_Datum": "09-2019",
+			"Abschluss":"Bachelor of Science",
+			"Beschreibung":"",
+			"Semester":"2",
+			"Beschäftigung":"",
+			"Zeitstempel":"2017-10-10"
+		},
+		"student_12":{
+			"Account_Id": "acc_1",
+			"Name":"Michelle",
+			"Nachname":"Mustermädchen",
+			"Geb_Datum":"",
+			"Uni":"Fontys",
+			"Studiengang":"Marketing",
+			"Vertiefung":"",
+			"Abschluss_Datum": "09-2019",
+			"Abschluss":"Bachelor of Art",
+			"Beschreibung":"",
+			"Semester":"17",
+			"Beschäftigung":"",
+			"Zeitstempel":"2017-10-10"
+		}			
+>>>>>>> master
 	},
 
 	"Unternehmen":{
+		"unt_1":{
+			"Account_id":"acc_2",
+			"Unternehmen":"Screenware",
+			"Webseite":"https://www.screenware.eu",
+			"Branche":"IT"
+		},
+		"unt_23":{
+			"Account_id":"acc_23",
+			"Unternehmen":"Haribo",
+			"Webseite":"https://www.haribo.de",
+			"Branche":"Gummibärchen"
+		},
+		"unt_24":{
+			"Account_id":"acc_23",
+			"Unternehmen":"Apple",
+			"Webseite":"https://www.apple.com",
+			"Branche":"IT"
+		},
+		"unt_28":{
+			"Account_id":"acc_28",
+			"Unternehmen":"VW",
+			"Weibseite":"https://www.VW.eu",
+			"Branche":"Automobilindustrie"
+		},
+		"unt_29":{
+			"Account_id":"acc_29",
+			"Unternehmen":"Lufthansa Industry Solutions",
+			"Weibseite":"https://www.Lufthansa-Industry-Solutions.de",
+			"Branche":"IT Consulting"
+		},
 		"unt_18":{
 			"Account_id":"acc_18",
 			"Unternehmen":"Volkswagen",
 			"Weibseite":"https://www.volkswagen.de",
 			"Branche":"Automobil"
-		}
+		}, 
+		"unt_7":{
+			"Account_id":"acc_7",
+			"Unternehmen":"Copaco",
+			"Weibseite":"https://www.copaco.com",
+			"Branche":"IT"
+		},
+		"unt_11":{
+			"Account_id":"acc_11",
+			"Unternehmen":"Masterio",
+			"Weibseite":"https://www.masterio.eu",
+			"Branche":"Blumen"
+		},
+		"unt_12":{
+			"Account_id":"acc_12",
+			"Unternehmen":"Orintonio",
+			"Weibseite":"https://www.orintonio.eu",
+			"Branche":"Nahrungsmittel"
+}
 	},
 
 	"Universität":{
 		"uni_1":{
+			"Account_Id":"acc_3",
+			"Universität":"Fontys Venlo",
+			"Fachrichtungen":"Business, IT, Logistik, Mechatronik"
+		},
+		"uni_25":{
+			"Account_Id":"acc_25",
+			"Universität":"FHDW",
+			"Fachrichtungen":"Betriebswirtschaft, Volkswirtschaft und IT"
+		},
+		"uni_126":{
+			"Account_Id":"acc_126",
+			"Universität":"Universität zu ´Köln",
+			"Fachrichtungen":"Alle"
+		},
+		"uni_30":{
+			"Account_Id":"acc_30",
+			"Universität":"Universität Köln",
+			"Fachrichtungen":"Naturwissenschaften, Business, Technik"
+		},
+		"uni_333":{
 			"Account_Id":"acc_122",
 			"Universität":"RWTH Aachen",
 			"Fachrichtungen":"Business, Brauerei"
+		}, 
+		"uni_2":{
+			"Account_Id":"acc_8",
+			"Universität":"Fontys Eindhoven",
+			"Fachrichtungen":"Business, IT, Logistik, Mechatronik"
 		}
 	},
 
 	"Konversation":{
+		"konv_1":{
+			"Account_Id_1":"acc_1",
+			"Account_Id_2": "acc_2"
+		},
+		"konv_21":{
+			"Account_Id_1":"acc_21",
+			"Account_Id_2": "acc_23"
+		},
+		"konv_22":{
+			"Account_Id_1":"acc_22",
+			"Account_Id_2": "acc_23"
+		},
+		"konv_26":{
+			"Account_Id_1":"acc_26",
+			"Account_Id_2": "acc_27"
+		},
+		"konv_27":{
+			"Account_Id_1":"acc_26",
+			"Account_Id_2": "acc_28"
+		},	
 		"konv_18":{
 			"Account_Id_1":"acc_16",
 			"Account_Id_2": "acc_17"
-		}
+		}, 
+		"konv_7":{
+			"Account_Id_1":"acc_1",
+			"Account_Id_7": "acc_7"
+		},
+		"konv_11":{
+			"Account_Id_1":"acc_11",
+			"Account_Id_2": "acc_12"
+		},
+		"konv_12":{
+			"Account_Id_1":"acc_1",
+			"Account_Id_2": "acc_12"
+}
 	},
 
 	"Nachricht":{
@@ -199,6 +752,38 @@
 			"Betreff":"Hallo",
 			"Inhalt":"Hallo schreib doch zurück",
 			"Sender_Id":"acc_16",
+			"Zeitstempel":"2017-10-10",
+			"Anhang_Id": "a_1" 
+		},
+		"n_21":{
+			"Konversation_Id":"konv_21",
+			"Betreff":"Hallo",
+			"Inhalt":"blabla",
+			"Sender_Id":"acc_21",
+			"Zeitstempel":"2017-10-10",
+			"Anhang_Id": "a_21" 
+		},
+		"n_22":{
+			"Konversation_Id":"konv_22",
+			"Betreff":"Hallo",
+			"Inhalt":"blabla",
+			"Sender_Id":"acc_22",
+			"Zeitstempel":"2017-10-10",
+			"Anhang_Id": "a_22" 
+		},
+		"n_26":{
+			"Konversation_Id":"konv_26",
+			"Betreff":"Hallo",
+			"Inhalt":"blabla",
+			"Sender_Id":"acc_27",
+			"Zeitstempel":"2017-10-10",
+			"Anhang_Id": "" 
+		},
+		"n_27":{
+			"Konversation_Id":"konv_27",
+			"Betreff":"Hallo",
+			"Inhalt":"blabla",
+			"Sender_Id":"acc_28",
 			"Zeitstempel":"2017-10-10",
 			"Anhang_Id": "a_17" 
 		},
@@ -209,6 +794,30 @@
 			"Sender_Id":"acc_17",
 			"Zeitstempel":"2017-10-11",
 			"Anhang_Id": "" 
+		}, 
+		"n_7":{
+			"Konversation_Id":"konv_7",
+			"Betreff":"Kontaktaufnahme",
+			"Inhalt":"Lorem Impsum",
+			"Sender_Id":"acc_7",
+			"Zeitstempel":"2017-10-10",
+			"Anhang_Id": "a_7" 
+		},
+		"n_11":{
+			"Konversation_Id":"konv_11",
+			"Betreff":"Hallo",
+			"Inhalt":"blabla",
+			"Sender_Id":"acc_12",
+			"Zeitstempel":"2017-10-10",
+			"Anhang_Id": "" 
+		},
+		"n_12":{
+			"Konversation_Id":"konv_12",
+			"Betreff":"Hallo",
+			"Inhalt":"blabla",
+			"Sender_Id":"acc_12",
+			"Zeitstempel":"2017-10-10",
+			"Anhang_Id": "a_11" 
 		}
 	},
 
@@ -217,14 +826,50 @@
 			"Account_Id":"acc_16",
 			"Datei_Name":"Bild",
 			"Datei_Typ":"png",
+			"Beschreibung":""
+		}, 
+		"a_7":{
+			"Account_Id":"acc_7",
+			"Datei_Name":"CV",
+			"Datei_Typ":"pdf",
 			"Beschreibung":"",
-			"Anhang":"https://my-anhang.com/tewsydajhds"
+			"Anhang":"https://my-anhang-url.com/sjflisf"
+		},
+		"a_21":{
+			"Account_Id":"acc_21",
+			"Datei_Name":"Bild",
+			"Datei_Typ":"png",
+			"Beschreibung":"",
+			"Anhang":"https://my-anhang-url.com/sjflisf"
+		},
+		"a_22":{
+			"Account_Id":"acc_22",
+			"Datei_Name":"Bild",
+			"Datei_Typ":"png",
+			"Beschreibung":"",
+			"Anhang":"https://cvmkr.com"
+		},
+		"a_11":{
+			"Account_Id":"acc_12",
+			"Datei_Name":"Bild",
+			"Datei_Typ":"gif",
+			"Beschreibung":"",
+			"Anhang":"https://my-anhang-url.com/sjkhkf"
 		}
 	},
 
 	"Block":{
 		"b_1":{
 			"Block_Name":"Adresse"
+		},
+		"b_26":{
+			"Block_Name":"Persönlich"
+		}, 
+		"b_7":{
+			"Block_Name":"Arbeitserfahrung"
+		},
+		"b_11":{
+			"Block_Name":"Rest"
 		}
 	},
 
@@ -240,6 +885,38 @@
 		"p_info_3":{
 			"Info":"PLZ",
 			"Block_Id":"b_1"
+		},
+		"p_26":{
+			"Info":"Geb_Datum",
+			"Block_Id":"b_26"
+		},
+		"p_27":{
+			"Info":"Nachname",
+			"Block_Id":"b_26"
+		},
+		"p_28":{
+			"Info":"Universität",
+			"Block_Id":"b_26"
+		}, 
+		"p_info_5":{
+			"Info":"Unternehmen xyz",
+			"Block_Id":"b_7"
+		},
+		"p_info_6":{
+			"Info":"Taetigkeit",
+			"Block_Id":"b_7"
+		},
+		"p_info_7":{
+			"Info":"Dauer",
+			"Block_Id":"b_7"
+		},
+		"p_info_11":{
+			"Info":"Schub",
+			"Block_Id":"b_11"
+		},
+		"p_info_12":{
+			"Info":"Didu",
+			"Block_Id":"b_11"
 		}
 	},
 
@@ -249,6 +926,57 @@
 			"Block_Id": "b_1",
 			"Sichtbar": true,
 			"Gruppe_Id": "gruppe_1"
+		},
+
+		"s_21":{
+			"Account_Id":"acc_21",
+			"Block_Id": "b_1",
+			"Sichtbar": false,
+			"Gruppe_Id": "gruppe_1"
+		},
+		"s_22":{
+			"Account_Id":"acc_21",
+			"Block_Id": "b_1",
+			"Sichtbar": true,
+			"Gruppe_Id":"gruppe_1"
+		},
+		"s_26":{
+			"Account_Id":"acc_26",
+			"Block_Id": "b_26",
+			"Sichtbar": false,
+			"Gruppe_Id": "gruppe_2"
+		},
+		"s_27":{
+			"Account_Id":"acc_26",
+			"Block_Id": "b_26",
+			"Sichtbar": true,
+			"Gruppe_Id": "gruppe_3"
+		},
+		"s_28":{
+			"Account_Id":"acc_27",
+			"Block_Id": "b_26",
+			"Sichtbar": false,
+			"Gruppe_Id": "gruppe_1"
+		}, 
+		"s_7":{
+			"Account_Id":"acc_10",
+			"Block_Id": "b_7",
+			"Sichtbar": true,
+			"Gruppe_Id": "gruppe_2"
+		},
+		"s_11":{
+			"Account_Id":"acc_11",
+			"Block_Id": "b_11",
+			"Sichtbar": false,
+			"Gruppe_Id": "gruppe_2"
+		},
+		"s_12":{
+			"Account_Id":"acc_11",
+			"Block_Id": "b_11",
+			"Sichtbar": true,
+			"Gruppe_Id": "gruppe_1"
 		}
-	}	
+	} 	
 }
+
+
