@@ -67,10 +67,25 @@
 	},	
 	
 	"Student": {
-		"student_2":{
+		"student_1":{
 			"Account_Id": "acc_1",
 			"Name":"Julia",
 			"Nachname":"Mödinger",
+			"Geb_Datum":"",
+			"Uni":"Fontys",
+			"Studiengang":"Wirtschaftsinformatik",
+			"Vertiefung":"",
+			"Abschluss_Datum": "09-2019",
+			"Abschluss":"Bachelor of Science",
+			"Beschreibung":"",
+			"Semester":"7",
+			"Beschäftigung":"",
+			"Zeitstempel":"2017-10-10"
+		},
+		"student_2":{
+			"Account_Id": "acc_2",
+			"Name":"Moritz",
+			"Nachname":"Richter",
 			"Geb_Datum":"",
 			"Uni":"Fontys",
 			"Studiengang":"Wirtschaftsinformatik",
