@@ -15,7 +15,7 @@
 		"a_1": {
 			"Straße":"Tegelseweg 255",
 			"Ort":"Venlo",
-			"PLZ":"5912 BG",	
+			"PLZ":"5912 BG",
 			"Land": "Niederlande"
 		},
 		"a_21": {
@@ -29,7 +29,37 @@
 			"Ort":"Hämeenlinna",
 			"PLZ":"13110",
 			"Land": "Finnland"		
-		}		
+		},
+		"a_26":{
+			"Straße":"Düsseldorfer Str. 10",
+			"Ort":"Düsseldorf",
+			"PLZ":"1234",
+			"Land": "Deutschland"
+		},
+		"a_27":{
+			"Straße":"Venloer Str. 75",
+			"Ort": "Kaldenkirchen",
+			"PLZ":"1234",
+			"Land":"Deutschland"
+		},
+		"a_28":{
+			"Straße":"Lindenallee 56",
+			"Ort": "Oldenburg",
+			"PLZ":"42394",
+			"Land":"Deutschland"
+		},
+		"a_29":{
+			"Straße":"Uhlandstraße 101",
+			"Ort": "Duisburg",
+			"PLZ":"47226",
+			"Land":"Deutschland"
+		},
+		"a_30":{
+			"Straße":"Beethovenstraße 103",
+			"Ort": "Köln",
+			"PLZ":"50560",
+			"Land":"Deutschland"
+		}
 	},	
 	
 	"Account":{
@@ -86,6 +116,36 @@
 			"Passwort":"TEST",
 			"Usergruppe": "gruppe_3",
 			"Adresse_id": "a_22"		
+		}, 
+		"acc_26":{
+			"Email":"test26@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_1",
+			"Adresse_id": "a_1"	
+		},
+		"acc_27":{
+			"Email":"test27@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_1",
+			"Adresse_id": "a_1"	
+		},
+		"acc_28":{
+			"Email":"test28@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_2",
+			"Adresse_id": "a_1"	
+		},
+		"acc_29":{
+			"Email":"test29@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_2",
+			"Adresse_id": "a_1"	
+		},
+		"acc_30":{
+			"Email":"test30@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_3",
+			"Adresse_id": "a_1"	
 		}
 	},
 	
@@ -101,7 +161,15 @@
 		"sf_22":{
 			"Account_Id":"acc_22",
 			"Fähigkeit_Id":"f_21"
-		}	
+		},	
+		"sf_26":{
+			"Account_Id":"acc_26",
+			"Fähigkeit_Id":"f_26"
+		}, 
+		"sf_27":{
+			"Account_Id":"acc_27",
+			"Fähigkeit_Id":"f_27"
+		}			
 	},	
 	
 	"Fähigkeit":{
@@ -116,6 +184,12 @@
 		},
 		"f_23":{
 			"Fähigkeit":"ARIS"
+		},
+		"f_26":{
+			"Fähigkeit":"UML"
+		},
+		"f_27":{
+			"Fähigkeit":"SQL"
 		}
 	},
 	
@@ -131,6 +205,14 @@
 		"sl_22":{
 			"Account_Id": "acc_22",
 			"Leidenschaft_Id": "l_21"		
+		},
+		"sl_26":{
+			"Account_Id": "acc_26",
+			"Leidenschaft_Id": "l_26"		
+		},
+		"sl_27":{
+			"Account_Id": "acc_27",
+			"Leidenschaft_Id": "l_27"		
 		}
 	},
 	
@@ -144,12 +226,18 @@
 		"l_22":{
 			"Leidenschaft":"Ski langlaufen"		
 		},"l_23":{
-			"Leidenschaft":"Yoga"		
+			"Leidenschaft":"Yoga"
+		},
+		"l_26":{
+			"Leidenschaft":"Feiern"		
+		},
+		"l_27":{
+			"Leidenschaft":"Basketball"		
 		}	
 	},	
 	
 	"Student": {
-		"student_2":{
+		"student_1":{
 			"Account_Id": "acc_1",
 			"Name":"Julia",
 			"Nachname":"Mödinger",
@@ -193,7 +281,52 @@
 			"Semester":"12",
 			"Beschäftigung":"",
 			"Zeitstempel":"2017-10-10"
-		}	
+		},	
+		"student_2":{
+			"Account_Id": "acc_2",
+			"Name":"Moritz",
+			"Nachname":"Richter",
+			"Geb_Datum":"",
+			"Uni":"Fontys",
+			"Studiengang":"Wirtschaftsinformatik",
+			"Vertiefung":"",
+			"Abschluss_Datum": "09-2019",
+			"Abschluss":"Bachelor of Science",
+			"Beschreibung":"",
+			"Semester":"7",
+			"Beschäftigung":"",
+			"Zeitstempel":"2017-10-10"
+		},	
+		"student_26":{
+			"Account_Id": "acc_26",
+			"Name":"Merve",
+			"Nachname":"Sahin",
+			"Geb_Datum":"1994-05-03",
+			"Uni":"Fontys",
+			"Studiengang":"Software Engineering",
+			"Vertiefung":"",
+			"Abschluss_Datum": "09-2018",
+			"Abschluss":"Bachelor of Science",
+			"Beschreibung":"I'm a super brain!",
+			"Semester":"7",
+			"Beschäftigung":"",
+			"Zeitstempel":"2017-10-10"
+		},
+		"student_27":{
+			"Account_Id": "acc_27",
+			"Name":"Max",
+			"Nachname":"Mustermann",
+			"Geb_Datum":"1996-08-21",
+			"Uni":"Uni Köln",
+			"Studiengang":"Informatik",
+			"Vertiefung":"",
+			"Abschluss_Datum": "09-2018",
+			"Abschluss":"Bachelor of Science",
+			"Beschreibung":"",
+			"Semester":"4",
+			"Beschäftigung":"",
+			"Zeitstempel":"2017-10-10"
+		}
 	},
 
 	"Unternehmen":{
@@ -214,6 +347,18 @@
 			"Unternehmen":"Apple",
 			"Webseite":"https://www.apple.com",
 			"Branche":"IT"
+		},
+		"unt_28":{
+			"Account_id":"acc_28",
+			"Unternehmen":"VW",
+			"Weibseite":"https://www.VW.eu",
+			"Branche":"Automobilindustrie"
+		},
+		"unt_29":{
+			"Account_id":"acc_29",
+			"Unternehmen":"Lufthansa Industry Solutions",
+			"Weibseite":"https://www.Lufthansa-Industry-Solutions.de",
+			"Branche":"IT Consulting"
 		}
 	},
 
@@ -232,6 +377,11 @@
 			"Account_Id":"acc_126",
 			"Universität":"Universität zu ´Köln",
 			"Fachrichtungen":"Alle"
+		},
+		"uni_30":{
+			"Account_Id":"acc_30",
+			"Universität":"Universität Köln",
+			"Fachrichtungen":"Naturwissenschaften, Business, Technik"
 		}
 	},
 
@@ -247,7 +397,15 @@
 		"konv_22":{
 			"Account_Id_1":"acc_22",
 			"Account_Id_2": "acc_23"
-		}
+		},
+		"konv_26":{
+			"Account_Id_1":"acc_26",
+			"Account_Id_2": "acc_27"
+		},
+		"konv_27":{
+			"Account_Id_1":"acc_26",
+			"Account_Id_2": "acc_28"
+		}	
 	},
 
 	"Nachricht":{
@@ -274,6 +432,22 @@
 			"Sender_Id":"acc_22",
 			"Zeitstempel":"2017-10-10",
 			"Anhang_Id": "a_22" 
+		},
+		"n_26":{
+			"Konversation_Id":"konv_26",
+			"Betreff":"Hallo",
+			"Inhalt":"blabla",
+			"Sender_Id":"acc_27",
+			"Zeitstempel":"2017-10-10",
+			"Anhang_Id": "" 
+		},
+		"n_27":{
+			"Konversation_Id":"konv_27",
+			"Betreff":"Hallo",
+			"Inhalt":"blabla",
+			"Sender_Id":"acc_28",
+			"Zeitstempel":"2017-10-10",
+			"Anhang_Id": "" 
 		}
 	},
 
@@ -304,6 +478,9 @@
 	"Block":{
 		"b_1":{
 			"Block_Name":"Adresse"
+		},
+		"b_26":{
+			"Block_Name":"Persönlich"
 		}
 	},
 
@@ -319,6 +496,18 @@
 		"p_info_3":{
 			"Info":"PLZ",
 			"Block_Id":"b_1"
+		},
+		"p_26":{
+			"Info":"Geb_Datum",
+			"Block_Id":"b_26"
+		},
+		"p_27":{
+			"Info":"Nachname",
+			"Block_Id":"b_26"
+		},
+		"p_28":{
+			"Info":"Universität",
+			"Block_Id":"b_26"
 		}
 	},
 
@@ -329,6 +518,7 @@
 			"Sichtbar": true,
 			"Gruppe_Id": "gruppe_1"
 		},
+
 		"s_21":{
 			"Account_Id":"acc_21",
 			"Block_Id": "b_1",
@@ -339,7 +529,26 @@
 			"Account_Id":"acc_21",
 			"Block_Id": "b_1",
 			"Sichtbar": true,
+			"Gruppe_Id":"gruppe_1"
+		},
+		"s_26":{
+			"Account_Id":"acc_26",
+			"Block_Id": "b_26",
+			"Sichtbar": false,
+			"Gruppe_Id": "gruppe_2"
+		},
+		"s_27":{
+			"Account_Id":"acc_26",
+			"Block_Id": "b_26",
+			"Sichtbar": true,
+			"Gruppe_Id": "gruppe_3"
+		},
+		"s_28":{
+			"Account_Id":"acc_27",
+			"Block_Id": "b_26",
+			"Sichtbar": false,
 			"Gruppe_Id": "gruppe_1"
 		}
 	}	
+	
 }
