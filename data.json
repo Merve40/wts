@@ -200,19 +200,19 @@
 		"unt_1":{
 			"Account_id":"acc_2",
 			"Unternehmen":"Screenware",
-			"Weibseite":"https://www.screenware.eu",
+			"Webseite":"https://www.screenware.eu",
 			"Branche":"IT"
 		},
 		"unt_23":{
 			"Account_id":"acc_23",
 			"Unternehmen":"Haribo",
-			"Weibseite":"https://www.haribo.de",
+			"Webseite":"https://www.haribo.de",
 			"Branche":"Gummibärchen"
 		},
 		"unt_24":{
 			"Account_id":"acc_23",
 			"Unternehmen":"Apple",
-			"Weibseite":"https://www.apple.com",
+			"Webseite":"https://www.apple.com",
 			"Branche":"IT"
 		}
 	},
