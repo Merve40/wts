@@ -8,6 +8,15 @@
 		},
 		"gruppe_3":{
 			"Gruppe":"Universität"
+		},
+		"gruppe_4":{
+			"Gruppe":"Mein Netzwerk:Student"
+		},
+		"gruppe_5":{
+			"Gruppe":"Mein Netzwerk:Unternehmen"
+		},
+		"gruppe_6":{
+			"Gruppe":"Mein Netzwerk:Universität"
 		}		
 	},
 	
