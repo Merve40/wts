@@ -66,7 +66,20 @@
 		"a_19": {
 			"Straße":"Haller Strasse 2",
 			"Ort":"Aachen",
-			"PLZ":"67976"		
+			"PLZ":"67976",		
+			"Land":"Niederlande"	
+		},	
+		"a_7": {
+			"Straße":"Koninginnesingel 82",
+			"Ort":"Venlo",
+			"PLZ":"5911 KG",	
+			"Land":"Niederlande"	
+		},
+		"a_10": {
+			"Straße":"Walstraat ",
+			"Ort":"Venlo",
+			"PLZ":"5912 AR",	
+			"Land":"Niederlande"	
 		}
 	},	
 	
@@ -124,6 +137,25 @@
 			"Passwort":"test",
 			"Usergruppe": "gruppe_3",
 			"Adresse_id": "a_19"		
+		},
+		"acc_7":{
+			"Email":"test3@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_2",
+			"Adresse_id": "a_7"		
+		},
+
+		"acc_10":{
+			"Email":"test3@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_1",
+			"Adresse_id": "a_10"		
+		}, 
+		"acc_8":{
+			"Email":"test3@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_3",
+			"Adresse_id": "a_8"		
 		}
 	},
 	
@@ -139,7 +171,15 @@
 		"sf_27":{
 			"Account_Id":"acc_27",
 			"Fähigkeit_Id":"f_27"
-		}			
+		}, 	
+		"sf_7":{
+			"Account_Id":"acc_7",
+			"Fähigkeit_Id":"f_7"
+		}, 	
+		"sf_10":{
+			"Account_Id":"acc_10",
+			"Fähigkeit_Id":"f_1"
+		}
 	},	
 	
 	"Fähigkeit":{
@@ -152,13 +192,19 @@
 		"f_27":{
 			"Fähigkeit":"SQL"
 		},
-		"sf_19":{
+		"f_19":{
 			"Fähigkeit_Id":"SAP"
 		},
-		"sf_20":{
+		"f_20":{
 			"Fähigkeit_Id":"Projektmanagement"
-		}	
-	},	
+		},
+		"f_7":{
+			"Fähigkeit":"Prozessoptimierung"
+		},
+		"f_10":{
+			"Fähigkeit":"ITIL V.3.0"
+		}
+	},
 	
 	"Student_Leidenschaft":{
 		"sl_1":{
@@ -180,6 +226,14 @@
 		"sl_17":{
 			"Account_Id": "acc_17",
 			"Leidenschaft_Id": "l_16"		
+		}, 
+		"sl_7":{
+			"Account_Id": "acc_7",
+			"Leidenschaft_Id": "l_7"		
+		}, 
+		"sl_10":{
+			"Account_Id": "acc_10",
+			"Leidenschaft_Id": "l_10"		
 		}
 	},
 	
@@ -198,7 +252,13 @@
 		},
 		"l_16":{
 			"Leidenschaft":"Squash"		
-		}	
+		}, 
+		"l_7":{
+			"Leidenschaft":"Fitnessstudio"		
+		},	
+		"l_10":{
+			"Leidenschaft":"Fussball"		
+		}
 	},	
 	
 	"Student": {
@@ -291,7 +351,37 @@
 			"Semester":"4",
 			"Beschäftigung":"",
 			"Zeitstempel":"2017-10-10"
-		}
+		}, 
+		"student_7":{
+			"Account_Id": "acc_7",
+			"Name":"Thilo",
+			"Nachname":"Ritzerfeld",
+			"Geb_Datum":"",
+			"Uni":"Fontys Hogeschool Techniek en Logistiek, Venlo",
+			"Studiengang":"Wirtschaftsinformatik",
+			"Vertiefung":"",
+			"Abschluss_Datum": "07-2018",
+			"Abschluss":"Bachelor of Science",
+			"Beschreibung":"",
+			"Semester":"7",
+			"Beschäftigung":"",
+			"Zeitstempel":"2017-10-10"
+		}, 
+		"student_10":{
+			"Account_Id": "acc_10",
+			"Name":"Nils",
+			"Nachname":"Nieuwenhuis",
+			"Geb_Datum":"",
+			"Uni":"Fontys Hogeschool Techniek en Logistiek, Venlo",
+			"Studiengang":"Wirtschaftsinformatik",
+			"Vertiefung":"",
+			"Abschluss_Datum": "07-2018",
+			"Abschluss":"Bachelor of Science",
+			"Beschreibung":"",
+			"Semester":"7",
+			"Beschäftigung":"",
+			"Zeitstempel":"2017-10-10"
+		}			
 	},
 
 	"Unternehmen":{
@@ -318,6 +408,12 @@
 			"Unternehmen":"Volkswagen",
 			"Weibseite":"https://www.volkswagen.de",
 			"Branche":"Automobil"
+		}, 
+		"unt_7":{
+			"Account_id":"acc_7",
+			"Unternehmen":"Copaco",
+			"Weibseite":"https://www.copaco.com",
+			"Branche":"IT"
 		}
 	},
 
@@ -336,6 +432,11 @@
 			"Account_Id":"acc_122",
 			"Universität":"RWTH Aachen",
 			"Fachrichtungen":"Business, Brauerei"
+		}, 
+		"uni_2":{
+			"Account_Id":"acc_8",
+			"Universität":"Fontys Eindhoven",
+			"Fachrichtungen":"Business, IT, Logistik, Mechatronik"
 		}
 	},
 
@@ -355,6 +456,10 @@
 		"konv_18":{
 			"Account_Id_1":"acc_16",
 			"Account_Id_2": "acc_17"
+		}, 
+		"konv_7":{
+			"Account_Id_1":"acc_1",
+			"Account_Id_7": "acc_7"
 		}
 	},
 
@@ -390,6 +495,14 @@
 			"Sender_Id":"acc_17",
 			"Zeitstempel":"2017-10-11",
 			"Anhang_Id": "" 
+		}, 
+		"n_7":{
+			"Konversation_Id":"konv_7",
+			"Betreff":"Kontaktaufnahme",
+			"Inhalt":"Lorem Impsum",
+			"Sender_Id":"acc_7",
+			"Zeitstempel":"2017-10-10",
+			"Anhang_Id": "a_7" 
 		}
 	},
 
@@ -398,8 +511,14 @@
 			"Account_Id":"acc_16",
 			"Datei_Name":"Bild",
 			"Datei_Typ":"png",
+			"Beschreibung":""
+		}, 
+		"a_7":{
+			"Account_Id":"acc_7",
+			"Datei_Name":"CV",
+			"Datei_Typ":"pdf",
 			"Beschreibung":"",
-			"Anhang":"https://my-anhang.com/tewsydajhds"
+			"Anhang":"https://cvmkr.com"
 		}
 	},
 
@@ -409,6 +528,9 @@
 		},
 		"b_26":{
 			"Block_Name":"Persönlich"
+		}, 
+		"b_7":{
+			"Block_Name":"Arbeitserfahrung"
 		}
 	},
 
@@ -436,6 +558,18 @@
 		"p_28":{
 			"Info":"Universität",
 			"Block_Id":"b_26"
+		}, 
+		"p_info_5":{
+			"Info":"Unternehmen xyz",
+			"Block_Id":"b_7"
+		},
+		"p_info_6":{
+			"Info":"Taetigkeit",
+			"Block_Id":"b_7"
+		},
+		"p_info_7":{
+			"Info":"Dauer",
+			"Block_Id":"b_7"
 		}
 	},
 
@@ -463,7 +597,14 @@
 			"Block_Id": "b_26",
 			"Sichtbar": false,
 			"Gruppe_Id": "gruppe_1"
+		}, 
+		"s_7":{
+			"Account_Id":"acc_10",
+			"Block_Id": "b_7",
+			"Sichtbar": true,
+			"Gruppe_Id": "gruppe_2"
 		}
-	}	
-	
+	} 	
 }
+
+
