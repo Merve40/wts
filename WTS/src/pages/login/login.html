@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h3>Work-to-students</h3>
+  <div class="list list-inset">
+    <label class="item item-input">
+        <input type="text" placeholder="Username" ng-model="data.username">
+    </label>
+    <br>
+    <label class="item item-input">
+        <input type="password" placeholder="Password" ng-model="data.password">
+    </label>
+</div>
+<button class="button login" ion-button color="primary" ng-click="login()" block>LOGIN</button>
+</ion-content>
