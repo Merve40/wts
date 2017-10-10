@@ -16,116 +16,179 @@
 			"Straße":"Tegelseweg 255",
 			"Ort":"Venlo",
 			"PLZ":"5912 BG"		
-		}	
+		},
+		"a_16": {
+			"Straße":"Vennstraße 15",
+			"Ort":"Kaldenkirchen",
+			"PLZ":"41334"		
+		},
+		"a_17": {
+			"Straße":"Neuer Weg 10",
+			"Ort":"Wolfenbüttel",
+			"PLZ":"41334"		
+		},
+		"a_112": {
+			"Straße":"Neuer Weg 8",
+			"Ort":"Wolfsburg",
+			"PLZ":"32976"		
+		},
+		"a_19": {
+			"Straße":"Haller Strasse 2",
+			"Ort":"Aachen",
+			"PLZ":"67976"		
+		}
 	},	
 	
 	"Account":{
-		"acc_1":{
-			"Email":"test@mail.com",
+		"acc_16":{
+			"Email":"hallo123@mail.com",
 			"Passwort":"test",
 			"Usergruppe": "gruppe_1",
-			"Adresse_id": "a_1"		
+			"Adresse_id": "a_16"		
 		},
-		"acc_2":{
-			"Email":"test2@mail.com",
+		"acc_17":{
+			"Email":"testwf@mail.com",
+			"Passwort":"test",
+			"Usergruppe": "gruppe_1",
+			"Adresse_id": "a_17"		
+		},
+		"acc_18":{
+			"Email":"volkswagen@mail.com",
 			"Passwort":"test",
 			"Usergruppe": "gruppe_2",
-			"Adresse_id": "a_1"		
+			"Adresse_id": "a_112"		
 		},
-		"acc_3":{
-			"Email":"test3@mail.com",
+		"acc_122":{
+			"Email":"rwth@mail.com",
 			"Passwort":"test",
 			"Usergruppe": "gruppe_3",
-			"Adresse_id": "a_1"		
+			"Adresse_id": "a_19"		
 		}
 	},
 	
 	"Student_Fähigkeit":{
-		"sf_1":{
-			"Account_Id":"acc_1",
-			"Fähigkeit_Id":"f_1"
+		"sf_19":{
+			"Account_Id":"acc_16",
+			"Fähigkeit_Id":"f_18"
+		},
+		"sf_20":{
+			"Account_Id":"acc_17",
+			"Fähigkeit_Id":"f_19"
 		}	
 	},	
 	
 	"Fähigkeit":{
-		"f_1":{
-			"Fähigkeit":"Java"
+		"f_18":{
+			"Fähigkeit":"SAP"
+		},
+		"f_19":{
+			"Fähigkeit":"Projektmanagement"
 		}
 	},
 	
 	"Student_Leidenschaft":{
-		"sl_1":{
-			"Account_Id": "acc_1",
-			"Leidenschaft_Id": "l_1"		
+		"sl_16":{
+			"Account_Id": "acc_16",
+			"Leidenschaft_Id": "l_15"		
+		},
+		"sl_17":{
+			"Account_Id": "acc_17",
+			"Leidenschaft_Id": "l_16"		
 		}
 	},
 	
 	"Leidenschaft":{
-		"l_1":{
-			"Leidenschaft":"Reisen"		
+		"l_15":{
+			"Leidenschaft":"Bouldern"		
+		},
+		"l_16":{
+			"Leidenschaft":"Squash"		
 		}	
 	},	
 	
 	"Student": {
-		"student_2":{
-			"Account_Id": "acc_1",
-			"Name":"Julia",
-			"Nachname":"Mödinger",
-			"Geb_Datum":"",
-			"Uni":"Fontys",
+		"student_16":{
+			"Account_Id": "acc_16",
+			"Name":"Thomas",
+			"Nachname":"Meier",
+			"Geb_Datum":"20.04.1996",
+			"Uni":"RWTH Aachen",
 			"Studiengang":"Wirtschaftsinformatik",
-			"Vertiefung":"",
-			"Abschluss_Datum": "09-2019",
+			"Vertiefung":"Projektmanagement",
+			"Abschluss_Datum": "09-2020",
 			"Abschluss":"Bachelor of Science",
 			"Beschreibung":"",
-			"Semester":"7",
+			"Semester":"5",
+			"Beschäftigung":"",
+			"Zeitstempel":"2017-10-08"
+		},
+		"student_17":{
+			"Account_Id": "acc_17",
+			"Name":"Smithy Werben",
+			"Nachname":"Jaggermann Jensen",
+			"Geb_Datum":"",
+			"Uni":"Toronto University",
+			"Studiengang":"International Business",
+			"Vertiefung":"",
+			"Abschluss_Datum": "09-2021",
+			"Abschluss":"Bachelor of Arts",
+			"Beschreibung":"",
+			"Semester":"3",
 			"Beschäftigung":"",
 			"Zeitstempel":"2017-10-10"
 		}	
 	},
 
 	"Unternehmen":{
-		"unt_1":{
-			"Account_id":"acc_2",
-			"Unternehmen":"Screenware",
-			"Weibseite":"https://www.screenware.eu",
-			"Branche":"IT"
+		"unt_18":{
+			"Account_id":"acc_18",
+			"Unternehmen":"Volkswagen",
+			"Weibseite":"https://www.volkswagen.de",
+			"Branche":"Automobil"
 		}
 	},
 
 	"Universität":{
 		"uni_1":{
-			"Account_Id":"acc_3",
-			"Universität":"Fontys Venlo",
-			"Fachrichtungen":"Business, IT, Logistik, Mechatronik"
+			"Account_Id":"acc_122",
+			"Universität":"RWTH Aachen",
+			"Fachrichtungen":"Business, Brauerei"
 		}
 	},
 
 	"Konversation":{
-		"konv_1":{
-			"Account_Id_1":"acc_1",
-			"Account_Id_2": "acc_2"
+		"konv_18":{
+			"Account_Id_1":"acc_16",
+			"Account_Id_2": "acc_17"
 		}
 	},
 
 	"Nachricht":{
-		"n_1":{
-			"Konversation_Id":"konv_1",
+		"n_18":{
+			"Konversation_Id":"konv_18",
 			"Betreff":"Hallo",
-			"Inhalt":"blabla",
-			"Sender_Id":"acc_2",
+			"Inhalt":"Hallo schreib doch zurück",
+			"Sender_Id":"acc_16",
 			"Zeitstempel":"2017-10-10",
-			"Anhang_Id": "a_1" 
+			"Anhang_Id": "a_17" 
+		},
+		"n_19":{
+			"Konversation_Id":"konv_18",
+			"Betreff":"Hallo",
+			"Inhalt":"Hallo ja mache ich",
+			"Sender_Id":"acc_17",
+			"Zeitstempel":"2017-10-11",
+			"Anhang_Id": "" 
 		}
 	},
 
 	"Anhang":{
-		"a_1":{
-			"Account_Id":"acc_2",
+		"a_17":{
+			"Account_Id":"acc_16",
 			"Datei_Name":"Bild",
 			"Datei_Typ":"png",
 			"Beschreibung":"",
-			"Anhang":"https://my-anhang-url.com/sjflisf"
+			"Anhang":"https://my-anhang.com/tewsydajhds"
 		}
 	},
 
