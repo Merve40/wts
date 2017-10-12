@@ -26,6 +26,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     MyApp,
     LoginPage,
+    LogoutPage,
     SuchePage
   ],
   providers: [

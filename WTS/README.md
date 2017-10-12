@@ -29,8 +29,12 @@ Add `firebase` dependency to your project:
 $ sudo npm install firebase --save
 ```
 
-Run `ionic build`, if it cannot find `promise-polyfill` run this in your command line:
-
+Run `ionic build`, if it cannot find `promise-polyfill` run this in your command line:   
 ```bash
 $ sudo npm install promise-polyfill --save-exact
 ```
+<a href="https://firebase.google.com/docs/reference/node/">Firebase Api</a>   
+
+Tutorials:   
+<a href="https://firebase.google.com/docs/database/web/start">Firebase Web</a>,   
+<a href="https://firebase.google.com/docs/reference/js/firebase.database.Query">Query interface</a>

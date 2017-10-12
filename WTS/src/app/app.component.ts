@@ -25,7 +25,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Login', component: LoginPage },
-      { title: 'Suche', component: SuchePage }
+      { title: 'Suche', component: SuchePage },
       { title: 'Logout', component: LogoutPage }
     ];
 
@@ -38,7 +38,6 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
-
     firebase.initializeApp({
       apiKey: "AIzaSyATDKANyR1HnCajqaAXINVS0z6kfCBwRwI",
       authDomain: "worktostudents.firebaseapp.com",
@@ -47,6 +46,8 @@ export class MyApp {
       storageBucket: "worktostudents.appspot.com",
       messagingSenderId: "542302693567"
     });
+    
+    
   }
 
   openPage(page) {
