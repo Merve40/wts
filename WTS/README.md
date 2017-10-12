@@ -29,7 +29,7 @@ Add `firebase` dependency to your project:
 $ sudo npm install firebase --save
 ```
 
-Run `ionic build`, if it cannot find `promise-polyfill` run this in your command line:
+Run `ionic build`, if it cannot find `promise-polyfill` run this in your command line:   
 For Windows:
 ```bash
 $ npm install promise-polyfill --save-exact
