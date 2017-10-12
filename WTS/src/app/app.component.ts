@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { LoginPage } from '../pages/login/login';
 import { SuchePage } from '../pages/suche/suche';
+import { LogoutPage } from '../pages/logout/logout';
 
 import firebase from 'firebase';
 
@@ -25,6 +26,7 @@ export class MyApp {
     this.pages = [
       { title: 'Login', component: LoginPage },
       { title: 'Suche', component: SuchePage }
+      { title: 'Logout', component: LogoutPage }
     ];
 
   }
