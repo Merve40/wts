@@ -1,4 +1,14 @@
 {
+<<<<<<< HEAD
+  "cordova-plugin-firebase": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-firebase"
+    },
+    "is_top_level": true,
+    "variables": {}
+  }
+=======
     "cordova-plugin-firebase": {
         "source": {
             "type": "registry",
@@ -7,4 +17,5 @@
         "is_top_level": true,
         "variables": {}
     }
+>>>>>>> daac898e6554ca9ed4b2890f6db9e581b18301fe
 }

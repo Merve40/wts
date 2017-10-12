@@ -1,4 +1,43 @@
 {
+<<<<<<< HEAD
+  "_args": [
+    [
+      {
+        "raw": "cordova-plugin-firebase",
+        "scope": null,
+        "escapedName": "cordova-plugin-firebase",
+        "name": "cordova-plugin-firebase",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "C:\\Users\\Julia\\Documents\\GitHub\\wts\\WTS"
+    ]
+  ],
+  "_from": "cordova-plugin-firebase@latest",
+  "_id": "cordova-plugin-firebase@0.1.24",
+  "_inCache": true,
+  "_location": "/cordova-plugin-firebase",
+  "_nodeVersion": "6.9.2",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/cordova-plugin-firebase-0.1.24.tgz_1503669317874_0.4224047490861267"
+  },
+  "_npmUser": {
+    "name": "arnesson",
+    "email": "hello@arnesson.io"
+  },
+  "_npmVersion": "3.10.9",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "cordova-plugin-firebase",
+    "scope": null,
+    "escapedName": "cordova-plugin-firebase",
+    "name": "cordova-plugin-firebase",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+=======
   "_from": "cordova-plugin-firebase",
   "_id": "cordova-plugin-firebase@0.1.24",
   "_inBundle": false,
@@ -14,6 +53,7 @@
     "rawSpec": "",
     "saveSpec": null,
     "fetchSpec": "latest"
+>>>>>>> daac898e6554ca9ed4b2890f6db9e581b18301fe
   },
   "_requiredBy": [
     "#USER",
@@ -21,15 +61,24 @@
   ],
   "_resolved": "https://registry.npmjs.org/cordova-plugin-firebase/-/cordova-plugin-firebase-0.1.24.tgz",
   "_shasum": "a9993a5c767115024cd882090ee8814fa4efb984",
+<<<<<<< HEAD
+  "_shrinkwrap": null,
+  "_spec": "cordova-plugin-firebase",
+  "_where": "C:\\Users\\Julia\\Documents\\GitHub\\wts\\WTS",
+=======
   "_spec": "cordova-plugin-firebase",
   "_where": "/home/merve/Schreibtisch/projects/sofa/wts/node_modules",
+>>>>>>> daac898e6554ca9ed4b2890f6db9e581b18301fe
   "author": {
     "name": "Robert Arnesson"
   },
   "bugs": {
     "url": "https://github.com/arnesson/cordova-plugin-firebase/issues"
   },
+<<<<<<< HEAD
+=======
   "bundleDependencies": false,
+>>>>>>> daac898e6554ca9ed4b2890f6db9e581b18301fe
   "cordova": {
     "id": "cordova-plugin-firebase",
     "platforms": [
@@ -38,8 +87,20 @@
       "browser"
     ]
   },
+<<<<<<< HEAD
+  "dependencies": {},
+  "description": "Cordova plugin for Google Firebase",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "a9993a5c767115024cd882090ee8814fa4efb984",
+    "tarball": "https://registry.npmjs.org/cordova-plugin-firebase/-/cordova-plugin-firebase-0.1.24.tgz"
+  },
+  "gitHead": "f55513959eaa1425e18021adb404aa7c516e458f",
+=======
   "deprecated": false,
   "description": "Cordova plugin for Google Firebase",
+>>>>>>> daac898e6554ca9ed4b2890f6db9e581b18301fe
   "homepage": "https://github.com/arnesson/cordova-plugin-firebase#readme",
   "keywords": [
     "ecosystem:cordova",
@@ -51,10 +112,26 @@
     "notifications"
   ],
   "license": "MIT",
+<<<<<<< HEAD
+  "maintainers": [
+    {
+      "name": "arnesson",
+      "email": "hello@arnesson.io"
+    }
+  ],
   "name": "cordova-plugin-firebase",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+=======
+  "name": "cordova-plugin-firebase",
+>>>>>>> daac898e6554ca9ed4b2890f6db9e581b18301fe
   "repository": {
     "type": "git",
     "url": "git+https://github.com/arnesson/cordova-plugin-firebase.git"
   },
+<<<<<<< HEAD
+  "scripts": {},
+=======
+>>>>>>> daac898e6554ca9ed4b2890f6db9e581b18301fe
   "version": "0.1.24"
 }
