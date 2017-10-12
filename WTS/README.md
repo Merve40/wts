@@ -24,3 +24,13 @@ $ ionic cordova run ios
 
 Substitute ios for android if not on a Mac.
 
+Add `firebase` dependency to your project:
+```bash
+$ sudo npm install firebase --save
+```
+
+Run `ionic build`, if it cannot find `promise-polyfill` run this in your command line:
+
+```bash
+$ sudo npm install promise-polyfill --save-exact
+```
