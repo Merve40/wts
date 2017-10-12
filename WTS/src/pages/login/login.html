@@ -9,14 +9,17 @@
 
 <ion-content padding>
   <h3>Work-to-students</h3>
-  <div class="login" align='center'>
-    <label class="item item-input">
+  <div class="full">
+    <div class="login">
+      <label class="item item-input">
         <input type="text" placeholder="Benutzername" ng-model="data.username">
-    </label>
-    <br>
-    <label class="item item-input">
+      </label>
+      <br>
+      <label class="item item-input">
         <input type="password" placeholder="Passwort" ng-model="data.password">
-    </label>
-</div>
-<button class="button login" ion-button color="primary" ng-click="login()" block>LOGIN</button>
+      </label>
+
+    <button class="button login" ion-button color="primary" ng-click="login()" block>LOGIN</button>
+    </div>
+  </div>
 </ion-content>

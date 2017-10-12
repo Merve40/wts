@@ -1,6 +1,17 @@
 page-login {
 
+    div.full {
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+
     div.login {
-        
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    
+      
     }
 }
