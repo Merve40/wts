@@ -6,6 +6,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { SuchePage } from '../pages/suche/suche';
 
+import firebase from 'firebase';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -33,6 +35,15 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+    });
+
+    firebase.initializeApp({
+      apiKey: "AIzaSyATDKANyR1HnCajqaAXINVS0z6kfCBwRwI",
+      authDomain: "worktostudents.firebaseapp.com",
+      databaseURL: "https://worktostudents.firebaseio.com",
+      projectId: "worktostudents",
+      storageBucket: "worktostudents.appspot.com",
+      messagingSenderId: "542302693567"
     });
   }
 
