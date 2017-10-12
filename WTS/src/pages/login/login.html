@@ -11,15 +11,15 @@
   <ion-content padding>
     <h3>Work-to-students</h3>
       <div class="login">
-        <label class="item item-input">
-          <input type="text" placeholder="Benutzername" ng-model="data.username">
+        <label id="mail" class="item item-input" >
+          <input  type="text" placeholder="Benutzername"[(ngModel)]="email">
         </label>
         <br>
-        <label class="item item-input">
-          <input type="password" placeholder="Passwort" ng-model="data.password">
+        <label id="pw" class="item item-input" >
+          <input  type="password" placeholder="Passwort" [(ngModel)]="password">
         </label>
   
-      <button class="button login" ion-button color="primary" ng-click="login()" block>LOGIN</button>
+      <button class="button login" ion-button color="primary" (click)="login()"  block> LOGIN </button>
       </div>
     
   </ion-content>

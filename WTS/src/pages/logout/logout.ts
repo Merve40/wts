@@ -8,7 +8,7 @@ import { NavController } from 'ionic-angular';
 export class LogoutPage {
 
   constructor(public navCtrl: NavController) {
-
+    
   }
 
 }
