@@ -26,4 +26,6 @@ Substitute ios for android if not on a Mac.
 
 Run `ionic build`, if it cannot find `promise-polyfill` run this in your command line:
 
-`npm install promise-polyfill --save-exact`
+```bash
+$ npm install promise-polyfill --save-exact
+```
