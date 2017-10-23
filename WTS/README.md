@@ -40,9 +40,13 @@ $ ionic cordova plugin add cordova-plugin-firebase
 $ npm install --save @ionic-native/firebase
 ```
 
-
 <a href="https://firebase.google.com/docs/reference/node/">Firebase Api</a>   
 
 Tutorials:   
 <a href="https://firebase.google.com/docs/database/web/start">Firebase Web</a>,   
 <a href="https://firebase.google.com/docs/reference/js/firebase.database.Query">Query interface</a>
+
+Install Json-Ignore Library
+```
+npm install json-ignore --save
+```
