@@ -9,17 +9,27 @@
   </ion-header>
   
   <ion-content padding>
-    <h3>Work-to-students</h3>
+    <h1>Work-to-students</h1>
+    <div class="logo">
+        <img src="../../../resources/logo.png" alt="Selfhtml"/> <!--not working yet -->
+    </div>
       <div class="login">
+        <div class="emailfield">
         <label id="mail" class="item item-input" >
-          <input  type="text" placeholder="Benutzername"[(ngModel)]="email">
+          <input type="text" placeholder="Email"[(ngModel)]="email">
         </label>
-        <br>
+      </div>
+        <div class="passwordfield" >
         <label id="pw" class="item item-input" >
-          <input  type="password" placeholder="Passwort" [(ngModel)]="password">
+          <input type="password" placeholder="Passwort" [(ngModel)]="password">
         </label>
-  
+      </div>
       <button class="button login" ion-button color="primary" (click)="login()"  block> LOGIN </button>
+
+      <div class="registerlink">
+        <a href="http://www.google.com">Register</a>
+      </div>
+    
       </div>
     
   </ion-content>
