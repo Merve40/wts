@@ -7,7 +7,6 @@ import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { ProfilePage } from '../pages/profile/profile';
 import { LogoutPage } from '../pages/logout/logout';
-import { DummyPage } from '../pages/dummy/dummy';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -17,8 +16,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     LoginPage,
     ProfilePage,
-    LogoutPage,
-    DummyPage
+    LogoutPage
  
   ],
   imports: [
@@ -30,8 +28,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     LoginPage,
     ProfilePage,
-    LogoutPage,
-    DummyPage,
+    LogoutPage
   ],
   providers: [
     StatusBar,
