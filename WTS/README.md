@@ -33,6 +33,14 @@ Run `ionic build`, if it cannot find `promise-polyfill` run this in your command
 ```bash
 $ sudo npm install promise-polyfill --save-exact
 ```
+
+Ionic Firebase native Plugin:
+```
+$ ionic cordova plugin add cordova-plugin-firebase
+$ npm install --save @ionic-native/firebase
+```
+
+
 <a href="https://firebase.google.com/docs/reference/node/">Firebase Api</a>   
 
 Tutorials:   
