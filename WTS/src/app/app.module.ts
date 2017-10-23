@@ -16,9 +16,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   declarations: [
     MyApp,
     LoginPage,
-    ProfilePage
+    ProfilePage,
     SuchePage,
-    LogoutPage, 
+    LogoutPage
  
   ],
   imports: [
@@ -29,9 +29,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     MyApp,
     LoginPage,
-    ProfilePage
+    ProfilePage,
     LogoutPage,
-    SuchePage, 
+    SuchePage
   ],
   providers: [
     StatusBar,
