@@ -28,7 +28,8 @@ export class MyApp {
       { title: 'Login', component: LoginPage },
       {title: 'Profile', component: ProfilePage},
       { title: 'Suche', component: SuchePage },
-      { title: 'Logout', component: LogoutPage }
+      { title: 'Logout', component: LogoutPage },
+
     ];
 
   }

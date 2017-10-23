@@ -31,7 +31,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LoginPage,
     ProfilePage,
     LogoutPage,
-    SuchePage
+    SuchePage, 
   ],
   providers: [
     StatusBar,
