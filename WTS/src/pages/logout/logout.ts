@@ -11,4 +11,11 @@ export class LogoutPage {
     
   }
 
+
+  doLogout() {
+    //this.user.logout(this.account).subscribe((resp) => {
+      this.navCtrl.push(LogoutPage);
+    //}
+  };
+
 }
