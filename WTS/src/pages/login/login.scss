@@ -12,4 +12,16 @@ page-login {
         left: 50%;
         transform: translate(-50%, -50%);
     }
+
+    div.registerlink{
+        text-align: center;
+    }
+
+    div.emailfield{
+        padding-bottom:  10px;
+    }
+
+    div.passwordfield{
+        padding-bottom: 5px;
+    }
 }
