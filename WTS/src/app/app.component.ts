@@ -22,6 +22,7 @@ export class MyApp {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
+    // Labels & Pages in navigationbar in upper left corner
     this.pages = [
       { title: 'Login', component: LoginPage },
       {title: 'Profile', component: ProfilePage},
