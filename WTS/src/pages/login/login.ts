@@ -18,6 +18,7 @@ export class LoginPage {
   constructor(public navCtrl: NavController) {
   }
 
+
   login(){
 
     this.database.ref('/Account/')
