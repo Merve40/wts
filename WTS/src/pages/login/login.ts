@@ -3,6 +3,8 @@ import { NavController } from 'ionic-angular';
 
 import firebase from 'firebase';
 
+import { LogoutPage } from '../logout/logout';
+
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
