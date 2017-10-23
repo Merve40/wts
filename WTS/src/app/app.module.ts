@@ -8,6 +8,7 @@ import { LoginPage } from '../pages/login/login';
 import { SuchePage } from '../pages/suche/suche';
 import { ProfilePage } from '../pages/profile/profile';
 import { LogoutPage } from '../pages/logout/logout';
+import { DummyPage } from '../pages/dummy/dummy';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -18,7 +19,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LoginPage,
     ProfilePage,
     SuchePage,
-    LogoutPage
+    LogoutPage,
+    DummyPage
  
   ],
   imports: [
@@ -32,6 +34,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ProfilePage,
     LogoutPage,
     SuchePage, 
+    DummyPage,
   ],
   providers: [
     StatusBar,

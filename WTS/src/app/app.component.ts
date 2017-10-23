@@ -7,6 +7,7 @@ import { LoginPage } from '../pages/login/login';
 import { SuchePage } from '../pages/suche/suche';
 import { LogoutPage } from '../pages/logout/logout';
 import { ProfilePage } from '../pages/profile/profile';
+import { DummyPage } from '../pages/dummy/dummy';
 
 import firebase from 'firebase';
 
@@ -29,6 +30,7 @@ export class MyApp {
       {title: 'Profile', component: ProfilePage},
       { title: 'Suche', component: SuchePage },
       { title: 'Logout', component: LogoutPage },
+      { title: 'Dummy', component: DummyPage },
 
     ];
 
