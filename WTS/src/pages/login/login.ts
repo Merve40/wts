@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { IonicPage, NavController, ToastController } from 'ionic-angular';
+
+import { ProfilePage } from '../profile/profile';
 
 import firebase from 'firebase';
 
@@ -9,37 +11,50 @@ import firebase from 'firebase';
 })
 export class LoginPage {
 
-  database:any = firebase.database(); 
-  storage:any= firebase.storage(); //file system (Dateien)
- 
-  email:any;
-  password:any;
+  database: any = firebase.database();
+  storage: any = firebase.storage(); //file system
 
-  constructor(public navCtrl: NavController) {
+
+  email: any;
+  password: any;
+
+  constructor(public navCtrl: NavController, public toastCtrl: ToastController) {
+
   }
 
-
-  login(){
-
-    this.database.ref('/Account/')
-      .orderByChild('Email').equalTo(this.email)
-      .on('value', function(snapshot){
-        snapshot.forEach(element => {
-          console.log(element.val());
-          //TODO: zur nächsten Seite navigieren
+  login() {
+    if (this.email || this.password) {
+      this.database.ref('/Account/')
+        .orderByChild('Email').equalTo(this.email)
+        .on('value', function (snapshot) {
+          snapshot.forEach(element => {
+            console.log(element.val());
+            this.navCtrl.push(ProfilePage);
+          });
         });
-      });
-      //TODO: Login Fehler anzeigen
-  } 
+    } else {
+      this.showLoginError("fill in username and password");
+    }
 
-  create(mail, pass, addr, gruppe ){
-   // console.log("test");
+  }
+
+  create(mail, pass, addr, gruppe) {
+    // console.log("test");
     this.database.ref('/Account/').push({
-        Email: mail,
-        Passwort:pass,
-        Adresse_id: addr,
-        Usergruppe: gruppe
+      Email: mail,
+      Passwort: pass,
+      Adresse_id: addr,
+      Usergruppe: gruppe
     });
+  }
+
+  showLoginError(message) {
+    const toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
   }
 
 
