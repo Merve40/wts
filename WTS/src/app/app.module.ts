@@ -7,7 +7,7 @@ import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { SuchePage } from '../pages/suche/suche';
 import { LogoutPage } from '../pages/logout/logout';
-import {ProfilePage} from '../pages/profile/profile';
+import { ProfilePage } from '../pages/profile/profile';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
