@@ -5,7 +5,6 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
-import { SuchePage } from '../pages/suche/suche';
 import { ProfilePage } from '../pages/profile/profile';
 import { LogoutPage } from '../pages/logout/logout';
 
@@ -17,8 +16,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     LoginPage,
     ProfilePage,
-    SuchePage,
-    LogoutPage
+    LogoutPage 
  
   ],
   imports: [
@@ -30,8 +28,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     LoginPage,
     ProfilePage,
-    LogoutPage,
-    SuchePage, 
+    LogoutPage
   ],
   providers: [
     StatusBar,
