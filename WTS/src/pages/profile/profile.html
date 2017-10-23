@@ -8,20 +8,46 @@
   </ion-navbar>
 </ion-header>
     
-    <ion-content padding>
-            <div class="ProfilePage">
-                 <img src='assets/img/logo.png' alt="your ProfilePicture">
-                  </div>
-        <div class="list">
-            <label class="item item-input item-stacked-label">
-            <span class="input-label">Label 1</span>
-            <input type="text" placeholder="Placeholder 1">
-            </label>
-         
-            <label class="item item-input item-stacked-label">
-            <span class="input-label">Label 2</span>
-            <input type="text" placeholder="Placeholder 2">
-            </label>
-         </div>
-    </ion-content>
- </div>
+        
+ <ion-content class="label-demo">
+        
+          <ion-list>
+            <ion-item no-lines>
+              <ion-avatar item-start>
+                    <img src='assets/img/logo.png' alt="your image">
+              </ion-avatar>
+              <ion-label>Ionic</ion-label>
+            </ion-item>
+        
+            <!-- TODO the styling of the icons can be removed when #5319 is done -->
+            <ion-item>
+              <ion-label stacked color="primary">Mobile</ion-label>
+              <ion-input type="tel" value="+1 (555) 123-1234"></ion-input>
+            </ion-item>
+        
+            <ion-item>
+              <ion-label stacked color="primary">Email</ion-label>
+              <ion-input type="email" value="hi@ionic.io"></ion-input>
+            </ion-item>
+        
+            <ion-item>
+              <ion-label stacked color="primary">Birthday</ion-label>
+              <ion-input type="text" value="November 21, 2013"></ion-input>
+            </ion-item>
+        
+            <ion-item>
+              <ion-label stacked color="primary">Address</ion-label>
+              <ion-textarea
+                value="121 S Pinckney St
+        Madison WI 53703
+        United States">
+              </ion-textarea>
+            </ion-item>
+        
+            <ion-item>
+              <ion-label stacked color="dark">Notes</ion-label>
+              <ion-textarea></ion-textarea>
+            </ion-item>
+          </ion-list>       
+</ion-content>
+</div>
