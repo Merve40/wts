@@ -11,20 +11,26 @@ import firebase from 'firebase';
   export class ProfilePage{
 
     database:any = firebase.database(); 
-    storage:any= firebase.storage(); //file system (Dateien)
-    adresse: any;
+    storage:any = firebase.storage(); //file system (Dateien)
     
     constructor(public navCtrl: NavController) {
     }
 
-    ngAfterViewInit(){
-    var userId = '-KwFGCd3o-zKe7UoUKoR';
-    return firebase.database().ref('/Account/' + userId).once('value').then(function(snapshot) {
-      var userObject = snapshot.val();
-      console.log(userObject);
-      //test
-      this.adresse = userObject.Adresse_id;
-      console.log(this.adresse);
-    });
-  }
+  ngAfterViewInit(){
+    var studentID = 'student_10';
+    var AccID = 'acc_10';
+    firebase.database().ref('/Student/' + studentID).once('value').then(function(snapshot) {
+      //var userObject = snapshot.val();
+      var nachname = (snapshot.val().Nachname);
+      var vorname = (snapshot.val().Name);
+      console.log(nachname);
+      console.log(vorname); 
+  })
+
+   firebase.database().ref('/Account/' + AccID).once('value').then(function(snapshot) {
+    //var userObject = snapshot.val();
+    var email = (snapshot.val().Email);
+    console.log(email);
+})
+}
   }
