@@ -28,11 +28,9 @@ export class LoginPage {
         snapshot.forEach(element => {
           console.log(element.val());
           //TODO: zur nächsten Seite navigieren
-          this.navCtrl.push(LogoutPage);
         });
       });
       //TODO: Login Fehler anzeigen
-      this.navCtrl.push(LogoutPage);
   } 
 
   create(mail, pass, addr, gruppe ){
