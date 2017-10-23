@@ -22,7 +22,7 @@ import firebase from 'firebase';
     return firebase.database().ref('/Account/' + userId).once('value').then(function(snapshot) {
       var userObject = snapshot.val();
       console.log(userObject);
-      
+      //test
       this.adresse = userObject.Adresse_id;
       console.log(this.adresse);
     });
