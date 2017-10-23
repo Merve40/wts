@@ -1,4 +1,7 @@
 page-login {
+    div.logo {
+        text-align: center;
+    }
 
     div.full {
         height: 100%;
@@ -16,7 +19,9 @@ page-login {
     div.registerlink{
         text-align: center;
     }
-
+    a {
+    color: #00274C;
+    }
     div.emailfield{
         padding-bottom:  10px;
     }
