@@ -22,15 +22,15 @@ export class LoginPage {
 
   login(){
 
-    this.database.ref('/Account/')
-      .orderByChild('Email').equalTo(this.email)
-      .on('value', function(snapshot){
-        snapshot.forEach(element => {
-          console.log(element.val());
-          //TODO: zur nächsten Seite navigieren
-          this.navCtrl.push(LogoutPage);
-        });
-      });
+    // this.database.ref('/Account/')
+    //   .orderByChild('Email').equalTo(this.email)
+    //   .on('value', function(snapshot){
+    //     snapshot.forEach(element => {
+    //       console.log(element.val());
+    //       //TODO: zur nächsten Seite navigieren
+    //       this.navCtrl.push(LogoutPage);
+    //     });
+    //   });
       //TODO: Login Fehler anzeigen
       this.navCtrl.push(LogoutPage);
   } 
