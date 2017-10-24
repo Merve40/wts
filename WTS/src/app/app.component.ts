@@ -25,7 +25,7 @@ export class MyApp {
     // Labels & Pages in navigationbar in upper left corner
     this.pages = [
       { title: 'Login', component: LoginPage },
-      {title: 'Profile', component: ProfilePage},
+      {title: 'My Profile', component: ProfilePage},
       { title: 'Logout', component: LoginPage }
 
     ];
@@ -47,8 +47,8 @@ export class MyApp {
       storageBucket: "worktostudents.appspot.com",
       messagingSenderId: "542302693567"
     });
-    
-    
+
+
   }
 
   openPage(page) {
