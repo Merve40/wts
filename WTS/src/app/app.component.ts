@@ -2,12 +2,14 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 import { LoginPage } from '../pages/login/login';
 import { ProfilePage } from '../pages/profile/profile';
 import { Profile_externPage } from '../pages/profile_extern/profile_extern';
 
 import firebase from 'firebase';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -19,7 +21,8 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, 
+    public splashScreen: SplashScreen, public sceenOrientation: ScreenOrientation) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -40,6 +43,11 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      console.log(this.sceenOrientation.type);    
+      //this.sceenOrientation.lock(this.sceenOrientation.ORIENTATIONS.PORTRAIT);
+      console.log(this.sceenOrientation.type);
+     
+      
     });
     firebase.initializeApp({
       apiKey: "AIzaSyATDKANyR1HnCajqaAXINVS0z6kfCBwRwI",
