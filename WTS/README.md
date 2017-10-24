@@ -55,3 +55,8 @@ Install  Node.js
 ```
  npm install @types/node --save-dev
 ```
+
+Install CryptoJs
+```
+npm install crypto-js
+```
