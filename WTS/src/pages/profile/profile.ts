@@ -58,7 +58,7 @@ var strasse;
     });
   });
     //Auslesen der Daten aus Account für die AccID
-   this.database().ref('/Account/' + AccID).once('value').then(function(snapshot) {
+   this.database.ref('/Account/' + AccID).once('value').then(function(snapshot) {
     addrID = (snapshot.val().Adresse_id);
     email = (snapshot.val().Email);
    });
