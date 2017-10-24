@@ -9,12 +9,14 @@ import { ProfilePage } from '../pages/profile/profile';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Profile_externPage } from '../pages/profile_extern/profile_extern';
 
 @NgModule({
   declarations: [
     MyApp,
     LoginPage,
-    ProfilePage
+    ProfilePage,
+    Profile_externPage
  
   ],
   imports: [
@@ -25,7 +27,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     MyApp,
     LoginPage,
-    ProfilePage
+    ProfilePage,
+    Profile_externPage
   ],
   providers: [
     StatusBar,
