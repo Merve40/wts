@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { LoginPage } from '../pages/login/login';
 import { ProfilePage } from '../pages/profile/profile';
+import { Profile_externPage } from '../pages/profile_extern/profile_extern';
 
 import firebase from 'firebase';
 
@@ -26,7 +27,8 @@ export class MyApp {
     this.pages = [
       { title: 'Login', component: LoginPage },
       {title: 'Profile', component: ProfilePage},
-      { title: 'Logout', component: LoginPage }
+      { title: 'Logout', component: LoginPage },
+      { title: 'Profile_extern', component: Profile_externPage }
 
     ];
 

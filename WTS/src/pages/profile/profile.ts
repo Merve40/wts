@@ -31,6 +31,16 @@ import firebase from 'firebase';
     //var userObject = snapshot.val();
     var email = (snapshot.val().Email);
     console.log(email);
+<<<<<<< Updated upstream
 })
+=======
+   });
+ /*
+  this.database.ref('/Adresse/' + addrID) .once('value', function (snapshot) {
+    adresse = (snapshot.val().Ort + ',' + snapshot.val().PLZ + ',' + snapshot.val().Land);
+    console.log(adresse); 
+  });
+  */
+>>>>>>> Stashed changes
 }
   }
