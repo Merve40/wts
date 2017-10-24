@@ -57,5 +57,11 @@ export class LoginPage {
     toast.present();
   }
 
+  encrypt(password) {
+    var CryptoJS = require("crypto-js");
+    // Encrypt
+    var hash = CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex);
+    console.log(hash);
+  }
 
 }
