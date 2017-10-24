@@ -50,3 +50,8 @@ Install Json-Ignore Library
 ```
 npm install json-ignore --save
 ```
+
+Install  Node.js
+```
+ npm install @types/node --save-dev
+```
