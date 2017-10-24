@@ -3,6 +3,17 @@ import { NavController } from 'ionic-angular';
 
 import firebase from 'firebase';
 
+var studentID;
+var AccID = 'acc_10'; // AccountID aus dem Login
+var addrID;
+var nachname;
+var vorname;
+var email;
+var studiengang;
+var uni;
+var adresse;
+
+
 @Component({
     selector: 'page-profile',
     templateUrl: 'profile.html'
@@ -17,20 +28,38 @@ import firebase from 'firebase';
     }
 
   ngAfterViewInit(){
-    var studentID = 'student_10';
-    var AccID = 'acc_10';
-    firebase.database().ref('/Student/' + studentID).once('value').then(function(snapshot) {
+    this.database.ref('/Student/')
+    .orderByChild('Account_Id').equalTo(AccID)
+    .on('value', function (snapshot) {
+      snapshot.forEach(element => {
+        nachname = (element.val().Nachname);
+        vorname = (element.val().Name);
+        studiengang = (element.val().Studiengang);
+        uni = (element.val().Uni);
+        console.log(nachname);
+        console.log(vorname); 
+      });
+    });
+    /*
+    this.database().ref('/Student/' + studentID).once('value').then(function(snapshot) {
       //var userObject = snapshot.val();
-      var nachname = (snapshot.val().Nachname);
-      var vorname = (snapshot.val().Name);
+      nachname = (snapshot.val().Nachname);
+      vorname = (snapshot.val().Name);
       console.log(nachname);
       console.log(vorname); 
   })
-
-   firebase.database().ref('/Account/' + AccID).once('value').then(function(snapshot) {
+  */
+  this.database.ref('/Account/' + AccID).once('value').then(function(snapshot) {
     //var userObject = snapshot.val();
-    var email = (snapshot.val().Email);
+    email = (snapshot.val().Email);
+    addrID = (snapshot.val().Adresse_id);
     console.log(email);
-})
+   });
+   
+  this.database.ref('/Adresse/' + addrID) .once('value', function (snapshot) {
+    adresse = (snapshot.val().Ort + ',' + snapshot.val().PLZ + ',' + snapshot.val().Land);
+    console.log(adresse); 
+  });
+    
 }
   }
