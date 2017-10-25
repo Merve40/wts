@@ -21,7 +21,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
   declarations: [
     MyApp,
     LoginPage,
-    ProfilePage,
+    //ProfilePage,
     Profile_externPage
   ],
   imports: [
@@ -33,7 +33,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
   entryComponents: [
     MyApp,
     LoginPage,
-    ProfilePage,
+    //ProfilePage,
     Profile_externPage
   ],
   providers: [
