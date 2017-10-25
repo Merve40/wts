@@ -1,15 +1,8 @@
 import { Component } from '@angular/core';
-<<<<<<< HEAD
-import { NavController } from 'ionic-angular';
 import { Inject } from '@angular/core';
 import { ProfilePage } from '../profile/profile';
-
 import { AccountTable } from '../../providers/api/account';
-=======
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
-
-import { ProfilePage } from '../profile/profile';
->>>>>>> master
 
 import firebase from 'firebase';
 
@@ -20,48 +13,14 @@ import firebase from 'firebase';
 export class LoginPage {
 
   database: any = firebase.database();
-<<<<<<< HEAD
   storage: any = firebase.storage(); //file system (Dateien)
 
   email: any;
   password: any;
 
-  constructor(public navCtrl: NavController, @Inject(AccountTable) public accountTable: AccountTable) {
+  constructor(public navCtrl: NavController, public toastCtrl: ToastController, @Inject(AccountTable) public accountTable: AccountTable) {
   }
 
-  login() {
-
-    this.database.ref('/Account/')
-      .orderByChild('Email').equalTo(this.email)
-      .once('value').then(function (snapshot) {
-
-        snapshot.forEach(element => {
-          console.log(element.val());
-          if (element.val()) {
-            if (element.val().Passwort == this.password) {
-              this.navCtrl.push(ProfilePage);
-            } else {
-              this.showError("Wrong Password");
-            }
-          } else {
-            this.showError("Wrong Email");
-          }
-        });
-      });
-  }
-
-  showError(message: string) {
-    console.log(message);
-=======
-  storage: any = firebase.storage(); //file system
-
-
-  email: any;
-  password: any;
-
-  constructor(public navCtrl: NavController, public toastCtrl: ToastController) {
-
-  }
 
   login() {
     if (this.email || this.password) {
@@ -76,8 +35,6 @@ export class LoginPage {
     } else {
       this.showLoginError("fill in username and password");
     }
-
->>>>>>> master
   }
 
   create(mail, pass, addr, gruppe) {
@@ -90,7 +47,6 @@ export class LoginPage {
     });
   }
 
-<<<<<<< HEAD
   test() {
     var acc = { Email: this.email, Passwort: this.password, Adresse_id: "A_1", Usergruppe: "Student" };
     this.accountTable.push(acc, this.onResult);
@@ -102,7 +58,7 @@ export class LoginPage {
 
   onResult(json) {
     console.log(json);
-=======
+  }
   showLoginError(message) {
     const toast = this.toastCtrl.create({
       message: message,
@@ -117,7 +73,6 @@ export class LoginPage {
     // Encrypt
     var hash = CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex);
     console.log(hash);
->>>>>>> master
   }
 
 }
