@@ -13,7 +13,6 @@ export class LoginPage {
 
   database: any = firebase.database();
   storage: any = firebase.storage(); //file system (Dateien)
-  require:any;
 
   email: any;
   password: any;
@@ -71,7 +70,7 @@ export class LoginPage {
   }
 
   encrypt(password) {
-    var CryptoJS = this.require("crypto-js");
+    var CryptoJS = require("crypto-js");
     // Encrypt
     var hash = CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex);
     console.log(hash);
