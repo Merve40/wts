@@ -60,8 +60,11 @@ Install CryptoJs
 ```
 npm install crypto-js
 ```
-Install Ionic Screen Orientation
-(ionic cordova plugin add cordova-plugin-screen-orientation)
+Install Ionic Screen Orientation  
+(optional)  
+```
+ionic cordova plugin add cordova-plugin-screen-orientation
+```
 ```
 npm install --save @ionic-native/screen-orientation
 ```
