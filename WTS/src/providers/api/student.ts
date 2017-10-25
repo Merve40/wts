@@ -32,7 +32,7 @@ export class StudentTable extends Base {
     }
 
     setInnerObject(o:any){
-        this.Account = o;
+        this.Student = o;
     }
 
     delete(func:Function):void{
