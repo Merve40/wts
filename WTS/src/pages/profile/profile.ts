@@ -63,12 +63,13 @@ var strasse;
     email = (snapshot.val().Email);
    });
     //Auslesen der Adressdaten mithilfe der addrID aus der vorherigen Query
+  /*
   this.database.ref('/Adresse/' + addrID) .once('value', function (snapshot) {
     adresse = (snapshot.val().Ort + ',' + snapshot.val().PLZ + ',' + snapshot.val().Land);
     strasse = (snapshot.val().Straße);
     console.log(adresse); 
     console.log(strasse);
   });
-
+  */
 }
   }
