@@ -22,7 +22,7 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, 
-    public splashScreen: SplashScreen, public sceenOrientation: ScreenOrientation) {
+    public splashScreen: SplashScreen, public screenOrientation: ScreenOrientation) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -43,9 +43,10 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      console.log(this.sceenOrientation.type);    
-      //this.sceenOrientation.lock(this.sceenOrientation.ORIENTATIONS.PORTRAIT);
-      console.log(this.sceenOrientation.type);
+      //var orient = this.screenOrientation.ORIENTATIONS.PORTRAIT;
+      //ionViewWillUnload(this.orient);
+      //console.log(this.screenOrientation.lock(orient));
+      //console.log(this.screenOrientation.type);
      
       
     });
@@ -66,4 +67,12 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+  
+//   ionViewWillUnload(orientation:any){
+//        this.screenOrientation.lock(orientation);
+
+//     setTimeout(function() {
+//         this.screenOrientation.unlock();    
+//     }, 300);        
+//   }
 }
