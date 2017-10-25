@@ -3,13 +3,14 @@ import { Inject } from '@angular/core';
 import { AccountTable } from '../../providers/api/account';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import { ProfilePage } from '../profile/profile';
+import { OnResultComplete } from '../../providers/api/OnResultComplete';
 import firebase from 'firebase';
 
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
 })
-export class LoginPage {
+export class LoginPage implements OnResultComplete {
 
   database: any = firebase.database();
   storage: any = firebase.storage(); //file system (Dateien)
@@ -20,7 +21,6 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController, public toastCtrl: ToastController, @Inject(AccountTable) public accountTable: AccountTable) {
   }
-
 
   login() {
    var t = this;
@@ -50,17 +50,19 @@ export class LoginPage {
   }
 
   test() {
-    var acc = { Email: this.email, Passwort: this.password, Adresse_id: "A_1", Usergruppe: "Student" };
-    this.accountTable.push(acc, this.onResult);
+    this.accountTable.getByValue("Email","test33@mail.com" , "1", this.onComplete);
+    this.accountTable.filterByValue("Adresse_id", "A_1", "2", this.onComplete);
   }
 
-  t(){
-    this.accountTable.getByValue("Email", "test22@mail.com" , this.onResult);
+  onComplete(source, json) {
+    if(source == "1"){
+      console.log(json);
+    }else if(source == "2"){
+      console.log(json);
+    }
   }
 
-  onResult(json) {
-    console.log(json);
-  }
+
   showLoginError(message) {
     const toast = this.toastCtrl.create({
       message: message,

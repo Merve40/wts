@@ -19,7 +19,7 @@ export class Api {
     constructor( @Inject(Http) public http: Http) {
     }
 
-    public delete<T extends Base>(base: T, func: Function): void {
+    public delete<T extends Base>(base: T, source:string, func: Function): void {
         let tbl = base.table.toString();
         let _url = this.url.concat(tbl).concat("/").concat(base.id)
             .concat(".json");
@@ -27,12 +27,12 @@ export class Api {
         let response = this.http.delete(_url);
         response.forEach(obj => {
             var json = JSON.parse(obj.text());
-            func.apply(this, [json]);
+            func.apply(this, [source, json]);
             return obj;
         });
     }
 
-    public put<T extends Base>(base: T, func: Function): void {
+    public put<T extends Base>(base: T, source:string, func: Function): void {
         let tbl = base.table.toString();
         let _url = this.url.concat(tbl).concat("/").concat(base.id)
             .concat(".json");
@@ -40,12 +40,12 @@ export class Api {
         let response = this.http.put(_url, base.getInnerObject());
         response.forEach(obj => {
             var json = JSON.parse(obj.text());
-            func.apply(this, [json]);
+            func.apply(this, [source, json]);
             return obj;
         });
     }
 
-    public post<T>(base: Base, obj: T, func: Function): void {
+    public post<T>(base: Base, obj: T, source:string, func: Function): void {
         let tbl = base.table.toString();
         let _url = this.url.concat(tbl).concat(this.suffix);
         let body = JSON.stringify(obj);
@@ -53,12 +53,12 @@ export class Api {
         let response = this.http.post(_url, body);
         response.forEach(obj => {
             var json = JSON.parse(obj.text());
-            func.apply(this, [json]);
+            func.apply(this, [source, json]);
             return json.name;
         });
     }
 
-    public get<T extends Base>(base: T, value: string, func: Function): void {
+    public get<T extends Base>(base: T, value: string, source:string, func: Function): void {
         let tbl = base.table.toString();
         let _url = this.url.concat(tbl).concat("/").concat(value)
             .concat(".json");
@@ -66,12 +66,12 @@ export class Api {
         let response = this.http.get(_url);
         response.forEach(obj => {
             var json = JSON.parse(obj.text());
-            func.apply(this, [json]);
+            func.apply(this, [source, json]);
             return json;
         });
     }
 
-    public getByValue<T extends Base>(base: T, key: string, value: string, func: Function): void {
+    public getByValue<T extends Base>(base: T, key: string, value: string, source:string, func: Function): void {
         let tbl = base.table.toString();
         let _url = this.url.concat(tbl).concat(this.suffix)
             .concat(this.orderBy)
@@ -85,12 +85,12 @@ export class Api {
         let response = this.http.get(_url);
         response.forEach(obj => {
             var innerJson = this.getInnerJson(obj.text());
-            func.apply(this, [innerJson]);
+            func.apply(this, [source, innerJson]);
             return obj;
         })
     }
 
-    public filterByValue<T extends Base>(base: T, key: string, value: string, func: Function): void {
+    public filterByValue<T extends Base>(base: T, key: string, value: string, source:string, func: Function): void {
         let tbl = base.table.toString();
         let _url = this.url.concat(tbl).concat(this.suffix).concat(this.orderBy)
             .concat(this.quote).concat(key).concat(this.quote)
@@ -102,13 +102,13 @@ export class Api {
         let response = this.http.get(_url);
         response.forEach(obj => {
             var innerJson = this.getInnerJsonArray(obj.text());
-            console.log(innerJson);
-            func.apply(this, [innerJson]);
+            func.apply(this, [source, innerJson]);
             return obj;
         })
     }
 
-    public filterByValueAndLimit<T extends Base>(base: T, key: string, value: string, limit: number, func: Function): void {
+    public filterByValueAndLimit<T extends Base>(base: T, key: string, value: string, limit: number, 
+                                                    source:string, func: Function): void {
         let tbl = base.table.toString();
         let _url = this.url.concat(tbl).concat(this.suffix).concat(this.orderBy)
             .concat(this.quote).concat(key).concat(this.quote)
@@ -122,7 +122,7 @@ export class Api {
         response.forEach(obj => {
             var innerJson = this.getInnerJsonArray(obj.text());
             console.log(innerJson);
-            func.apply(this, [innerJson]);
+            func.apply(this, [source, innerJson]);
             return obj;
         })
     }
@@ -166,7 +166,6 @@ export class Api {
                             .split("\"").join(" ")
                             .split(",").join(" ")
                             .trim();
-        console.log(replaced);
         var id = replaced.split(" ")[0].trim();
         return id;
     }
