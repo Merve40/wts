@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.0.0",
-    "@types/node": "^8.0.46",
+    "@types/node": "^8.0.47",
     "typescript": "2.3.4"
   },
   "description": "An Ionic project",
