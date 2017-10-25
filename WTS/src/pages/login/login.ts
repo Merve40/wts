@@ -59,14 +59,14 @@ export class LoginPage {
 
   test() {
     var acc = { Email: this.email, Passwort: this.password, Adresse_id: "A_1", Usergruppe: "Student" };
-    this.accountTable.push(acc, this.onAccountCreated);
+    this.accountTable.push(acc, this.onResult);
   }
 
   t(){
-    this.accountTable.getByValue("Email", "test22@mail.com" , this.onAccountCreated);
+    this.accountTable.getByValue("Email", "test22@mail.com" , this.onResult);
   }
 
-  onAccountCreated(json) {
+  onResult(json) {
     console.log(json);
   }
 
