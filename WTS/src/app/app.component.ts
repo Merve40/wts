@@ -48,6 +48,8 @@ export class MyApp {
       //console.log(this.screenOrientation.lock(orient));
       //console.log(this.screenOrientation.type);
 
+      // var orient = this.screenOrientation.ORIENTATIONS.PORTRAIT;
+      // this.screenOrientation.lock(orient);
 
     });
     firebase.initializeApp({
