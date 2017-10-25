@@ -9,6 +9,9 @@
   "installed_plugins": {
     "cordova-plugin-screen-orientation": {
       "PACKAGE_NAME": "com.wts"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.wts"
     }
   },
   "dependent_plugins": {}
