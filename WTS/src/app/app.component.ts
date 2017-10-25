@@ -43,9 +43,9 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      var orient = this.screenOrientation.ORIENTATIONS.PORTRAIT;
-      this.screenOrientation.lock(orient);
 
+      // var orient = this.screenOrientation.ORIENTATIONS.PORTRAIT;
+      // this.screenOrientation.lock(orient);
 
     });
     firebase.initializeApp({

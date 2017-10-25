@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { Inject } from '@angular/core';
-import { ProfilePage } from '../profile/profile';
 import { AccountTable } from '../../providers/api/account';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
-
+import { ProfilePage } from '../profile/profile';
 import firebase from 'firebase';
 
 @Component({
@@ -24,13 +23,15 @@ export class LoginPage {
 
 
   login() {
+   var t = this;
+
     if (this.email || this.password) {
       this.database.ref('/Account/')
         .orderByChild('Email').equalTo(this.email)
         .on('value', function (snapshot) {
           snapshot.forEach(element => {
             console.log(element.val());
-            this.navCtrl.push(ProfilePage);
+            t.navCtrl.push(ProfilePage);
           });
         });
     } else {
