@@ -24,12 +24,7 @@
 		"a_1": {
 			"Straße":"Tegelseweg 255",
 			"Ort":"Venlo",
-<<<<<<< HEAD
-<<<<<<< niklas
 			"PLZ":"5912 BG"		
-=======
-			"PLZ":"5912 BG",
-			"Land": "Niederlande"
 		},
 		"a_21": {
 			"Straße":"Poststraße 12",
@@ -72,7 +67,6 @@
 			"Ort": "Köln",
 			"PLZ":"50560",
 			"Land":"Deutschland"
->>>>>>> master
 		},
 		"a_16": {
 			"Straße":"Vennstraße 15",
@@ -92,17 +86,10 @@
 		"a_19": {
 			"Straße":"Haller Strasse 2",
 			"Ort":"Aachen",
-<<<<<<< HEAD
 			"PLZ":"67976"		
 		}
-=======
 			"PLZ":"5912 BG",	
 			"Land": "Niederlande"	
-		}	
->>>>>>> land added
-=======
-			"PLZ":"67976",		
-			"Land":"Niederlande"	
 		},	
 		"a_7": {
 			"Straße":"Koninginnesingel 82",
@@ -133,8 +120,7 @@
 			"Ort":"Moskau",
 			"PLZ":"9BBSE6",
 			"Land":"Russland"	
-} 
->>>>>>> master
+		} 
 	},	
 	
 	"Account":{
@@ -425,9 +411,6 @@
 	},	
 	
 	"Student": {
-<<<<<<< HEAD
-<<<<<<< niklas
-=======
 		"student_1":{
 			"Account_Id": "acc_1",
 			"Name":"Julia",
@@ -443,21 +426,18 @@
 			"Beschäftigung":"",
 			"Zeitstempel":"2017-10-08"
 		},
->>>>>>> master
 		"student_16":{
 			"Account_Id": "acc_16",
 			"Name":"Thomas",
 			"Nachname":"Meier",
 			"Geb_Datum":"20.04.1996",
 			"Uni":"RWTH Aachen",
-=======
 		"student_1":{
 			"Account_Id": "acc_1",
 			"Name":"Julia",
 			"Nachname":"Mödinger",
 			"Geb_Datum":"",
 			"Uni":"Fontys",
->>>>>>> Auto stash before merge of "master" and "origin/master"
 			"Studiengang":"Wirtschaftsinformatik",
 			"Vertiefung":"Projektmanagement",
 			"Abschluss_Datum": "09-2020",
@@ -482,8 +462,6 @@
 			"Beschäftigung":"",
 			"Zeitstempel":"2017-10-10"
 		},
-<<<<<<< HEAD
-=======
 		"student_21":{
 			"Account_Id": "acc_21",
 			"Name":"Hannah",
@@ -514,7 +492,6 @@
 			"Beschäftigung":"",
 			"Zeitstempel":"2017-10-10"
 		},	
->>>>>>> master
 		"student_2":{
 			"Account_Id": "acc_2",
 			"Name":"Moritz",
@@ -529,9 +506,7 @@
 			"Semester":"7",
 			"Beschäftigung":"",
 			"Zeitstempel":"2017-10-10"
-<<<<<<< HEAD
-		}	
-=======
+		
 		},	
 		"student_26":{
 			"Account_Id": "acc_26",
@@ -623,7 +598,6 @@
 			"Beschäftigung":"",
 			"Zeitstempel":"2017-10-10"
 		}			
->>>>>>> master
 	},
 
 	"Unternehmen":{
@@ -680,7 +654,7 @@
 			"Unternehmen":"Orintonio",
 			"Weibseite":"https://www.orintonio.eu",
 			"Branche":"Nahrungsmittel"
-}
+		}
 	},
 
 	"Universität":{

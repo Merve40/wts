@@ -16,7 +16,7 @@ export class MyApp {
 
   rootPage: any = LoginPage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string, component: any }>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
@@ -25,7 +25,7 @@ export class MyApp {
     // Labels & Pages in navigationbar in upper left corner
     this.pages = [
       { title: 'Login', component: LoginPage },
-      {title: 'Profile', component: ProfilePage},
+      { title: 'Profile', component: ProfilePage },
       { title: 'Logout', component: LoginPage }
 
     ];
@@ -47,8 +47,8 @@ export class MyApp {
       storageBucket: "worktostudents.appspot.com",
       messagingSenderId: "542302693567"
     });
-    
-    
+
+
   }
 
   openPage(page) {

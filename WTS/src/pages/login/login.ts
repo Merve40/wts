@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { Inject } from '@angular/core';
+import { ProfilePage } from '../profile/profile';
+
+import { AccountTable } from '../../providers/api/account';
 
 import firebase from 'firebase';
 
@@ -9,38 +13,61 @@ import firebase from 'firebase';
 })
 export class LoginPage {
 
-  database:any = firebase.database(); 
-  storage:any= firebase.storage(); //file system (Dateien)
- 
-  email:any;
-  password:any;
+  database: any = firebase.database();
+  storage: any = firebase.storage(); //file system (Dateien)
 
-  constructor(public navCtrl: NavController) {
+  email: any;
+  password: any;
+
+  constructor(public navCtrl: NavController, @Inject(AccountTable) public accountTable: AccountTable) {
   }
 
-
-  login(){
+  login() {
 
     this.database.ref('/Account/')
       .orderByChild('Email').equalTo(this.email)
-      .on('value', function(snapshot){
+      .once('value').then(function (snapshot) {
+
         snapshot.forEach(element => {
           console.log(element.val());
-          //TODO: zur nächsten Seite navigieren
+          if (element.val()) {
+            if (element.val().Passwort == this.password) {
+              this.navCtrl.push(ProfilePage);
+            } else {
+              this.showError("Wrong Password");
+            }
+          } else {
+            this.showError("Wrong Email");
+          }
         });
       });
-      //TODO: Login Fehler anzeigen
-  } 
+  }
 
-  create(mail, pass, addr, gruppe ){
-   // console.log("test");
+  showError(message: string) {
+    console.log(message);
+  }
+
+  create(mail, pass, addr, gruppe) {
+    // console.log("test");
     this.database.ref('/Account/').push({
-        Email: mail,
-        Passwort:pass,
-        Adresse_id: addr,
-        Usergruppe: gruppe
+      Email: mail,
+      Passwort: pass,
+      Adresse_id: addr,
+      Usergruppe: gruppe
     });
   }
 
+  test() {
+    var acc = { Email: this.email, Passwort: this.password, Adresse_id: "A_1", Usergruppe: "Student" };
+    this.accountTable.push(acc, this.onAccountCreated);
+  }
+
+  t(){
+    this.accountTable.getByValue("Email", "test22@mail.com" , this.onAccountCreated);
+  }
+
+  onAccountCreated(json) {
+    console.log(json);
+  }
 
 }

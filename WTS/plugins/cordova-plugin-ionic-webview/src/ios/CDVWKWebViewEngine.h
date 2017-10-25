@@ -18,11 +18,10 @@
  */
 
 #import <WebKit/WebKit.h>
+#import <Cordova/CDV.h>
 
-@interface CDVWKWebViewUIDelegate : NSObject <WKUIDelegate>
+@interface CDVWKWebViewEngine : CDVPlugin <CDVWebViewEngineProtocol, WKScriptMessageHandler, WKNavigationDelegate>
 
-@property (nonatomic, copy) NSString* title;
-
-- (instancetype)initWithTitle:(NSString*)title;
+@property (nonatomic, strong, readonly) id <WKUIDelegate> uiDelegate;
 
 @end
