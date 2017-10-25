@@ -39,10 +39,15 @@ $colors: (
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #222,
-  wts:        #7B7C7E
+  wts_grey:   #7B7C7E,
+  wts_blue:   #00274C,
+  wts_light_grey: #E5E9ED,
+  wts_yellow: #FFCB05
 );
 
-
+$background-ios-color: #E5E9ED;
+$background-md-color: #E5E9ED;
+$background-wp-color: #E5E9ED;
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here

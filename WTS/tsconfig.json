@@ -20,6 +20,7 @@
     "node_modules"
   ],
   "compileOnSave": true,
+  "types": "/node_modules/@types",
   "atom": {
     "rewriteTsconfig": false
   }

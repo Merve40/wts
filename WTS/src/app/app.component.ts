@@ -2,11 +2,14 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 import { LoginPage } from '../pages/login/login';
 import { ProfilePage } from '../pages/profile/profile';
+import { Profile_externPage } from '../pages/profile_extern/profile_extern';
 
 import firebase from 'firebase';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -18,7 +21,8 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any }>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar,
+    public splashScreen: SplashScreen, public screenOrientation: ScreenOrientation) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -26,7 +30,8 @@ export class MyApp {
     this.pages = [
       { title: 'Login', component: LoginPage },
       { title: 'Profile', component: ProfilePage },
-      { title: 'Logout', component: LoginPage }
+      { title: 'Logout', component: LoginPage },
+      { title: 'Profile_extern', component: Profile_externPage }
 
     ];
 
@@ -38,6 +43,12 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      //var orient = this.screenOrientation.ORIENTATIONS.PORTRAIT;
+      //ionViewWillUnload(this.orient);
+      //console.log(this.screenOrientation.lock(orient));
+      //console.log(this.screenOrientation.type);
+
+
     });
     firebase.initializeApp({
       apiKey: "AIzaSyATDKANyR1HnCajqaAXINVS0z6kfCBwRwI",
@@ -56,4 +67,12 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+
+  //   ionViewWillUnload(orientation:any){
+  //        this.screenOrientation.lock(orientation);
+
+  //     setTimeout(function() {
+  //         this.screenOrientation.unlock();    
+  //     }, 300);        
+  //   }
 }

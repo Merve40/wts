@@ -7,6 +7,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { ProfilePage } from '../pages/profile/profile';
+import { Profile_externPage } from '../pages/profile_extern/profile_extern';
 
 import { Api } from '../providers/api/api';
 import { AccountTable } from '../providers/api/account';
@@ -14,13 +15,14 @@ import { AdresseTable } from '../providers/api/adresse';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @NgModule({
   declarations: [
     MyApp,
-    LoginPage
-    // ,
-    // ProfilePage
+    LoginPage,
+    ProfilePage,
+    Profile_externPage
   ],
   imports: [
     BrowserModule,
@@ -30,9 +32,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    LoginPage
-    // ,
-    // ProfilePage
+    LoginPage,
+    ProfilePage,
+    Profile_externPage
   ],
   providers: [
     Api,
@@ -40,7 +42,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AdresseTable,
     StatusBar,
     SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    ScreenOrientation,
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule { }
