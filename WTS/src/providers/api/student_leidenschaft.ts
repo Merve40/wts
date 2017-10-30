@@ -24,31 +24,31 @@ export class Student_LeidenschaftTable extends Base {
         this.Student_Leidenschaft = o;
     }
 
-    delete(source:string, func:Function):void{
-        this.api.delete(this, source, func);
+    delete(id:string,source:string, func:Function):void{
+        this.api.delete(this,id, source, func, this.srcClass);
     }
 
-    update<T extends Base>(source:string, func:Function){
-        this.api.put(this, source, func);
+    update<T extends Base>(id:string,source:string, func:Function){
+        this.api.put(this, id, source, func, this.srcClass);
     }
 
     push<Account>(account: Account, source:string, func: Function) {
-        this.api.post(this, account, source, func);
+        this.api.post(this, account, source, func, this.srcClass);
     }
 
     getById(id:string, source:string, func:Function){
-        this.api.get(this, id, source, func);
+        this.api.get(this, id, source, func, this.srcClass);
     }
 
     getByValue(key: string, value, source:string, func: Function) {
-        this.api.getByValue(this, key, value, source, func);
+        this.api.getByValue(this, key, value, source, func, this.srcClass);
     }
 
     filterByValue(key: string, value: string, source:string, func: Function) {
-        this.api.filterByValue(this, key, value, source, func);
+        this.api.filterByValue(this, key, value, source, func, this.srcClass);
     }
 
     filterByValueAndLimit(key: string, value: string, limit: number, source:string, func: Function) {
-        this.api.filterByValueAndLimit(this, key, value, limit, source, func);
+        this.api.filterByValueAndLimit(this, key, value, limit, source, func, this.srcClass);
     }
 }

@@ -3,53 +3,45 @@ import { Api } from './api';
 import { Table } from './table';
 import { Inject, Injectable } from '@angular/core';
 
+export interface Adresse {
+    Straße: string;
+    Ort: string;
+    PLZ: string;
+    Land: string;
+}
+
 @Injectable()
 export class AdresseTable extends Base {
-
-    public Adresse: {
-        Straße: string,
-        Ort: string,
-        PLZ: string,
-        Land: string
-    };
 
     constructor( @Inject(Api) public api: Api) {
         super(Table.ADRESSE);
     }
 
-    getInnerObject(){
-        return this.Adresse;
+    delete(id:string, source:string, func:Function):void{
+        this.api.delete(this, id, source, func, this.srcClass);
     }
 
-    setInnerObject(o:any):void{
-        this.Adresse = o;
+    update<T extends Base>(id:string, body:Adresse, source:string, func:Function){
+        this.api.put(this, id, body, source, func, this.srcClass);
     }
 
-    delete(source:string, func:Function):void{
-        this.api.delete(this, source, func);
-    }
-
-    update<T extends Base>(source:string, func:Function){
-        this.api.put(this, source, func);
-    }
-
-    push<Account>(account: Account, source:string, func: Function) {
-        this.api.post(this, account, source, func);
+    push<Adresse>(account: Adresse, source:string, func: Function) {
+        this.api.post(this, account, source, func, this.srcClass);
     }
 
     getById(id:string, source:string, func:Function){
-        this.api.get(this, id, source, func);
+        this.api.get(this, id, source, func, this.srcClass);
     }
 
     getByValue(key: string, value, source:string, func: Function) {
-        this.api.getByValue(this, key, value, source, func);
+        this.api.getByValue(this, key, value, source, func, this.srcClass);
     }
 
     filterByValue(key: string, value: string, source:string, func: Function) {
-        this.api.filterByValue(this, key, value, source, func);
+        this.api.filterByValue(this, key, value, source,func, this.srcClass);
     }
 
     filterByValueAndLimit(key: string, value: string, limit: number, source:string, func: Function) {
-        this.api.filterByValueAndLimit(this, key, value, limit, source, func);
+        this.api.filterByValueAndLimit(this, key, value, limit, source, func, this.srcClass);
     }
 }

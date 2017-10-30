@@ -4,63 +4,55 @@ import { Base } from './base';
 import { Api } from './api';
 import { Table } from './table';
 
+export interface Student{
+    Abschluss: String;
+    Abschluss_Datum: String;
+    Account_id: String;
+    Beschreibung: String;
+    Beschäftigung: String;
+    Geb_Datum: String;
+    Nachname: String;
+    Name: String;
+    Semester: String;
+    Studiengang: String;
+    Uni: String;
+    Vertiefung: String;
+    Zeitstempel: String;
+}
+
 @Injectable()
 export class StudentTable extends Base {
-
-    public Student: {
-        Abschluss: String;
-        Abschluss_Datum: String;
-        Account_id: String;
-        Beschreibung: String;
-        Beschäftigung: String;
-        Geb_Datum: String;
-        Nachname: String;
-        Name: String;
-        Semester: String;
-        Studiengang: String;
-        Uni: String;
-        Vertiefung: String;
-        Zeitstempel: String;
-    };
 
     constructor( @Inject(Api) public api: Api) {
         super(Table.STUDENT);
     }
 
-    getInnerObject(){
-        return this.Student;
+    delete(id:string, source:string, func:Function):void{
+        this.api.delete(this, id, source, func, this.srcClass);
     }
 
-    setInnerObject(o:any){
-        this.Student = o;
-    }
-
-    delete(source:string, func:Function):void{
-        this.api.delete(this, source, func);
-    }
-
-    update<T extends Base>(source:string, func:Function){
-        this.api.put(this, source, func);
+    update<T extends Base>(id:string, body:Student, source:string, func:Function){
+        this.api.put(this, id, body, source, func, this.srcClass);
     }
 
     push<Account>(account: Account, source:string, func: Function) {
-        this.api.post(this, account, source, func);
+        this.api.post(this, account, source, func, this.srcClass);
     }
 
     getById(id:string, source:string, func:Function){
-        this.api.get(this, id, source, func);
+        this.api.get(this, id, source, func, this.srcClass);
     }
 
     getByValue(key: string, value, source:string, func: Function) {
-        this.api.getByValue(this, key, value, source, func);
+        this.api.getByValue(this, key, value, source, func, this.srcClass);
     }
 
     filterByValue(key: string, value: string, source:string, func: Function) {
-        this.api.filterByValue(this, key, value, source, func);
+        this.api.filterByValue(this, key, value, source, func, this.srcClass);
     }
 
     filterByValueAndLimit(key: string, value: string, limit: number, source:string, func: Function) {
-        this.api.filterByValueAndLimit(this, key, value, limit, source, func);
+        this.api.filterByValueAndLimit(this, key, value, limit, source, func, this.srcClass);
     }
 }
 

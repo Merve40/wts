@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Inject } from '@angular/core';
-import { AccountTable } from '../../providers/api/account';
+import { AccountTable, Account } from '../../providers/api/account';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import { ProfilePage } from '../profile/profile';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
@@ -12,6 +12,7 @@ import firebase from 'firebase';
 })
 export class LoginPage implements OnResultComplete {
 
+  public _this = this;
   database: any = firebase.database();
   storage: any = firebase.storage(); //file system (Dateien)
   require:any;
@@ -20,48 +21,33 @@ export class LoginPage implements OnResultComplete {
   password: any;
 
   constructor(public navCtrl: NavController, public toastCtrl: ToastController, @Inject(AccountTable) public accountTable: AccountTable) {
+    accountTable.setSrcClass(this);
   }
 
   login() {
    var t = this;
 
-    if (this.email || this.password) {
-      this.database.ref('/Account/')
-        .orderByChild('Email').equalTo(this.email)
-        .on('value', function (snapshot) {
-          snapshot.forEach(element => {
-            console.log(element.val());
-            t.navCtrl.push(ProfilePage);
-          });
-        });
-    } else {
-      this.showLoginError("fill in username and password");
+    if(this.email && this.password){
+      this.accountTable.getByValueTest("Email", this.email, "1", this.onComplete, this);
     }
-  }
-
-  create(mail, pass, addr, gruppe) {
-    // console.log("test");
-    this.database.ref('/Account/').push({
-      Email: mail,
-      Passwort: pass,
-      Adresse_id: addr,
-      Usergruppe: gruppe
-    });
-  }
-
-  test() {
-    this.accountTable.getByValue("Email","test33@mail.com" , "1", this.onComplete);
-    this.accountTable.filterByValue("Adresse_id", "A_1", "2", this.onComplete);
+    
   }
 
   onComplete(source, json) {
     if(source == "1"){
-      console.log(json);
-    }else if(source == "2"){
-      console.log(json);
+      console.log(this);
+      this.validateUser(json);
+      
     }
   }
 
+  validateUser(json:any){
+    if(json.body.Passwort == this.password){
+      this.navCtrl.push(ProfilePage);
+    }else{
+      this.showLoginError("Wrong Email or Password");
+    }
+  }
 
   showLoginError(message) {
     const toast = this.toastCtrl.create({
