@@ -15,4 +15,5 @@ export class Table{
     public static UNIVERSITAT:string="Universität";
     public static UNTERNEHMEN:string="Unternehmen";
     public static USER_GRUPPE:string="Usergruppe";
+    public static NETZWERK:string="Netzwerk";
 }
