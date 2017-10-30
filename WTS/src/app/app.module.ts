@@ -11,7 +11,7 @@ import { Profile_externPage } from '../pages/profile_extern/profile_extern';
 
 import { Api } from '../providers/api/api';
 import { AccountTable } from '../providers/api/account';
-import { AdresseTable } from '../providers/api/adresse';
+import { AdressTable } from '../providers/api/adress';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -39,7 +39,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
   providers: [
     Api,
     AccountTable,
-    AdresseTable,
+    AdressTable,
     StatusBar,
     SplashScreen,
     ScreenOrientation,
