@@ -6,6 +6,7 @@ export class Table{
     public static FAHIGKEIT:string="Fähigkeit";
     public static LEIDENSCHAFT:string="Leidenschaft";
     public static KONVERSATION:string="Konversation";
+    public static NACHRICHT:string="Nachricht";
     public static PROFIL_INFO:string="Profil_Info";
     public static SICHTBARKEIT:string="Sichtbarkeit";
     public static STUDENT:string="Student";
