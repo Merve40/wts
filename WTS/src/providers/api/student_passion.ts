@@ -5,22 +5,23 @@ import { Api } from './api';
 import { Table } from './table';
 
 @Injectable()
-export class LeidenschaftTable extends Base {
+export class Student_PassionTable extends Base {
 
-    public Leidenschaft: {
-        Leidenschaft: String;
+    public Student_Passion: {
+        Account_Id:string;
+        Passion_Id: string;
     };
 
     constructor( @Inject(Api) public api: Api) {
-        super(Table.LEIDENSCHAFT);
+        super(Table.STUDENT_FAHIGKEIT);
     }
 
     getInnerObject(){
-        return this.Leidenschaft;
+        return this.Student_Passion;
     }
 
     setInnerObject(o:any){
-        this.Leidenschaft = o;
+        this.Student_Passion = o;
     }
 
     delete(func:Function):void{
