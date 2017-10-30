@@ -13,6 +13,7 @@ import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
 import { Api } from '../providers/api/api';
 import { AccountTable } from '../providers/api/account';
 import { AdressTable } from '../providers/api/adress';
+import { StudentTable } from '../providers/api/student';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -58,6 +59,7 @@ import { TranslateService } from '@ngx-translate/core';
     Api,
     AccountTable,
     AdressTable,
+    StudentTable,
     StatusBar,
     SplashScreen,
     ScreenOrientation,

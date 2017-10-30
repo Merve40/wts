@@ -1,42 +1,20 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Profile_EditPage } from '../profile_edit/profile_edit';
-import { Profile_externPage } from '../profile_extern/profile_extern';
-
-import firebase from 'firebase';
+import { Profile_EditPage } from '../profile_edit/profile_edit'
+import { StudentTable } from '../../providers/api/student';
+import { AccountTable } from '../../providers/api/account';
+import { AdressTable } from '../../providers/api/adress';
 
 var AccID = 'acc_10'; // AccountID die wir aus dem Login entnehmen
-
-// Variablen aus Tabelle Student
-var abschluss;
-var abschluss_datum;
-var beschreibung;
-var beschaeftigung;
-var geb_datum;
-var nachname;
-var vorname;
-var semester;
-var studiengang;
-var uni;
-var vertiefung;
-
-// Variablen aus Account
-var addrID;
-var email;
-
-// Variablen der Adressdaten
-var adresse;
-var strasse;
 
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html'
 })
 export class ProfilePage {
-  database: any = firebase.database();
-  storage: any = firebase.storage(); //file system (Dateien)
-
-  constructor(public navCtrl: NavController) {
+  
+  constructor(public navCtrl: NavController, public StudentTable: StudentTable, public AccountTable: AccountTable) {
+    
   }
   edit(){
     this.navCtrl.push(Profile_EditPage);
@@ -44,28 +22,48 @@ export class ProfilePage {
 
   ngAfterViewInit() {
     //Auslesen der Daten aus Tabelle Student where AccID = AccID
-    this.database.ref('/Student/')
-      .orderByChild('Account_Id').equalTo(AccID)
-      .on('value', function (snapshot) {
-        snapshot.forEach(element => {
-          abschluss = (element.val().Abschluss);
-          abschluss_datum = (element.val().Abschluss_Datum);
-          beschreibung = (element.val().Beschreibung);
-          beschaeftigung = (element.val().Beschäftigung);
-          geb_datum = (element.val().Geb_Datum);
-          nachname = (element.val().Nachname);
-          vorname = (element.val().Name);
-          semester = (element.val().Semester);
-          studiengang = (element.val().Studiengang);
-          uni = (element.val().Uni);
-          vertiefung = (element.val().Vertiefung);
+    this.StudentTable.getById(AccID, function(json){
+      console.log("test");  
+      console.log(json);
+      var abschluss = json.Abschluss;
+      // var abschluss_datum = json.Abschluss_Datum;
+      // var beschreibung = json.Beschreibung;
+      // var beschaeftigung = json.Beschäftigung;
+      // var geb_datum = json.Geb_Datum;
+      // var nachname = json.Nachname;
+      // var vorname = json.Name;
+      // var semester = json.Semester;
+      // var studiengang = json.Studiengang;
+      // var uni = json.Uni;
+      // var vertiefung = json.Vertiefung;
+      //console.log(abschluss);
+      });
+
+      this.AccountTable.getById(AccID, function(json){
+        var addrID = json.Adresse_id;
+        var email = json.Email;
+        //console.log(addrID);
+        this.AdressTable.getById(addrID, function(json){
+          var adresse = json.City + ',' + json.Postcode + ',' + json.Country;
+          var strasse = json.Street;
+          console.log(adresse); 
+          console.log(strasse);
         });
       });
+
+      
+      
+    }
+    
+    
+    
+    
     //Auslesen der Daten aus Account für die AccID
-    this.database.ref('/Account/' + AccID).once('value').then(function (snapshot) {
-      addrID = (snapshot.val().Adress_id);
-      email = (snapshot.val().email);
+    /*this.database.ref('/Account/' + AccID).once('value').then(function (snapshot) {
+      addrID = (snapshot.val().Adresse_id);
+      email = (snapshot.val().Email);
     });
+    */
     //Auslesen der Adressdaten mithilfe der addrID aus der vorherigen Query
     /*
     this.database.ref('/Adresse/' + addrID) .once('value', function (snapshot) {
@@ -76,4 +74,3 @@ export class ProfilePage {
     });
     */
   }
-}
