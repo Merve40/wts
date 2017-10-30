@@ -5,13 +5,13 @@ import { Api } from './api';
 import { Table } from './table';
 
 @Injectable()
-export class UnternehmenTable extends Base {
+export class CompanyTable extends Base {
 
-    public Unternehmen: {
-        Unternehmen: String;
+    public Company: {
+        Company: String;
         Website: String;
         Account_id: String;
-        Branche: String;
+        Industry: String;
         
     };
 
@@ -20,11 +20,11 @@ export class UnternehmenTable extends Base {
     }
 
     getInnerObject(){
-        return this.Unternehmen;
+        return this.Company;
     }
 
     setInnerObject(o:any){
-        this.Unternehmen = o;
+        this.Company = o;
     }
 
     delete(func:Function):void{
