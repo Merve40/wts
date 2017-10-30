@@ -4,23 +4,32 @@ import { Base } from './base';
 import { Api } from './api';
 import { Table } from './table';
 
-export interface Fähigkeit{
-    Fähigkeit:string;
+export interface Student_Passion{
+    Account_Id:string;
+    Leidenschaft_Id: string;
 }
 
 @Injectable()
-export class FähigkeitTable extends Base {
+export class Student_PassionTable extends Base {
 
     constructor( @Inject(Api) public api: Api) {
-        super(Table.FAHIGKEIT);
+        super(Table.STUDENT_FAHIGKEIT);
     }
 
-    delete(id:string, source:string, func:Function):void{
-        this.api.delete(this, id, source, func, this.srcClass);
+    getInnerObject(){
+        return null;
     }
 
-    update<T extends Base>(id:string, body:Fähigkeit, source:string, func:Function){
-        this.api.put(this, id,body, source, func, this.srcClass);
+    setInnerObject(o:any){
+        
+    }
+
+    delete(id:string,source:string, func:Function):void{
+        this.api.delete(this,id, source, func, this.srcClass);
+    }
+
+    update<T extends Base>(id:string,source:string, func:Function){
+        this.api.put(this, id, source, func, this.srcClass);
     }
 
     push<Account>(account: Account, source:string, func: Function) {

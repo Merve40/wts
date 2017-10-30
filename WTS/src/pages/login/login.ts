@@ -4,7 +4,7 @@ import { AccountTable, Account } from '../../providers/api/account';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import { ProfilePage } from '../profile/profile';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
-import firebase from 'firebase';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'page-login',
@@ -15,36 +15,32 @@ export class LoginPage implements OnResultComplete {
   public _this = this;
   database: any = firebase.database();
   storage: any = firebase.storage(); //file system (Dateien)
-  require:any;
 
   email: any;
   password: any;
 
-  constructor(public navCtrl: NavController, public toastCtrl: ToastController, @Inject(AccountTable) public accountTable: AccountTable) {
+  constructor(public navCtrl: NavController, public toastCtrl: ToastController, @Inject(AccountTable) public accountTable: AccountTable, public translate: TranslateService) {
     accountTable.setSrcClass(this);
   }
 
   login() {
-   var t = this;
-
-    if(this.email && this.password){
+    if (this.email && this.password) {
       this.accountTable.getByValueTest("Email", this.email, "1", this.onComplete, this);
     }
-    
+
   }
 
   onComplete(source, json) {
-    if(source == "1"){
-      console.log(this);
+    if (source == "1") {
       this.validateUser(json);
-      
+
     }
   }
 
-  validateUser(json:any){
-    if(json.body.Passwort == this.password){
+  validateUser(json: any) {
+    if (json.body.Passwort == this.password) {
       this.navCtrl.push(ProfilePage);
-    }else{
+    } else {
       this.showLoginError("Wrong Email or Password");
     }
   }
@@ -59,7 +55,7 @@ export class LoginPage implements OnResultComplete {
   }
 
   encrypt(password) {
-    var CryptoJS = this.require("crypto-js");
+    var CryptoJS = require("crypto-js");
     // Encrypt
     var hash = CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex);
     console.log(hash);

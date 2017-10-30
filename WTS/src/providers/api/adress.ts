@@ -11,7 +11,7 @@ export interface Adresse {
 }
 
 @Injectable()
-export class AdresseTable extends Base {
+export class AdressTable extends Base {
 
     constructor( @Inject(Api) public api: Api) {
         super(Table.ADRESSE);

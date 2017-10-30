@@ -8,42 +8,74 @@ import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { ProfilePage } from '../pages/profile/profile';
 import { Profile_externPage } from '../pages/profile_extern/profile_extern';
+import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
 
 import { Api } from '../providers/api/api';
 import { AccountTable } from '../providers/api/account';
-import { AdresseTable } from '../providers/api/adresse';
+import { AdressTable } from '../providers/api/adress';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
+
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
     MyApp,
     LoginPage,
     ProfilePage,
-    Profile_externPage
+    Profile_externPage,
+    Profile_EditPage,
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    HttpClientModule,
+    IonicModule.forRoot(MyApp),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     LoginPage,
     ProfilePage,
-    Profile_externPage
+    Profile_externPage,
+    Profile_EditPage,
   ],
   providers: [
     Api,
     AccountTable,
-    AdresseTable,
+    AdressTable,
     StatusBar,
     SplashScreen,
     ScreenOrientation,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(translate: TranslateService) {
+    // this language will be used as a fallback when a translation isn't found in the current language
+    translate.setDefaultLang('en');
+
+    // the lang to use, if the lang isn't available, it will use the current loader to get them
+    translate.use('de');
+  }
+}
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
+

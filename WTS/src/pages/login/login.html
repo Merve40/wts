@@ -19,18 +19,18 @@
       <div class="login">
         <div class="emailfield">
         <label id="mail" class="item item-input" >
-          <input type="text" placeholder="Email" [(ngModel)]="email">
+          <input type="text" placeholder="{{'EMAIL' | translate}}" [(ngModel)]="email">
         </label>
       </div>
         <div class="passwordfield" >
         <label id="pw" class="item item-input" >
-          <input type="password" placeholder="Passwort" [(ngModel)]="password">
+          <input type="password" placeholder="{{'PASSWORD' | translate}}" [(ngModel)]="password">
         </label>
       </div>
-      <button class="button login" ion-button color="wts_grey" (click)="login()"  block> LOGIN </button>
+      <button class="button login" ion-button color="wts_grey" (click)="login()"  block> {{ 'LOGIN' | translate }}</button>
 
       <div class="registerlink">
-        <a href="http://www.google.com">Register</a>
+        <a href="http://www.google.com">{{ 'REGISTER' | translate }}</a>
       </div>
 
       </div>
