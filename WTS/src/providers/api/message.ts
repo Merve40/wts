@@ -8,11 +8,11 @@ import { Table } from './table';
 export class MessageTable extends Base {
 
     public Message: {
-        Anhang_Id: string;
-        Betreff: string;
-        Inhalt: string;
-        Konversation_Id: string;
-        Sende_Id: string;        
+        Anhang_Id: string,
+        Betreff: string,
+        Inhalt: string,
+        Konversation_Id: string,
+        Sende_Id: string,        
     };
 
     constructor( @Inject(Api) public api: Api) {

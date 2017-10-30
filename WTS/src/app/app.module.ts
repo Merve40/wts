@@ -8,6 +8,7 @@ import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { ProfilePage } from '../pages/profile/profile';
 import { Profile_externPage } from '../pages/profile_extern/profile_extern';
+import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
 
 import { Api } from '../providers/api/api';
 import { AccountTable } from '../providers/api/account';
@@ -29,7 +30,8 @@ import { TranslateService } from '@ngx-translate/core';
     MyApp,
     LoginPage,
     ProfilePage,
-    Profile_externPage
+    Profile_externPage,
+    Profile_EditPage,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,8 @@ import { TranslateService } from '@ngx-translate/core';
     MyApp,
     LoginPage,
     ProfilePage,
-    Profile_externPage
+    Profile_externPage,
+    Profile_EditPage,
   ],
   providers: [
     Api,

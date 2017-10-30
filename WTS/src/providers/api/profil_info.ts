@@ -8,7 +8,7 @@ import { Table } from './table';
 export class Profil_InfoTable extends Base {
 
     public Profil_Info: {
-        Info: String;
+        Info: string,
     };
 
     constructor( @Inject(Api) public api: Api) {

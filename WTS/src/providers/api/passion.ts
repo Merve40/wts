@@ -8,7 +8,7 @@ import { Table } from './table';
 export class PassionTable extends Base {
 
     public Passion: {
-        Passion: String;
+        Passion: string,
     };
 
     constructor( @Inject(Api) public api: Api) {

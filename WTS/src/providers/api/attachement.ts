@@ -8,11 +8,11 @@ import { Table } from './table';
 export class AttachementTable extends Base {
 
     public Attachement: {
-        Account_id: String;
-        Anhang: string;
-        Beschreibung: string;
-        Datei_Name: string;
-        Datei_Typ: string;
+        Account_id: string,
+        Anhang: string,
+        Beschreibung: string,
+        Datei_Name: string,
+        Datei_Typ: string,
     };
 
     constructor( @Inject(Api) public api: Api) {
