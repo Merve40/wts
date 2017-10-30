@@ -5,23 +5,23 @@ import { Api } from './api';
 import { Table } from './table';
 
 @Injectable()
-export class NetworkTable extends Base {
+export class ConversationTable extends Base {
 
-    public Network: {
+    public Conversation: {
         Account_id1: String;
         Account_id2: String;
     };
 
     constructor( @Inject(Api) public api: Api) {
-        super(Table.NETZWERK);
+        super(Table.KONVERSATION);
     }
 
     getInnerObject(){
-        return this.Network;
+        return this.Conversation;
     }
 
     setInnerObject(o:any){
-        this.Network = o;
+        this.Conversation = o;
     }
 
     delete(func:Function):void{
