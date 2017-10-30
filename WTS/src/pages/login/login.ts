@@ -13,8 +13,8 @@ import { TranslateService } from '@ngx-translate/core';
 export class LoginPage implements OnResultComplete {
 
   public _this = this;
-  database: any = firebase.database();
-  storage: any = firebase.storage(); //file system (Dateien)
+  // database: any = firebase.database();
+  // storage: any = firebase.storage(); //file system (Dateien)
   require:any;
 
   email: any;
