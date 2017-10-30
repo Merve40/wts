@@ -8,8 +8,8 @@ import { Table } from './table';
 export class NetworkTable extends Base {
 
     public Network: {
-        Account_id1: String;
-        Account_id2: String;
+        Account_id1: string,
+        Account_id2: string,
     };
 
     constructor( @Inject(Api) public api: Api) {
