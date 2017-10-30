@@ -8,8 +8,8 @@ import { Table } from './table';
 export class Student_SkillTable extends Base {
 
     public Student_Skill: {
-        Account_Id:string;
-        Skill_Id: string;
+        Account_Id: string,
+        Skill_Id: string,
     };
 
     constructor( @Inject(Api) public api: Api) {

@@ -8,7 +8,7 @@ import { Table } from './table';
 export class GroupTable extends Base {
 
     public Group: {
-        Group: String;
+        Group: string,
     };
 
     constructor( @Inject(Api) public api: Api) {

@@ -8,7 +8,7 @@ import { Table } from './table';
 export class SkillTable extends Base {
 
     public Skill: {
-        Skill: String;
+        Skill: string,
     };
 
     constructor( @Inject(Api) public api: Api) {

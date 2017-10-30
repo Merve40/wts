@@ -8,9 +8,9 @@ import { Table } from './table';
 export class UniversityTable extends Base {
 
     public University: {
-        University: String;
-        Specialisation: String;
-        Account_id: String;
+        University: string,
+        Specialisation: string,
+        Account_id: string,
     };
 
     constructor( @Inject(Api) public api: Api) {

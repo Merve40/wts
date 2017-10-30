@@ -8,8 +8,8 @@ import { Table } from './table';
 export class Student_PassionTable extends Base {
 
     public Student_Passion: {
-        Account_Id:string;
-        Passion_Id: string;
+        Account_Id: string,
+        Passion_Id: string,
     };
 
     constructor( @Inject(Api) public api: Api) {

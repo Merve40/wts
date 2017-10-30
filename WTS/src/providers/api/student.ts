@@ -8,19 +8,19 @@ import { Table } from './table';
 export class StudentTable extends Base {
 
     public Student: {
-        Abschluss: String;
-        Abschluss_Datum: String;
-        Account_id: String;
-        Beschreibung: String;
-        Beschäftigung: String;
-        Geb_Datum: String;
-        Nachname: String;
-        Name: String;
-        Semester: String;
-        Studiengang: String;
-        Uni: String;
-        Vertiefung: String;
-        Zeitstempel: String;
+        Abschluss: string,
+        Abschluss_Datum: string,
+        Account_id: string,
+        Beschreibung: string,
+        Beschäftigung: string,
+        Geb_Datum: string,
+        Nachname: string,
+        Name: string,
+        Semester: string,
+        Studiengang: string,
+        Uni: string,
+        Vertiefung: string,
+        Zeitstempel: string,
     };
 
     constructor( @Inject(Api) public api: Api) {

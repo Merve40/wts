@@ -8,10 +8,10 @@ import { Table } from './table';
 export class VisibilityTable extends Base {
 
     public Visibility: {
-        Account_Id: string;
-        Block_Id: string;
-        Gruppe_Id: string;
-        Sichtbar: boolean;        
+        Account_Id: string,
+        Block_Id: string,
+        Gruppe_Id: string,
+        Sichtbar: boolean,      
     };
 
     constructor( @Inject(Api) public api: Api) {

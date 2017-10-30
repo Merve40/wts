@@ -8,10 +8,10 @@ import { Table } from './table';
 export class CompanyTable extends Base {
 
     public Company: {
-        Company: String;
-        Website: String;
-        Account_id: String;
-        Industry: String;
+        Company: string,
+        Website: string,
+        Account_id: string,
+        Industry: string,
         
     };
 

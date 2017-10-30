@@ -58,8 +58,8 @@ export class ProfilePage {
       });
     //Auslesen der Daten aus Account für die AccID
     this.database.ref('/Account/' + AccID).once('value').then(function (snapshot) {
-      addrID = (snapshot.val().Adresse_id);
-      email = (snapshot.val().Email);
+      addrID = (snapshot.val().Adress_id);
+      email = (snapshot.val().email);
     });
     //Auslesen der Adressdaten mithilfe der addrID aus der vorherigen Query
     /*
