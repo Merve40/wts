@@ -9,7 +9,6 @@ export class GroupTable extends Base {
 
     public Group: {
         Group: String;
-        Account_id: String;
     };
 
     constructor( @Inject(Api) public api: Api) {

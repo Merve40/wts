@@ -8,7 +8,6 @@ import { Table } from './table';
 export class Profil_InfoTable extends Base {
 
     public Profil_Info: {
-        Profil_Info__id: String;
         Info: String;
     };
 

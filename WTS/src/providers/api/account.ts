@@ -8,10 +8,10 @@ import { Table } from './table';
 export class AccountTable extends Base {
 
     public Account: {
-        Adresse_id: string,
+        Adress_id: string,
         Email: string,
-        Passwort: string,
-        Usergruppe: string
+        Password: string,
+        Usergroup: string
     };
 
     constructor( @Inject(Api) public api: Api) {

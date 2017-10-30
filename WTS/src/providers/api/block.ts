@@ -8,7 +8,6 @@ import { Table } from './table';
 export class BlockTable extends Base {
 
     public Block: {
-        Block_id: String;
         Profil_Info_id: String;
     };
 

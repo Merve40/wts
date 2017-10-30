@@ -9,7 +9,7 @@ export class UniversityTable extends Base {
 
     public University: {
         University: String;
-        Sfpecialisation: String;
+        Specialisation: String;
         Account_id: String;
     };
 
