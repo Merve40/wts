@@ -5,25 +5,22 @@ import { Api } from './api';
 import { Table } from './table';
 
 @Injectable()
-export class AccountTable extends Base {
+export class PassionTable extends Base {
 
-    public Account: {
-        Adress_id: string,
-        Email: string,
-        Password: string,
-        Usergroup: string
+    public Passion: {
+        Passion: string,
     };
 
     constructor( @Inject(Api) public api: Api) {
-        super(Table.ACCOUNT);
+        super(Table.LEIDENSCHAFT);
     }
 
     getInnerObject(){
-        return this.Account;
+        return this.Passion;
     }
 
     setInnerObject(o:any){
-        this.Account = o;
+        this.Passion = o;
     }
 
     delete(func:Function):void{
@@ -54,4 +51,3 @@ export class AccountTable extends Base {
         this.api.filterByValueAndLimit(this, key, value, limit, func);
     }
 }
-

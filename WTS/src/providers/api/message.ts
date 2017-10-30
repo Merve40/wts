@@ -1,43 +1,45 @@
+import { Injectable, Inject } from '@angular/core';
+import { jsonIgnore } from 'json-ignore';
 import { Base } from './base';
 import { Api } from './api';
 import { Table } from './table';
-import { Inject, Injectable } from '@angular/core';
 
 @Injectable()
-export class AdresseTable extends Base {
+export class MessageTable extends Base {
 
-    public Adresse: {
-        Straße: string,
-        Ort: string,
-        PLZ: string,
-        Land: string
+    public Message: {
+        Anhang_Id: string,
+        Betreff: string,
+        Inhalt: string,
+        Konversation_Id: string,
+        Sende_Id: string,        
     };
 
     constructor( @Inject(Api) public api: Api) {
-        super(Table.ADRESSE);
+        super(Table.NACHRICHT);
     }
 
     getInnerObject(){
-        return this.Adresse;
+        return this.Message;
     }
 
-    setInnerObject(o:any):void{
-        this.Adresse = o;
+    setInnerObject(o:any){
+        this.Message = o;
     }
 
-    delete(func:Function){
+    delete(func:Function):void{
         this.api.delete(this, func);
     }
 
-    update(func:Function){
+    update<T extends Base>(func:Function){
         this.api.put(this, func);
     }
 
-    push<Adresse>(adresse: Adresse, func: Function) {
-        this.api.post(this, adresse, func);
+    push<Account>(account: Account, func: Function) {
+        this.api.post(this, account, func);
     }
 
-    getById( id:string, func:Function){
+    getById(id:string, func:Function){
         this.api.get(this, id, func);
     }
 

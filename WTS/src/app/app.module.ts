@@ -8,10 +8,11 @@ import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { ProfilePage } from '../pages/profile/profile';
 import { Profile_externPage } from '../pages/profile_extern/profile_extern';
+import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
 
 import { Api } from '../providers/api/api';
 import { AccountTable } from '../providers/api/account';
-import { AdresseTable } from '../providers/api/adresse';
+import { AdressTable } from '../providers/api/adress';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -22,7 +23,8 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
     MyApp,
     LoginPage,
     ProfilePage,
-    Profile_externPage
+    Profile_externPage,
+    Profile_EditPage,
   ],
   imports: [
     BrowserModule,
@@ -34,12 +36,13 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
     MyApp,
     LoginPage,
     ProfilePage,
-    Profile_externPage
+    Profile_externPage,
+    Profile_EditPage,
   ],
   providers: [
     Api,
     AccountTable,
-    AdresseTable,
+    AdressTable,
     StatusBar,
     SplashScreen,
     ScreenOrientation,

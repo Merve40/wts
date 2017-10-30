@@ -6,6 +6,7 @@ export class Table{
     public static FAHIGKEIT:string="Fähigkeit";
     public static LEIDENSCHAFT:string="Leidenschaft";
     public static KONVERSATION:string="Konversation";
+    public static NACHRICHT:string="Nachricht";
     public static PROFIL_INFO:string="Profil_Info";
     public static SICHTBARKEIT:string="Sichtbarkeit";
     public static STUDENT:string="Student";
@@ -14,4 +15,5 @@ export class Table{
     public static UNIVERSITAT:string="Universität";
     public static UNTERNEHMEN:string="Unternehmen";
     public static USER_GRUPPE:string="Usergruppe";
+    public static NETZWERK:string="Netzwerk";
 }

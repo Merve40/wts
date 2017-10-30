@@ -5,25 +5,26 @@ import { Api } from './api';
 import { Table } from './table';
 
 @Injectable()
-export class AccountTable extends Base {
+export class AttachementTable extends Base {
 
-    public Account: {
-        Adress_id: string,
-        Email: string,
-        Password: string,
-        Usergroup: string
+    public Attachement: {
+        Account_id: string,
+        Anhang: string,
+        Beschreibung: string,
+        Datei_Name: string,
+        Datei_Typ: string,
     };
 
     constructor( @Inject(Api) public api: Api) {
-        super(Table.ACCOUNT);
+        super(Table.ANHANG);
     }
 
     getInnerObject(){
-        return this.Account;
+        return this.Attachement;
     }
 
     setInnerObject(o:any){
-        this.Account = o;
+        this.Attachement= o;
     }
 
     delete(func:Function):void{

@@ -1,44 +1,43 @@
-import { Injectable, Inject } from '@angular/core';
-import { jsonIgnore } from 'json-ignore';
 import { Base } from './base';
 import { Api } from './api';
 import { Table } from './table';
+import { Inject, Injectable } from '@angular/core';
 
 @Injectable()
-export class AccountTable extends Base {
+export class AdressTable extends Base {
 
-    public Account: {
-        Adress_id: string,
-        Email: string,
-        Password: string,
-        Usergroup: string
+    public Adress: {
+        Street: string,
+        City: string,
+        Postcode: string,
+        Country: string
     };
 
     constructor( @Inject(Api) public api: Api) {
-        super(Table.ACCOUNT);
+        super(Table.ADRESSE);
     }
 
     getInnerObject(){
-        return this.Account;
+        return this.Adress;
     }
 
-    setInnerObject(o:any){
-        this.Account = o;
+    setInnerObject(o:any):void{
+        this.Adress = o;
     }
 
-    delete(func:Function):void{
+    delete(func:Function){
         this.api.delete(this, func);
     }
 
-    update<T extends Base>(func:Function){
+    update(func:Function){
         this.api.put(this, func);
     }
 
-    push<Account>(account: Account, func: Function) {
-        this.api.post(this, account, func);
+    push<Adresse>(adresse: Adresse, func: Function) {
+        this.api.post(this, adresse, func);
     }
 
-    getById(id:string, func:Function){
+    getById( id:string, func:Function){
         this.api.get(this, id, func);
     }
 
@@ -54,4 +53,3 @@ export class AccountTable extends Base {
         this.api.filterByValueAndLimit(this, key, value, limit, func);
     }
 }
-

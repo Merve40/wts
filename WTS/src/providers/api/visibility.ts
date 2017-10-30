@@ -5,22 +5,25 @@ import { Api } from './api';
 import { Table } from './table';
 
 @Injectable()
-export class LeidenschaftTable extends Base {
+export class VisibilityTable extends Base {
 
-    public Leidenschaft: {
-        Leidenschaft: String;
+    public Visibility: {
+        Account_Id: string,
+        Block_Id: string,
+        Gruppe_Id: string,
+        Sichtbar: boolean,      
     };
 
     constructor( @Inject(Api) public api: Api) {
-        super(Table.LEIDENSCHAFT);
+        super(Table.SICHTBARKEIT);
     }
 
     getInnerObject(){
-        return this.Leidenschaft;
+        return this.Visibility;
     }
 
     setInnerObject(o:any){
-        this.Leidenschaft = o;
+        this.Visibility = o;
     }
 
     delete(func:Function):void{
