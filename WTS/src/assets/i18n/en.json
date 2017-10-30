@@ -1,5 +1,8 @@
 {
     "HELLO": "Hello",
-    "EAMIL": "Email",
-    "PASSWORD": "Password"
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "LOGIN": "Login",
+    "REGISTER": "Register",
+    "MISSINGLOGINDATAMESSAGE": "Please fill in username and password"
   }

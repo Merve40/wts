@@ -1,5 +1,8 @@
 {
     "HELLO": "Hallo",
     "EMAIL": "Email",
-    "PASSWORD": "Passwort"
+    "PASSWORD": "Passwort",
+    "LOGIN": "Anmelden",
+    "REGISTER": "Registrieren",
+    "MISSINGLOGINDATAMESSAGE": "Bitte Benutzernamen und Passwort eintragen"
   }

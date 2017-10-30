@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Inject } from '@angular/core';
 import { AccountTable } from '../../providers/api/account';
-import { IonicPage, NavController, ToastController } from 'ionic-angular';
+import { NavController, ToastController } from 'ionic-angular';
 import { ProfilePage } from '../profile/profile';
+import { TranslateService } from '@ngx-translate/core';
 import firebase from 'firebase';
 
 @Component({
@@ -17,12 +18,11 @@ export class LoginPage {
   email: any;
   password: any;
 
-  constructor(public navCtrl: NavController, public toastCtrl: ToastController, @Inject(AccountTable) public accountTable: AccountTable) {
+  constructor(public navCtrl: NavController, public toastCtrl: ToastController, @Inject(AccountTable) public accountTable: AccountTable, public translate: TranslateService) {
   }
 
-
   login() {
-   var t = this;
+    var t = this;
 
     if (this.email || this.password) {
       this.database.ref('/Account/')
@@ -34,7 +34,11 @@ export class LoginPage {
           });
         });
     } else {
-      this.showLoginError("fill in username and password");
+      this.translate.get('MISSINGLOGINDATAMESSAGE').subscribe(
+        value => {
+          this.showLoginError(value);
+        }
+      )
     }
   }
 
@@ -53,8 +57,8 @@ export class LoginPage {
     this.accountTable.push(acc, this.onResult);
   }
 
-  t(){
-    this.accountTable.getByValue("Email", "test22@mail.com" , this.onResult);
+  t() {
+    this.accountTable.getByValue("Email", "test22@mail.com", this.onResult);
   }
 
   onResult(json) {
