@@ -36,6 +36,13 @@ export class Profile_EditPage {
 
   constructor(public navCtrl: NavController) {
   }
+  
+  /**
+   * Saves the changes made in profile to database
+   */
+  save(){
+
+  }
 
   ngAfterViewInit() {
     //Auslesen der Daten aus Tabelle Student where AccID = AccID

@@ -7,6 +7,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { LoginPage } from '../pages/login/login';
 import { ProfilePage } from '../pages/profile/profile';
 import { Profile_externPage } from '../pages/profile_extern/profile_extern';
+import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
 
 import firebase from 'firebase';
 
@@ -32,6 +33,7 @@ export class MyApp {
       { title: 'Profile', component: ProfilePage },
       { title: 'Logout', component: LoginPage },
       { title: 'Profile_extern', component: Profile_externPage }
+      { title: 'Profile_edit', component:Profile_EditPage}
 
     ];
 
