@@ -13,7 +13,7 @@ export class BlockTable extends Base {
     };
 
     constructor( @Inject(Api) public api: Api) {
-        super(Table.STUDENT);
+        super(Table.BLOCK);
     }
 
     getInnerObject(){
