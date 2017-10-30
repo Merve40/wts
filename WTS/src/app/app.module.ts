@@ -24,7 +24,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
     LoginPage,
     ProfilePage,
     Profile_externPage,
-    Profile_EditPage
+    Profile_EditPage,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +37,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
     LoginPage,
     ProfilePage,
     Profile_externPage,
-    Profile_EditPage
+    Profile_EditPage,
   ],
   providers: [
     Api,

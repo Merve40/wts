@@ -32,7 +32,7 @@ export class MyApp {
       { title: 'Login', component: LoginPage },
       { title: 'Profile', component: ProfilePage },
       { title: 'Logout', component: LoginPage },
-      { title: 'Profile_extern', component: Profile_externPage }
+      { title: 'Profile_extern', component: Profile_externPage },
       { title: 'Profile_edit', component:Profile_EditPage}
 
     ];
