@@ -21,6 +21,7 @@
             
                 <ion-item>
                         <ion-label class="test" stacked color="wts_blue">Birthday</ion-label>
+                        <ion-input type="date" value="01.01.1990"></ion-input>
                       </ion-item>
                 <ion-item>
                   <ion-label stacked color="wts_blue">University</ion-label>
@@ -55,6 +56,7 @@
             United States">
                   </ion-textarea>
                 </ion-item>
-              </ion-list>       
+              </ion-list>  
+              <button class="button save" ion-button color="wts_grey" (click)="save()"  block> {{ 'SAVE' | translate }}</button>
     </ion-content>
     </div>
