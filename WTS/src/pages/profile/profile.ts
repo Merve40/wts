@@ -14,9 +14,10 @@ var AccID = 'acc_10'; // AccountID die wir aus dem Login entnehmen
 })
 export class ProfilePage implements OnResultComplete {
 
-  constructor(public navCtrl: NavController, public StudentTable: StudentTable, public AccountTable: AccountTable) {
+  constructor(public navCtrl: NavController, public AdressTable:AdressTable, public StudentTable: StudentTable, public AccountTable: AccountTable) {
     StudentTable.setSrcClass(this);
     AccountTable.setSrcClass(this);
+    AdressTable.setSrcClass(this);
   }
   edit() {
     this.navCtrl.push(Profile_EditPage);
@@ -24,28 +25,47 @@ export class ProfilePage implements OnResultComplete {
 
   onComplete(src, json) {
     //Auslesen der Daten aus Tabelle Student where AccID = AccID
-    if (src == "account-abfrage") {
-
-      var abschluss = json.Abschluss;
-      var abschluss_datum = json.Abschluss_Datum;
-      var beschreibung = json.Beschreibung;
-      var beschaeftigung = json.Beschäftigung;
-      var geb_datum = json.Geb_Datum;
-      var nachname = json.Nachname;
-      var vorname = json.Name;
-      var semester = json.Semester;
-      var studiengang = json.Studiengang;
-      var uni = json.Uni;
-      var vertiefung = json.Vertiefung;
+    if (src == "student-abfrage") {
+      // console.log(json);
+      var id = json.id;
+      var body = json.body;
+      var abschluss = body.Abschluss;
+      var abschluss_datum = body.Abschluss_Datum;
+      var beschreibung = body.Beschreibung;
+      var beschaeftigung = body.Beschäftigung;
+      var geb_datum = body.Geb_Datum;
+      var nachname = body.Nachname;
+      var vorname = body.Name;
+      var semester = body.Semester;
+      var studiengang = body.Studiengang;
+      var uni = body.Uni;
+      var vertiefung = body.Vertiefung;
       console.log(vorname);
     }
     if(src == "account-abfrage") {
-      var adresse = json.City + ',' + json.Postcode + ',' + json.Country;
-      var strasse = json.Street;
-      console.log(adresse);
+      console.log(json.body);
+      var id = json.id;
+      var body = json.body;
+      var adresse_id = body.Adresse_Id;
+      
+      this.AdressTable.getById(adresse_id, "adresse-abfrage", this.onComplete);
+
+      
+
+//      console.log(adresse);
+    }
+
+    if(src == "adresse-abfrage"){
+      
+      var adresse = body.Straße + ',' + body.PLZ + ',' + body.Land;
+      var strasse = body.Straße;
     }
   }
 
+test()
+{
+
+}
   ngAfterViewInit() {
 
     this.StudentTable.getByValue("Account_Id", AccID, "student-abfrage", this.onComplete);
