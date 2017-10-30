@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Profile_EditPage } from '../profile_edit/profile_edit';
 
 import firebase from 'firebase';
 
@@ -28,17 +27,14 @@ var adresse;
 var strasse;
 
 @Component({
-  selector: 'page-profile',
-  templateUrl: 'profile.html'
+  selector: 'page-profile_edit',
+  templateUrl: 'profile_edit.html'
 })
-export class ProfilePage {
+export class Profile_EditPage {
   database: any = firebase.database();
   storage: any = firebase.storage(); //file system (Dateien)
 
   constructor(public navCtrl: NavController) {
-  }
-  edit(){
-    this.navCtrl.push(Profile_EditPage);
   }
 
   ngAfterViewInit() {
