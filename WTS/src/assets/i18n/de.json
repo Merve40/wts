@@ -5,5 +5,18 @@
     "LOGIN": "Anmelden",
     "REGISTER": "Registrieren",
     "MISSINGLOGINDATAMESSAGE": "Bitte Benutzernamen und Passwort eintragen",
-    "SAVE": "Speichern"
+    "SAVE": "Speichern",
+    "EDIT": "Profil bearbeiten",
+    "BIRTHDAY": "Geburtstag",
+    "UNIVERSITY": "Universität",
+    "STUDYPROGRAM": "Studiengang",
+    "DEGREE": "Abschluss",
+    "STUDYPROGRESS": "Studienfortschritt",
+    "ENDOFSTUDY": "Voraussichtliches Studienende",
+    "INTERESTS": "Interessen",
+    "SKILLS": "Fähigkeiten",
+    "ADDRESS": "Adresse",
+    "SAVECHANGES": "Änderungen speichern",
+    "DISCARDCHANGES": "Änderungen verwerfen",
+    "PROFILE": "Mein Profil"
   }
