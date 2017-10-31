@@ -28,6 +28,7 @@ export class ProfilePage implements OnResultComplete {
   }
 
   onComplete(src, json) {
+
     //Auslesen der Daten aus Tabelle Student where AccID = AccID
     if (src == "student-abfrage") {
       // console.log(json);
@@ -48,6 +49,10 @@ export class ProfilePage implements OnResultComplete {
     }
     //Auslesen der Daten aus Tabelle Account
     if(src == "account-abfrage") {
+      var id = json.id;
+      var body = json.body;
+      var adresse_id = body.Adresse_id;
+      
       console.log("test");
       console.log(json);
       //var id = json.id;
@@ -61,9 +66,7 @@ export class ProfilePage implements OnResultComplete {
 
     //Auslesen der Daten aus Tabelle Adresse
     if(src == "adresse-abfrage"){
-      console.log("test2");
-      console.log(json);
-      var body = json;
+      var body = json.body;
       var adresse = body.Straße + ',' + body.PLZ + ',' + body.Land;
       var strasse = body.Straße;
     }
@@ -103,12 +106,7 @@ test()
     //   });
     // });
 
-
-
   }
-
-
-
 
   //Auslesen der Daten aus Account für die AccID
   /*this.database.ref('/Account/' + AccID).once('value').then(function (snapshot) {
