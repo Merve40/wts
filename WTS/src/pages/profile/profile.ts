@@ -4,6 +4,10 @@ import { Profile_EditPage } from '../profile_edit/profile_edit'
 import { StudentTable } from '../../providers/api/student';
 import { AccountTable } from '../../providers/api/account';
 import { AdressTable } from '../../providers/api/adress';
+import { Student_SkillTable } from '../../providers/api/student_skill';
+import { SkillTable } from '../../providers/api/skill';
+import { Student_PassionTable } from '../../providers/api/student_passion';
+import { PassionTable} from '../../providers/api/passion';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
 
 var AccID = 'acc_10'; // AccountID die wir aus dem Login entnehmen
@@ -14,7 +18,7 @@ var AccID = 'acc_10'; // AccountID die wir aus dem Login entnehmen
 })
 export class ProfilePage implements OnResultComplete {
 
-  constructor(public navCtrl: NavController, public AdressTable:AdressTable, public StudentTable: StudentTable, public AccountTable: AccountTable) {
+  constructor(public navCtrl: NavController, public AdressTable:AdressTable, public StudentTable: StudentTable, public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable, public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
     StudentTable.setSrcClass(this);
     AccountTable.setSrcClass(this);
     AdressTable.setSrcClass(this);
@@ -42,23 +46,38 @@ export class ProfilePage implements OnResultComplete {
       var vertiefung = body.Vertiefung;
       console.log(vorname);
     }
+    //Auslesen der Daten aus Tabelle Account
     if(src == "account-abfrage") {
-      console.log(json.body);
-      var id = json.id;
-      var body = json.body;
-      var adresse_id = body.Adresse_Id;
-      
+      console.log("test");
+      console.log(json);
+      //var id = json.id;
+      var body = json;
+      var adresse_id = body.Adresse_id;
+
+      console.log(adresse_id);
+      //Verschachtelte Abfrage Account mit Adresse
       this.AdressTable.getById(adresse_id, "adresse-abfrage", this.onComplete);
-
-      
-
-//      console.log(adresse);
     }
 
+    //Auslesen der Daten aus Tabelle Adresse
     if(src == "adresse-abfrage"){
-      
+      console.log("test2");
+      console.log(json);
+      var body = json;
       var adresse = body.Straße + ',' + body.PLZ + ',' + body.Land;
       var strasse = body.Straße;
+    }
+    //Auslesen der Daten aus Tabelle Leidenschaft
+    if(src == "passionStudent-abfrage"){
+      var body = json;
+      var passion_id = body.Fähigkeit_Id;
+
+     this.PassionTable.getById(passion_id, "passion-abfrage", this.onComplete)
+    }
+
+    if(src == "passion_abfrage"){
+      var body = json;
+      var passion = body.Leidenschaft;
     }
   }
 
@@ -70,6 +89,7 @@ test()
 
     this.StudentTable.getByValue("Account_Id", AccID, "student-abfrage", this.onComplete);
     this.AccountTable.getById(AccID, "account-abfrage", this.onComplete);
+    this.StudentPassionTable.getByValue("Account_Id", AccID, "passionStudent-abfrage", this.onComplete);
    
     // this.AccountTable.getById(AccID, function(json){
     //   var addrID = json.Adresse_id;
