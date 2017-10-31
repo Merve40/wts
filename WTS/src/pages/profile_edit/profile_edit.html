@@ -57,6 +57,11 @@
                   </ion-textarea>
                 </ion-item>
               </ion-list>  
-              <button class="button save" ion-button color="wts_grey" (click)="save()"  block> {{ 'SAVE' | translate }}</button>
-    </ion-content>
+              <button ion-button editProfile ion-button color="wts_grey" (click)="edit()">
+                <ion-icon name="done-all"> Save changes </ion-icon>
+              </button> 
+              <button ion-button editProfile ion-button color="wts_grey" (click)="edit()">
+                <ion-icon name="close"> Discard changes </ion-icon>
+              </button>      
+            </ion-content>
     </div>
