@@ -9,6 +9,8 @@ import { ProfilePage } from '../pages/profile/profile';
 import { Profile_externPage } from '../pages/profile_extern/profile_extern';
 import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
 
+import { TranslateService } from '@ngx-translate/core';
+
 import firebase from 'firebase';
 
 
@@ -23,19 +25,23 @@ export class MyApp {
   pages: Array<{ title: string, component: any }>;
 
   constructor(public platform: Platform, public statusBar: StatusBar,
-    public splashScreen: SplashScreen, public screenOrientation: ScreenOrientation) {
+    public splashScreen: SplashScreen, public screenOrientation: ScreenOrientation,
+    public translate: TranslateService) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     // Labels & Pages in navigationbar in upper left corner
+
+    translate.get(['LOGINPAGE', 'PROFILEPAGE', 'LOGOUT']).subscribe(translations => {
     this.pages = [
-      { title: 'Login', component: LoginPage },
-      { title: 'Profile', component: ProfilePage },
-      { title: 'Logout', component: LoginPage },
+      { title: translations.LOGINPAGE, component: LoginPage },
+      { title: translations.PROFILEPAGE, component: ProfilePage },
+      { title: translations.LOGOUT, component: LoginPage },
       { title: 'Extern Profile', component: Profile_externPage },
       { title: 'Edit Profile', component:Profile_EditPage}
 
     ];
+  })
 
   }
 

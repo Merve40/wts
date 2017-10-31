@@ -5,5 +5,8 @@
     "LOGIN": "Anmelden",
     "REGISTER": "Registrieren",
     "MISSINGLOGINDATAMESSAGE": "Bitte Benutzernamen und Passwort eintragen",
+    "LOGINPAGE": "Anmeldung",
+    "PROFILEPAGE": "Profilansicht",
+    "LOGOUT": "Abmeldung",
     "SAVE": "Speichern"
   }

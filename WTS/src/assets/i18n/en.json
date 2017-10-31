@@ -5,5 +5,8 @@
     "LOGIN": "Login",
     "REGISTER": "Register",
     "MISSINGLOGINDATAMESSAGE": "Please fill in username and password",
+    "LOGINPAGE": "Login",
+    "PROFILEPAGE": "Profile",
+    "LOGOUT": "Logout",
     "SAVE": "Save"
   }
