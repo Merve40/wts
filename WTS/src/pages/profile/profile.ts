@@ -24,7 +24,7 @@ export class ProfilePage implements OnResultComplete {
 
   onComplete(src, json) {
     if (src == "account-abfrage") {
-      console.log(json);
+      console.log(json.body);
 
       var abschluss = json.Abschluss;
       var abschluss_datum = json.Abschluss_Datum;
@@ -41,37 +41,8 @@ export class ProfilePage implements OnResultComplete {
   }
 
   ngAfterViewInit() {
-    //Auslesen der Daten aus Tabelle Student where AccID = AccID
-    // this.StudentTable.getById(AccID, function(json){
-    //   console.log("test");  
-    //   console.log(json);
-    //   var abschluss = json.Abschluss;
-    //   // var abschluss_datum = json.Abschluss_Datum;
-    //   // var beschreibung = json.Beschreibung;
-    //   // var beschaeftigung = json.Beschäftigung;
-    //   // var geb_datum = json.Geb_Datum;
-    //   // var nachname = json.Nachname;
-    //   // var vorname = json.Name;
-    //   // var semester = json.Semester;
-    //   // var studiengang = json.Studiengang;
-    //   // var uni = json.Uni;
-    //   // var vertiefung = json.Vertiefung;
-    //   //console.log(abschluss);
-    //   });
-
+    
     this.StudentTable.getByValue("Account_Id", AccID, "account-abfrage", this.onComplete);
-   
-    // this.AccountTable.getById(AccID, function(json){
-    //   var addrID = json.Adresse_id;
-    //   var email = json.Email;
-    //   //console.log(addrID);
-    //   this.AdressTable.getById(addrID, function(json){
-    //     var adresse = json.City + ',' + json.Postcode + ',' + json.Country;
-    //     var strasse = json.Street;
-    //     console.log(adresse); 
-    //     console.log(strasse);
-    //   });
-    // });
 
 
 
