@@ -22,6 +22,10 @@ export class ProfilePage implements OnResultComplete {
     StudentTable.setSrcClass(this);
     AccountTable.setSrcClass(this);
     AdressTable.setSrcClass(this);
+    StudentSkillTable.setSrcClass(this);
+    SkillTable.setSrcClass(this);
+    PassionTable.setSrcClass(this);
+    StudentPassionTable.setSrcClass(this);
   }
   edit() {
     this.navCtrl.push(Profile_EditPage);
@@ -55,9 +59,7 @@ export class ProfilePage implements OnResultComplete {
       
       console.log("test");
       console.log(json);
-      //var id = json.id;
-      var body = json;
-      var adresse_id = body.Adresse_id;
+      var adresse_id = json.body.Adresse_id;
 
       console.log(adresse_id);
       //Verschachtelte Abfrage Account mit Adresse
@@ -84,43 +86,10 @@ export class ProfilePage implements OnResultComplete {
     }
   }
 
-test()
-{
-
-}
   ngAfterViewInit() {
 
     this.StudentTable.getByValue("Account_Id", AccID, "student-abfrage", this.onComplete);
     this.AccountTable.getById(AccID, "account-abfrage", this.onComplete);
     this.StudentPassionTable.getByValue("Account_Id", AccID, "passionStudent-abfrage", this.onComplete);
-   
-    // this.AccountTable.getById(AccID, function(json){
-    //   var addrID = json.Adresse_id;
-    //   var email = json.Email;
-    //   //console.log(addrID);
-    //   this.AdressTable.getById(addrID, function(json){
-    //     var adresse = json.City + ',' + json.Postcode + ',' + json.Country;
-    //     var strasse = json.Street;
-    //     console.log(adresse); 
-    //     console.log(strasse);
-    //   });
-    // });
-
   }
-
-  //Auslesen der Daten aus Account für die AccID
-  /*this.database.ref('/Account/' + AccID).once('value').then(function (snapshot) {
-    addrID = (snapshot.val().Adresse_id);
-    email = (snapshot.val().Email);
-  });
-  */
-  //Auslesen der Adressdaten mithilfe der addrID aus der vorherigen Query
-  /*
-  this.database.ref('/Adresse/' + addrID) .once('value', function (snapshot) {
-    adresse = (snapshot.val().Ort + ',' + snapshot.val().PLZ + ',' + snapshot.val().Land);
-    strasse = (snapshot.val().Straße);
-    console.log(adresse); 
-    console.log(strasse);
-  });
-  */
 }

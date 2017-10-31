@@ -1,8 +1,5 @@
-import { jsonIgnoreReplacer, jsonIgnore } from 'json-ignore';
 import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
 import { Injectable, Inject } from '@angular/core';
-
 import { Base } from './base';
 
 @Injectable()
@@ -58,15 +55,15 @@ export class Api {
         });
     }
 
-    public get<T extends Base>(base: T, value: string, source:string, func: Function, src:any): void {
+    public get<T extends Base>(base: T, id: string, source:string, func: Function, src:any): void {
         let tbl = base.table.toString();
-        let _url = this.url.concat(tbl).concat("/").concat(value)
+        let _url = this.url.concat(tbl).concat("/").concat(id)
             .concat(".json");
 
         let response = this.http.get(_url);
         response.forEach(obj => {
             var json = JSON.parse(obj.text());
-            func.apply(src, [source, json]);
+            func.apply(src, [source, {id: id, body: json}]);
             return json;
         });
     }
