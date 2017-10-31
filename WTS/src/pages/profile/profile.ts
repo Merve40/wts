@@ -44,20 +44,15 @@ export class ProfilePage implements OnResultComplete {
       console.log(vorname);
     }
     if(src == "account-abfrage") {
-      console.log(json.body);
       var id = json.id;
       var body = json.body;
-      var adresse_id = body.Adresse_Id;
+      var adresse_id = body.Adresse_id;
       
       this.AdressTable.getById(adresse_id, "adresse-abfrage", this.onComplete);
-
-      
-
-//      console.log(adresse);
     }
 
     if(src == "adresse-abfrage"){
-      
+      var body = json.body;
       var adresse = body.Straße + ',' + body.PLZ + ',' + body.Land;
       var strasse = body.Straße;
     }
