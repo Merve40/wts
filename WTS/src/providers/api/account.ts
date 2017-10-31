@@ -38,10 +38,6 @@ export class AccountTable extends Base {
         this.api.getByValue(this, key, value, source, func, this.srcClass);
     }
 
-    getByValueTest(key: string, value, source:string, func: Function, srcClass:any){
-        this.api.getByValueTest(this, key, value, source, func, srcClass );
-    }
-
     filterByValue(key: string, value: string, source:string, func: Function) {
         this.api.filterByValue(this, key, value, source, func, this.srcClass);
     }
