@@ -58,15 +58,15 @@ export class Api {
         });
     }
 
-    public get<T extends Base>(base: T, id: string, source:string, func: Function, src:any): void {
+    public get<T extends Base>(base: T, value: string, source:string, func: Function, src:any): void {
         let tbl = base.table.toString();
-        let _url = this.url.concat(tbl).concat("/").concat(id)
+        let _url = this.url.concat(tbl).concat("/").concat(value)
             .concat(".json");
 
         let response = this.http.get(_url);
         response.forEach(obj => {
             var json = JSON.parse(obj.text());
-            func.apply(src, [source, {id: id, body:json}]);
+            func.apply(src, [source, json]);
             return json;
         });
     }
@@ -122,6 +122,7 @@ export class Api {
         let response = this.http.get(_url);
         response.forEach(obj => {
             var innerJson = this.getInnerJsonArray(obj.text());
+            console.log(innerJson);
             func.apply(src, [source, innerJson]);
             return obj;
         });

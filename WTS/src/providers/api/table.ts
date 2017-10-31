@@ -1,6 +1,6 @@
 export class Table{
     public static ACCOUNT:string ="Account";
-    public static ADRESSE:string ="Adresse";
+    public static ADRESSE:string ="Adresse_id";
     public static ANHANG:string ="Anhang";
     public static BLOCK:string="Block";
     public static FAHIGKEIT:string="Fähigkeit";

@@ -4,6 +4,5 @@
     "PASSWORD": "Password",
     "LOGIN": "Login",
     "REGISTER": "Register",
-    "MISSINGLOGINDATAMESSAGE": "Please fill in username and password",
-    "SAVE": "Save"
+    "MISSINGLOGINDATAMESSAGE": "Please fill in username and password"
   }
