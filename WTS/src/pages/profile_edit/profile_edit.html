@@ -21,6 +21,7 @@
             
                 <ion-item>
                         <ion-label class="test" stacked color="wts_blue">Birthday</ion-label>
+                        <ion-input type="date" value="01.01.1990"></ion-input>
                       </ion-item>
                 <ion-item>
                   <ion-label stacked color="wts_blue">University</ion-label>
@@ -29,7 +30,7 @@
             
                 <ion-item>
                         <ion-label stacked color="wts_blue">Study Program</ion-label>
-                            <ion-input type="studyprogram" value="Business Informatics"></ion-input>
+                            <ion-input type="studyprogram" [(ngModel)]="studiengang"></ion-input>
                       </ion-item>
                 
                     <ion-item>
@@ -55,6 +56,12 @@
             United States">
                   </ion-textarea>
                 </ion-item>
-              </ion-list>       
-    </ion-content>
+              </ion-list>  
+              <button ion-button editProfile ion-button color="wts_grey" (click)="edit()">
+                <ion-icon name="done-all"> Save changes </ion-icon>
+              </button> 
+              <button ion-button editProfile ion-button color="wts_grey" (click)="edit()">
+                <ion-icon name="close"> Discard changes </ion-icon>
+              </button>      
+            </ion-content>
     </div>

@@ -4,5 +4,6 @@
     "PASSWORD": "Passwort",
     "LOGIN": "Anmelden",
     "REGISTER": "Registrieren",
-    "MISSINGLOGINDATAMESSAGE": "Bitte Benutzernamen und Passwort eintragen"
+    "MISSINGLOGINDATAMESSAGE": "Bitte Benutzernamen und Passwort eintragen",
+    "SAVE": "Speichern"
   }
