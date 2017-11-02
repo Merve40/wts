@@ -23,6 +23,8 @@
   "SAVECHANGES": "Save changes",
   "DISCARDCHANGES": "Discard changes",
   "UNI_PROFILE": "University Profile",
-  "BRANCHES": "Branches of Study",
+  "STUDYBRANCHES": "Branches of Study",
+  "BRANCHES": "Branch",
+  "LINK": "Link to website",
   "PROFILE": "Profile"
 }

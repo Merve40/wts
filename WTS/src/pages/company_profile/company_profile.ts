@@ -3,22 +3,22 @@ import { NavController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { AccountTable } from '../../providers/api/account';
 import { AdressTable } from '../../providers/api/adress';
-import {UniversityTable} from '../../providers/api/university';
+import { CompanyTable } from '../../providers/api/company';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
 
 @Component({
-  selector: 'page-uni_profile',
-  templateUrl: 'uni_profile.html'
+  selector: 'page-company_profile',
+  templateUrl: 'company_profile.html'
 })
-export class UniProfilePage implements OnResultComplete {
+export class CompanyProfilePage implements OnResultComplete {
 
-  AccID = 'acc_30';
-
+  AccID = 'acc_11';
+  
   constructor(public storage:Storage, public navCtrl: NavController, public AdressTable:AdressTable, 
-    public AccountTable: AccountTable, public UniversityTable: UniversityTable) {
+    public AccountTable: AccountTable, public CompanyTable: CompanyTable) {
     AccountTable.setSrcClass(this);
     AdressTable.setSrcClass(this);
-    UniversityTable.setSrcClass(this);
+    CompanyTable.setSrcClass(this);
     // Abfrage der lokal gespeicherten 'user_id'
       this.loadData();
   }
@@ -27,16 +27,16 @@ export class UniProfilePage implements OnResultComplete {
   onComplete(src, json) {
 
     //Auslesen der Daten aus Tabelle Student where AccID = AccID
-    if (src == "uni-abfrage") {
-        // this.unijson = json;
-        // document.getElementById("uni").innerText = this.unijson.body.Universität;
-        // document.getElementById("studyProgram").innerText = this.unijson.body.Fachrichtungen;
+    if (src == "company-abfrage") {
+        console.log("Started company abfrage");
 
         var id = json.id;
         var body = json.body;
 
-        document.getElementById("uni").innerText = body.Universität;
-        document.getElementById("branches").innerText = body.Fachrichtungen;
+        document.getElementById("company").innerText = body.Unternehmen;
+        document.getElementById("branches").innerText = body.Branche;
+        document.getElementById("link").innerText = body.Weibseite;
+        console.log("Ended company abfrage");
       }
 
       //Auslesen der Daten aus Tabelle Account
@@ -61,8 +61,8 @@ export class UniProfilePage implements OnResultComplete {
     }
 
   loadData(){
-    this.AccountTable.getById(this.AccID, "account-abfrage", this.onComplete);
-    this.UniversityTable.getByValue("Account_Id", this.AccID, "uni-abfrage", this.onComplete);
+    this.CompanyTable.getByValue("Account_id", this.AccID, "company-abfrage", this.onComplete);
+    this.AccountTable.getById(this.AccID, "account-abfrage", this.onComplete);    
   }
 
   ngAfterViewInit() {

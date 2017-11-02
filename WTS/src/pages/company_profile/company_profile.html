@@ -4,7 +4,7 @@
         <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>{{ 'UNI_PROFILE' | translate }}</ion-title>
+        <ion-title>{{ 'COMPANY_PROFILE' | translate }}</ion-title>
       </ion-navbar>
     </ion-header>
   
@@ -12,23 +12,30 @@
     <ion-content class="profile">
           
           <ion-list>
+
             <ion-item no-lines>
               <ion-avatar item-start>
                 <img src='assets/img/moritz.png' alt="your image">
               </ion-avatar>
-              <ion-label id= "uni" ></ion-label>
+              <ion-label id= "company" ></ion-label>
             </ion-item>
       
             <ion-item>
-              <ion-label stacked color="wts_blue">{{ 'STUDYBRANCHES' | translate }}</ion-label>
+              <ion-label stacked color="wts_blue">{{ 'BRANCHES' | translate }}</ion-label>
               <ion-label id="branches"></ion-label>
             </ion-item>
-          </ion-list>
+
+          <ion-item>
+            <ion-label stacked color="wts_blue">{{ 'LINK' | translate }}</ion-label>
+            <ion-label id="link"></ion-label>
+          </ion-item>
+        
       
           <ion-item>
             <ion-label stacked color="wts_blue">{{ 'ADDRES' | translate }}</ion-label>
             <ion-label id="address"></ion-label>
           </ion-item>
 
+        </ion-list>
     </ion-content>
   </div>
