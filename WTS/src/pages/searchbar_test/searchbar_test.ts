@@ -9,6 +9,11 @@ import { Student_PassionTable } from '../../providers/api/student_passion';
 import { PassionTable} from '../../providers/api/passion';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
 
+//Testdaten
+var abschluss = "Bachelor of Science";
+var nachname = "Ritzerfeld";
+var name = "Moritz";
+var semester = "2";
 
 @Component({
   selector: 'page-searchbar_test',
@@ -27,14 +32,43 @@ export class Searchbar_TestPage implements OnResultComplete {
   }
 
   onComplete(src, json) {
+    if(src == "abschluss-abfrage"){
+      body = json.body;
+      console.log(body);
+      /*
+      var result = [];
+
+        var result = [];
+        var keys = Object.keys(body);
+        keys.forEach(function(key){
+            result.push(body[key]);
+        });
+        console.log(result);
+        */
+    }
+    
+    
+    if(src == "nachname-abfrage"){
+      var body = json.body;
+      console.log(body);
+    }
+    if(src == "name-abfrage"){
+      var body = json.body;
+      console.log(body);
+    }
+    if(src == "semester-abfrage"){
+      var body = json.body;
+      console.log(body);
+    }
+    
   }
 
   ngAfterViewInit() {
+    this.StudentTable.filterByValue("Abschluss", abschluss, "abschluss-abfrage", this.onComplete);
     /*
-    this.StudentTable.getByValue("Account_Id", AccID, "student-abfrage", this.onComplete);
-    this.AccountTable.getById(AccID, "account-abfrage", this.onComplete);
-    this.StudentPassionTable.getByValue("Account_Id", AccID, "passionStudent-abfrage", this.onComplete);
-    this.StudentSkillTable.getByValue("Account_Id", AccID, "skillStudent-abfrage", this.onComplete);
+    this.StudentTable.filterByValue("Nachname", nachname, "nachname-abfrage", this.onComplete);
+    this.StudentTable.filterByValue("Name", name, "name-abfrage", this.onComplete);
+    this.StudentTable.filterByValue("Semester", semester, "semester-abfrage", this.onComplete);
     */
   }
 }
