@@ -19,7 +19,6 @@ export class ListSearchPage implements OnResultComplete {
   }
 
   onComplete(source, json) {
-
   }
 
   doInfinite() {
