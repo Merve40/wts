@@ -75,7 +75,7 @@ export class ProfilePage implements OnResultComplete {
     //Auslesen der Daten aus Tabelle Leidenschaft
     if(src == "passionStudent-abfrage"){
       var body = json;
-      var passion_id = body.Fähigkeit_Id;
+      var passion_id = body.Leidenschaft_Id;
 
      this.PassionTable.getById(passion_id, "passion-abfrage", this.onComplete)
     }
@@ -84,6 +84,18 @@ export class ProfilePage implements OnResultComplete {
       var body = json;
       var passion = body.Leidenschaft;
     }
+    //Auslesen der Daten aus Tabelle Fähigkeit
+    if(src == "skillStudent-abfrage"){
+      var body = json;
+      var skill_id = body.Fähigkeit_Id;
+
+     this.SkillTable.getById(passion_id, "skill-abfrage", this.onComplete)
+    }
+    if(src == "skill_abfrage"){
+      var body = json;
+      var passion = body.Fähigkeit;
+    }
+  
   }
 
   ngAfterViewInit() {
@@ -91,5 +103,6 @@ export class ProfilePage implements OnResultComplete {
     this.StudentTable.getByValue("Account_Id", AccID, "student-abfrage", this.onComplete);
     this.AccountTable.getById(AccID, "account-abfrage", this.onComplete);
     this.StudentPassionTable.getByValue("Account_Id", AccID, "passionStudent-abfrage", this.onComplete);
+    this.StudentSkillTable.getByValue("Account_Id", AccID, "skillStudent-abfrage", this.onComplete);
   }
 }
