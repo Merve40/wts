@@ -67,7 +67,6 @@ export class ProfilePage implements OnResultComplete {
     }
     //Auslesen der Daten aus Tabelle Leidenschaft
     if(src == "passionStudent-abfrage"){
-      console.log("test");
       var body = json.body;
       var passion_id = body.Leidenschaft_Id;
      this.PassionTable.getById(passion_id, "passion-abfrage", this.onComplete)
