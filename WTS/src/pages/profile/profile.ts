@@ -75,9 +75,10 @@ export class ProfilePage implements OnResultComplete {
     }
 
     if(src == "passion_abfrage"){
+      //Hier kommt er nicht mehr rein in der Abfrage
       var body = json.body;
       var passion = body.Leidenschaft;
-      console.log(passion);
+      console.log("test2");
     }
     //Auslesen der Daten aus Tabelle Fähigkeit
     if(src == "skillStudent-abfrage"){
