@@ -10,6 +10,7 @@ import { ProfilePage } from '../pages/profile/profile';
 import { Profile_externPage } from '../pages/profile_extern/profile_extern';
 import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
 import { Searchbar_TestPage } from '../pages/searchbar_test/searchbar_test';
+import { ListSearchPage } from '../pages/list_search/list_search';
 
 import { Api } from '../providers/api/api';
 import { AccountTable } from '../providers/api/account';
@@ -30,6 +31,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { MockProvider} from '../pages/list_search/dataprovider';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { TranslateService } from '@ngx-translate/core';
     ProfilePage,
     Profile_externPage,
     Profile_EditPage,
-    Searchbar_TestPage
+    Searchbar_TestPage,
+    ListSearchPage
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,8 @@ import { TranslateService } from '@ngx-translate/core';
     ProfilePage,
     Profile_externPage,
     Profile_EditPage,
-    Searchbar_TestPage
+    Searchbar_TestPage,
+    ListSearchPage
   ],
   providers: [
     Api,
@@ -75,6 +79,7 @@ import { TranslateService } from '@ngx-translate/core';
     StatusBar,
     SplashScreen,
     ScreenOrientation,
+    MockProvider,
     // Storage,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
