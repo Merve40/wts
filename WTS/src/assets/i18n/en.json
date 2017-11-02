@@ -4,19 +4,5 @@
     "PASSWORD": "Password",
     "LOGIN": "Login",
     "REGISTER": "Register",
-    "MISSINGLOGINDATAMESSAGE": "Please fill in username and password",
-    "EDIT": "Edit Profile", 
-    "SAVE": "Save", 
-    "BIRTHDAY": "Birthday", 
-    "UNIVERSITY": "University", 
-    "STUDYPROGRAM": "Study Program", 
-    "DEGREE": "Degree", 
-    "STUDYPROGRESS": "Study Progress", 
-    "ENDOFSTUDY": "Approxamitely end of study", 
-    "INTERESTS": "Interests", 
-    "SKILLS": "Skills", 
-    "ADDRES": "Adresse", 
-    "SAVECHANGES": "Save changes", 
-    "DISCARDCHANGES": "Discard changes", 
-    "PROFILE": "Profile"   
+    "MISSINGLOGINDATAMESSAGE": "Please fill in username and password"
   }

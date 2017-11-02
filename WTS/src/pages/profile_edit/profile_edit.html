@@ -9,69 +9,69 @@
     </ion-header>
         
             
-     <ion-content class="profile">
+     <ion-content class=" Profile_EditPage">
+
+        <button class="button save" ion-button color="wts_grey" (click)="save"  block> SAVE </button>
             
-              <ion-list>
+              <!-- <ion-list>
                 <ion-item no-lines>
                   <ion-avatar item-start>
                         <img src='assets/img/moritz.png' alt="your image">
                   </ion-avatar>
-                  <ion-label></ion-label>
+                  <ion-label>Moritz Richter</ion-label>
                 </ion-item>
             
                 <ion-item>
-                        <ion-label class="test" stacked color="wts_blue">{{ 'BIRTHDAY' | translate }}</ion-label>
-                        <ion-input type="date" value="01.01.1990"></ion-input>
+                        <ion-label class="test" stacked color="wts_blue">Birthday</ion-label>
                       </ion-item>
                 <ion-item>
-                  <ion-label stacked color="wts_blue">{{ 'UNIVERSITY' | translate }}</ion-label>
+                  <ion-label stacked color="wts_blue">University</ion-label>
                  <ion-input type="uni" value="Fontys University of Applied Sciences, Venlo"></ion-input>
                 </ion-item>
             
                 <ion-item>
-                        <ion-label stacked color="wts_blue">{{ 'STUDYPROGRAM' | translate }}</ion-label>
-                            <ion-input type="studyprogram" [(ngModel)]="studiengang"></ion-input>
+                        <ion-label stacked color="wts_blue">Study Program</ion-label>
+                            <ion-input type="studyprogram" value="Business Informatics"></ion-input>
+                      </ion-item>
+    
+                <ion-item>
+                        <ion-label stacked color="wts_blue">Degree</ion-label>
+                            <ion-input type="studyprogram" value="Business Informatics"></ion-input>
+                      </ion-item>
+    
+                      <ion-item>
+                          <ion-label stacked color="wts_blue">Study Progress</ion-label>
+                              <ion-input type="studyprogram" value="Business Informatics"></ion-input>
+                        </ion-item>
+                
+                <ion-item>
+                        <ion-label stacked color="wts_blue">Approximately end of study</ion-label>
+                            <ion-input type="studyprogram" value="Business Informatics"></ion-input>
                       </ion-item>
                 
-                      <ion-item> 
-                        <ion-label stacked color="wts_blue">{{ 'DEGREE' | translate }}</ion-label> 
-                             <ion-input type="studyprogram" value="Business Informatics"></ion-input> 
-                      </ion-item>  
- 
-                      <ion-item> 
-                        <ion-label stacked color="wts_blue">{{ 'STUDYPROGRESS' | translate }}</ion-label> 
-                        <ion-input type="PROGRESS" value="Business Informatics"></ion-input> 
-                      </ion-item> 
-               
-              <ion-item> 
-                      <ion-label stacked color="wts_blue">{{ 'ENDOFSTUDY' | translate }}</ion-label> 
-                        <ion-input type="date" value="Business Informatics"></ion-input> 
-                    </ion-item> 
- 
                     <ion-item>
-                         <ion-label stacked color="wts_blue">{{ 'INTERESTS' | translate }}</ion-label>
+                         <ion-label stacked color="wts_blue">Interests</ion-label>
                         <ion-input type="Interests" value="Programming"></ion-input>
                     </ion-item>
     
                     <ion-item>
-                            <ion-label stacked color="wts_blue">{{ 'SKILLS' | translate }}</ion-label>
+                            <ion-label stacked color="wts_blue">Skills</ion-label>
                            <ion-input type="Skills" value="Mockups"></ion-input>
                        </ion-item>
     
                 <ion-item>
-                  <ion-label stacked color="wts_blue">{{ 'EMAIL' | translate }}</ion-label>
-                 <ion-input type="email" value="hi@ionic.io" [readonly]="isReadonly"></ion-input>
+                  <ion-label stacked color="wts_blue">Email</ion-label>
+                 <ion-input type="email" value="hi@ionic.io"></ion-input>
                 </ion-item>
             
                 <ion-item>
-                  <ion-label stacked color="wts_blue">{{ 'ADDRES' | translate }}</ion-label>
+                  <ion-label stacked color="wts_blue">Address</ion-label>
                  <ion-textarea
                     value="121 S Pinckney St
             Madison WI 53703
             United States">
                   </ion-textarea>
                 </ion-item>
-              </ion-list>  
-              <button class="button save" ion-button color="wts_grey" (click)="save()"  block> {{ 'SAVE' | translate }}</button>
+              </ion-list>        -->
     </ion-content>
     </div>

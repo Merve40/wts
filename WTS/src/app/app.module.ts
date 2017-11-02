@@ -13,11 +13,6 @@ import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
 import { Api } from '../providers/api/api';
 import { AccountTable } from '../providers/api/account';
 import { AdressTable } from '../providers/api/adress';
-import { StudentTable } from '../providers/api/student';
-import { Student_SkillTable } from '../providers/api/student_skill';
-import { SkillTable } from '../providers/api/skill';
-import { Student_PassionTable } from '../providers/api/student_passion';
-import { PassionTable} from '../providers/api/passion';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -63,11 +58,6 @@ import { TranslateService } from '@ngx-translate/core';
     Api,
     AccountTable,
     AdressTable,
-    StudentTable,
-    Student_PassionTable,
-    Student_SkillTable,
-    PassionTable,
-    SkillTable,
     StatusBar,
     SplashScreen,
     ScreenOrientation,
