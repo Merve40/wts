@@ -8,6 +8,7 @@ import { LoginPage } from '../pages/login/login';
 import { ProfilePage } from '../pages/profile/profile';
 import { Profile_externPage } from '../pages/profile_extern/profile_extern';
 import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
+import { Searchbar_TestPage } from '../pages/searchbar_test/searchbar_test';
 import { ListSearchPage } from '../pages/list_search/list_search';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -40,7 +41,8 @@ export class MyApp {
       { title: translations.LOGOUT, component: LoginPage },
       { title: translations.LISTSEARCHPAGE, component:ListSearchPage},
       { title: 'Extern Profile', component: Profile_externPage },
-      { title: 'Edit Profile', component:Profile_EditPage}
+      { title: 'Edit Profile', component:Profile_EditPage},
+      { title: 'SearchbarTest', component:Searchbar_TestPage}
 
 
     ];
