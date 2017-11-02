@@ -1,5 +1,4 @@
 import { Injectable, Inject } from '@angular/core';
-import { jsonIgnore } from 'json-ignore';
 import { Base } from './base';
 import { Api } from './api';
 import { Table } from './table';
@@ -35,7 +34,7 @@ export class StudentTable extends Base {
         this.api.put(this, id, body, source, func, this.srcClass);
     }
 
-    push<Account>(account: Account, source:string, func: Function) {
+    push<Student>(account: Student, source:string, func: Function) {
         this.api.post(this, account, source, func, this.srcClass);
     }
 

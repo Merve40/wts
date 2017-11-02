@@ -13,8 +13,9 @@ import { TranslateService } from '@ngx-translate/core';
 export class LoginPage implements OnResultComplete {
 
   public _this = this;
-  database: any = firebase.database();
-  storage: any = firebase.storage(); //file system (Dateien)
+  // database: any = firebase.database();
+  // storage: any = firebase.storage(); //file system (Dateien)
+  require:any;
 
   email: any;
   password: any;
@@ -25,7 +26,7 @@ export class LoginPage implements OnResultComplete {
 
   login() {
     if (this.email && this.password) {
-      this.accountTable.getByValueTest("Email", this.email, "1", this.onComplete, this);
+      this.accountTable.getByValue("Email", this.email, "1", this.onComplete);
     }
 
   }
@@ -55,7 +56,7 @@ export class LoginPage implements OnResultComplete {
   }
 
   encrypt(password) {
-    var CryptoJS = require("crypto-js");
+    var CryptoJS = this.require("crypto-js");
     // Encrypt
     var hash = CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex);
     console.log(hash);

@@ -1,5 +1,4 @@
 import { Injectable, Inject } from '@angular/core';
-import { jsonIgnore } from 'json-ignore';
 import { Base } from './base';
 import { Api } from './api';
 import { Table } from './table';
@@ -16,23 +15,15 @@ export class Student_PassionTable extends Base {
         super(Table.STUDENT_FAHIGKEIT);
     }
 
-    getInnerObject(){
-        return null;
-    }
-
-    setInnerObject(o:any){
-        
-    }
-
     delete(id:string,source:string, func:Function):void{
         this.api.delete(this,id, source, func, this.srcClass);
     }
 
-    update<T extends Base>(id:string,source:string, func:Function){
-        this.api.put(this, id, source, func, this.srcClass);
+    update<T extends Base>(id:string, body:Student_Passion, source:string, func:Function){
+        this.api.put(this, id, body, source, func, this.srcClass);
     }
 
-    push<Account>(account: Account, source:string, func: Function) {
+    push<Student_Passion>(account: Student_Passion, source:string, func: Function) {
         this.api.post(this, account, source, func, this.srcClass);
     }
 

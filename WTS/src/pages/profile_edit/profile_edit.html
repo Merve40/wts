@@ -9,20 +9,19 @@
     </ion-header>
         
             
-     <ion-content class=" Profile_EditPage">
-
-        <button class="button save" ion-button color="wts_grey" (click)="save"  block> SAVE </button>
+     <ion-content class="profile">
             
-              <!-- <ion-list>
+              <ion-list>
                 <ion-item no-lines>
                   <ion-avatar item-start>
                         <img src='assets/img/moritz.png' alt="your image">
                   </ion-avatar>
-                  <ion-label>Moritz Richter</ion-label>
+                  <ion-label></ion-label>
                 </ion-item>
             
                 <ion-item>
                         <ion-label class="test" stacked color="wts_blue">Birthday</ion-label>
+                        <ion-input type="date" value="01.01.1990"></ion-input>
                       </ion-item>
                 <ion-item>
                   <ion-label stacked color="wts_blue">University</ion-label>
@@ -31,22 +30,7 @@
             
                 <ion-item>
                         <ion-label stacked color="wts_blue">Study Program</ion-label>
-                            <ion-input type="studyprogram" value="Business Informatics"></ion-input>
-                      </ion-item>
-    
-                <ion-item>
-                        <ion-label stacked color="wts_blue">Degree</ion-label>
-                            <ion-input type="studyprogram" value="Business Informatics"></ion-input>
-                      </ion-item>
-    
-                      <ion-item>
-                          <ion-label stacked color="wts_blue">Study Progress</ion-label>
-                              <ion-input type="studyprogram" value="Business Informatics"></ion-input>
-                        </ion-item>
-                
-                <ion-item>
-                        <ion-label stacked color="wts_blue">Approximately end of study</ion-label>
-                            <ion-input type="studyprogram" value="Business Informatics"></ion-input>
+                            <ion-input type="studyprogram" [(ngModel)]="studiengang"></ion-input>
                       </ion-item>
                 
                     <ion-item>
@@ -72,6 +56,7 @@
             United States">
                   </ion-textarea>
                 </ion-item>
-              </ion-list>        -->
+              </ion-list>  
+              <button class="button save" ion-button color="wts_grey" (click)="save()"  block> {{ 'SAVE' | translate }}</button>
     </ion-content>
     </div>

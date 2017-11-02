@@ -1,8 +1,5 @@
-import { jsonIgnoreReplacer, jsonIgnore } from 'json-ignore';
 import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
 import { Injectable, Inject } from '@angular/core';
-
 import { Base } from './base';
 
 @Injectable()
@@ -58,15 +55,15 @@ export class Api {
         });
     }
 
-    public get<T extends Base>(base: T, value: string, source:string, func: Function, src:any): void {
+    public get<T extends Base>(base: T, id: string, source:string, func: Function, src:any): void {
         let tbl = base.table.toString();
-        let _url = this.url.concat(tbl).concat("/").concat(value)
+        let _url = this.url.concat(tbl).concat("/").concat(id)
             .concat(".json");
 
         let response = this.http.get(_url);
         response.forEach(obj => {
             var json = JSON.parse(obj.text());
-            func.apply(src, [source, json]);
+            func.apply(src, [source, {id: id, body: json}]);
             return json;
         });
     }
@@ -84,27 +81,9 @@ export class Api {
 
         let response = this.http.get(_url);
         response.forEach(obj => {
+            console.log(obj);
             var innerJson = this.getInnerJson(obj.text());
             func.apply(src, [source, innerJson]);
-            return obj;
-        });
-    }
-
-    public getByValueTest<T extends Base>(base: T, key: string, value: string, source:string, func: Function, srcClass:any): void {
-        let tbl = base.table.toString();
-        let _url = this.url.concat(tbl).concat(this.suffix)
-            .concat(this.orderBy)
-            .concat(this.quote).concat(key).concat(this.quote)
-            .concat(this.and)
-            .concat(this.equalTo)
-            .concat(this.quote).concat(value).concat(this.quote)
-            .concat(this.and)
-            .concat(this.limitTo).concat("1");
-
-        let response = this.http.get(_url);
-        response.forEach(obj => {
-            var innerJson = this.getInnerJson(obj.text());
-            func.apply(srcClass, [source, innerJson]);
             return obj;
         });
     }
@@ -162,6 +141,7 @@ export class Api {
     }
 
     getInnerJsonArray(jarray: string) {
+        console.log(jarray);
         var removeOuter = jarray.substr(1, jarray.length - 2);
         var replaced = removeOuter.split("},").join("} , ");
 

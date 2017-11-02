@@ -1,5 +1,4 @@
 import { Injectable, Inject } from '@angular/core';
-import { jsonIgnore } from 'json-ignore';
 import { Base } from './base';
 import { Api } from './api';
 import { Table } from './table';
