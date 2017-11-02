@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 import { Profile_EditPage } from '../profile_edit/profile_edit'
 import { StudentTable } from '../../providers/api/student';
 import { AccountTable } from '../../providers/api/account';
@@ -10,15 +11,15 @@ import { Student_PassionTable } from '../../providers/api/student_passion';
 import { PassionTable} from '../../providers/api/passion';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
 
-var AccID = 'acc_10'; // AccountID die wir aus dem Login entnehmen
-
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html'
 })
 export class ProfilePage implements OnResultComplete {
 
-  constructor(public navCtrl: NavController, public AdressTable:AdressTable, public StudentTable: StudentTable, public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable, public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
+  accID:string;
+
+  constructor(public storage:Storage, public navCtrl: NavController, public AdressTable:AdressTable, public StudentTable: StudentTable, public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable, public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
     StudentTable.setSrcClass(this);
     AccountTable.setSrcClass(this);
     AdressTable.setSrcClass(this);
@@ -26,6 +27,7 @@ export class ProfilePage implements OnResultComplete {
     SkillTable.setSrcClass(this);
     PassionTable.setSrcClass(this);
     StudentPassionTable.setSrcClass(this);
+    this.storage.get("user_id").then( (val)=> this.accID = val );
   }
   edit() {
     this.navCtrl.push(Profile_EditPage);
@@ -86,10 +88,14 @@ export class ProfilePage implements OnResultComplete {
     }
   }
 
-  ngAfterViewInit() {
+  loadData(){
+    this.StudentTable.getByValue("Account_Id", this.accID, "student-abfrage", this.onComplete);
+    this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
+    this.StudentPassionTable.getByValue("Account_Id", this.accID, "passionStudent-abfrage", this.onComplete);
+  
+  }
 
-    this.StudentTable.getByValue("Account_Id", AccID, "student-abfrage", this.onComplete);
-    this.AccountTable.getById(AccID, "account-abfrage", this.onComplete);
-    this.StudentPassionTable.getByValue("Account_Id", AccID, "passionStudent-abfrage", this.onComplete);
+  ngAfterViewInit() {
+ 
   }
 }

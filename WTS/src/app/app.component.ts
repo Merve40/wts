@@ -12,7 +12,7 @@ import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
 import { TranslateService } from '@ngx-translate/core';
 
 import firebase from 'firebase';
-
+import { Storage } from '@ionic/storage';
 
 @Component({
   templateUrl: 'app.html'
@@ -24,7 +24,7 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any }>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar,
+  constructor(public storage:Storage, public platform: Platform, public statusBar: StatusBar,
     public splashScreen: SplashScreen, public screenOrientation: ScreenOrientation,
     public translate: TranslateService) {
     this.initializeApp();
