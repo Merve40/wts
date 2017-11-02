@@ -35,8 +35,6 @@ export class ProfilePage implements OnResultComplete {
 
     //Auslesen der Daten aus Tabelle Student where AccID = AccID
     if (src == "student-abfrage") {
-      // console.log(json);
-      var id = json.id;
       var body = json.body;
       var abschluss = body.Abschluss;
       var abschluss_datum = body.Abschluss_Datum;
@@ -49,19 +47,12 @@ export class ProfilePage implements OnResultComplete {
       var studiengang = body.Studiengang;
       var uni = body.Uni;
       var vertiefung = body.Vertiefung;
-      console.log(vorname);
+      console.log(uni);
     }
     //Auslesen der Daten aus Tabelle Account
     if(src == "account-abfrage") {
-      var id = json.id;
       var body = json.body;
       var adresse_id = body.Adresse_id;
-      
-      console.log("test");
-      console.log(json);
-      var adresse_id = json.body.Adresse_id;
-
-      console.log(adresse_id);
       //Verschachtelte Abfrage Account mit Adresse
       this.AdressTable.getById(adresse_id, "adresse-abfrage", this.onComplete);
     }
@@ -69,31 +60,36 @@ export class ProfilePage implements OnResultComplete {
     //Auslesen der Daten aus Tabelle Adresse
     if(src == "adresse-abfrage"){
       var body = json.body;
-      var adresse = body.Straße + ',' + body.PLZ + ',' + body.Land;
+      var adresse = body.Ort + ', ' + body.PLZ + ', ' + body.Land;
       var strasse = body.Straße;
+      console.log(adresse);
+      console.log(strasse);
     }
     //Auslesen der Daten aus Tabelle Leidenschaft
     if(src == "passionStudent-abfrage"){
-      var body = json;
+      console.log("test");
+      var body = json.body;
       var passion_id = body.Leidenschaft_Id;
 
      this.PassionTable.getById(passion_id, "passion-abfrage", this.onComplete)
     }
 
     if(src == "passion_abfrage"){
-      var body = json;
+      var body = json.body;
       var passion = body.Leidenschaft;
+      console.log(passion);
     }
     //Auslesen der Daten aus Tabelle Fähigkeit
     if(src == "skillStudent-abfrage"){
-      var body = json;
+      var body = json.body;
       var skill_id = body.Fähigkeit_Id;
 
-     this.SkillTable.getById(passion_id, "skill-abfrage", this.onComplete)
+     this.SkillTable.getById(skill_id, "skill-abfrage", this.onComplete)
     }
     if(src == "skill_abfrage"){
-      var body = json;
-      var passion = body.Fähigkeit;
+      var body = json.body;
+      var skill = body.Fähigkeit;
+      console.log(skill);
     }
   
   }
