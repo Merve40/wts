@@ -59,8 +59,6 @@ export class Profile_EditPage {
     this.studentjson.body.Geb_Datum = this.Geb_Datum;
     this.studentjson.body.Studiengang = this.Studiengang;
     this.studentjson.body.Semester = this.Semester;
-    this.studentjson.body.Nachname = this.Nachname;
-    this.studentjson.body.Name = this.Name;
     this.studentjson.body.Beschaftigung = this.Beschaftigung;
     this.studentjson.body.Beschreibung = this.Beschreibung;
     //Date-Korrektheit hier überprüfen
@@ -88,13 +86,13 @@ export class Profile_EditPage {
       this.Name = this.studentjson.body.Name;
       this.Beschaftigung = this.studentjson.body.Beschaftigung;
       this.Beschreibung = this.studentjson.body.Beschreibung;
-      console.log("Studentabfrage geladen")
+      var fullname = this.studentjson.body.Name + " " + this.studentjson.body.Nachname;
+      document.getElementById("name").innerText = fullname;
     }    
       
   }
 
   loadData(){
-    console.log("Beginn LoadData")
     this.StudentTable.getByValue("Account_Id", this.AccID, "student-abfrage", this.onComplete);
     //this.AccountTable.getById(this.AccID, "account-abfrage", this.onComplete);
     // this.StudentPassionTable.filterByValue("Account_Id", this.AccID, "passionStudent-abfrage", this.onComplete);
