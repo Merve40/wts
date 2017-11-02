@@ -33,17 +33,15 @@ export class Searchbar_TestPage implements OnResultComplete {
 
   onComplete(src, json) {
     if(src == "abschluss-abfrage"){
-      body = json.body;
+      var body = json;
       console.log(body);
-      
-      //Geht nur mit "json", nicht mit body
-        var result = [];
-        var keys = Object.keys(json);
-        keys.forEach(function(key){
-            result.push(json[key]);
-        });
-        console.log(result);
-        
+      var studenten = [];
+
+      for(var i = 0; i < json.length; i++){
+        var item = json[i];
+        studenten[i] = item.body.Nachname;
+      }
+      console.log(studenten);
     }
     
     
