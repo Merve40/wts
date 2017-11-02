@@ -21,60 +21,49 @@
               
                   <ion-item>
                     <ion-label class="birthday" stacked color="wts_blue">{{ 'BIRTHDAY' | translate }}</ion-label> 
-                    <ion-input type="date" value="Fontys University of Applied Sciences, Venlo"></ion-input>                     
+                    <ion-input type="date" [(ngModel)] = 'Geb_Datum'></ion-input>                     
                   </ion-item>
                   <ion-item>
                     <ion-label class ="university" stacked color="wts_blue">{{ 'UNIVERSITY' | translate }}</ion-label> 
-                         <ion-input type="uni" value="Fontys University of Applied Sciences, Venlo"></ion-input> 
+                         <ion-input id="Uni" type="Uni" [(ngModel)] = 'Uni'></ion-input> 
                   </ion-item>
               
                   <ion-item>
                     <ion-label class="studyprogram" stacked color="wts_blue">{{ 'STUDYPROGRAM' | translate }}</ion-label> 
-                          <ion-input type="studyprogram" value="Business Informatics"></ion-input>
+                          <ion-input type="studyprogram" [(ngModel)] = 'Studiengang'></ion-input>
                         </ion-item>
       
                   <ion-item>
                     <ion-label class ="degree" stacked color="wts_blue">{{ 'DEGREE' | translate }}</ion-label> 
-                          <ion-input type="studyprogram" value="Business Informatics"></ion-input>
+                          <ion-input type="studyprogram" [(ngModel)] = 'Abschluss'></ion-input>
                         </ion-item>
       
                         <ion-item>
                           <ion-label class ="progress" stacked color="wts_blue">{{ 'STUDYPROGRESS' | translate }}</ion-label> 
-                                <ion-input type="studyprogram" value="Business Informatics"></ion-input>
+                                <ion-input type="studyprogram" [(ngModel)] = 'Semester'></ion-input>
                           </ion-item>
                   
                   <ion-item>
                     <ion-label class="endofstudy" stacked color="wts_blue">{{ 'ENDOFSTUDY' | translate }}</ion-label> 
-                          <ion-input type="date" value="Business Informatics"></ion-input>
+                          <ion-input type="date" [(ngModel)] = 'Abschluss_Datum'></ion-input>
                         </ion-item>
                   
                       <ion-item>
-                        <ion-label class="interests" stacked color="wts_blue">{{ 'INTERESTS' | translate }}</ion-label> 
-                         <ion-input type="Interests" value="Programming"></ion-input>
+                        <ion-label class="description" stacked color="wts_blue">{{ 'DESCRIPTION' | translate }}</ion-label> 
+                         <ion-input type="description"  [(ngModel)] = 'Beschreibung' ></ion-input>
                       </ion-item>
       
                       <ion-item>
-                        <ion-label class="skills" stacked color="wts_blue">{{ 'SKILLS' | translate }}</ion-label> 
-                          <ion-input type="Skills" value="Mockups"></ion-input>
+                        <ion-label class="employment" stacked color="wts_blue">{{ 'EMPLOYMENT' | translate }}</ion-label> 
+                          <ion-input type="Employment" [(ngModel)] = 'Beschaftigung'></ion-input>
                          </ion-item>
-      
-                  <ion-item>
-                    <ion-label class="email" stacked color="wts_blue">{{ 'EMAIL' | translate }}</ion-label> 
-                     <ion-input type="email" value="hi@ionic.io"></ion-input>
-                  </ion-item>
               
-                  <ion-item>
-                    <ion-label class="addres" stacked color="wts_blue">{{ 'ADDRES' | translate }}</ion-label> 
-                     <ion-textarea
-                      value="121 S Pinckney St
-              Madison WI 53703
-              United States">
-                    </ion-textarea>
-                  </ion-item>
+
+
                   <button ion-button editProfile ion-button color="wts_grey" (click)="save()"> 
                     <ion-icon name="done-all">  {{ 'SAVECHANGES' | translate }}</ion-icon> 
                   </button> 
-                  <button ion-button editProfile ion-button color="wts_grey" (click)="save()"> 
+                  <button ion-button editProfile ion-button color="wts_grey" (click)="discardChanges()"> 
                     <ion-icon name="close">  {{ 'DISCARDCHANGES' | translate }}</ion-icon> 
                   </button> 
                 </ion-list>       

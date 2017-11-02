@@ -8,8 +8,9 @@ import { SkillTable } from '../../providers/api/skill';
 import { Student_PassionTable } from '../../providers/api/student_passion';
 import { PassionTable} from '../../providers/api/passion';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
+import { ProfilePage } from '../profile/profile'
 
-var AccID = 'acc_10'; // AccountID die wir aus dem Login entnehmen
+
 
 @Component({
   selector: 'page-profile_edit',
@@ -17,7 +18,27 @@ var AccID = 'acc_10'; // AccountID die wir aus dem Login entnehmen
 })
 export class Profile_EditPage {
 
-  constructor(public navCtrl: NavController, public AdressTable:AdressTable, public StudentTable: StudentTable, public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable, public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
+  AccID = 'acc_1'; // AccountID die wir aus dem Login entnehmen
+
+  // Elemente, die aus der Profile-Klasse übergeben werden sollen
+  studentjson:any;
+  Uni:any;
+  Abschluss: any;
+  Abschluss_Datum: any;
+  Beschreibung: any;
+  Beschaftigung: any;
+  Geb_Datum: any;
+  Nachname: any;
+  Name: any;
+  Semester: any;
+  Studiengang: any;
+  Vertiefung: any;
+
+
+  constructor(public navCtrl: NavController, public AdressTable:AdressTable, 
+    public StudentTable: StudentTable, public AccountTable: AccountTable,
+     public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable, 
+     public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
     StudentTable.setSrcClass(this);
     AccountTable.setSrcClass(this);
     AdressTable.setSrcClass(this);
@@ -25,75 +46,61 @@ export class Profile_EditPage {
     SkillTable.setSrcClass(this);
     PassionTable.setSrcClass(this);
     StudentPassionTable.setSrcClass(this);
+    this.loadData();
   }
   
   /**
    * Saves the changes made in profile to database
    */
   save(){
-    
+    this.studentjson.body.Uni = this.Uni;
+    this.studentjson.body.Abschluss = this.Abschluss;
+    this.studentjson.body.Abschluss_Datum = this.Abschluss_Datum;
+    this.studentjson.body.Geb_Datum = this.Geb_Datum;
+    this.studentjson.body.Studiengang = this.Studiengang;
+    this.studentjson.body.Semester = this.Semester;
+    this.studentjson.body.Nachname = this.Nachname;
+    this.studentjson.body.Name = this.Name;
+    this.studentjson.body.Beschaftigung = this.Beschaftigung;
+    this.studentjson.body.Beschreibung = this.Beschreibung;
+    //Date-Korrektheit hier überprüfen
 
+    this.StudentTable.update(this.studentjson.id, this.studentjson.body, "", function(flag, json){}) 
+  }
+
+  discardChanges(){
+    this.StudentTable.getByValue("Account_Id", this.AccID, "student-abfrage", this.onComplete);
+    this.navCtrl.push(ProfilePage);
   }
  
   onComplete(src, json) {
-
     //Auslesen der Daten aus Tabelle Student where AccID = AccID
     if (src == "student-abfrage") {
-      // console.log(json);
-      var id = json.id;
-      var body = json.body;
-      var abschluss = body.Abschluss;
-      var abschluss_datum = body.Abschluss_Datum;
-      var beschreibung = body.Beschreibung;
-      var beschaeftigung = body.Beschäftigung;
-      var geb_datum = body.Geb_Datum;
-      var nachname = body.Nachname;
-      var vorname = body.Name;
-      var semester = body.Semester;
-      var studiengang = body.Studiengang;
-      var uni = body.Uni;
-      var vertiefung = body.Vertiefung;
-      console.log(vorname);
-    }
-    //Auslesen der Daten aus Tabelle Account
-    if(src == "account-abfrage") {
-      var id = json.id;
-      var body = json.body;
-      var adresse_id = body.Adresse_id;
+      this.studentjson = json;
+
+      this.Uni = this.studentjson.body.Uni;
+      this.Abschluss = this.studentjson.body.Abschluss;
+      this.Abschluss_Datum =  this.studentjson.body.Abschluss_Datum;
+      this.Geb_Datum = this.studentjson.body.Geb_Datum;
+      this.Studiengang = this.studentjson.body.Studiengang;
+      this.Semester = this.studentjson.body.Semester;
+      this.Nachname = this.studentjson.body.Nachname;
+      this.Name = this.studentjson.body.Name;
+      this.Beschaftigung = this.studentjson.body.Beschaftigung;
+      this.Beschreibung = this.studentjson.body.Beschreibung;
+      console.log("Studentabfrage geladen")
+    }    
       
-      console.log("test");
-      console.log(json);
-      var adresse_id = json.body.Adresse_id;
-
-      console.log(adresse_id);
-      //Verschachtelte Abfrage Account mit Adresse
-      this.AdressTable.getById(adresse_id, "adresse-abfrage", this.onComplete);
-    }
-
-    //Auslesen der Daten aus Tabelle Adresse
-    if(src == "adresse-abfrage"){
-      var body = json.body;
-      var adresse = body.Straße + ',' + body.PLZ + ',' + body.Land;
-      var strasse = body.Straße;
-    }
-    //Auslesen der Daten aus Tabelle Leidenschaft
-    if(src == "passionStudent-abfrage"){
-      var body = json;
-      var passion_id = body.Fähigkeit_Id;
-
-     this.PassionTable.getById(passion_id, "passion-abfrage", this.onComplete)
-    }
-
-    if(src == "passion_abfrage"){
-      var body = json;
-      var passion = body.Leidenschaft;
-    }
   }
 
-  ngAfterViewInit() {
+  loadData(){
+    console.log("Beginn LoadData")
+    this.StudentTable.getByValue("Account_Id", this.AccID, "student-abfrage", this.onComplete);
+    //this.AccountTable.getById(this.AccID, "account-abfrage", this.onComplete);
+    // this.StudentPassionTable.filterByValue("Account_Id", this.AccID, "passionStudent-abfrage", this.onComplete);
+    //this.StudentSkillTable.filterByValue("Account_Id", this.AccID, "skill-abfrage", this.onComplete);
+  } 
 
-    this.StudentTable.getByValue("Account_Id", AccID, "student-abfrage", this.onComplete);
-    this.AccountTable.getById(AccID, "account-abfrage", this.onComplete);
-    this.StudentPassionTable.getByValue("Account_Id", AccID, "passionStudent-abfrage", this.onComplete);
+  ngAfterViewInit() {
   }
 }
