@@ -6,8 +6,6 @@ import { Table } from './table';
 export interface Attachement{
     Account_id: string;
     Anhang: string;
-    Beschreibung: string;
-    Datei_Name: string;
     Datei_Typ: string;
 }
 

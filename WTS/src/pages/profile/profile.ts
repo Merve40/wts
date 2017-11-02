@@ -51,16 +51,13 @@ export class ProfilePage implements OnResultComplete {
       document.getElementById("degree").innerText = body.Abschluss;
       document.getElementById("studyProgress").innerText = body.Semester;
       document.getElementById("endOfStudy").innerText = body.Abschluss_Datum;
-
     }
     //Auslesen der Daten aus Tabelle Account
     if(src == "account-abfrage") {
-      var id = json.id;
       var body = json.body;
       var adresse_id = body.Adresse_id;
       
       document.getElementById("email").innerText = body.Email;
-
       //Verschachtelte Abfrage Account mit Adresse
       this.AdressTable.getById(adresse_id, "adresse-abfrage", this.onComplete);
     }
@@ -112,7 +109,6 @@ export class ProfilePage implements OnResultComplete {
           }
         });
       }
-
     }
   }
 
@@ -124,6 +120,5 @@ export class ProfilePage implements OnResultComplete {
   }
 
   ngAfterViewInit() {
-
   }
 }

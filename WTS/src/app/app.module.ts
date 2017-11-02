@@ -9,6 +9,7 @@ import { LoginPage } from '../pages/login/login';
 import { ProfilePage } from '../pages/profile/profile';
 import { Profile_externPage } from '../pages/profile_extern/profile_extern';
 import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
+import { Searchbar_TestPage } from '../pages/searchbar_test/searchbar_test';
 
 import { Api } from '../providers/api/api';
 import { AccountTable } from '../providers/api/account';
@@ -37,6 +38,7 @@ import { TranslateService } from '@ngx-translate/core';
     ProfilePage,
     Profile_externPage,
     Profile_EditPage,
+    Searchbar_TestPage
   ],
   imports: [
     BrowserModule,
@@ -59,6 +61,7 @@ import { TranslateService } from '@ngx-translate/core';
     ProfilePage,
     Profile_externPage,
     Profile_EditPage,
+    Searchbar_TestPage
   ],
   providers: [
     Api,
