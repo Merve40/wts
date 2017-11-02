@@ -1,0 +1,34 @@
+<div class="full">
+    <ion-header class="header">
+      <ion-navbar>
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{ 'UNI_PROFILE' | translate }}</ion-title>
+      </ion-navbar>
+    </ion-header>
+  
+  
+    <ion-content class="profile">
+          
+          <ion-list>
+            <ion-item no-lines>
+              <ion-avatar item-start>
+                <img src='assets/img/moritz.png' alt="your image">
+              </ion-avatar>
+              <ion-label id= "uni" ></ion-label>
+            </ion-item>
+      
+            <ion-item>
+              <ion-label stacked color="wts_blue">{{ 'BRANCHES' | translate }}</ion-label>
+              <ion-label id="branches"></ion-label>
+            </ion-item>
+          </ion-list>
+      
+          <ion-item>
+            <ion-label stacked color="wts_blue">{{ 'ADDRES' | translate }}</ion-label>
+            <ion-label id="address"></ion-label>
+          </ion-item>
+
+    </ion-content>
+  </div>

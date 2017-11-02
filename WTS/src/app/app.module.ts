@@ -7,6 +7,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { ProfilePage } from '../pages/profile/profile';
+import { UniProfilePage } from '../pages/uni_profile/uni_profile';
 import { Profile_externPage } from '../pages/profile_extern/profile_extern';
 import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
 import { Searchbar_TestPage } from '../pages/searchbar_test/searchbar_test';
@@ -20,6 +21,7 @@ import { Student_SkillTable } from '../providers/api/student_skill';
 import { SkillTable } from '../providers/api/skill';
 import { Student_PassionTable } from '../providers/api/student_passion';
 import { PassionTable} from '../providers/api/passion';
+import { UniversityTable} from '../providers/api/university';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -41,7 +43,8 @@ import { MockProvider} from '../pages/list_search/dataprovider';
     Profile_externPage,
     Profile_EditPage,
     Searchbar_TestPage,
-    ListSearchPage
+    ListSearchPage,
+    UniProfilePage
   ],
   imports: [
     BrowserModule,
@@ -65,7 +68,8 @@ import { MockProvider} from '../pages/list_search/dataprovider';
     Profile_externPage,
     Profile_EditPage,
     Searchbar_TestPage,
-    ListSearchPage
+    ListSearchPage,
+    UniProfilePage
   ],
   providers: [
     Api,
@@ -76,6 +80,7 @@ import { MockProvider} from '../pages/list_search/dataprovider';
     Student_SkillTable,
     PassionTable,
     SkillTable,
+    UniversityTable,
     StatusBar,
     SplashScreen,
     ScreenOrientation,
