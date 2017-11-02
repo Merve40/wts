@@ -8,7 +8,10 @@ import { LoginPage } from '../pages/login/login';
 import { ProfilePage } from '../pages/profile/profile';
 import { Profile_externPage } from '../pages/profile_extern/profile_extern';
 import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
+import { UniProfilePage } from '../pages/uni_profile/uni_profile';
+import { CompanyProfilePage } from '../pages/company_profile/company_profile';
 import { Searchbar_TestPage } from '../pages/searchbar_test/searchbar_test';
+import { ListSearchPage } from '../pages/list_search/list_search';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -33,14 +36,18 @@ export class MyApp {
     // used for an example of ngFor and navigation
     // Labels & Pages in navigationbar in upper left corner
 
-    translate.get(['LOGINPAGE', 'PROFILEPAGE', 'LOGOUT']).subscribe(translations => {
+    translate.get(['LOGINPAGE', 'PROFILEPAGE', 'LOGOUT', 'LISTSEARCHPAGE']).subscribe(translations => {
     this.pages = [
       { title: translations.LOGINPAGE, component: LoginPage },
       { title: translations.PROFILEPAGE, component: ProfilePage },
       { title: translations.LOGOUT, component: LoginPage },
+      { title: translations.LISTSEARCHPAGE, component:ListSearchPage},
       { title: 'Extern Profile', component: Profile_externPage },
       { title: 'Edit Profile', component:Profile_EditPage},
+      { title: 'Uni Profil', component:UniProfilePage},
+      { title: 'Company Profil', component:CompanyProfilePage},
       { title: 'SearchbarTest', component:Searchbar_TestPage}
+
 
     ];
   })

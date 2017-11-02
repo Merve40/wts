@@ -13,7 +13,7 @@ import { OnResultComplete } from '../../providers/api/OnResultComplete';
 var abschluss = "Bachelor of Science";
 var nachname = "Ritzerfeld";
 var name = "Moritz";
-var semester = "2";
+var semester = "7";
 
 @Component({
   selector: 'page-searchbar_test',
@@ -33,41 +33,54 @@ export class Searchbar_TestPage implements OnResultComplete {
 
   onComplete(src, json) {
     if(src == "abschluss-abfrage"){
-      body = json.body;
-      console.log(body);
-      
-      //Geht nur mit "json", nicht mit body
-        var result = [];
-        var keys = Object.keys(json);
-        keys.forEach(function(key){
-            result.push(json[key]);
-        });
-        console.log(result);
-        
+      var body = json;
+      var studenten = [];
+
+      for(var i = 0; i < json.length; i++){
+        var item = json[i];
+        studenten[i] = item.body.Name + " " + item.body.Nachname;
+      }
+      console.log(studenten);
     }
     
     
     if(src == "nachname-abfrage"){
-      var body = json.body;
-      console.log(body);
+      var body = json;
+      var studenten = [];
+      
+            for(var i = 0; i < json.length; i++){
+              var item = json[i];
+              studenten[i] = item.body.Name + " " + item.body.Nachname;
+            }
+            console.log(studenten);
     }
     if(src == "name-abfrage"){
-      var body = json.body;
-      console.log(body);
+      var body = json;
+      var studenten = [];
+      
+            for(var i = 0; i < json.length; i++){
+              var item = json[i];
+              studenten[i] = item.body.Name + " " + item.body.Nachname;
+            }
+            console.log(studenten);
     }
     if(src == "semester-abfrage"){
-      var body = json.body;
-      console.log(body);
+      var body = json;
+      var studenten = [];
+
+      for(var i = 0; i < json.length; i++){
+        var item = json[i];
+        studenten[i] = item.body.Name + " " + item.body.Nachname;
+      }
+      console.log(studenten);
     }
     
   }
 
   ngAfterViewInit() {
     this.StudentTable.filterByValue("Abschluss", abschluss, "abschluss-abfrage", this.onComplete);
-    /*
     this.StudentTable.filterByValue("Nachname", nachname, "nachname-abfrage", this.onComplete);
     this.StudentTable.filterByValue("Name", name, "name-abfrage", this.onComplete);
     this.StudentTable.filterByValue("Semester", semester, "semester-abfrage", this.onComplete);
-    */
   }
 }

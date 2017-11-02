@@ -7,9 +7,12 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { ProfilePage } from '../pages/profile/profile';
+import { UniProfilePage } from '../pages/uni_profile/uni_profile';
+import { CompanyProfilePage } from '../pages/company_profile/company_profile';
 import { Profile_externPage } from '../pages/profile_extern/profile_extern';
 import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
 import { Searchbar_TestPage } from '../pages/searchbar_test/searchbar_test';
+import { ListSearchPage } from '../pages/list_search/list_search';
 
 import { Api } from '../providers/api/api';
 import { AccountTable } from '../providers/api/account';
@@ -19,6 +22,8 @@ import { Student_SkillTable } from '../providers/api/student_skill';
 import { SkillTable } from '../providers/api/skill';
 import { Student_PassionTable } from '../providers/api/student_passion';
 import { PassionTable} from '../providers/api/passion';
+import { UniversityTable} from '../providers/api/university';
+import { CompanyTable} from '../providers/api/company';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -30,6 +35,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { MockProvider} from '../pages/list_search/dataprovider';
 
 @NgModule({
   declarations: [
@@ -38,7 +44,10 @@ import { TranslateService } from '@ngx-translate/core';
     ProfilePage,
     Profile_externPage,
     Profile_EditPage,
-    Searchbar_TestPage
+    Searchbar_TestPage,
+    ListSearchPage,
+    CompanyProfilePage,
+    UniProfilePage
   ],
   imports: [
     BrowserModule,
@@ -61,7 +70,10 @@ import { TranslateService } from '@ngx-translate/core';
     ProfilePage,
     Profile_externPage,
     Profile_EditPage,
-    Searchbar_TestPage
+    Searchbar_TestPage,
+    ListSearchPage,
+    UniProfilePage,
+    CompanyProfilePage
   ],
   providers: [
     Api,
@@ -72,9 +84,12 @@ import { TranslateService } from '@ngx-translate/core';
     Student_SkillTable,
     PassionTable,
     SkillTable,
+    UniversityTable,
+    CompanyTable,
     StatusBar,
     SplashScreen,
     ScreenOrientation,
+    MockProvider,
     // Storage,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
