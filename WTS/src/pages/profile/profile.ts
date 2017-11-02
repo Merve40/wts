@@ -88,6 +88,7 @@ export class ProfilePage implements OnResultComplete {
      this.SkillTable.getById(skill_id, "skill-abfrage", this.onComplete)
     }
     if(src == "skill_abfrage"){
+      //Hier kommt er nicht mehr rein
       var body = json.body;
       var skill = body.Fähigkeit;
       console.log(skill);
