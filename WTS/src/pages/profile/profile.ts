@@ -70,24 +70,22 @@ export class ProfilePage implements OnResultComplete {
       console.log("test");
       var body = json.body;
       var passion_id = body.Leidenschaft_Id;
-
      this.PassionTable.getById(passion_id, "passion-abfrage", this.onComplete)
     }
 
-    if(src == "passion_abfrage"){
+    if(src == "passion-abfrage"){
       //Hier kommt er nicht mehr rein in der Abfrage
       var body = json.body;
       var passion = body.Leidenschaft;
-      console.log("test2");
+      console.log(passion);
     }
     //Auslesen der Daten aus Tabelle Fähigkeit
     if(src == "skillStudent-abfrage"){
       var body = json.body;
       var skill_id = body.Fähigkeit_Id;
-
      this.SkillTable.getById(skill_id, "skill-abfrage", this.onComplete)
     }
-    if(src == "skill_abfrage"){
+    if(src == "skill-abfrage"){
       //Hier kommt er nicht mehr rein
       var body = json.body;
       var skill = body.Fähigkeit;
