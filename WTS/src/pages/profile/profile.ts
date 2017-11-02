@@ -27,7 +27,10 @@ export class ProfilePage implements OnResultComplete {
     SkillTable.setSrcClass(this);
     PassionTable.setSrcClass(this);
     StudentPassionTable.setSrcClass(this);
-    this.storage.get("user_id").then( (val)=> this.accID = val );
+    this.storage.get("user_id").then((val)=>{
+      this.accID = val;
+      this.loadData();
+    });
   }
   edit() {
     this.navCtrl.push(Profile_EditPage);
