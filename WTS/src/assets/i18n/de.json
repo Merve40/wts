@@ -1,5 +1,9 @@
 {
   "HELLO": "Hallo",
+  "LOGINPAGE": "Anmeldung",
+  "LOGOUT": "Abmelden",
+  "PROFILEPAGE": "Profilansicht",
+  "LISTSEARCHPAGE": "Suche",
   "EMAIL": "Email",
   "PASSWORD": "Passwort",
   "LOGIN": "Anmelden",
