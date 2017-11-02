@@ -6,8 +6,6 @@ import { Table } from './table';
 export interface Attachement{
     Account_id: string;
     Anhang: string;
-    Beschreibung: string;
-    Datei_Name: string;
     Datei_Typ: string;
 }
 
@@ -36,10 +34,6 @@ export class AttachementTable extends Base {
 
     getByValue(key: string, value, source:string, func: Function) {
         this.api.getByValue(this, key, value, source, func, this.srcClass);
-    }
-
-    getByValueTest(key: string, value, source:string, func: Function, srcClass:any){
-        this.api.getByValueTest(this, key, value, source, func, srcClass );
     }
 
     filterByValue(key: string, value: string, source:string, func: Function) {
