@@ -74,7 +74,7 @@ export class ProfilePage implements OnResultComplete {
      this.PassionTable.getById(passion_id, "passion-abfrage", this.onComplete)
     }
 
-    if(src == "passion_abfrage"){
+    if(src == "passion-abfrage"){
       //Hier kommt er nicht mehr rein in der Abfrage
       var body = json.body;
       var passion = body.Leidenschaft;
