@@ -81,7 +81,6 @@ export class Api {
 
         let response = this.http.get(_url);
         response.forEach(obj => {
-            console.log(obj);
             var innerJson = this.getInnerJson(obj.text());
             func.apply(src, [source, innerJson]);
             return obj;
@@ -119,7 +118,6 @@ export class Api {
         let response = this.http.get(_url);
         response.forEach(obj => {
             var innerJson = this.getInnerJsonArray(obj.text());
-            console.log(innerJson);
             func.apply(src, [source, innerJson]);
             return obj;
         });
@@ -141,7 +139,6 @@ export class Api {
     }
 
     getInnerJsonArray(jarray: string) {
-        console.log(jarray);
         var removeOuter = jarray.substr(1, jarray.length - 2);
         var replaced = removeOuter.split("},").join("} , ");
 

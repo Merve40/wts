@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-// import { HttpClientModule, HttpClient, HttpParams } from '@angular/common/http';
+import { Storage, IonicStorageModule } from '@ionic/storage';
 import { HttpModule, Http } from '@angular/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
@@ -48,6 +48,7 @@ import { MockProvider} from '../pages/list_search/dataprovider';
     HttpModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -79,6 +80,7 @@ import { MockProvider} from '../pages/list_search/dataprovider';
     SplashScreen,
     ScreenOrientation,
     MockProvider,
+    // Storage,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
