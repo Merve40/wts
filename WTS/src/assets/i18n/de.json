@@ -23,10 +23,11 @@
   "SAVECHANGES": "Änderungen speichern",
   "DISCARDCHANGES": "Änderungen verwerfen",
   "UNI_PROFILE": "Universitäts Profil",
+  "COMPANY_PROFILE": "Unternehmensprofil",  
   "STUDYBRANCHES": "Fachrichtungen",
   "BRANCHES": "Fachrichtung",
-  "LINK": "Link zu Website",
   "DESCRIPTION": "Beschreibung",
+  "LINK": "Link zu Webseite",
   "EMPLOYMENT": "Beschäftigung",
   "PROFILE": "Mein Profil"
  }

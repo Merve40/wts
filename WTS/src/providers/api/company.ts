@@ -4,10 +4,10 @@ import { Api } from './api';
 import { Table } from './table';
 
 export interface Company{
-    Company: string;
-    Website: string;
+    Unternehmen: string;
+    Webseite: string;
     Account_id: string;
-    Industry: string;
+    Branche: string;
 }
 
 @Injectable()
