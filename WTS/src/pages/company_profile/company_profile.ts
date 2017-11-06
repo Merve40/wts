@@ -26,6 +26,8 @@ export class CompanyProfilePage implements OnResultComplete {
 
   onComplete(src, json) {
 
+    console.log(json.body);
+
     //Auslesen der Daten aus Tabelle Student where AccID = AccID
     if (src == "company-abfrage") {
         console.log("Started company abfrage");
@@ -35,7 +37,7 @@ export class CompanyProfilePage implements OnResultComplete {
 
         document.getElementById("company").innerText = body.Unternehmen;
         document.getElementById("branches").innerText = body.Branche;
-        document.getElementById("link").innerText = body.Weibseite;
+        document.getElementById("link").innerText = body.Webseite;
         console.log("Ended company abfrage");
       }
 
