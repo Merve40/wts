@@ -44,7 +44,7 @@ export class ProfilePage implements OnResultComplete {
       var id = json.id;
       var body = json.body;
 
-      document.getElementById("dateOfBirth").innerText = body.Geb_Datum != "" ? body.Geb_Datum : "01.01.1970";
+      document.getElementById("dateOfBirth").innerText = body.Geb_Datum != "" || body.Geb_Datum != null ? body.Geb_Datum : "01.01.1970";
       document.getElementById("uni").innerText = body.Uni;
       document.getElementById("studyProgram").innerText = body.Studiengang;
       document.getElementById("degree").innerText = body.Abschluss;
