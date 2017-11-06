@@ -73,6 +73,10 @@ export abstract class Base {
      */
     abstract filterByValueAndLimit(key: string, value: string, limit: number, source:string, func: Function): void;
 
+    abstract getAll( source:string, func:Function):void;
+
+    abstract getAllStartingWith(key:string, value:string, source:string, func:Function):void;
+
     public setSrcClass(srcClass:any):void{
         this.srcClass = srcClass;
     }

@@ -44,5 +44,13 @@ export class UniversityTable extends Base {
         this.api.filterByValueAndLimit(this, key, value, limit, source, func, this.srcClass);
     }
 
+    getAll( source:string, func:Function){
+        this.api.getAll(this, source, func, this.srcClass);
+    }
+    
+    getAllStartingWith(key:string, value:string, source:string, func:Function){
+        this.api.startsWith(this, key, value, source, func, this.srcClass);
+    }
+
 }
 
