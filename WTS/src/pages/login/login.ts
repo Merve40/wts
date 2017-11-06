@@ -26,7 +26,7 @@ export class LoginPage implements OnResultComplete {
     if (this.email && this.password) {
       this.accountTable.getByValue("Email", this.email, "1", this.onComplete);
     }
-
+ 
   }
 
   onComplete(source, json) {

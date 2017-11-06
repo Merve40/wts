@@ -130,7 +130,7 @@ export class Api {
 
         let response = this.http.get(_url);
         response.forEach(obj => {
-            var resp = JSON.parse(obj.text());
+            var resp = this.getInnerJsonArray(obj.text());
             func.apply(src, [source, resp]);
             return obj;
         });
@@ -147,7 +147,7 @@ export class Api {
                      
         var response = this.http.get(_url);
         response.forEach(obj =>{
-            var res = JSON.parse(obj.text());
+            var res = this.getInnerJsonArray(obj.text());
             func.apply(src, [source, res]);
             return obj;
         });                                      
