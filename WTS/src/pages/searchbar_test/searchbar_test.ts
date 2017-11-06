@@ -6,7 +6,7 @@ import { AdressTable } from '../../providers/api/adress';
 import { Student_SkillTable } from '../../providers/api/student_skill';
 import { SkillTable } from '../../providers/api/skill';
 import { Student_PassionTable } from '../../providers/api/student_passion';
-import { PassionTable} from '../../providers/api/passion';
+import { PassionTable } from '../../providers/api/passion';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
 
 //Testdaten
@@ -21,7 +21,7 @@ var semester = "7";
 })
 export class Searchbar_TestPage implements OnResultComplete {
 
-  constructor(public navCtrl: NavController, public AdressTable:AdressTable, public StudentTable: StudentTable, public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable, public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
+  constructor(public navCtrl: NavController, public AdressTable: AdressTable, public StudentTable: StudentTable, public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable, public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
     StudentTable.setSrcClass(this);
     AccountTable.setSrcClass(this);
     AdressTable.setSrcClass(this);
@@ -32,55 +32,52 @@ export class Searchbar_TestPage implements OnResultComplete {
   }
 
   onComplete(src, json) {
-    if(src == "abschluss-abfrage"){
-      var body = json;
-      var studenten = [];
 
-      for(var i = 0; i < json.length; i++){
-        var item = json[i];
-        studenten[i] = item.body.Name + " " + item.body.Nachname;
-      }
-      console.log(studenten);
-    }
-    
-    
-    if(src == "nachname-abfrage"){
-      var body = json;
-      var studenten = [];
-      
-            for(var i = 0; i < json.length; i++){
-              var item = json[i];
-              studenten[i] = item.body.Name + " " + item.body.Nachname;
-            }
-            console.log(studenten);
-    }
-    if(src == "name-abfrage"){
-      var body = json;
-      var studenten = [];
-      
-            for(var i = 0; i < json.length; i++){
-              var item = json[i];
-              studenten[i] = item.body.Name + " " + item.body.Nachname;
-            }
-            console.log(studenten);
-    }
-    if(src == "semester-abfrage"){
-      var body = json;
-      var studenten = [];
+    switch (src) {
+      case "studenten-abfrage": {
 
-      for(var i = 0; i < json.length; i++){
-        var item = json[i];
-        studenten[i] = item.body.Name + " " + item.body.Nachname;
+        var body = json;
+        var studenten = [];
+
+        for (var i = 0; i < json.length; i++) {
+
+          var item = json[i];
+          studenten[i] = item.body.Name + " " + item.body.Nachname;
+        }
+        console.log(studenten);
+
+
+
+        break;
       }
-      console.log(studenten);
+      case "": {
+        //statements; 
+        break;
+      }
+      default: {
+        //statements; 
+        break;
+      }
     }
-    
   }
 
   ngAfterViewInit() {
-    this.StudentTable.filterByValue("Abschluss", abschluss, "abschluss-abfrage", this.onComplete);
-    this.StudentTable.filterByValue("Nachname", nachname, "nachname-abfrage", this.onComplete);
-    this.StudentTable.filterByValue("Name", name, "name-abfrage", this.onComplete);
-    this.StudentTable.filterByValue("Semester", semester, "semester-abfrage", this.onComplete);
+    this.StudentTable.filterByValue("Abschluss", abschluss, "studenten-abfrage", this.onComplete);
+  }
+ 
+  checkForFilter(filter,student)
+  {
+    var result =
+    (student.Abschluss.contains(filter)) ||
+    (student.Abschluss_Datum.contains(filter)) ||
+    (student.Beschäftigung.contains(filter)) ||
+    (student.Geb_Datum.contains(filter)) ||
+    (student.Nachname.contains(filter)) ||
+    (student.Name.contains(filter)) ||
+    (student.Semester.contains(filter)) ||
+    (student.Studiengang.contains(filter)) ||
+    (student.Uni.contains(filter)) ||
+    (student.Vertiefung.contains(filter));
+     return result;
   }
 }
