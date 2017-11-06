@@ -1,38 +1,87 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { StudentTable } from '../../providers/api/student';
+import { AccountTable } from '../../providers/api/account';
+import { AdressTable } from '../../providers/api/adress';
+import { Student_SkillTable } from '../../providers/api/student_skill';
+import { SkillTable } from '../../providers/api/skill';
+import { Student_PassionTable } from '../../providers/api/student_passion';
+import { PassionTable } from '../../providers/api/passion';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
-import { TranslateService } from '@ngx-translate/core';
-import { MockProvider} from './dataprovider';
 
+//Testdaten
+var abschluss = "Bachelor of Science";
+var nachname = "Ritzerfeld";
+var name = "Moritz";
+var semester = "7";
 
 @Component({
-  selector: 'list-search',
-  templateUrl: 'list_search.html'
+  selector: 'page-searchbar_test',
+  templateUrl: 'searchbar_test.html'
 })
-export class ListSearchPage implements OnResultComplete {
+export class Searchbar_TestPage implements OnResultComplete {
 
-  items: string[];
-
-
-  constructor(public mockProvider: MockProvider,public navCtrl: NavController,public translate: TranslateService) {
-    this.items = mockProvider.getData();
+  constructor(public navCtrl: NavController, public AdressTable: AdressTable, public StudentTable: StudentTable, public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable, public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
+    StudentTable.setSrcClass(this);
+    AccountTable.setSrcClass(this);
+    AdressTable.setSrcClass(this);
+    StudentSkillTable.setSrcClass(this);
+    SkillTable.setSrcClass(this);
+    PassionTable.setSrcClass(this);
+    StudentPassionTable.setSrcClass(this);
   }
 
-  onComplete(source, json) {
-  }
+  onComplete(src, json) {
 
-  doInfinite() {
-    /*this.mockProvider.getAsyncData().then((newData) => {
-      for (var i = 0; i < newData.length; i++) {
-        this.items.push(newData[i]);
+    switch (src) {
+      case "studenten-abfrage": {
+
+        var body = json;
+        var studenten = [];
+        var filter_list = [];
+  
+        for(var i = 0; i < json.length; i++){
+          var item = json[i];
+          studenten[i] = item.body.Name + " " + item.body.Nachname;
+        }
+        console.log(studenten);
+        for(var i = 0; i < json.length; i++){
+          if(this.checkForFilter("Bachelor", studenten[i])){
+           filter_list.push(studenten[i]);
+          }
+        }
+
+        break;
       }
-
-      infiniteScroll.complete();
-
-      if (this.items.length > 90) {
-        infiniteScroll.enable(false);
+      case "": {
+        //statements; 
+        break;
       }
-    });*/
+      default: {
+        //statements; 
+        break;
+      }
+    }
   }
 
+  ngAfterViewInit() {
+    this.StudentTable.filterByValue("Abschluss", abschluss, "studenten-abfrage", this.onComplete);
+  }
+ 
+  checkForFilter(filter,student)
+  {
+    var result =
+    (student.Abschluss.contains(filter)) ||
+    (student.Abschluss_Datum.contains(filter)) ||
+    (student.Beschäftigung.contains(filter)) ||
+    (student.Geb_Datum.contains(filter)) ||
+    (student.Nachname.contains(filter)) ||
+    (student.Name.contains(filter)) ||
+    (student.Semester.contains(filter)) ||
+    (student.Studiengang.contains(filter)) ||
+    (student.Uni.contains(filter)) ||
+    (student.Vertiefung.contains(filter));
+     return result;
+  }
 }
+
