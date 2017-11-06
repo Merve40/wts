@@ -40,7 +40,6 @@ export class Searchbar_TestPage implements OnResultComplete {
         var studenten = [];
 
         for (var i = 0; i < json.length; i++) {
-
           var item = json[i];
           studenten[i] = item.body.Name + " " + item.body.Nachname;
         }
