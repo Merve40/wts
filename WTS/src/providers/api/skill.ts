@@ -41,4 +41,12 @@ export class SkillTable extends Base {
     filterByValueAndLimit(key: string, value: string, limit: number, source:string, func: Function) {
         this.api.filterByValueAndLimit(this, key, value, limit, source, func, this.srcClass);
     }
+
+    getAll( source:string, func:Function){
+        this.api.getAll(this, source, func, this.srcClass);
+    }
+    
+    getAllStartingWith(key:string, value:string, source:string, func:Function){
+        this.api.startsWith(this, key, value, source, func, this.srcClass);
+    }
 }
