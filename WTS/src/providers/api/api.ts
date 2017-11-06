@@ -11,12 +11,11 @@ export class Api {
     limitTo = "limitToFirst=";
     and = "&";
     quote = "\"";
-    whitespace = "%20";
 
     constructor( @Inject(Http) public http: Http) {
     }
 
-    public delete<T extends Base>(base: T, id:string, source:string, func: Function, src:any): void {
+    public delete<T extends Base>(base: T, id: string, source: string, func: Function, src: any): void {
         let tbl = base.table.toString();
         let _url = this.url.concat(tbl).concat("/").concat(id)
             .concat(".json");
@@ -29,7 +28,7 @@ export class Api {
         });
     }
 
-    public put<T extends Base>(base: T, id:string, body:any, source:string, func: Function, src:any): void {
+    public put<T extends Base>(base: T, id: string, body: any, source: string, func: Function, src: any): void {
         let tbl = base.table.toString();
         let _url = this.url.concat(tbl).concat("/").concat(id)
             .concat(".json");
@@ -42,7 +41,7 @@ export class Api {
         });
     }
 
-    public post<T>(base: Base, obj: T, source:string, func: Function, src:any): void {
+    public post<T>(base: Base, obj: T, source: string, func: Function, src: any): void {
         let tbl = base.table.toString();
         let _url = this.url.concat(tbl).concat(this.suffix);
         let body = JSON.stringify(obj);
@@ -55,7 +54,7 @@ export class Api {
         });
     }
 
-    public get<T extends Base>(base: T, id: string, source:string, func: Function, src:any): void {
+    public get<T extends Base>(base: T, id: string, source: string, func: Function, src: any): void {
         let tbl = base.table.toString();
         let _url = this.url.concat(tbl).concat("/").concat(id)
             .concat(".json");
@@ -63,12 +62,12 @@ export class Api {
         let response = this.http.get(_url);
         response.forEach(obj => {
             var json = JSON.parse(obj.text());
-            func.apply(src, [source, {id: id, body: json}]);
+            func.apply(src, [source, { id: id, body: json }]);
             return json;
         });
     }
 
-    public getByValue<T extends Base>(base: T, key: string, value: string, source:string, func: Function, src:any): void {
+    public getByValue<T extends Base>(base: T, key: string, value: string, source: string, func: Function, src: any): void {
         let tbl = base.table.toString();
         let _url = this.url.concat(tbl).concat(this.suffix)
             .concat(this.orderBy)
@@ -87,7 +86,7 @@ export class Api {
         });
     }
 
-    public filterByValue<T extends Base>(base: T, key: string, value: string, source:string, func: Function, src:any): void {
+    public filterByValue<T extends Base>(base: T, key: string, value: string, source: string, func: Function, src: any): void {
         let tbl = base.table.toString();
         let _url = this.url.concat(tbl).concat(this.suffix).concat(this.orderBy)
             .concat(this.quote).concat(key).concat(this.quote)
@@ -104,8 +103,8 @@ export class Api {
         });
     }
 
-    public filterByValueAndLimit<T extends Base>(base: T, key: string, value: string, limit: number, 
-                                                    source:string, func: Function, src:any): void {
+    public filterByValueAndLimit<T extends Base>(base: T, key: string, value: string, limit: number,
+        source: string, func: Function, src: any): void {
         let tbl = base.table.toString();
         let _url = this.url.concat(tbl).concat(this.suffix).concat(this.orderBy)
             .concat(this.quote).concat(key).concat(this.quote)
@@ -133,9 +132,14 @@ export class Api {
         var start = removeOuter.indexOf("{") + 1;
         var end = removeOuter.lastIndexOf("}") + 1;
 
-        var _body = JSON.parse(json.substr(start, (end - start)));
-
-        return {id: _id, body: _body};
+        var substr = json.substr(start, (end - start));
+        
+        if (substr.length>1) {
+            var _body = JSON.parse(substr);
+            return { id: _id, body: _body };
+        }else{
+            return {id:"", body:null};
+        }
     }
 
     getInnerJsonArray(jarray: string) {
@@ -157,11 +161,11 @@ export class Api {
 
     getJsonId(json: string): string {
         var replaced = json.split("{").join(" ")
-                            .split("}").join(" ")
-                            .split(":").join(" ")
-                            .split("\"").join(" ")
-                            .split(",").join(" ")
-                            .trim();
+            .split("}").join(" ")
+            .split(":").join(" ")
+            .split("\"").join(" ")
+            .split(",").join(" ")
+            .trim();
         var id = replaced.split(" ")[0].trim();
         return id;
     }

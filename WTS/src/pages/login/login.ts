@@ -18,7 +18,7 @@ export class LoginPage implements OnResultComplete {
   email: any;
   password: any;
 
-  constructor(public storage:Storage, public navCtrl: NavController, public toastCtrl: ToastController, @Inject(AccountTable) public accountTable: AccountTable, public translate: TranslateService) {
+  constructor(public storage: Storage, public navCtrl: NavController, public toastCtrl: ToastController, @Inject(AccountTable) public accountTable: AccountTable, public translate: TranslateService) {
     accountTable.setSrcClass(this);
   }
 
@@ -37,9 +37,8 @@ export class LoginPage implements OnResultComplete {
 
   validateUser(json: any) {
     if (json.body.Passwort == this.password) {
-      console.log("login successfull; user id: "+json.id);
-      this.storage.set("user_id", json.id);
-      this.navCtrl.push(ProfilePage);
+      this.navigateToUserProfile(json);
+
     } else {
       this.translate.get('MISSINGLOGINDATAMESSAGE').subscribe(
         value => {
@@ -48,20 +47,35 @@ export class LoginPage implements OnResultComplete {
     }
   }
 
-    showLoginError(message) {
-      const toast = this.toastCtrl.create({
-        message: message,
-        duration: 3000,
-        position: 'top'
-      });
-      toast.present();
-    }
+  navigateToUserProfile(json: any) {
+    this.storage.set("user_id", json.id);
 
-    encrypt(password) {
-      var CryptoJS = this.require("crypto-js");
-      // Encrypt
-      var hash = CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex);
-      console.log(hash);
+    switch (json.body.Usergruppe) {
+      case "Student": this.navCtrl.push(ProfilePage, { userId: json.id });
+        break;
+      //todo: Student Profil (ProfilePage) mit Unternehmen Profil ersetzen
+      case "Unternehmen": this.navCtrl.push(ProfilePage, { userId: json.id });
+        break;
+      //todo: Student Profil (ProfilePage) mit Uni Profil ersetzen
+      case "Universität": this.navCtrl.push(ProfilePage, { userId: json.id });
+        break;
     }
-
   }
+
+  showLoginError(message) {
+    const toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
+
+  encrypt(password) {
+    var CryptoJS = this.require("crypto-js");
+    // Encrypt
+    var hash = CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex);
+    console.log(hash);
+  }
+
+}
