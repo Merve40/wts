@@ -43,10 +43,7 @@ export class Searchbar_TestPage implements OnResultComplete {
         for(var i = 0; i < json.length; i++){
           var item = json[i];
           studenten[i] = item.body.Name + " " + item.body.Nachname;
-        }
-        console.log(studenten);
-        for(var i = 0; i < json.length; i++){
-          if(this.checkForFilter("Bachelor", studenten[i])){
+          if(this.checkForFilter("Bachelor", item.body)){
            filter_list.push(studenten[i]);
           }
         }
