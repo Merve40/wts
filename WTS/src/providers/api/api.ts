@@ -11,6 +11,8 @@ export class Api {
     limitTo = "limitToFirst=";
     and = "&";
     quote = "\"";
+    endAt="endAt=";
+    restStirng="\uff8f";
 
     constructor( @Inject(Http) public http: Http) {
     }
@@ -120,6 +122,35 @@ export class Api {
             func.apply(src, [source, innerJson]);
             return obj;
         });
+    }
+
+    public getAll<T extends Base>(base:T, source:string, func:Function, src:any):void{
+        let tbl = base.table.toString();
+        let _url = this.url.concat(tbl).concat(this.suffix);
+
+        let response = this.http.get(_url);
+        response.forEach(obj => {
+            var resp = this.getInnerJsonArray(obj.text());
+            func.apply(src, [source, resp]);
+            return obj;
+        });
+    }
+
+    public startsWith<T extends Base>(base:T, key:string, value:string, source:string, func:Function, src:any):void{
+        let tbl = base.table.toString();
+        let _url = this.url.concat(tbl).concat(this.suffix)
+                                        .concat(this.orderBy)
+                                        .concat(this.quote).concat(key).concat(this.quote)
+                                        .concat(this.and)
+                                        .concat(this.endAt)
+                                        .concat(this.quote).concat(value).concat(this.restStirng).concat(this.quote);
+                     
+        var response = this.http.get(_url);
+        response.forEach(obj =>{
+            var res = this.getInnerJsonArray(obj.text());
+            func.apply(src, [source, res]);
+            return obj;
+        });                                      
     }
 
     /**
