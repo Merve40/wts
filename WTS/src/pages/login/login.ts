@@ -7,8 +7,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
 
 import { Profile_externPage } from '../profile_extern/profile_extern';
+import * as CryptoJS from 'crypto-js';
 
-const  CryptoJS = require("crypto-js");
+//const  CryptoJS = require("crypto-js");
 
 @Component({
   selector: 'page-login',
