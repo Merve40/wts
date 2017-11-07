@@ -65,6 +65,9 @@
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {}
-    }
+    },
+    "platforms": [
+      "ios"
+    ]
   }
 }
