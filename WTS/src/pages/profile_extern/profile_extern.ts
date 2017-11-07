@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { AccountTable } from '../../providers/api/account';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
+import { TranslateService } from '@ngx-translate/core';
 
 import { ProfilePage } from '../profile/profile';
 import { CompanyProfilePage } from '../company_profile/company_profile';
 import { UniProfilePage } from '../uni_profile/uni_profile';
+import { LoginPage } from '../login/login';
 
 @Component({
     selector: 'page-profile_extern',
@@ -17,8 +19,8 @@ import { UniProfilePage } from '../uni_profile/uni_profile';
 
     accID:string;    
     
-    constructor(public storage:Storage, public navCtrl: NavController, public navParams: NavParams,
-      public AccountTable: AccountTable) {
+    constructor(public storage:Storage, public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController,
+      public translate: TranslateService, public AccountTable: AccountTable) {
         AccountTable.setSrcClass(this);
         console.log("Started constructor");
         this.accID = navParams.get("userId");
@@ -49,7 +51,23 @@ import { UniProfilePage } from '../uni_profile/uni_profile';
         //todo: Student Profil (ProfilePage) mit Uni Profil ersetzen
         case "gruppe_3": this.navCtrl.push(UniProfilePage, { userId: json.id });
           break;
+        default:
+        this.translate.get('DB-ERROR').subscribe(
+          value => {
+            this.showError(value);
+          });
+          this.navCtrl.push(LoginPage, { userId: json.id });
       }
+    }
+
+
+    showError(message) {
+      const toast = this.toastCtrl.create({
+        message: message,
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
     }
 
   ngAfterViewInit(){   
