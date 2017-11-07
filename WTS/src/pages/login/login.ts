@@ -40,15 +40,12 @@ export class LoginPage implements OnResultComplete {
   onComplete(source, json) {
     if (source == "1") {
       console.log("Entered source 1");
-      if(json.body == null){     
-        
+      if(json.body == null){        
         console.log("OnComplete: Email is not correct")
         this.translate.get('INCORRECTLOGIN').subscribe(
           value => {
             this.showLoginError(value);
           });
-
-        
       }
     else{
       console.log("OnComplete:Email is correct");
