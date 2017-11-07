@@ -71,3 +71,8 @@ TranslationService
 ```
 npm install @ngx-translate/core @ngx-translate/http-loader --save
 ```
+
+moment library for dateformat:
+```
+npm install --save moment
+```

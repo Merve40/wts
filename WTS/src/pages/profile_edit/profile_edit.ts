@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { TranslateService } from '@ngx-translate/core';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { StudentTable } from '../../providers/api/student';
 import { AccountTable } from '../../providers/api/account';
 import { AdressTable } from '../../providers/api/adress';
@@ -10,7 +11,7 @@ import { PassionTable } from '../../providers/api/passion';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
 import { ProfilePage } from '../profile/profile'
 
-
+import * as moment from 'moment';
 
 @Component({
   selector: 'page-profile_edit',
@@ -35,10 +36,12 @@ export class Profile_EditPage {
   Vertiefung: any;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public AdressTable: AdressTable,
-    public StudentTable: StudentTable, public AccountTable: AccountTable,
-    public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable,
-    public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public translate: TranslateService,
+            public toastCtrl: ToastController, public AdressTable: AdressTable,
+            public StudentTable: StudentTable, public AccountTable: AccountTable,
+            public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable,
+            public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
+
     StudentTable.setSrcClass(this);
     AccountTable.setSrcClass(this);
     AdressTable.setSrcClass(this);
@@ -59,9 +62,11 @@ export class Profile_EditPage {
     if (this.studentjson.body.Abschluss != this.Abschluss)
       this.studentjson.body.Abschluss = this.Abschluss;
     if (this.studentjson.body.Abschluss_Datum != this.Abschluss_Datum)
-      this.studentjson.body.Abschluss_Datum = this.Abschluss_Datum;
+      var date = moment(this.Abschluss_Datum, "YYYY-MM-DD").format("DD.MM.YYYY");
+    this.studentjson.body.Abschluss_Datum = date;
     if (this.studentjson.body.Geb_Datum != this.Geb_Datum)
-      this.studentjson.body.Geb_Datum = this.Geb_Datum;
+      var date = moment(this.Geb_Datum, "YYYY-MM-DD").format("DD.MM.YYYY");
+    this.studentjson.body.Geb_Datum = date;
     if (this.studentjson.body.Studiengang != this.Studiengang)
       this.studentjson.body.Studiengang = this.Studiengang;
     if (this.studentjson.body.Semester != this.Semester)
@@ -76,23 +81,40 @@ export class Profile_EditPage {
       this.studentjson.body.Beschreibung = this.Beschreibung;
     //Date-Korrektheit hier überprüfen
 
-    this.StudentTable.update(this.studentjson.id, this.studentjson.body, "", function (flag, json) { })
+    this.StudentTable.update(this.studentjson.id, this.studentjson.body, "", function (flag, json) {
+      if(json){
+        
+        this.translate.get("SAVED_CHANGES").subscribe( value =>{
+          const toast = this.toastCtrl.create({
+            message: "Änderungen wurden gespeichert",
+            duration: 3000,
+            position: 'top'
+          });
+          toast.present();
+        });
+      }
+    });
+
   }
 
   discardChanges() {
-    this.StudentTable.getByValue("Account_Id", this.accID, "student-abfrage", this.onComplete);
+    this.StudentTable.getByValue("Account_id", this.accID, "student-abfrage", this.onComplete);
     this.navCtrl.setRoot(ProfilePage);
   }
 
   onComplete(src, json) {
     //Auslesen der Daten aus Tabelle Student where AccID = AccID
     if (src == "student-abfrage") {
+      console.log("student-abfrage");
+      console.log(json);
       this.studentjson = json;
 
       this.Uni = this.studentjson.body.Uni;
       this.Abschluss = this.studentjson.body.Abschluss;
-      this.Abschluss_Datum = this.studentjson.body.Abschluss_Datum;
-      this.Geb_Datum = this.studentjson.body.Geb_Datum;
+      var date_abschluss = moment(this.studentjson.body.Abschluss_Datum, "DD.MM.YYYY").format("YYYY-MM-DD");
+      this.Abschluss_Datum = date_abschluss;
+      var date_birth = moment(this.studentjson.body.Geb_Datum, "DD.MM.YYYY").format("YYYY-MM-DD");
+      this.Geb_Datum = date_birth;
       this.Studiengang = this.studentjson.body.Studiengang;
       this.Semester = this.studentjson.body.Semester;
       this.Nachname = this.studentjson.body.Nachname;
@@ -107,9 +129,6 @@ export class Profile_EditPage {
   loadData() {
     console.log("Beginn LoadData")
     this.StudentTable.getByValue("Account_Id", this.accID, "student-abfrage", this.onComplete);
-    //this.AccountTable.getById(this.AccID, "account-abfrage", this.onComplete);
-    // this.StudentPassionTable.filterByValue("Account_Id", this.AccID, "passionStudent-abfrage", this.onComplete);
-    //this.StudentSkillTable.filterByValue("Account_Id", this.AccID, "skill-abfrage", this.onComplete);
   }
 
   ngAfterViewInit() {
