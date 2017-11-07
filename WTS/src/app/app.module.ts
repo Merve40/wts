@@ -11,8 +11,8 @@ import { UniProfilePage } from '../pages/uni_profile/uni_profile';
 import { CompanyProfilePage } from '../pages/company_profile/company_profile';
 import { Profile_externPage } from '../pages/profile_extern/profile_extern';
 import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
-import { Searchbar_TestPage } from '../pages/searchbar_test/searchbar_test';
-import { ListSearchPage } from '../pages/list_search/list_search';
+// import { Searchbar_TestPage } from '../pages/searchbar_test/searchbar_test';
+// import { ListSearchPage } from '../pages/list_search/list_search';
 
 import { Api } from '../providers/api/api';
 import { AccountTable } from '../providers/api/account';
@@ -44,8 +44,8 @@ import { MockProvider} from '../pages/list_search/dataprovider';
     ProfilePage,
     Profile_externPage,
     Profile_EditPage,
-    Searchbar_TestPage,
-    ListSearchPage,
+    // Searchbar_TestPage,
+    // ListSearchPage,
     CompanyProfilePage,
     UniProfilePage
   ],
@@ -70,8 +70,8 @@ import { MockProvider} from '../pages/list_search/dataprovider';
     ProfilePage,
     Profile_externPage,
     Profile_EditPage,
-    Searchbar_TestPage,
-    ListSearchPage,
+    // Searchbar_TestPage,
+    // ListSearchPage,
     UniProfilePage,
     CompanyProfilePage
   ],

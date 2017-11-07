@@ -51,4 +51,8 @@ export class AdressTable extends Base {
     getAllStartingWith(key:string, value:string, source:string, func:Function){
         this.api.startsWith(this, key, value, source, func, this.srcClass);
     }
+
+    getAllContaining(key:string, value:string, source:string, func:Function){
+        this.api.getByContains(this, key, value, source, func, this.srcClass);
+    }
 }
