@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { AccountTable } from '../../providers/api/account';
 import { AdressTable } from '../../providers/api/adress';
@@ -12,13 +12,14 @@ import { OnResultComplete } from '../../providers/api/OnResultComplete';
 })
 export class CompanyProfilePage implements OnResultComplete {
 
-  AccID = 'acc_11';
+  AccID: string;
   
-  constructor(public storage:Storage, public navCtrl: NavController, public AdressTable:AdressTable, 
+  constructor(public storage:Storage, public navCtrl: NavController, public navParams: NavParams, public AdressTable:AdressTable, 
     public AccountTable: AccountTable, public CompanyTable: CompanyTable) {
     AccountTable.setSrcClass(this);
     AdressTable.setSrcClass(this);
     CompanyTable.setSrcClass(this);
+    this.AccID = navParams.get("userId");
     // Abfrage der lokal gespeicherten 'user_id'
       this.loadData();
   }
