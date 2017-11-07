@@ -1,0 +1,38 @@
+<div class="full">
+    <ion-header class="header">
+      <!-- For deleting the navigationbar on loginpage
+      COMMENT/ DELETE FROM HERE ON UNTIL NEXT COMMENT-->
+      <ion-navbar>{{'LOGINPAGE' | translate}}
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      </ion-navbar>
+      <!-- NAVBAR END; COMMENT/ DELETE UNTIL HERE -->
+    </ion-header>
+  
+    <ion-content padding>
+  
+      <div class="logo">
+        <img src='assets/img/wts_logo.png' alt="your image">
+      </div>
+      <div class="login">
+        <div class="emailfield">
+          <label id="mail" class="item item-input">
+            <input type="text" placeholder="{{'EMAIL' | translate}}" [(ngModel)]="email">
+          </label>
+        </div>
+        <div class="passwordfield">
+          <label id="pw" class="item item-input">
+            <input type="password" placeholder="{{'PASSWORD' | translate}}" [(ngModel)]="password">
+          </label>
+        </div>
+        <button class="button login" ion-button color="wts_grey" (click)="login()" block> {{ 'LOGIN' | translate }}</button>
+  
+        <div class="registerlink">
+          <a href="http://www.google.com">{{ 'REGISTER' | translate }}</a>
+        </div>
+  
+      </div>
+  
+    </ion-content>
+  </div>

@@ -11,6 +11,7 @@ import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
 import { UniProfilePage } from '../pages/uni_profile/uni_profile';
 import { CompanyProfilePage } from '../pages/company_profile/company_profile';
 import { ListSearchPage } from '../pages/list_search/list_search';
+import { MessagePage } from '../pages/message/message_item/message_item';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -44,8 +45,9 @@ export class MyApp {
         { title: 'Extern Profile', component: Profile_externPage },
         { title: 'Edit Profile', component: Profile_EditPage },
         { title: 'Uni Profil', component: UniProfilePage },
+        { title: "Message", component: MessagePage},
         { title: 'Company Profil', component: CompanyProfilePage }
-
+        
 
       ];
     })
