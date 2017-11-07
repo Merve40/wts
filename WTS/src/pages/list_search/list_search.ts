@@ -10,16 +10,14 @@ import { PassionTable } from '../../providers/api/passion';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
 
 //Testdaten
-var abschluss = "Bachelor of Science";
-var nachname = "Ritzerfeld";
-var name = "Moritz";
-var semester = "7";
+var result = ["1", "2", "3"];
+var pagesize = 10;
 
 @Component({
-  selector: 'page-searchbar_test',
-  templateUrl: 'searchbar_test.html'
+  selector: 'page-list_search',
+  templateUrl: 'list_search.html'
 })
-export class Searchbar_TestPage implements OnResultComplete {
+export class ListSearchPage implements OnResultComplete {
 
   constructor(public navCtrl: NavController, public AdressTable: AdressTable, public StudentTable: StudentTable, public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable, public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
     StudentTable.setSrcClass(this);
@@ -34,27 +32,15 @@ export class Searchbar_TestPage implements OnResultComplete {
   onComplete(src, json) {
 
     switch (src) {
-      case "studenten-abfrage": {
-
-        var body = json;
-        var studenten = [];
-        var filter_list = [];
-  
-        for(var i = 0; i < json.length; i++){
-          var item = json[i];
-          studenten[i] = item.body.Name + " " + item.body.Nachname;
-        }
-        console.log(studenten);
-        for(var i = 0; i < json.length; i++){
-          if(this.checkForFilter("Bachelor", studenten[i])){
-           filter_list.push(studenten[i]);
+      case "search-query": {
+        if(result.length < pagesize){
+        json.forEach(element => {
+          var accountId = element.body.Account_Id;
+          if (result.indexOf(accountId < 0) && result.length < pagesize) {
+            result.push(accountId);
           }
-        }
-
-        break;
+        });
       }
-      case "": {
-        //statements; 
         break;
       }
       default: {
@@ -62,26 +48,28 @@ export class Searchbar_TestPage implements OnResultComplete {
         break;
       }
     }
+    console.log(result);
+  }
+
+  searchForStudents(searchString) {
+    result = [];
+    var searchArray = searchString.split(" ");
+    searchArray.forEach(element => {
+      this.StudentTable.getAllContaining("Abschluss", element, "search-query", this.onComplete);
+      this.StudentTable.getAllContaining("Beschäftigung", element, "search-query", this.onComplete);
+      this.StudentTable.getAllContaining("Beschreibung", element, "search-query", this.onComplete);
+      this.StudentTable.getAllContaining("Nachname", element, "search-query", this.onComplete);
+      this.StudentTable.getAllContaining("Name", element, "search-query", this.onComplete);
+      this.StudentTable.getAllContaining("Semester", element, "search-query", this.onComplete);
+      this.StudentTable.getAllContaining("Studiengang", element, "search-query", this.onComplete);
+      this.StudentTable.getAllContaining("Uni", element, "search-query", this.onComplete);
+      this.StudentTable.getAllContaining("Vertiefung", element, "search-query", this.onComplete);
+    });
   }
 
   ngAfterViewInit() {
-    this.StudentTable.filterByValue("Abschluss", abschluss, "studenten-abfrage", this.onComplete);
-  }
- 
-  checkForFilter(filter,student)
-  {
-    var result =
-    (student.Abschluss.contains(filter)) ||
-    (student.Abschluss_Datum.contains(filter)) ||
-    (student.Beschäftigung.contains(filter)) ||
-    (student.Geb_Datum.contains(filter)) ||
-    (student.Nachname.contains(filter)) ||
-    (student.Name.contains(filter)) ||
-    (student.Semester.contains(filter)) ||
-    (student.Studiengang.contains(filter)) ||
-    (student.Uni.contains(filter)) ||
-    (student.Vertiefung.contains(filter));
-     return result;
+    var test = "a";
+    this.searchForStudents(test);
   }
 }
 

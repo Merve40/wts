@@ -10,8 +10,7 @@ import { Profile_externPage } from '../pages/profile_extern/profile_extern';
 import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
 import { UniProfilePage } from '../pages/uni_profile/uni_profile';
 import { CompanyProfilePage } from '../pages/company_profile/company_profile';
-// import { Searchbar_TestPage } from '../pages/searchbar_test/searchbar_test';
-// import { ListSearchPage } from '../pages/list_search/list_search';
+import { ListSearchPage } from '../pages/list_search/list_search';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -28,7 +27,7 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any }>;
 
-  constructor(public storage:Storage, public platform: Platform, public statusBar: StatusBar,
+  constructor(public storage: Storage, public platform: Platform, public statusBar: StatusBar,
     public splashScreen: SplashScreen, public screenOrientation: ScreenOrientation,
     public translate: TranslateService) {
     this.initializeApp();
@@ -37,20 +36,19 @@ export class MyApp {
     // Labels & Pages in navigationbar in upper left corner
 
     translate.get(['LOGINPAGE', 'PROFILEPAGE', 'LOGOUT', 'LISTSEARCHPAGE']).subscribe(translations => {
-    this.pages = [
-      { title: translations.LOGINPAGE, component: LoginPage },
-      { title: translations.PROFILEPAGE, component: ProfilePage },
-      { title: translations.LOGOUT, component: LoginPage },
-      // { title: translations.LISTSEARCHPAGE, component:ListSearchPage},
-      { title: 'Extern Profile', component: Profile_externPage },
-      { title: 'Edit Profile', component:Profile_EditPage},
-      { title: 'Uni Profil', component:UniProfilePage},
-      { title: 'Company Profil', component:CompanyProfilePage},
-      // { title: 'SearchbarTest', component:Searchbar_TestPage}
+      this.pages = [
+        { title: translations.LOGINPAGE, component: LoginPage },
+        { title: translations.PROFILEPAGE, component: ProfilePage },
+        { title: translations.LOGOUT, component: LoginPage },
+        { title: translations.LISTSEARCHPAGE, component: ListSearchPage },
+        { title: 'Extern Profile', component: Profile_externPage },
+        { title: 'Edit Profile', component: Profile_EditPage },
+        { title: 'Uni Profil', component: UniProfilePage },
+        { title: 'Company Profil', component: CompanyProfilePage }
 
 
-    ];
-  })
+      ];
+    })
 
   }
 

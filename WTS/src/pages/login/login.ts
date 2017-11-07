@@ -78,13 +78,13 @@ export class LoginPage implements OnResultComplete {
     this.storage.set("user_id", json.id);
 
     switch (json.body.Usergruppe) {
-      case "gruppe_1": this.navCtrl.push(ProfilePage, { userId: json.id });
+      case "gruppe_1": this.navCtrl.setRoot(ProfilePage, { userId: json.id });
         break;
       //todo: Student Profil (ProfilePage) mit Unternehmen Profil ersetzen
-      case "gruppe_2": this.navCtrl.push(CompanyProfilePage, { userId: json.id });
+      case "gruppe_2": this.navCtrl.setRoot(CompanyProfilePage, { userId: json.id });
         break;
       //todo: Student Profil (ProfilePage) mit Uni Profil ersetzen
-      case "gruppe_3": this.navCtrl.push(UniProfilePage, { userId: json.id });
+      case "gruppe_3": this.navCtrl.setRoot(UniProfilePage, { userId: json.id });
         break;
       default:
       console.log("Entered navigation: DB Error");
