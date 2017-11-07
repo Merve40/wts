@@ -6,8 +6,16 @@
       </button>
     </ion-navbar>
     <ion-toolbar>
+        <ion-item>
+            <ion-label>Suchparameter</ion-label>
+            <ion-select [(ngModel)]="searchparameter">
+              <ion-option value="Name">Name</ion-option>
+              <ion-option value="Nachname">Nachname</ion-option>
+              <ion-option value="Abschluss">Abschluss</ion-option>
+            </ion-select>
+          </ion-item>
       <ion-searchbar [(ngModel)]="filter" [showCancelButton]="shouldShowCancel" (ionInput)="searchForStudents($event)" (ionCancel)="onCancel($event)"
-        aria-autocomplete="On" (debounce)=500>
+        aria-autocomplete="On" (debounce)=1000>
       </ion-searchbar>
     </ion-toolbar>
   </ion-header>
