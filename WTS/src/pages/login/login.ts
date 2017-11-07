@@ -2,12 +2,14 @@ import { Component } from '@angular/core';
 import { Inject } from '@angular/core';
 import { AccountTable } from '../../providers/api/account';
 import { NavController, ToastController } from 'ionic-angular';
-import { ProfilePage } from '../profile/profile';
-import { CompanyProfilePage } from '../company_profile/company_profile';
-import { UniProfilePage } from '../uni_profile/uni_profile';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
+
+import { ProfilePage } from '../profile/profile';
+import { CompanyProfilePage } from '../company_profile/company_profile';
+import { UniProfilePage } from '../uni_profile/uni_profile';
+import { Profile_externPage } from '../profile_extern/profile_extern';
 
 @Component({
   selector: 'page-login',
@@ -74,23 +76,7 @@ export class LoginPage implements OnResultComplete {
   navigateToUserProfile(json: any) {
     this.storage.set("user_id", json.id);
 
-    switch (json.body.Usergruppe) {
-      case "gruppe_1": this.navCtrl.setRoot(ProfilePage, { userId: json.id });
-        break;
-      //todo: Student Profil (ProfilePage) mit Unternehmen Profil ersetzen
-      case "gruppe_2": this.navCtrl.setRoot(CompanyProfilePage, { userId: json.id });
-        break;
-      //todo: Student Profil (ProfilePage) mit Uni Profil ersetzen
-      case "gruppe_3": this.navCtrl.setRoot(UniProfilePage, { userId: json.id });
-        break;
-      default:
-      console.log("Entered navigation: DB Error");
-        this.translate.get('DB-ERROR').subscribe(
-          value => {
-            this.showLoginError(value);
-          });
-    }
-
+    this.navCtrl.setRoot(Profile_externPage, { userId: json.id });
   }
 
   showLoginError(message) {
