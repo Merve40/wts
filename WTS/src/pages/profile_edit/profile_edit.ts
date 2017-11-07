@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { StudentTable } from '../../providers/api/student';
 import { AccountTable } from '../../providers/api/account';
 import { AdressTable } from '../../providers/api/adress';
@@ -18,7 +18,7 @@ import { ProfilePage } from '../profile/profile'
 })
 export class Profile_EditPage {
 
-  AccID = 'acc_1'; // AccountID die wir aus dem Login entnehmen
+  accID: string; // AccountID die wir aus dem Login entnehmen
 
   // Elemente, die aus der Profile-Klasse übergeben werden sollen
   studentjson: any;
@@ -35,7 +35,7 @@ export class Profile_EditPage {
   Vertiefung: any;
 
 
-  constructor(public navCtrl: NavController, public AdressTable: AdressTable,
+  constructor(public navCtrl: NavController, public navParams: NavParams, public AdressTable: AdressTable,
     public StudentTable: StudentTable, public AccountTable: AccountTable,
     public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable,
     public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
@@ -46,6 +46,7 @@ export class Profile_EditPage {
     SkillTable.setSrcClass(this);
     PassionTable.setSrcClass(this);
     StudentPassionTable.setSrcClass(this);
+    this.accID = navParams.get("userId");
     this.loadData();
   }
 
@@ -79,7 +80,7 @@ export class Profile_EditPage {
   }
 
   discardChanges() {
-    this.StudentTable.getByValue("Account_Id", this.AccID, "student-abfrage", this.onComplete);
+    this.StudentTable.getByValue("Account_Id", this.accID, "student-abfrage", this.onComplete);
     this.navCtrl.push(ProfilePage);
   }
 
@@ -105,7 +106,7 @@ export class Profile_EditPage {
 
   loadData() {
     console.log("Beginn LoadData")
-    this.StudentTable.getByValue("Account_Id", this.AccID, "student-abfrage", this.onComplete);
+    this.StudentTable.getByValue("Account_Id", this.accID, "student-abfrage", this.onComplete);
     //this.AccountTable.getById(this.AccID, "account-abfrage", this.onComplete);
     // this.StudentPassionTable.filterByValue("Account_Id", this.AccID, "passionStudent-abfrage", this.onComplete);
     //this.StudentSkillTable.filterByValue("Account_Id", this.AccID, "skill-abfrage", this.onComplete);
