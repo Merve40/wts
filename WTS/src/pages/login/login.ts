@@ -3,6 +3,8 @@ import { Inject } from '@angular/core';
 import { AccountTable } from '../../providers/api/account';
 import { NavController, ToastController } from 'ionic-angular';
 import { ProfilePage } from '../profile/profile';
+import { CompanyProfilePage } from '../company_profile/company_profile';
+import { UniProfilePage } from '../uni_profile/uni_profile';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
@@ -54,16 +56,19 @@ export class LoginPage implements OnResultComplete {
   navigateToUserProfile(json: any) {
     this.storage.set("user_id", json.id);
 
+
+
     switch (json.body.Usergruppe) {
-      case "Student": this.navCtrl.push(ProfilePage, { userId: json.id });
+      case "gruppe_1": this.navCtrl.push(ProfilePage, { userId: json.id });
         break;
       //todo: Student Profil (ProfilePage) mit Unternehmen Profil ersetzen
-      case "Unternehmen": this.navCtrl.push(ProfilePage, { userId: json.id });
+      case "gruppe_2": this.navCtrl.push(CompanyProfilePage, { userId: json.id });
         break;
       //todo: Student Profil (ProfilePage) mit Uni Profil ersetzen
-      case "Universität": this.navCtrl.push(ProfilePage, { userId: json.id });
+      case "gruppe_3": this.navCtrl.push(UniProfilePage, { userId: json.id });
         break;
     }
+
   }
 
   showLoginError(message) {
