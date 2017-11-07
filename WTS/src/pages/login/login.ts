@@ -24,7 +24,6 @@ export class LoginPage implements OnResultComplete {
   }
 
   login() {
-    console.log("logging in..");
     if (this.email && this.password) {
       this.accountTable.getByValue("Email", this.email, "1", this.onComplete);
     }
@@ -38,26 +37,21 @@ export class LoginPage implements OnResultComplete {
 
   onComplete(source, json) {
     if (source == "1") {
-      console.log("Entered source 1");
       if(json.body == null){        
-        console.log("OnComplete: Email is not correct")
-        this.translate.get('INCORRECTLOGIN').subscribe(
+       this.translate.get('INCORRECTLOGIN').subscribe(
           value => {
             this.showLoginError(value);
           });
       }
     else{
-      console.log("OnComplete:Email is correct");
       this.validateUser(json);
-    }
+      }
     }
   }
 
   validateUser(json: any) {
-    console.log("Entered validate user");
 
     if (json.body.Passwort == this.password ) {
-      console.log("Password was correct");
       this.encrypt(this.password);
       this.navigateToUserProfile(json);
     
