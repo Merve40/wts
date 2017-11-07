@@ -1,7 +1,9 @@
 {
   "HELLO": "Hello",
+  "NAME": "Name",
   "LOGINPAGE": "Login",
   "LOGOUT": "Logout",
+  "MESSAGE": "Message",
   "PROFILEPAGE": "Profile",
   "LISTSEARCHPAGE": "Search",
   "EMAIL": "Email",
@@ -16,6 +18,8 @@
   "BIRTHDAY": "Birthday",
   "UNIVERSITY": "University",
   "STUDYPROGRAM": "Study Program",
+  "SPECIALIZATION": "Specialization",   
+  "SEMESTER": "Semester",  
   "DEGREE": "Degree",
   "STUDYPROGRESS": "Study Progress",
   "ENDOFSTUDY": "Approxamitely end of study",

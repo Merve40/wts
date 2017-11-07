@@ -14,5 +14,9 @@
       "PACKAGE_NAME": "com.wts"
     }
   },
-  "dependent_plugins": {}
+  "dependent_plugins": {
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.wts"
+    }
+  }
 }

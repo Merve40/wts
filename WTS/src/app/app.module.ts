@@ -12,6 +12,7 @@ import { CompanyProfilePage } from '../pages/company_profile/company_profile';
 import { Profile_externPage } from '../pages/profile_extern/profile_extern';
 import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
 import { ListSearchPage } from '../pages/list_search/list_search';
+import { MessagePage } from '../pages/message/message_item/message_item';
 
 import { Api } from '../providers/api/api';
 import { AccountTable } from '../providers/api/account';
@@ -45,6 +46,7 @@ import { MockProvider} from '../pages/list_search/dataprovider';
     Profile_EditPage,
     ListSearchPage,
     CompanyProfilePage,
+    MessagePage,
     UniProfilePage
   ],
   imports: [
@@ -70,6 +72,7 @@ import { MockProvider} from '../pages/list_search/dataprovider';
     Profile_EditPage,
     ListSearchPage,
     UniProfilePage,
+    MessagePage,
     CompanyProfilePage
   ],
   providers: [
