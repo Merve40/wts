@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, Button } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Profile_EditPage } from '../profile_edit/profile_edit'
 import { StudentTable } from '../../providers/api/student';
@@ -19,6 +19,7 @@ export class ProfilePage implements OnResultComplete {
 
   accID: string;
   isExtern: boolean;
+  @ViewChild ('myButton') button: Button;
 
   constructor(public storage:Storage, public navCtrl: NavController, public navParams: NavParams, public AdressTable: AdressTable, public StudentTable: StudentTable, public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable, public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
     StudentTable.setSrcClass(this);
@@ -48,7 +49,11 @@ export class ProfilePage implements OnResultComplete {
       this.StudentSkillTable.filterByValue("Account_Id", this.accID, "skill-abfrage", this.onComplete);
     }else{
       console.log("Openend is NOT extern");
-      //document.getElementById("edit").style.display = 'none';
+      // var content = '<button hidden id ="edit" ion-button editProfile ion-button color="wts_grey" (click)="edit()"/button>';
+      // document.getElementById("edit").innerHTML = content;
+
+      // document.getElementById("edit").className = "hidden";
+
       this.StudentTable.getByValue("Account_Id", this.accID, "student-abfrage", this.onComplete);
       this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
       this.StudentPassionTable.filterByValue("Account_Id", this.accID, "passionStudent-abfrage", this.onComplete);
@@ -171,11 +176,12 @@ export class ProfilePage implements OnResultComplete {
   }
 
 
-  // ngAfterViewInit() {
-  //   this.StudentTable.getByValue("Account_Id", this.accID, "student-abfrage", this.onComplete);
-  //   this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
-  //   this.StudentPassionTable.filterByValue("Account_Id", this.accID, "passionStudent-abfrage", this.onComplete);
-  //   this.StudentSkillTable.filterByValue("Account_Id", this.accID, "skill-abfrage", this.onComplete);
-  // }
+  ngAfterViewInit() {    
+    //document.getElementById("buttondiv").className = "hidden";
+    // this.StudentTable.getByValue("Account_Id", this.accID, "student-abfrage", this.onComplete);
+    // this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
+    // this.StudentPassionTable.filterByValue("Account_Id", this.accID, "passionStudent-abfrage", this.onComplete);
+    // this.StudentSkillTable.filterByValue("Account_Id", this.accID, "skill-abfrage", this.onComplete);
+  }
 
 }
