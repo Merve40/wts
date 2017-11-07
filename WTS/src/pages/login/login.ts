@@ -6,19 +6,20 @@ import { OnResultComplete } from '../../providers/api/OnResultComplete';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
 
+<<<<<<< HEAD
 import { ProfilePage } from '../profile/profile';
 import { CompanyProfilePage } from '../company_profile/company_profile';
 import { UniProfilePage } from '../uni_profile/uni_profile';
 import { Profile_externPage } from '../profile_extern/profile_extern';
+=======
+const  CryptoJS = require("crypto-js");
+>>>>>>> be47187ba545857c794b8c60d8f2d125beb3d83d
 
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
 })
 export class LoginPage implements OnResultComplete {
-
-  require: any;
-
   email: any;
   password: any;
 
@@ -61,6 +62,7 @@ export class LoginPage implements OnResultComplete {
 
     if (json.body.Passwort == this.password ) {
       console.log("Password was correct");
+      this.encrypt(this.password);
       this.navigateToUserProfile(json);
     
     
@@ -89,8 +91,6 @@ export class LoginPage implements OnResultComplete {
   }
 
   encrypt(password) {
-    var CryptoJS = this.require("crypto-js");
-    // Encrypt
     var hash = CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex);
     console.log(hash);
   }

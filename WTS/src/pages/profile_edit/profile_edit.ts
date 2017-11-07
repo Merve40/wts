@@ -81,7 +81,7 @@ export class Profile_EditPage {
 
   discardChanges() {
     this.StudentTable.getByValue("Account_Id", this.accID, "student-abfrage", this.onComplete);
-    this.navCtrl.push(ProfilePage);
+    this.navCtrl.setRoot(ProfilePage);
   }
 
   onComplete(src, json) {
