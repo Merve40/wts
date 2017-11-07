@@ -19,7 +19,7 @@ constructor(public accountTable:AccountTable){
 In order to retrieve data, a callback method needs to be defined, which is why the class needs to implement the `OnResultComplete` interface. It defines a method `onComplete(source:string, json:any)`, which will be invoked inside the `api`, once the result has been fetched. This method will be used for all database requests within this class. The `source` will be defined by the programmer, in order to identify which result is being returned inside the `onComplete` method and the `json` is the result returned by the database. It cas either be a json object or a json array.
 The following code shows how to log in a user, with `email` and `password`.
 
-```
+```javascript
 login(){
     if (this.email && this.password) {
       this.accountTable.getByValue("Email",this.email, "1",this.onComplete);
