@@ -8,7 +8,9 @@
   "PASSWORD": "Passwort",
   "LOGIN": "Anmelden",
   "REGISTER": "Registrieren",
-  "MISSINGLOGINDATAMESSAGE": "Bitte Benutzernamen und Passwort eintragen",
+  "MISSINGLOGINDATAMESSAGE": "Bitte Benutzernamen und Passwort eintragen.",
+  "INCORRECTLOGIN": "Ihre Eingabe war nicht korrekt. Bitte versuchen Sie es erneut.",
+  "DB-ERROR": "Entschuldigung, wir haben einen internen Fehler. // Gruppe in DB nicht korrekt.",
   "SAVE": "Speichern",
   "EDIT": "Profil bearbeiten",
   "BIRTHDAY": "Geburtstag",
@@ -23,10 +25,11 @@
   "SAVECHANGES": "Änderungen speichern",
   "DISCARDCHANGES": "Änderungen verwerfen",
   "UNI_PROFILE": "Universitäts Profil",
+  "COMPANY_PROFILE": "Unternehmensprofil",  
   "STUDYBRANCHES": "Fachrichtungen",
   "BRANCHES": "Fachrichtung",
-  "LINK": "Link zu Website",
   "DESCRIPTION": "Beschreibung",
+  "LINK": "Link zu Webseite",
   "EMPLOYMENT": "Beschäftigung",
   "PROFILE": "Mein Profil"
  }
