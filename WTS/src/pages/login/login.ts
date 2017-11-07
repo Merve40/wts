@@ -28,25 +28,43 @@ export class LoginPage implements OnResultComplete {
     if (this.email && this.password) {
       this.accountTable.getByValue("Email", this.email, "1", this.onComplete);
     }
-    //contains example (Student)
-    this.accountTable.getAllContaining("Usergruppe", "tuden", "contains-test", this.onComplete);
+    else{
+      this.translate.get('MISSINGLOGINDATAMESSAGE').subscribe(
+        value => {
+          this.showLoginError(value);
+        });
+    }
   }
 
   onComplete(source, json) {
     if (source == "1") {
+      console.log("Entered source 1");
+      if(json.body == null){        
+        console.log("OnComplete: Email is not correct")
+        this.translate.get('INCORRECTLOGIN').subscribe(
+          value => {
+            this.showLoginError(value);
+          });
+      }
+    else{
+      console.log("OnComplete:Email is correct");
       this.validateUser(json);
-    }else if(source == "contains-test"){
-      console.log(json);
+    }
     }
   }
 
   validateUser(json: any) {
-    if (json.body.Passwort == this.password) {
+    console.log("Entered validate user");
+
+    if (json.body.Passwort == this.password ) {
+      console.log("Password was correct");
       this.encrypt(this.password);
       this.navigateToUserProfile(json);
-
+    
+    
     } else {
-      this.translate.get('MISSINGLOGINDATAMESSAGE').subscribe(
+      console.log("Input was not correct");
+      this.translate.get('INCORRECTLOGIN').subscribe(
         value => {
           this.showLoginError(value);
         });
@@ -55,8 +73,6 @@ export class LoginPage implements OnResultComplete {
 
   navigateToUserProfile(json: any) {
     this.storage.set("user_id", json.id);
-
-
 
     switch (json.body.Usergruppe) {
       case "gruppe_1": this.navCtrl.setRoot(ProfilePage, { userId: json.id });
@@ -67,6 +83,12 @@ export class LoginPage implements OnResultComplete {
       //todo: Student Profil (ProfilePage) mit Uni Profil ersetzen
       case "gruppe_3": this.navCtrl.setRoot(UniProfilePage, { userId: json.id });
         break;
+      default:
+      console.log("Entered navigation: DB Error");
+        this.translate.get('DB-ERROR').subscribe(
+          value => {
+            this.showLoginError(value);
+          });
     }
 
   }

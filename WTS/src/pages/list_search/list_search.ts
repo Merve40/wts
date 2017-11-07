@@ -36,7 +36,7 @@ export class ListSearchPage implements OnResultComplete {
         if(result.length < pagesize){
         json.forEach(element => {
           var accountId = element.body.Account_Id;
-          if (result.indexOf(accountId) < 0 && result.length < pagesize) {
+          if (result.indexOf(accountId )< 0 && result.length < pagesize) {
             result.push(accountId);
           }
         });
