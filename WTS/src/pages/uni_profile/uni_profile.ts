@@ -36,6 +36,7 @@ export class UniProfilePage implements OnResultComplete {
 
         var id = json.id;
         var body = json.body;
+        console.log(json.body.Fachrichtungen);
 
         document.getElementById("uni").innerText = body.Universität;
         document.getElementById("branches").innerText = body.Fachrichtungen;
@@ -43,7 +44,7 @@ export class UniProfilePage implements OnResultComplete {
 
       //Auslesen der Daten aus Tabelle Account
       if(src == "account-abfrage") {
-        console.log("Started account abfrage");
+        console.log("Started account abfrage in uni_profile");
         var body = json.body;
         var adresse_id = body.Adresse_id;
         console.log("Adresse id: " + adresse_id);
@@ -54,7 +55,7 @@ export class UniProfilePage implements OnResultComplete {
   
       //Auslesen der Daten aus Tabelle Adresse
       if(src == "adresse-abfrage"){
-        console.log("Started adresse abfrage");
+        console.log("Started adresse abfrage in Uni_profile");
         var body = json.body;
         var adresse = body.Straße + ', ' + body.PLZ + ', ' + body.Land;
         console.log("Adresse: "+ adresse);
