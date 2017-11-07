@@ -15,10 +15,11 @@
   <ion-content padding>
 
     <ion-list>
-      <ion-item *ngFor="let item of result">
-        {{ item }}
+      <ion-item *ngFor = "let item of result;">
+        <h1>{{item}}</h1>
       </ion-item>
     </ion-list>
+
     <!--     
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="100px">
       <ion-infinite-scroll-content

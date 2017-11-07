@@ -10,14 +10,16 @@ import { PassionTable } from '../../providers/api/passion';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
 
 //Testdaten
-var result = ["1", "2", "3"];
 var pagesize = 10;
+
 
 @Component({
   selector: 'page-list_search',
   templateUrl: 'list_search.html'
 })
 export class ListSearchPage implements OnResultComplete {
+
+  result:any[]=[];
 
   constructor(public navCtrl: NavController, public AdressTable: AdressTable, public StudentTable: StudentTable, public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable, public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
     StudentTable.setSrcClass(this);
@@ -27,17 +29,23 @@ export class ListSearchPage implements OnResultComplete {
     SkillTable.setSrcClass(this);
     PassionTable.setSrcClass(this);
     StudentPassionTable.setSrcClass(this);
+
+    this.result = [
+      "1",
+      "2",
+      "3"
+    ];
   }
 
   onComplete(src, json) {
 
     switch (src) {
       case "search-query": {
-        if(result.length < pagesize){
+        if(this.result.length < pagesize){
         json.forEach(element => {
           var accountId = element.body.Account_Id;
-          if (result.indexOf(accountId )< 0 && result.length < pagesize) {
-            result.push(accountId);
+          if (this.result.indexOf(accountId )< 0 && this.result.length < pagesize) {
+            this.result.push(accountId);
           }
         });
       }
@@ -48,11 +56,11 @@ export class ListSearchPage implements OnResultComplete {
         break;
       }
     }
-    console.log(result);
+    console.log(this.result);
   }
 
   searchForStudents(searchString) {
-    result = [];
+    this.result = [];
     var searchArray = searchString.split(" ");
     searchArray.forEach(element => {
       this.StudentTable.getAllContaining("Abschluss", element, "search-query", this.onComplete);
