@@ -6,27 +6,20 @@
       </button>
     </ion-navbar>
     <ion-toolbar>
-      <ion-searchbar
-      [(ngModel)]="myInput"
-      [showCancelButton]="shouldShowCancel"
-      (ionInput)="onInput($event)"
-      (ionCancel)="onCancel($event)"
-      aria-autocomplete="On"
-      (debounce)=500>
-    </ion-searchbar>
+      <ion-searchbar [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)"
+        aria-autocomplete="On" (debounce)=500>
+      </ion-searchbar>
     </ion-toolbar>
   </ion-header>
 
   <ion-content padding>
-test
+
     <ion-list>
       <ion-item *ngFor="let item of result">
         {{ item }}
-        test
       </ion-item>
     </ion-list>
-    test
-<!--     
+    <!--     
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="100px">
       <ion-infinite-scroll-content
         loadingSpinner="bubbles"
