@@ -10,7 +10,8 @@ import { PassionTable } from '../../providers/api/passion';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
 
 //Testdaten
-var result = [];
+var result = ["1", "2", "3"];
+var pagesize = 10;
 
 @Component({
   selector: 'page-list_search',
@@ -30,18 +31,16 @@ export class ListSearchPage implements OnResultComplete {
 
   onComplete(src, json) {
 
-
     switch (src) {
       case "search-query": {
-        console.log(json.body);
-        var accountId = json.body.Account_Id;
-        if (result.indexOf(accountId < 0)) {
-          result.push(accountId);
-        }
-        break;
+        if(result.length < pagesize){
+        json.forEach(element => {
+          var accountId = element.body.Account_Id;
+          if (result.indexOf(accountId < 0) && result.length < pagesize) {
+            result.push(accountId);
+          }
+        });
       }
-      case "": {
-        //statements; 
         break;
       }
       default: {
@@ -49,6 +48,7 @@ export class ListSearchPage implements OnResultComplete {
         break;
       }
     }
+    console.log(result);
   }
 
   searchForStudents(searchString) {
@@ -68,7 +68,7 @@ export class ListSearchPage implements OnResultComplete {
   }
 
   ngAfterViewInit() {
-    var test = "Bachelor of Science";
+    var test = "a";
     this.searchForStudents(test);
   }
 }
