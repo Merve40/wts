@@ -57,7 +57,7 @@ export class ProfilePage implements OnResultComplete {
   }
 
   edit() {
-    this.navCtrl.push(Profile_EditPage);
+    this.navCtrl.push(Profile_EditPage, {userId:this.accID});
   }
 
   onComplete(src, json) {
