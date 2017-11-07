@@ -29,15 +29,15 @@ export class ListSearchPage implements OnResultComplete {
   }
 
   onComplete(src, json) {
-    
+
 
     switch (src) {
       case "search-query": {
-          console.log(json.body);
-          var accountId = json.body.Account_Id;
-          if(result.indexOf(accountId < 0)){
-            result.push(accountId);
-          }
+        console.log(json.body);
+        var accountId = json.body.Account_Id;
+        if (result.indexOf(accountId < 0)) {
+          result.push(accountId);
+        }
         break;
       }
       case "": {
@@ -51,7 +51,7 @@ export class ListSearchPage implements OnResultComplete {
     }
   }
 
-  searchForStudents(searchString){
+  searchForStudents(searchString) {
     result = [];
     var searchArray = searchString.split(" ");
     searchArray.forEach(element => {
@@ -64,7 +64,7 @@ export class ListSearchPage implements OnResultComplete {
       this.StudentTable.getAllContaining("Studiengang", element, "search-query", this.onComplete);
       this.StudentTable.getAllContaining("Uni", element, "search-query", this.onComplete);
       this.StudentTable.getAllContaining("Vertiefung", element, "search-query", this.onComplete);
-    });   
+    });
   }
 
   ngAfterViewInit() {
