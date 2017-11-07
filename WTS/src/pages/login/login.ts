@@ -2,21 +2,20 @@ import { Component } from '@angular/core';
 import { Inject } from '@angular/core';
 import { AccountTable } from '../../providers/api/account';
 import { NavController, ToastController } from 'ionic-angular';
-import { ProfilePage } from '../profile/profile';
-import { CompanyProfilePage } from '../company_profile/company_profile';
-import { UniProfilePage } from '../uni_profile/uni_profile';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
+
+import { Profile_externPage } from '../profile_extern/profile_extern';
+import * as CryptoJS from 'crypto-js';
+
+//const  CryptoJS = require("crypto-js");
 
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
 })
 export class LoginPage implements OnResultComplete {
-
-  require: any;
-
   email: any;
   password: any;
 
@@ -25,7 +24,6 @@ export class LoginPage implements OnResultComplete {
   }
 
   login() {
-    console.log("logging in..");
     if (this.email && this.password) {
       this.accountTable.getByValue("Email", this.email, "1", this.onComplete);
     }
@@ -39,26 +37,22 @@ export class LoginPage implements OnResultComplete {
 
   onComplete(source, json) {
     if (source == "1") {
-      console.log("Entered source 1");
       if(json.body == null){        
-        console.log("OnComplete: Email is not correct")
-        this.translate.get('INCORRECTLOGIN').subscribe(
+       this.translate.get('INCORRECTLOGIN').subscribe(
           value => {
             this.showLoginError(value);
           });
       }
     else{
-      console.log("OnComplete:Email is correct");
       this.validateUser(json);
-    }
+      }
     }
   }
 
   validateUser(json: any) {
-    console.log("Entered validate user");
 
     if (json.body.Passwort == this.password ) {
-      console.log("Password was correct");
+      this.encrypt(this.password);
       this.navigateToUserProfile(json);
     
     
@@ -74,23 +68,7 @@ export class LoginPage implements OnResultComplete {
   navigateToUserProfile(json: any) {
     this.storage.set("user_id", json.id);
 
-    switch (json.body.Usergruppe) {
-      case "gruppe_1": this.navCtrl.setRoot(ProfilePage, { userId: json.id });
-        break;
-      //todo: Student Profil (ProfilePage) mit Unternehmen Profil ersetzen
-      case "gruppe_2": this.navCtrl.setRoot(CompanyProfilePage, { userId: json.id });
-        break;
-      //todo: Student Profil (ProfilePage) mit Uni Profil ersetzen
-      case "gruppe_3": this.navCtrl.setRoot(UniProfilePage, { userId: json.id });
-        break;
-      default:
-      console.log("Entered navigation: DB Error");
-        this.translate.get('DB-ERROR').subscribe(
-          value => {
-            this.showLoginError(value);
-          });
-    }
-
+    this.navCtrl.setRoot(Profile_externPage, { userId: json.id });
   }
 
   showLoginError(message) {
@@ -103,8 +81,6 @@ export class LoginPage implements OnResultComplete {
   }
 
   encrypt(password) {
-    var CryptoJS = this.require("crypto-js");
-    // Encrypt
     var hash = CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex);
     console.log(hash);
   }

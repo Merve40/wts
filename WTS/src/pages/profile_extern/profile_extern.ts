@@ -22,41 +22,36 @@ import { LoginPage } from '../login/login';
     constructor(public storage:Storage, public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController,
       public translate: TranslateService, public AccountTable: AccountTable) {
         AccountTable.setSrcClass(this);
-        console.log("Started constructor");
         this.accID = navParams.get("userId");
         this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
         }
 
     onComplete(src, json) {
       if (src == "account-abfrage") {
-        console.log("went into onComplete");
         var body = json.body;
-        var group_id = body.Usergruppe;
-        console.log("group_id: " + group_id);        
-        this.navigateToUserProfile(json);
-        console.log("END");     
-      } 
-      console.log("Printed as well");   
+        var group_id = body.Usergruppe;      
+        this.navigateToUserProfile(json);   
+      }   
     }
 
     navigateToUserProfile(json) {
-      console.log("went into navigateToUserProfile");
        
       switch (json.body.Usergruppe) {
-        case "gruppe_1": this.navCtrl.push(ProfilePage, { userId: json.id });
+        case "gruppe_1": this.navCtrl.setRoot(ProfilePage, { userId: json.id });
           break;
         //todo: Student Profil (ProfilePage) mit Unternehmen Profil ersetzen
-        case "gruppe_2": this.navCtrl.push(CompanyProfilePage, { userId: json.id });
+        case "gruppe_2": this.navCtrl.setRoot(CompanyProfilePage, { userId: json.id });
           break;
         //todo: Student Profil (ProfilePage) mit Uni Profil ersetzen
-        case "gruppe_3": this.navCtrl.push(UniProfilePage, { userId: json.id });
+        case "gruppe_3": this.navCtrl.setRoot(UniProfilePage, { userId: json.id });
           break;
         default:
-        this.translate.get('DB-ERROR').subscribe(
-          value => {
-            this.showError(value);
-          });
-          this.navCtrl.push(LoginPage, { userId: json.id });
+        console.log("Entered navigation: DB Error");
+        this.navCtrl.setRoot(LoginPage, { userId: json.id });
+          this.translate.get('DB-ERROR').subscribe(
+            value => {
+              this.showError(value);
+            });
       }
     }
 
