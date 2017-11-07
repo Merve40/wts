@@ -6,14 +6,9 @@ import { OnResultComplete } from '../../providers/api/OnResultComplete';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
 
-<<<<<<< HEAD
-import { ProfilePage } from '../profile/profile';
-import { CompanyProfilePage } from '../company_profile/company_profile';
-import { UniProfilePage } from '../uni_profile/uni_profile';
 import { Profile_externPage } from '../profile_extern/profile_extern';
-=======
+
 const  CryptoJS = require("crypto-js");
->>>>>>> be47187ba545857c794b8c60d8f2d125beb3d83d
 
 @Component({
   selector: 'page-login',
