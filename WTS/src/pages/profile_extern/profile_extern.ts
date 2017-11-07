@@ -22,27 +22,40 @@ import { LoginPage } from '../login/login';
     constructor(public storage:Storage, public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController,
       public translate: TranslateService, public AccountTable: AccountTable) {
         AccountTable.setSrcClass(this);
-        this.accID = navParams.get("userId");
-        this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
+        
+        if(navParams.get("userId") == null){
+          this.storage.get("user_id").then( (id)=> {
+          console.log("Wichtig: " + id);
+          this.accID = id;
+          console.log("accID ist jetzt: " + this.accID);
+          this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
+        })
+        }
+        else{
+          this.accID = navParams.get("userId");
+          console.log("accID ist jetzt: " + this.accID);
+          this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
+        }        
         }
 
     onComplete(src, json) {
       if (src == "account-abfrage") {
+        console.log("Account abfrage in Profile_Extern");
         var body = json.body;
-        var group_id = body.Usergruppe;      
+        var group_id = body.Usergruppe;  
+        console.log("json.id = " + json.id);  
+        console.log("json.id = " + json.body.Email);  
         this.navigateToUserProfile(json);   
       }   
     }
 
     navigateToUserProfile(json) {
-       
+      console.log("opened navigate to profile in profile_extern");
       switch (json.body.Usergruppe) {
         case "gruppe_1": this.navCtrl.setRoot(ProfilePage, { userId: json.id });
           break;
-        //todo: Student Profil (ProfilePage) mit Unternehmen Profil ersetzen
         case "gruppe_2": this.navCtrl.setRoot(CompanyProfilePage, { userId: json.id });
           break;
-        //todo: Student Profil (ProfilePage) mit Uni Profil ersetzen
         case "gruppe_3": this.navCtrl.setRoot(UniProfilePage, { userId: json.id });
           break;
         default:
@@ -54,7 +67,6 @@ import { LoginPage } from '../login/login';
             });
       }
     }
-
 
     showError(message) {
       const toast = this.toastCtrl.create({
