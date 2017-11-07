@@ -9,9 +9,13 @@
         <ion-item>
             <ion-label>Suchparameter</ion-label>
             <ion-select [(ngModel)]="searchparameter">
-              <ion-option value="Name">Name</ion-option>
-              <ion-option value="Nachname">Nachname</ion-option>
-              <ion-option value="Abschluss">Abschluss</ion-option>
+              <ion-option value="Name">{{'NAME' | translate}}</ion-option>
+              <ion-option value="Abschluss">{{'DEGREE' | translate}}</ion-option>
+              <ion-option value="Studiengang">{{'STUDYPROGRAM' | translate}}</ion-option>
+              <ion-option value="Vertiefung">{{'SPECIALIZATION' | translate}}</ion-option>
+              <ion-option value="Uni">{{'UNIVERSITY' | translate}}</ion-option>
+              <ion-option value="Beschäftigung">{{'EMPLOYMENT' | translate}}</ion-option>
+              <ion-option value="Semester">{{'SEMESTER' | translate}}</ion-option>
             </ion-select>
           </ion-item>
       <ion-searchbar [(ngModel)]="filter" [showCancelButton]="shouldShowCancel" (ionInput)="searchForStudents($event)" (ionCancel)="onCancel($event)"
