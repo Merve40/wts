@@ -19,7 +19,7 @@ import { UniProfilePage } from '../uni_profile/uni_profile';
     
     constructor(public storage:Storage, public navCtrl: NavController, public navParams: NavParams,
       public AccountTable: AccountTable) {
-
+        AccountTable.setSrcClass(this);
         console.log("Started constructor");
         //this.accID = navParams.get("userId");
         this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
