@@ -16,10 +16,10 @@ var name = "Moritz";
 var semester = "7";
 
 @Component({
-  selector: 'page-searchbar_test',
-  templateUrl: 'searchbar_test.html'
+  selector: 'page-list_search',
+  templateUrl: 'list_search.html'
 })
-export class Searchbar_TestPage implements OnResultComplete {
+export class ListSearchPage implements OnResultComplete {
 
   constructor(public navCtrl: NavController, public AdressTable: AdressTable, public StudentTable: StudentTable, public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable, public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
     StudentTable.setSrcClass(this);
