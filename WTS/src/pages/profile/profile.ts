@@ -18,8 +18,9 @@ import { OnResultComplete } from '../../providers/api/OnResultComplete';
 export class ProfilePage implements OnResultComplete {
 
   accID: string;
+  isExtern: boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public AdressTable: AdressTable, public StudentTable: StudentTable, public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable, public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
+  constructor(public storage:Storage, public navCtrl: NavController, public navParams: NavParams, public AdressTable: AdressTable, public StudentTable: StudentTable, public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable, public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
     StudentTable.setSrcClass(this);
     AccountTable.setSrcClass(this);
     AdressTable.setSrcClass(this);
@@ -28,7 +29,31 @@ export class ProfilePage implements OnResultComplete {
     PassionTable.setSrcClass(this);
     StudentPassionTable.setSrcClass(this);
 
+    
     this.accID = navParams.get("userId");
+    this.isExtern = navParams.get("isExtern");
+    this.isExtern = false;
+    console.log(this.isExtern);
+    this.load();
+    //this.storage.get("user_id").then( (id) => this.load(id));
+ }
+
+  load(){
+    if(this.isExtern == true){
+      console.log("Openend is extern");
+      this.accID = this.navParams.get("userId");
+      this.StudentTable.getByValue("Account_Id", this.accID, "student-abfrage", this.onComplete);
+      this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
+      this.StudentPassionTable.filterByValue("Account_Id", this.accID, "passionStudent-abfrage", this.onComplete);
+      this.StudentSkillTable.filterByValue("Account_Id", this.accID, "skill-abfrage", this.onComplete);
+    }else{
+      console.log("Openend is NOT extern");
+      //document.getElementById("edit").style.display = 'none';
+      this.StudentTable.getByValue("Account_Id", this.accID, "student-abfrage", this.onComplete);
+      this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
+      this.StudentPassionTable.filterByValue("Account_Id", this.accID, "passionStudent-abfrage", this.onComplete);
+      this.StudentSkillTable.filterByValue("Account_Id", this.accID, "skill-abfrage", this.onComplete);
+    }
   }
 
   edit() {
@@ -146,11 +171,11 @@ export class ProfilePage implements OnResultComplete {
   }
 
 
-  ngAfterViewInit() {
-    this.StudentTable.getByValue("Account_Id", this.accID, "student-abfrage", this.onComplete);
-    this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
-    this.StudentPassionTable.filterByValue("Account_Id", this.accID, "passionStudent-abfrage", this.onComplete);
-    this.StudentSkillTable.filterByValue("Account_Id", this.accID, "skill-abfrage", this.onComplete);
-  }
+  // ngAfterViewInit() {
+  //   this.StudentTable.getByValue("Account_Id", this.accID, "student-abfrage", this.onComplete);
+  //   this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
+  //   this.StudentPassionTable.filterByValue("Account_Id", this.accID, "passionStudent-abfrage", this.onComplete);
+  //   this.StudentSkillTable.filterByValue("Account_Id", this.accID, "skill-abfrage", this.onComplete);
+  // }
 
 }
