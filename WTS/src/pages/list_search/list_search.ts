@@ -10,7 +10,7 @@ import { PassionTable } from '../../providers/api/passion';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
 
 //Testdaten
-var pagesize = 10;
+
 
 
 @Component({
@@ -21,6 +21,8 @@ export class ListSearchPage implements OnResultComplete {
 
   result = [];
   filter = "";
+  pagesize = 10;
+  searchparameter = "";
 
   constructor(public navCtrl: NavController, public AdressTable: AdressTable, public StudentTable: StudentTable, public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable, public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
     StudentTable.setSrcClass(this);
@@ -30,22 +32,16 @@ export class ListSearchPage implements OnResultComplete {
     SkillTable.setSrcClass(this);
     PassionTable.setSrcClass(this);
     StudentPassionTable.setSrcClass(this);
-
-    this.result = [
-      "1",
-      "2",
-      "3"
-    ];
   }
 
   onComplete(src, json) {
     console.log(json);
     switch (src) {
       case "search-query": {
-        if (this.result.length < pagesize) {
+        if (this.result.length < this.pagesize) {
           json.forEach(element => {
             var accountId = element.body.Account_Id;
-            if (this.result.indexOf(accountId) < 0 && this.result.length < pagesize) {
+            if (this.result.indexOf(accountId) < 0 && this.result.length < this.pagesize) {
               this.result.push(accountId);
             }
           });
@@ -62,18 +58,14 @@ export class ListSearchPage implements OnResultComplete {
 
   searchForStudents() {
     this.result = [];
-    console.log(this.filter);
     var searchArray = this.filter.split(" ");
     searchArray.forEach(element => {
-      this.StudentTable.getAllContaining("Abschluss", element, "search-query", this.onComplete);
-      this.StudentTable.getAllContaining("Beschäftigung", element, "search-query", this.onComplete);
-      this.StudentTable.getAllContaining("Beschreibung", element, "search-query", this.onComplete);
-      this.StudentTable.getAllContaining("Nachname", element, "search-query", this.onComplete);
-      this.StudentTable.getAllContaining("Name", element, "search-query", this.onComplete);
-      this.StudentTable.getAllContaining("Semester", element, "search-query", this.onComplete);
-      this.StudentTable.getAllContaining("Studiengang", element, "search-query", this.onComplete);
-      this.StudentTable.getAllContaining("Uni", element, "search-query", this.onComplete);
-      this.StudentTable.getAllContaining("Vertiefung", element, "search-query", this.onComplete);
+      
+      if(element == "" || element == " "){
+      }
+      else{
+      this.StudentTable.getAllContaining(this.searchparameter, element, "search-query", this.onComplete);
+      }
     });
   }
 
