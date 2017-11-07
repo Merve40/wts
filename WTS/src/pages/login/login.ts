@@ -9,14 +9,13 @@ import { OnResultComplete } from '../../providers/api/OnResultComplete';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
 
+const  CryptoJS = require("crypto-js");
+
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
 })
 export class LoginPage implements OnResultComplete {
-
-  require: any;
-
   email: any;
   password: any;
 
@@ -43,6 +42,7 @@ export class LoginPage implements OnResultComplete {
 
   validateUser(json: any) {
     if (json.body.Passwort == this.password) {
+      this.encrypt(this.password);
       this.navigateToUserProfile(json);
 
     } else {
@@ -81,8 +81,6 @@ export class LoginPage implements OnResultComplete {
   }
 
   encrypt(password) {
-    var CryptoJS = this.require("crypto-js");
-    // Encrypt
     var hash = CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex);
     console.log(hash);
   }
