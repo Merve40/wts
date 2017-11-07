@@ -19,7 +19,8 @@ var pagesize = 10;
 })
 export class ListSearchPage implements OnResultComplete {
 
-  result:any[]=[];
+  result = [];
+  filter = "";
 
   constructor(public navCtrl: NavController, public AdressTable: AdressTable, public StudentTable: StudentTable, public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable, public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
     StudentTable.setSrcClass(this);
@@ -38,17 +39,17 @@ export class ListSearchPage implements OnResultComplete {
   }
 
   onComplete(src, json) {
-
+    console.log(json);
     switch (src) {
       case "search-query": {
-        if(this.result.length < pagesize){
-        json.forEach(element => {
-          var accountId = element.body.Account_Id;
-          if (this.result.indexOf(accountId )< 0 && this.result.length < pagesize) {
-            this.result.push(accountId);
-          }
-        });
-      }
+        if (this.result.length < pagesize) {
+          json.forEach(element => {
+            var accountId = element.body.Account_Id;
+            if (this.result.indexOf(accountId) < 0 && this.result.length < pagesize) {
+              this.result.push(accountId);
+            }
+          });
+        }
         break;
       }
       default: {
@@ -59,9 +60,10 @@ export class ListSearchPage implements OnResultComplete {
     console.log(this.result);
   }
 
-  searchForStudents(searchString) {
+  searchForStudents() {
     this.result = [];
-    var searchArray = searchString.split(" ");
+    console.log(this.filter);
+    var searchArray = this.filter.split(" ");
     searchArray.forEach(element => {
       this.StudentTable.getAllContaining("Abschluss", element, "search-query", this.onComplete);
       this.StudentTable.getAllContaining("Beschäftigung", element, "search-query", this.onComplete);
@@ -76,8 +78,7 @@ export class ListSearchPage implements OnResultComplete {
   }
 
   ngAfterViewInit() {
-    var test = "a";
-    this.searchForStudents(test);
+    this.searchForStudents();
   }
 }
 
