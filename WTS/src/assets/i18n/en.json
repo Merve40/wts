@@ -1,5 +1,6 @@
 {
   "HELLO": "Hello",
+  "NAME": "Name",
   "LOGINPAGE": "Login",
   "LOGOUT": "Logout",
   "MESSAGE": "Message",
