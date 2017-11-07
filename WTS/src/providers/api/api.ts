@@ -153,6 +153,21 @@ export class Api {
         });                                      
     }
 
+    getByContains<T extends Base>(base:T, key:string, value:string, source:string, func:Function, src:any):void{
+        let _url = "https://us-central1-worktostudents.cloudfunctions.net/contains";
+        var body = {
+            tbl : base.table,
+            key: key,
+            value: value
+        }
+        var response = this.http.post(_url, body );
+        response.forEach(obj => {
+            var json = JSON.parse(obj.text());
+            func.apply(src, [source, json]);
+            return obj;
+        });
+    }
+
     /**
      * Retrieves the object with it'S id and returns the inner body.
      * @param json 

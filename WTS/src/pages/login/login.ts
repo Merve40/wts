@@ -23,15 +23,19 @@ export class LoginPage implements OnResultComplete {
   }
 
   login() {
+    console.log("logging in..");
     if (this.email && this.password) {
       this.accountTable.getByValue("Email", this.email, "1", this.onComplete);
     }
- 
+    //contains example (Student)
+    this.accountTable.getAllContaining("Usergruppe", "tuden", "contains-test", this.onComplete);
   }
 
   onComplete(source, json) {
     if (source == "1") {
       this.validateUser(json);
+    }else if(source == "contains-test"){
+      console.log(json);
     }
   }
 

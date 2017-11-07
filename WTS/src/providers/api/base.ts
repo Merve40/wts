@@ -73,9 +73,33 @@ export abstract class Base {
      */
     abstract filterByValueAndLimit(key: string, value: string, limit: number, source:string, func: Function): void;
 
+    /**
+     * Retrieves all entries in one table.
+     * 
+     * @param source flag 
+     * @param func callback
+     */
     abstract getAll( source:string, func:Function):void;
 
+    /**
+     * Get all entries starting with a prefix of a specific field.
+     * 
+     * @param key field 
+     * @param value prefix (not case sensitive)
+     * @param source flag
+     * @param func callback function => parameter jsonArray
+     */
     abstract getAllStartingWith(key:string, value:string, source:string, func:Function):void;
+
+    /**
+     * Get all entries that contain a string of a specific field.
+     * 
+     * @param key field 
+     * @param value string / value
+     * @param source flag
+     * @param func callback function => parameter jsonArray
+     */
+    abstract getAllContaining(key:string, value:string, source:string, func:Function):void;
 
     public setSrcClass(srcClass:any):void{
         this.srcClass = srcClass;

@@ -10,12 +10,12 @@ import { Profile_externPage } from '../pages/profile_extern/profile_extern';
 import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
 import { UniProfilePage } from '../pages/uni_profile/uni_profile';
 import { CompanyProfilePage } from '../pages/company_profile/company_profile';
-import { Searchbar_TestPage } from '../pages/searchbar_test/searchbar_test';
-import { ListSearchPage } from '../pages/list_search/list_search';
+// import { Searchbar_TestPage } from '../pages/searchbar_test/searchbar_test';
+// import { ListSearchPage } from '../pages/list_search/list_search';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import firebase from 'firebase';
+// import firebase from 'firebase';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -41,12 +41,12 @@ export class MyApp {
       { title: translations.LOGINPAGE, component: LoginPage },
       { title: translations.PROFILEPAGE, component: ProfilePage },
       { title: translations.LOGOUT, component: LoginPage },
-      { title: translations.LISTSEARCHPAGE, component:ListSearchPage},
+      // { title: translations.LISTSEARCHPAGE, component:ListSearchPage},
       { title: 'Extern Profile', component: Profile_externPage },
       { title: 'Edit Profile', component:Profile_EditPage},
       { title: 'Uni Profil', component:UniProfilePage},
       { title: 'Company Profil', component:CompanyProfilePage},
-      { title: 'SearchbarTest', component:Searchbar_TestPage}
+      // { title: 'SearchbarTest', component:Searchbar_TestPage}
 
 
     ];
@@ -69,14 +69,14 @@ export class MyApp {
       // this.screenOrientation.lock(orient);
 
     });
-    firebase.initializeApp({
-      apiKey: "AIzaSyATDKANyR1HnCajqaAXINVS0z6kfCBwRwI",
-      authDomain: "worktostudents.firebaseapp.com",
-      databaseURL: "https://worktostudents.firebaseio.com",
-      projectId: "worktostudents",
-      storageBucket: "worktostudents.appspot.com",
-      messagingSenderId: "542302693567"
-    });
+    // firebase.initializeApp({
+    //   apiKey: "AIzaSyATDKANyR1HnCajqaAXINVS0z6kfCBwRwI",
+    //   authDomain: "worktostudents.firebaseapp.com",
+    //   databaseURL: "https://worktostudents.firebaseio.com",
+    //   projectId: "worktostudents",
+    //   storageBucket: "worktostudents.appspot.com",
+    //   messagingSenderId: "542302693567"
+    // });
 
 
   }
