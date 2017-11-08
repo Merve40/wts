@@ -1,5 +1,6 @@
 {
   "HELLO": "Hallo",
+  "NAME": "Name",  
   "LOGINPAGE": "Anmeldung",
   "LOGOUT": "Abmelden",
   "MESSAGE": "Nachricht",
@@ -17,6 +18,8 @@
   "BIRTHDAY": "Geburtstag",
   "UNIVERSITY": "Universität",
   "STUDYPROGRAM": "Studiengang",
+  "SEMESTER": "Semester",
+  "SPECIALIZATION": "Vertiefung", 
   "DEGREE": "Abschluss",
   "STUDYPROGRESS": "Studienfortschritt",
   "ENDOFSTUDY": "Voraussichtliches Studienende",

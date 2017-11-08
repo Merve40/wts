@@ -11,9 +11,11 @@
 
   <ion-content class="profile">
 
-    <button id = "edit" ion-button editProfile ion-button color="wts_grey" (click)="edit()"> 
-      <ion-icon name="create"> {{ 'EDIT' | translate }} </ion-icon> 
-    </button>    
+    <div id="buttondiv">  
+    <button #myButton *ngIf="isExtern" id="edit" ion-button editProfile ion-button color="wts_grey" (click)="edit()"> 
+      <ion-icon id="iconedit"name="create"> {{ 'EDIT' | translate }} </ion-icon> 
+    </button>  
+  </div>  
 
 
     <ion-list>
