@@ -12,6 +12,7 @@ import { UniProfilePage } from '../pages/uni_profile/uni_profile';
 import { CompanyProfilePage } from '../pages/company_profile/company_profile';
 import { ListSearchPage } from '../pages/list_search/list_search';
 import { MessagePage } from '../pages/message/message_item/message_item';
+import { MessageListPage } from '../pages/message/message_list/message_list';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -45,9 +46,10 @@ export class MyApp {
         { title: 'Extern Profile', component: Profile_externPage },
         { title: 'Edit Profile', component: Profile_EditPage },
         { title: 'Uni Profil', component: UniProfilePage },
-        { title: "Message", component: MessagePage},
+        { title: "Message", component: MessagePage },
+        { title: "Messages", component: MessageListPage },
         { title: 'Company Profil', component: CompanyProfilePage }
-        
+
 
       ];
     })

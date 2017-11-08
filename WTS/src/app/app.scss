@@ -23,3 +23,13 @@
   background-color: #E5E9ED;
   color: #00274C;
 }
+
+.no-scroll .scroll-content{
+  overflow: hidden;
+}
+
+div.full {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}

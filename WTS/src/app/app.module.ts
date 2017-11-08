@@ -13,6 +13,7 @@ import { Profile_externPage } from '../pages/profile_extern/profile_extern';
 import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
 import { ListSearchPage } from '../pages/list_search/list_search';
 import { MessagePage } from '../pages/message/message_item/message_item';
+import { MessageListPage } from '../pages/message/message_list/message_list';
 
 import { Api } from '../providers/api/api';
 import { AccountTable } from '../providers/api/account';
@@ -47,6 +48,7 @@ import { MockProvider} from '../pages/list_search/dataprovider';
     ListSearchPage,
     CompanyProfilePage,
     MessagePage,
+    MessageListPage,
     UniProfilePage
   ],
   imports: [
@@ -73,6 +75,7 @@ import { MockProvider} from '../pages/list_search/dataprovider';
     ListSearchPage,
     UniProfilePage,
     MessagePage,
+    MessageListPage,
     CompanyProfilePage
   ],
   providers: [

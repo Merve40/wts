@@ -1,38 +1,29 @@
 <div class="full">
-    <ion-header class="header">
-      <!-- For deleting the navigationbar on loginpage
-      COMMENT/ DELETE FROM HERE ON UNTIL NEXT COMMENT-->
-      <ion-navbar>{{'LOGINPAGE' | translate}}
-        <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-        </button>
-      </ion-navbar>
-      <!-- NAVBAR END; COMMENT/ DELETE UNTIL HERE -->
-    </ion-header>
-  
-    <ion-content padding>
-  
-      <div class="logo">
-        <img src='assets/img/wts_logo.png' alt="your image">
+  <ion-header class="header">
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>{{ 'MESSAGE' | translate }}</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+  <ion-content>
+    <div>
+      <div class="message" *ngFor="let item of messages">
+        
+        <div class="imageContainter">
+          <div class="image">
+            <ion-avatar item-start>
+              <img src="assets/img/dog.jpeg" alt="your image">
+            </ion-avatar>
+          </div>
+        </div>
+
+        <ion-label class="userName">{{item.userName}}</ion-label>
+        <ion-label class="text">{{item.lastMessage}}</ion-label>
+        <ion-label class="dateTime">{{item.dateTime}}</ion-label>
       </div>
-      <div class="login">
-        <div class="emailfield">
-          <label id="mail" class="item item-input">
-            <input type="text" placeholder="{{'EMAIL' | translate}}" [(ngModel)]="email">
-          </label>
-        </div>
-        <div class="passwordfield">
-          <label id="pw" class="item item-input">
-            <input type="password" placeholder="{{'PASSWORD' | translate}}" [(ngModel)]="password">
-          </label>
-        </div>
-        <button class="button login" ion-button color="wts_grey" (click)="login()" block> {{ 'LOGIN' | translate }}</button>
-  
-        <div class="registerlink">
-          <a href="http://www.google.com">{{ 'REGISTER' | translate }}</a>
-        </div>
-  
-      </div>
-  
-    </ion-content>
-  </div>
+    </div>
+  </ion-content>
+</div>
