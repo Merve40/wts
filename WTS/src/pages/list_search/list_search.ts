@@ -20,7 +20,7 @@ export class ListSearchPage implements OnResultComplete {
   result = [];
   filter = "";
   pagesize = 10;
-  searchParameter = "";
+  searchParameter = "Abschluss";
 
   constructor(public navCtrl: NavController, public AdressTable: AdressTable, public StudentTable: StudentTable, public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable, public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
     StudentTable.setSrcClass(this);
@@ -33,25 +33,31 @@ export class ListSearchPage implements OnResultComplete {
   }
 
   onComplete(src, json) {
-    console.log(json);
     switch (src) {
       case "search-query": {
         if (this.result.length < this.pagesize) {
+          var found = false;
           json.forEach(element => {
             var body = element.body;
-            if (this.result.indexOf(body.account) < 0 && this.result.length < this.pagesize) {
-              this.result.push(new Student(body.AccountId, body.Name + " " + body.Nachname, body.Uni));
+            found = false;
+            for (var i = 0; i < this.result.length; i++) {
+              var id = this.result[i].id
+              if (id == body.id) {
+                found = true;
+                break;
+              }
+            }
+            if (this.result.indexOf(body) < 0 && this.result.length < this.pagesize && !found) {
+              this.result.push(new Student(body.Account_Id, body.Name + " " + body.Nachname, body.Uni));
             }
           });
         }
         break;
       }
       default: {
-        //statements; 
         break;
       }
     }
-    console.log(this.result);
   }
 
   searchForStudents() {
@@ -59,19 +65,24 @@ export class ListSearchPage implements OnResultComplete {
     if (this.searchParameter != "Name") {
       this.StudentTable.getAllContaining(this.searchParameter, this.filter, "search-query", this.onComplete);
     } else {
-      if (this.searchParameter.indexOf(" ") !== -1) {
-        var paras = this.searchParameter.split(" ");
+      console.log(this.searchParameter);
+      if (this.filter.indexOf(" ") !== -1) {
+        var paras = this.filter.split(" ");
         paras.forEach(element => {
-          this.StudentTable.getAllContaining(this.searchParameter, "Name", "search-query", this.onComplete);
-          this.StudentTable.getAllContaining(this.searchParameter, "Nachname", "search-query", this.onComplete);
+          console.log(element);
+          this.StudentTable.getAllContaining("Nachname", this.filter, "search-query", this.onComplete);
+          this.StudentTable.getAllContaining("Name", this.filter, "search-query", this.onComplete);
         });
+      } else {
+        this.StudentTable.getAllContaining("Nachname", this.filter, "search-query", this.onComplete);
+        this.StudentTable.getAllContaining("Name", this.filter, "search-query", this.onComplete);
       }
     }
   }
 
   navigateToUserProfile(id) {
     console.log(id);
-    this.navCtrl.setRoot(Profile_externPage, { userId: id});
+    this.navCtrl.setRoot(Profile_externPage, { userId: id });
   }
 
   ngAfterViewInit() {
