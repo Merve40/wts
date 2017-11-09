@@ -28,7 +28,7 @@
 
     <ion-list>
       <ion-item *ngFor = "let item of result;">
-        <button>{{item}}</button>
+        <button class="button profile" ion-button color="wts_grey" (click)="navigateToUserProfile(item)" block></button>
       </ion-item>
     </ion-list>
 
