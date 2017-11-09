@@ -71,7 +71,7 @@ export class ListSearchPage implements OnResultComplete {
 
   navigateToUserProfile(json) {
     console.log(json);
-    this.navCtrl.setRoot(Profile_externPage, { userId: json.id });
+    this.navCtrl.setRoot(Profile_externPage, { userId: json});
   }
 
   ngAfterViewInit() {
