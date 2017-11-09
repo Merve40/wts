@@ -55,23 +55,23 @@ export class ListSearchPage implements OnResultComplete {
   }
 
   searchForStudents() {
+    console.log(this.searchParameter);
     this.result = [];
-    if (this.searchParameter != "Name") {
+    if (this.searchParameter.length > 1 && this.searchParameter != "Name") {
       this.StudentTable.getAllContaining(this.searchParameter, this.filter, "search-query", this.onComplete);
-    } else {
-      if (this.searchParameter.indexOf(" ") !== -1) {
-        var paras = this.searchParameter.split(" ");
-        paras.forEach(element => {
-          this.StudentTable.getAllContaining(this.searchParameter, "Name", "search-query", this.onComplete);
-          this.StudentTable.getAllContaining(this.searchParameter, "Nachname", "search-query", this.onComplete);
-        });
-      }
+    } else if (this.searchParameter.length > 0) {
+      var paras = this.searchParameter.split(" ");
+      paras.forEach(element => {
+        this.StudentTable.getAllContaining(this.searchParameter, "Name", "search-query", this.onComplete);
+        this.StudentTable.getAllContaining(this.searchParameter, "Nachname", "search-query", this.onComplete);
+      });
     }
+
   }
 
   navigateToUserProfile(id) {
     console.log(id);
-    this.navCtrl.setRoot(Profile_externPage, { userId: id});
+    this.navCtrl.setRoot(Profile_externPage, { userId: id });
   }
 
   ngAfterViewInit() {
