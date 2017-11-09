@@ -9,9 +9,6 @@ import { Student_PassionTable } from '../../providers/api/student_passion';
 import { PassionTable } from '../../providers/api/passion';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
 
-//Testdaten
-
-
 
 @Component({
   selector: 'page-list_search',
@@ -22,7 +19,7 @@ export class ListSearchPage implements OnResultComplete {
   result = [];
   filter = "";
   pagesize = 10;
-  searchparameter = "";
+  searchParameter = "";
 
   constructor(public navCtrl: NavController, public AdressTable: AdressTable, public StudentTable: StudentTable, public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable, public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
     StudentTable.setSrcClass(this);
@@ -40,9 +37,9 @@ export class ListSearchPage implements OnResultComplete {
       case "search-query": {
         if (this.result.length < this.pagesize) {
           json.forEach(element => {
-            var accountId = element.body.Account_Id;
-            if (this.result.indexOf(accountId) < 0 && this.result.length < this.pagesize) {
-              this.result.push(accountId);
+            var body = element.body;
+            if (this.result.indexOf(body.account) < 0 && this.result.length < this.pagesize) {
+              this.result.push(new Student(body.AccountId, body.Name + " " + body.Nachname, body.Uni));
             }
           });
         }
@@ -58,15 +55,17 @@ export class ListSearchPage implements OnResultComplete {
 
   searchForStudents() {
     this.result = [];
-    var searchArray = this.filter.split(" ");
-    searchArray.forEach(element => {
-      
-      if(element == "" || element == " "){
+    if (this.searchParameter != "Name") {
+      this.StudentTable.getAllContaining(this.searchParameter, this.filter, "search-query", this.onComplete);
+    } else {
+      if (this.searchParameter.indexOf(" ") !== -1) {
+        var paras = this.searchParameter.split(" ");
+        paras.forEach(element => {
+          this.StudentTable.getAllContaining(this.searchParameter, "Name", "search-query", this.onComplete);
+          this.StudentTable.getAllContaining(this.searchParameter, "Nachname", "search-query", this.onComplete);
+        });
       }
-      else{
-      this.StudentTable.getAllContaining(this.searchparameter, element, "search-query", this.onComplete);
-      }
-    });
+    }
   }
 
   ngAfterViewInit() {
@@ -74,3 +73,13 @@ export class ListSearchPage implements OnResultComplete {
   }
 }
 
+class Student {
+  id: string;
+  name: string;
+  university: string;
+  constructor(id: string, name: string, university: string) {
+    this.id = id;
+    this.name = name;
+    this.university = university;
+  }
+}

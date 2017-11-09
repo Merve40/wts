@@ -8,7 +8,7 @@
     <ion-toolbar>
         <ion-item>
             <ion-label>Suchparameter</ion-label>
-            <ion-select [(ngModel)]="searchparameter">
+            <ion-select [(ngModel)]="searchParameter">
               <ion-option value="Name">{{'NAME' | translate}}</ion-option>
               <ion-option value="Abschluss">{{'DEGREE' | translate}}</ion-option>
               <ion-option value="Studiengang">{{'STUDYPROGRAM' | translate}}</ion-option>
@@ -28,17 +28,22 @@
 
     <ion-list>
       <ion-item *ngFor = "let item of result;">
-        <button>{{item}}</button>
+          <ion-item ion-item (click)="buttonClick()">
+              <ion-avatar item-start>
+                  <img src='assets/img/dog.jpeg' alt="your image">                  
+              </ion-avatar>
+              <h2>{{item.name}}</h2>
+              <p>{{item.university}}</p>
+            </ion-item>
       </ion-item>
     </ion-list>
 
-    <!--     
-    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="100px">
+    <ion-infinite-scroll threshold="100px">
       <ion-infinite-scroll-content
         loadingSpinner="bubbles"
         loadingText="Loading more data...">
       </ion-infinite-scroll-content>
-    </ion-infinite-scroll> -->
+    </ion-infinite-scroll>
 
   </ion-content>
 </div>
