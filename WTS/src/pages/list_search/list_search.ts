@@ -7,6 +7,7 @@ import { Student_SkillTable } from '../../providers/api/student_skill';
 import { SkillTable } from '../../providers/api/skill';
 import { Student_PassionTable } from '../../providers/api/student_passion';
 import { PassionTable } from '../../providers/api/passion';
+import { Profile_externPage } from '../profile_extern/profile_extern';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
 
 
@@ -66,6 +67,11 @@ export class ListSearchPage implements OnResultComplete {
         });
       }
     }
+  }
+
+  navigateToUserProfile(json) {
+    console.log(json);
+    this.navCtrl.setRoot(Profile_externPage, { userId: json.id });
   }
 
   ngAfterViewInit() {

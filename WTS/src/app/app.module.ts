@@ -12,6 +12,7 @@ import { CompanyProfilePage } from '../pages/company_profile/company_profile';
 import { Profile_externPage } from '../pages/profile_extern/profile_extern';
 import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
 import { ListSearchPage } from '../pages/list_search/list_search';
+import { MapPage } from '../pages/map/map';
 import { MessagePage } from '../pages/message/message_item/message_item';
 import { MessageListPage } from '../pages/message/message_list/message_list';
 
@@ -46,6 +47,7 @@ import { MockProvider} from '../pages/list_search/dataprovider';
     Profile_externPage,
     Profile_EditPage,
     ListSearchPage,
+    MapPage,
     CompanyProfilePage,
     MessagePage,
     MessageListPage,
@@ -73,6 +75,7 @@ import { MockProvider} from '../pages/list_search/dataprovider';
     Profile_externPage,
     Profile_EditPage,
     ListSearchPage,
+    MapPage,
     UniProfilePage,
     MessagePage,
     MessageListPage,
