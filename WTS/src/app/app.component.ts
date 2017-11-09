@@ -11,6 +11,7 @@ import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
 import { UniProfilePage } from '../pages/uni_profile/uni_profile';
 import { CompanyProfilePage } from '../pages/company_profile/company_profile';
 import { ListSearchPage } from '../pages/list_search/list_search';
+import { MapPage } from '../pages/map/map';
 import { MessagePage } from '../pages/message/message_item/message_item';
 import { MessageListPage } from '../pages/message/message_list/message_list';
 
@@ -48,7 +49,8 @@ export class MyApp {
         { title: 'Uni Profil', component: UniProfilePage },
         { title: "Message", component: MessagePage },
         { title: "Messages", component: MessageListPage },
-        { title: 'Company Profil', component: CompanyProfilePage }
+        { title: 'Company Profil', component: CompanyProfilePage },
+        { title: 'Map', component: MapPage }
 
 
       ];
