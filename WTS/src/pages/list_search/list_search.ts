@@ -61,10 +61,11 @@ export class ListSearchPage implements OnResultComplete {
   }
 
   searchForStudents() {
+    console.log(this.searchParameter);
     this.result = [];
-    if (this.searchParameter != "Name") {
+    if (this.searchParameter.length > 0 && this.searchParameter != "Name") {
       this.StudentTable.getAllContaining(this.searchParameter, this.filter, "search-query", this.onComplete);
-    } else {
+    } else if (this.searchParameter.length > 0) {
       console.log(this.searchParameter);
       if (this.filter.indexOf(" ") !== -1) {
         var paras = this.filter.split(" ");
@@ -78,6 +79,7 @@ export class ListSearchPage implements OnResultComplete {
         this.StudentTable.getAllContaining("Name", this.filter, "search-query", this.onComplete);
       }
     }
+
   }
 
   navigateToUserProfile(id) {
