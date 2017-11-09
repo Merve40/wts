@@ -28,27 +28,25 @@ import { LoginPage } from '../login/login';
     }
 
     load(id){
-      console.log("Opened load in profile extern");
       //Checks if navigation was made from side menu.
-      //in this case navParams.get will be null because no id was transferred
+      //Navigates to own profile
       if(this.navParams.get("userId") == undefined){
-        console.log("Went into first if");
+        console.log("Profile_Extern: Own profile reached from Menubar");
         this.isOwn = true;
-        console.log("Wichtig: " + id);
+        console.log("Own UserId: " + id);
         this.accID = id;
-        console.log("accID ist jetzt: " + this.accID);
         this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
       
       // Navigates to own profile 
       }else if(id == this.navParams.get("userId")){
-        console.log("Went into second if");
+        console.log("Profile_Extern: Own profile reached from Login");
         this.isOwn = true;
         this.accID = id;
         this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
 
       //Navigates to foreign profile
       }else{
-        console.log("Went into else");
+        console.log("Profile_Extern: Extern profile reached");
         this.isOwn = false;
         this.accID = this.navParams.get("userId");
         console.log("accID ist jetzt: " + this.accID);

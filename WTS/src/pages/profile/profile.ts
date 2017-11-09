@@ -33,7 +33,7 @@ export class ProfilePage implements OnResultComplete {
     
     this.accID = navParams.get("userId");
     this.isOwn = navParams.get("isOwn");
-    console.log(this.isOwn);
+    console.log("Profile.ts: IsOwn is: "+ this.isOwn);
     this.load();
     //this.storage.get("user_id").then( (id) => this.load(id));
  }
@@ -63,8 +63,6 @@ export class ProfilePage implements OnResultComplete {
 
     //Auslesen der Daten aus Tabelle Student where AccID = AccID
     if (src == "student-abfrage") {
-      console.log("student abfrage");
-      console.log(json);
       var id = json.id;
       var body = json.body;
       var name = json.body.Name + " " + json.body.Nachname;
@@ -79,9 +77,6 @@ export class ProfilePage implements OnResultComplete {
     }
     //Auslesen der Daten aus Tabelle Account
     if (src == "account-abfrage") {
-      console.log("account abfrage");
-      console.log(json);
-
       var body = json.body;
       var adresse_id = body.Adresse_id;
 
@@ -92,9 +87,6 @@ export class ProfilePage implements OnResultComplete {
 
     //Auslesen der Daten aus Tabelle Adresse
     if (src == "adresse-abfrage") {
-      console.log("adresse abfrage");
-      console.log(json);
-
       var body = json.body;
       var adresse = body.Straße + ', ' + body.PLZ + ', ' + body.Land;
 
@@ -102,9 +94,6 @@ export class ProfilePage implements OnResultComplete {
     }
     //Auslesen der Daten aus Tabelle Leidenschaft
     if (src == "passionStudent-abfrage") {
-      console.log("passion student abfrage");
-      console.log(json);
-
       //überprüft erst ob Leidenschaft existiert
       if (json[0].body) {
         var passions = "";
@@ -136,9 +125,6 @@ export class ProfilePage implements OnResultComplete {
     }
 
     if (src == "skill-abfrage") {
-      console.log("skill abfrage");
-      console.log(json);
-
       //überprüft erst ob Fähigkeit existiert
       if (json[0].body) {
 
