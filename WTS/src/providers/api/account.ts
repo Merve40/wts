@@ -14,7 +14,7 @@ export interface Account {
 export class AccountTable extends Base {
 
     constructor( @Inject(Api) public api: Api) {
-        super(Table.ACCOUNT);
+        super(api,Table.ACCOUNT);
     }
 
     delete(id:string, source:string, func:Function):void{

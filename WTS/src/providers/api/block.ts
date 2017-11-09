@@ -11,7 +11,7 @@ export interface Block{
 export class BlockTable extends Base {
 
     constructor( @Inject(Api) public api: Api) {
-        super(Table.BLOCK);
+        super(api, Table.BLOCK);
     }
 
     delete(id:string, source:string, func:Function):void{

@@ -12,7 +12,7 @@ export interface Conversation{
 export class ConversationTable extends Base {
 
     constructor( @Inject(Api) public api: Api) {
-        super(Table.KONVERSATION);
+        super(api, Table.KONVERSATION);
     }
 
     delete(id:string, source:string, func:Function):void{

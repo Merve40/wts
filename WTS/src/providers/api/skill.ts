@@ -11,7 +11,7 @@ export interface Fähigkeit{
 export class SkillTable extends Base {
 
     constructor( @Inject(Api) public api: Api) {
-        super(Table.FAHIGKEIT);
+        super(api, Table.FAHIGKEIT);
     }
 
     delete(id:string, source:string, func:Function):void{

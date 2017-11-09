@@ -13,7 +13,7 @@ export interface Attachement{
 export class AttachementTable extends Base {
 
     constructor( @Inject(Api) public api: Api) {
-        super(Table.ANHANG);
+        super(api, Table.ANHANG);
     }
 
     delete(id:string, source:string, func:Function):void{

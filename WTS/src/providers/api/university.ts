@@ -13,7 +13,7 @@ export interface University{
 export class UniversityTable extends Base {
 
     constructor( @Inject(Api) public api: Api) {
-        super(Table.UNIVERSITAT);
+        super(api, Table.UNIVERSITAT);
     }
 
     delete(id:string, source:string, func:Function):void{

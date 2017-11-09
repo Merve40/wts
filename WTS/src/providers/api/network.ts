@@ -12,7 +12,7 @@ export interface Network{
 export class NetworkTable extends Base {
 
     constructor( @Inject(Api) public api: Api) {
-        super(Table.NETZWERK);
+        super(api, Table.NETZWERK);
     }
 
     delete(id:string, source:string, func:Function):void{

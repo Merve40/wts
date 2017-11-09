@@ -11,7 +11,7 @@ export interface Leidenschaft{
 export class PassionTable extends Base {
 
     constructor( @Inject(Api) public api: Api) {
-        super(Table.LEIDENSCHAFT);
+        super(api, Table.LEIDENSCHAFT);
     }
 
     delete(id:string, source:string, func:Function):void{

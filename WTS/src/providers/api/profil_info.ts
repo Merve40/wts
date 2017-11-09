@@ -11,7 +11,7 @@ export interface Profil_Info{
 export class Profil_InfoTable extends Base {
 
     constructor( @Inject(Api) public api: Api) {
-        super(Table.PROFIL_INFO);
+        super(api, Table.PROFIL_INFO);
     }
 
     delete(id:string, source:string, func:Function):void{

@@ -11,7 +11,7 @@ export interface Group{
 export class GroupTable extends Base {
 
     constructor( @Inject(Api) public api: Api) {
-        super(Table.USER_GRUPPE);
+        super(api,Table.USER_GRUPPE);
     }
     
     delete(id:string, source:string, func:Function):void{

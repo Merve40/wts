@@ -12,7 +12,7 @@ export interface Student_Passion{
 export class Student_PassionTable extends Base {
 
     constructor( @Inject(Api) public api: Api) {
-        super(Table.STUDENT_LEIDENSCHAFT);
+        super(api,Table.STUDENT_LEIDENSCHAFT);
     }
 
     delete(id:string,source:string, func:Function):void{

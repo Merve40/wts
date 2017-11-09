@@ -14,7 +14,7 @@ export interface Adresse {
 export class AdressTable extends Base {
 
     constructor( @Inject(Api) public api: Api) {
-        super(Table.ADRESSE);
+        super(api, Table.ADRESSE);
     }
 
     delete(id:string, source:string, func:Function):void{

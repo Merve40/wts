@@ -11,8 +11,8 @@ export class Api {
     limitTo = "limitToFirst=";
     and = "&";
     quote = "\"";
-    endAt="endAt=";
-    restStirng="\uff8f";
+    endAt = "endAt=";
+    restStirng = "\uff8f";
 
     constructor( @Inject(Http) public http: Http) {
     }
@@ -57,7 +57,10 @@ export class Api {
     }
 
     public get<T extends Base>(base: T, id: string, source: string, func: Function, src: any): void {
-        let tbl = base.table.toString();
+        this.getByTable(base.table, id, source, func, src);
+    }
+
+    public getByTable(tbl: string, id: string, source: string, func: Function, src: any): void {
         let _url = this.url.concat(tbl).concat("/").concat(id)
             .concat(".json");
 
@@ -70,7 +73,10 @@ export class Api {
     }
 
     public getByValue<T extends Base>(base: T, key: string, value: string, source: string, func: Function, src: any): void {
-        let tbl = base.table.toString();
+        this.getByValueWithTable(base.table, key, value, source, func, src);
+    }
+
+    public getByValueWithTable(tbl: string, key: string, value: string, source: string, func: Function, src: any): void {
         let _url = this.url.concat(tbl).concat(this.suffix)
             .concat(this.orderBy)
             .concat(this.quote).concat(key).concat(this.quote)
@@ -124,7 +130,7 @@ export class Api {
         });
     }
 
-    public getAll<T extends Base>(base:T, source:string, func:Function, src:any):void{
+    public getAll<T extends Base>(base: T, source: string, func: Function, src: any): void {
         let tbl = base.table.toString();
         let _url = this.url.concat(tbl).concat(this.suffix);
 
@@ -136,31 +142,31 @@ export class Api {
         });
     }
 
-    public startsWith<T extends Base>(base:T, key:string, value:string, source:string, func:Function, src:any):void{
+    public startsWith<T extends Base>(base: T, key: string, value: string, source: string, func: Function, src: any): void {
         let tbl = base.table.toString();
         let _url = this.url.concat(tbl).concat(this.suffix)
-                                        .concat(this.orderBy)
-                                        .concat(this.quote).concat(key).concat(this.quote)
-                                        .concat(this.and)
-                                        .concat(this.endAt)
-                                        .concat(this.quote).concat(value).concat(this.restStirng).concat(this.quote);
-                     
+            .concat(this.orderBy)
+            .concat(this.quote).concat(key).concat(this.quote)
+            .concat(this.and)
+            .concat(this.endAt)
+            .concat(this.quote).concat(value).concat(this.restStirng).concat(this.quote);
+
         var response = this.http.get(_url);
-        response.forEach(obj =>{
+        response.forEach(obj => {
             var res = this.getInnerJsonArray(obj.text());
             func.apply(src, [source, res]);
             return obj;
-        });                                      
+        });
     }
 
-    getByContains<T extends Base>(base:T, key:string, value:string, source:string, func:Function, src:any):void{
+    getByContains<T extends Base>(base: T, key: string, value: string, source: string, func: Function, src: any): void {
         let _url = "https://us-central1-worktostudents.cloudfunctions.net/contains";
         var body = {
-            tbl : base.table,
+            tbl: base.table,
             key: key,
             value: value
         }
-        var response = this.http.post(_url, body );
+        var response = this.http.post(_url, body);
         response.forEach(obj => {
             var json = JSON.parse(obj.text());
             func.apply(src, [source, json]);
@@ -179,12 +185,12 @@ export class Api {
         var end = removeOuter.lastIndexOf("}") + 1;
 
         var substr = json.substr(start, (end - start));
-        
-        if (substr.length>1) {
+
+        if (substr.length > 1) {
             var _body = JSON.parse(substr);
             return { id: _id, body: _body };
-        }else{
-            return {id:"", body:null};
+        } else {
+            return { id: "", body: null };
         }
     }
 

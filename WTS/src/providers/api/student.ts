@@ -23,7 +23,7 @@ export interface Student{
 export class StudentTable extends Base {
 
     constructor( @Inject(Api) public api: Api) {
-        super(Table.STUDENT);
+        super(api, Table.STUDENT);
     }
 
     delete(id:string, source:string, func:Function):void{

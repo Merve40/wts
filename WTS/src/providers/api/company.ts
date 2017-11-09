@@ -14,7 +14,7 @@ export interface Company{
 export class CompanyTable extends Base {
 
     constructor( @Inject(Api) public api: Api) {
-        super(Table.UNTERNEHMEN);
+        super(api, Table.UNTERNEHMEN);
     }
 
     delete(id:string, source:string, func:Function):void{

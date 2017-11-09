@@ -15,7 +15,7 @@ export interface Message {
 export class MessageTable extends Base {
 
     constructor( @Inject(Api) public api: Api) {
-        super(Table.NACHRICHT);
+        super(api, Table.NACHRICHT);
     }
 
     delete(id:string, source:string, func:Function):void{
