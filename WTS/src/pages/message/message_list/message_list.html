@@ -9,21 +9,21 @@
   </ion-header>
 
   <ion-content>
-    <div>
-      <div class="message" *ngFor="let item of messages">
-        
-        <div class="imageContainter">
-          <div class="image">
-            <ion-avatar item-start>
-              <img src="assets/img/dog.jpeg" alt="your image">
-            </ion-avatar>
-          </div>
-        </div>
 
-        <ion-label class="userName">{{item.userName}}</ion-label>
-        <ion-label class="text">{{item.lastMessage}}</ion-label>
-        <ion-label class="dateTime">{{item.dateTime}}</ion-label>
-      </div>
-    </div>
+    <ion-list>
+      <ion-item *ngFor="let item of messages;">
+        <ion-item ion-item (click)="openMessage(item.id)">
+          <ion-avatar item-start>
+            <img src='assets/img/dog.jpeg' alt="your image">
+          </ion-avatar>
+          <h2>{{item.userName}}</h2>
+          <div>
+            <p style="display:inline-block;">{{item.lastMessage}}</p>
+            <p style="display:inline-block; float:right;">{{item.dateTime}}</p>
+          </div>
+
+        </ion-item>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </div>

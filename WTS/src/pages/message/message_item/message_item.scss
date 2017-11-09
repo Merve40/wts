@@ -80,8 +80,8 @@ message_item {
             bottom:0;
             left:0;
             position: absolute;
-            margin-bottom: 5px;
-            // display: inline-block;
+            margin-bottom: 3px;
+            background-color: #E5E9ED;
         }
 
         div.img_container{
@@ -96,7 +96,6 @@ message_item {
         div.send_bar{
             height: 100%;
             width: 100%;
-            background-color: transparent;
         }
 
         .message{
