@@ -57,7 +57,7 @@ export class ListSearchPage implements OnResultComplete {
   searchForStudents() {
     console.log(this.searchParameter);
     this.result = [];
-    if (this.searchParameter.length > 1 && this.searchParameter != "Name") {
+    if (this.searchParameter.length > 0 && this.searchParameter != "Name") {
       this.StudentTable.getAllContaining(this.searchParameter, this.filter, "search-query", this.onComplete);
     } else if (this.searchParameter.length > 0) {
       var paras = this.searchParameter.split(" ");
