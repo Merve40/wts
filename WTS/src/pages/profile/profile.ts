@@ -18,7 +18,7 @@ import { OnResultComplete } from '../../providers/api/OnResultComplete';
 export class ProfilePage implements OnResultComplete {
 
   accID: string;
-  isExtern: boolean;
+  isOwn: boolean;
   @ViewChild ('myButton') button: Button;
 
   constructor(public storage:Storage, public navCtrl: NavController, public navParams: NavParams, public AdressTable: AdressTable, public StudentTable: StudentTable, public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable, public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
@@ -32,28 +32,22 @@ export class ProfilePage implements OnResultComplete {
 
     
     this.accID = navParams.get("userId");
-    this.isExtern = navParams.get("isExtern");
-    this.isExtern = false;
-    console.log(this.isExtern);
+    this.isOwn = navParams.get("isOwn");
+    console.log(this.isOwn);
     this.load();
     //this.storage.get("user_id").then( (id) => this.load(id));
  }
 
   load(){
-    if(this.isExtern == true){
-      console.log("Openend is extern");
+    if(this.isOwn == false){
+      console.log("Profile is extern, printed in profile.ts");
       this.accID = this.navParams.get("userId");
       this.StudentTable.getByValue("Account_Id", this.accID, "student-abfrage", this.onComplete);
       this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
       this.StudentPassionTable.filterByValue("Account_Id", this.accID, "passionStudent-abfrage", this.onComplete);
       this.StudentSkillTable.filterByValue("Account_Id", this.accID, "skill-abfrage", this.onComplete);
     }else{
-      console.log("Openend is NOT extern");
-      // var content = '<button hidden id ="edit" ion-button editProfile ion-button color="wts_grey" (click)="edit()"/button>';
-      // document.getElementById("edit").innerHTML = content;
-
-      // document.getElementById("edit").className = "hidden";
-
+      console.log("Profile is own, printed in profile.ts");
       this.StudentTable.getByValue("Account_Id", this.accID, "student-abfrage", this.onComplete);
       this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
       this.StudentPassionTable.filterByValue("Account_Id", this.accID, "passionStudent-abfrage", this.onComplete);
