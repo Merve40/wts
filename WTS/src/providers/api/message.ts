@@ -8,7 +8,7 @@ export interface Message {
     Betreff: string;
     Inhalt: string;
     Konversation_Id: string;
-    Sende_Id: string;       
+    Sende_Id: string;
 }
 
 @Injectable()
@@ -18,42 +18,11 @@ export class MessageTable extends Base {
         super(api, Table.NACHRICHT);
     }
 
-    delete(id:string, source:string, func:Function):void{
-        this.api.delete(this, id, source, func, this.srcClass);
-    }
-
-    update<T extends Base>(id:string, body:Message, source:string, func:Function){
+    update(id: string, body: Message, source: string, func: Function) {
         this.api.put(this, id, body, source, func, this.srcClass);
     }
 
-    push<Message>(account: Message, source:string, func: Function) {
+    push(account: Message, source: string, func: Function) {
         this.api.post(this, account, source, func, this.srcClass);
-    }
-
-    getById(id:string, source:string, func:Function){
-        this.api.get(this, id, source, func, this.srcClass);
-    }
-
-    getByValue(key: string, value, source:string, func: Function) {
-        this.api.getByValue(this, key, value, source, func, this.srcClass);
-    }
-
-    filterByValue(key: string, value: string, source:string, func: Function) {
-        this.api.filterByValue(this, key, value, source, func, this.srcClass);
-    }
-
-    filterByValueAndLimit(key: string, value: string, limit: number, source:string, func: Function) {
-        this.api.filterByValueAndLimit(this, key, value, limit, source, func, this.srcClass);
-    }
-    getAll( source:string, func:Function){
-        this.api.getAll(this, source, func, this.srcClass);
-    }
-    
-    getAllStartingWith(key:string, value:string, source:string, func:Function){
-        this.api.startsWith(this, key, value, source, func, this.srcClass);
-    }
-
-    getAllContaining(key:string, value:string, source:string, func:Function){
-        this.api.getByContains(this, key, value, source, func, this.srcClass);
     }
 }

@@ -1,6 +1,9 @@
 import { Api } from './api';
 
 export abstract class Base {
+    public TIMESTAMP={
+        ".sv": "timestamp"
+    };
     api:Api;
     public table: string;
     public srcClass:any;
@@ -18,18 +21,20 @@ export abstract class Base {
      */
     getUserTypeByAccountId(id:string, flag:string, func:Function ){
         this.api.getByTable("Account", id, flag, (src, json)=>{
-
+            console.log(json);
             //generic wrapper callback
-            let callback = function(userType, json) {
-                func.apply(src, [flag, {id:json.id, type:userType, body:json.body}]);
+            let callback = function(userType, _json) {
+                func.apply(src, [flag, {id:_json.id, type:userType, body:_json.body}]);
             }
 
             if(json.body.Usergruppe == "gruppe_1"){
                 this.api.getByValueWithTable("Student", "Account_Id",
                                     json.id, "gruppe_1", callback, this.srcClass);
+
             }else if(json.body.Usergruppe == "gruppe_2"){
                 this.api.getByValueWithTable("Unternehmen", "Account_Id",
                                     json.id, "gruppe_2", callback, this.srcClass);
+
             }else if(json.body.Usergruppe == "gruppe_3"){
                 this.api.getByValueWithTable("Universität", "Account_Id",
                                     json.id, "gruppe_3", callback, this.srcClass);
@@ -45,7 +50,9 @@ export abstract class Base {
      * @param source flag
      * @param func callback
      */
-    abstract delete(id:string, source:string, func:Function):void;
+     delete(id:string, source:string, func:Function):void{
+        this.api.delete(this, id, source, func, this.srcClass);
+     }
 
     /**
      * Updates an object by the given id.
@@ -62,7 +69,7 @@ export abstract class Base {
      * @param t object representing a table 
      * @param func callback function for response => parameter is json
      */
-    abstract push<T>(t: T, source:string,  func: Function):void;
+    abstract push(t: any, source:string,  func: Function):void;
 
     /**
      * Retrieves the object by it's id.
@@ -71,7 +78,9 @@ export abstract class Base {
      * @param id push id
      * @param func callback function => param json
      */
-    abstract getById(id: string, source:string,  func: Function): void;
+     getById(id: string, source:string,  func: Function): void{
+        this.api.get(this, id, source, func, this.srcClass);
+     }
 
     /**
      * Retrieves a row by key and value.
@@ -81,7 +90,9 @@ export abstract class Base {
      * @param value Value
      * @param func callback function => parameter is json
      */
-    abstract getByValue(key: string, value, source:string,  func: Function): void;
+    getByValue(key: string, value, source:string,  func: Function): void{
+        this.api.getByValue(this, key, value, source, func, this.srcClass);
+    }
 
     /**
      * Filters a List for a key and value.
@@ -91,7 +102,9 @@ export abstract class Base {
      * @param value Value
      * @param func callback function => parameter is jsonArray
      */
-    abstract filterByValue(key: string, value: string, source:string, func: Function): void;
+    filterByValue(key: string, value: string, source:string, func: Function): void{
+        this.api.filterByValue(this, key, value, source, func, this.srcClass);
+    }
 
     /**
      * Filters a List by Key-Value and Limits the number of results.
@@ -102,7 +115,9 @@ export abstract class Base {
      * @param limit max result number
      * @param func callback function => parameter jsonArray
      */
-    abstract filterByValueAndLimit(key: string, value: string, limit: number, source:string, func: Function): void;
+    filterByValueAndLimit(key: string, value: string, limit: number, source:string, func: Function): void{
+        this.api.filterByValueAndLimit(this, key, value, limit, source, func, this.srcClass);
+    }
 
     /**
      * Retrieves all entries in one table.
@@ -110,7 +125,9 @@ export abstract class Base {
      * @param source flag 
      * @param func callback
      */
-    abstract getAll( source:string, func:Function):void;
+    getAll( source:string, func:Function):void{
+        this.api.getAll(this, source, func, this.srcClass);
+    }
 
     /**
      * Get all entries starting with a prefix of a specific field.
@@ -120,7 +137,9 @@ export abstract class Base {
      * @param source flag
      * @param func callback function => parameter jsonArray
      */
-    abstract getAllStartingWith(key:string, value:string, source:string, func:Function):void;
+     getAllStartingWith(key:string, value:string, source:string, func:Function):void{
+        this.api.startsWith(this, key, value, source, func, this.srcClass);
+     }
 
     /**
      * Get all entries that contain a string of a specific field.
@@ -130,7 +149,40 @@ export abstract class Base {
      * @param source flag
      * @param func callback function => parameter jsonArray
      */
-    abstract getAllContaining(key:string, value:string, source:string, func:Function):void;
+     getAllContaining(key:string, value:string, source:string, func:Function):void{
+        this.api.getByContains(this, key, value, source, func, this.srcClass);
+     }
+
+    /**
+     * Retrieves entries filtered by key value pairs and sorted by a given field. 
+     * Optionally the starting value and whether it's ascending or descending can be specified.
+     * 
+     * @param key field 
+     * @param value 
+     * @param sortKey field to sort by (e.g. timestamp)
+     * @param flag source
+     * @param func callback
+     * @param startAt (optional) starting value for sorting, can be string or number
+     * @param ascending (optional) true when ascending, false when descending sort is preferred
+     * @param limit (optional) maximum amount of entries to be returned
+     */
+    getByKeyValueSortedBy(key:string, value:string, sortKey:string, flag:string, func:Function, startAt?:any, ascending?:boolean, limit?:number):void{
+        if(!startAt) startAt = 0;
+        if(!ascending) ascending = true;
+        if(!limit) limit = 0;
+
+        var body = {
+            tbl: this.table,
+            key,
+            value,
+            sortKey,
+            startAt,
+            ascending,
+            limit
+        };
+
+        this.api.getByKeyValueSortedBy(body, flag, func, this.srcClass);
+    }
 
     public setSrcClass(srcClass:any):void{
         this.srcClass = srcClass;

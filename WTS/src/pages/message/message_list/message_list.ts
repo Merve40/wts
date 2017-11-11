@@ -3,7 +3,24 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
 import { OnResultComplete } from '../../../providers/api/OnResultComplete';
-import {ConversationTable} from '../../../providers/api/conversation';
+import { ConversationTable } from '../../../providers/api/conversation';
+import { MessageTable } from '../../../providers/api/message';
+
+export interface MessageItem {
+    id: string;
+    userName: string;
+    img: string;
+    lastMessage: string;
+    dateTime: string;
+}
+
+export interface ConversationItem {
+    id: string;
+    body: {
+        Account_Id_1: string;
+        Account_Id_2: string;
+    }
+}
 
 @Component({
     selector: "message_list",
@@ -22,13 +39,16 @@ export class MessageListPage implements OnResultComplete {
     ];
 
     accID: string;
-    messageArray = [];
+    messageArray: ConversationItem[] = new Array();;
+    users: MessageItem[] = new Array();
 
     constructor(public navCtrl: NavController, public navparams: NavParams, public translate: TranslateService,
-        public storage: Storage, public conversationTable:ConversationTable) {
-        storage.get("user_id").then((id) => { 
-            this.accID = id; 
-            conversationTable.filterByValue("Account_Id_1", id, "query", this.onComplete);
+        public storage: Storage, public conversationTable: ConversationTable, public messageTable:MessagePortEventMap) {
+
+        conversationTable.setSrcClass(this);
+        this.storage.get("user_id").then((id) => {
+            this.accID = id;
+            this.conversationTable.filterByValue("Account_Id_1", id, "query", this.onComplete);
         });
     }
 
@@ -36,21 +56,61 @@ export class MessageListPage implements OnResultComplete {
         console.log(id);
     }
 
-    onComplete(flag:string, json:any){
+    onComplete(flag: string, json: any) {
 
-        if(flag == "query"){
-            this.messageArray.concat(json);
-            this.conversationTable.filterByValue("Account_Id_2", this.accID, "query2", this.onComplete);
-        }else if(flag == "query2"){
-            this.messageArray.concat(json);
-            var users = [];
+        let getName = (js) => {
+            return js.Name ? js.Name + " " + js.Nachname
+                : js.Unternehmen ? js.Unternehmen
+                    : js.Universität ? js.Universität
+                        : "John Doe";
+        }
 
-            for(var i = 0; i < this.messageArray.length; i++){
-                this.conversationTable.getUserTypeByAccountId(this.messageArray[i].id, "", (f, json)=>{
-                    users.push(json);
+        if (flag == "query") {
+            console.log("query1");
+
+            if (json[0].body) {
+                var arr: ConversationItem[] = json as ConversationItem[];
+                this.messageArray.push.apply(this.messageArray, arr);
+            }
+
+            let self = this;
+            let callback = () => {
+                this.conversationTable.filterByValue("Account_Id_2", this.accID, "query2", this.onComplete);
+            }
+            console.log(new Date().getTime());
+
+            Promise.resolve()
+                .then(() => {
+
+                    for (var i = 0; i < this.messageArray.length; i++) {
+                        this.conversationTable.getUserTypeByAccountId(json[i].body.Account_Id_2, "", (f, _json) => {
+                            var name = getName(_json.body);
+                            this.users.push({ id: _json.id, userName: name, img: "", lastMessage: "hello", dateTime: "06.11.2017" });
+                        });
+                    }
+
+                    return Promise.resolve(callback);
+                }).then((cb) => {
+                    cb();
                 });
+
+        } else if (flag == "query2") {
+
+            if (json[0].body) {
+                var arr: ConversationItem[] = json as ConversationItem[];
+                this.messageArray.push.apply(this.messageArray, arr);
+
+                for (var i = 0; i < this.messageArray.length; i++) {
+                    this.conversationTable.getUserTypeByAccountId(json[i].body.Account_Id_1, "", (f, _json) => {
+                        var name = getName(_json.body);
+                        this.users.push({ id: _json.id, userName: name, img: "", lastMessage: "hello", dateTime: "06.11.2017" });
+                    });
+                }
             }
         }
-        
+
+    }
+
+    ngAfterViewInit() {
     }
 }

@@ -23,9 +23,10 @@ import { StudentTable } from '../providers/api/student';
 import { Student_SkillTable } from '../providers/api/student_skill';
 import { SkillTable } from '../providers/api/skill';
 import { Student_PassionTable } from '../providers/api/student_passion';
-import { PassionTable} from '../providers/api/passion';
-import { UniversityTable} from '../providers/api/university';
-import { CompanyTable} from '../providers/api/company';
+import { PassionTable } from '../providers/api/passion';
+import { UniversityTable } from '../providers/api/university';
+import { CompanyTable } from '../providers/api/company';
+import { ConversationTable } from '../providers/api/conversation';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -37,7 +38,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { MockProvider} from '../pages/list_search/dataprovider';
+import { MockProvider } from '../pages/list_search/dataprovider';
 
 @NgModule({
   declarations: [
@@ -96,6 +97,7 @@ import { MockProvider} from '../pages/list_search/dataprovider';
     SplashScreen,
     ScreenOrientation,
     MockProvider,
+    ConversationTable,
     // Storage,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]

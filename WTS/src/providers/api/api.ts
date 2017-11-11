@@ -17,7 +17,7 @@ export class Api {
     constructor( @Inject(Http) public http: Http) {
     }
 
-    public delete<T extends Base>(base: T, id: string, source: string, func: Function, src: any): void {
+    public delete(base: Base, id: string, source: string, func: Function, src: any): void {
         let tbl = base.table.toString();
         let _url = this.url.concat(tbl).concat("/").concat(id)
             .concat(".json");
@@ -56,7 +56,7 @@ export class Api {
         });
     }
 
-    public get<T extends Base>(base: T, id: string, source: string, func: Function, src: any): void {
+    public get(base: Base, id: string, source: string, func: Function, src: any): void {
         this.getByTable(base.table, id, source, func, src);
     }
 
@@ -72,7 +72,7 @@ export class Api {
         });
     }
 
-    public getByValue<T extends Base>(base: T, key: string, value: string, source: string, func: Function, src: any): void {
+    public getByValue(base: Base, key: string, value: string, source: string, func: Function, src: any): void {
         this.getByValueWithTable(base.table, key, value, source, func, src);
     }
 
@@ -94,7 +94,7 @@ export class Api {
         });
     }
 
-    public filterByValue<T extends Base>(base: T, key: string, value: string, source: string, func: Function, src: any): void {
+    public filterByValue(base: Base, key: string, value: string, source: string, func: Function, src: any): void {
         let tbl = base.table.toString();
         let _url = this.url.concat(tbl).concat(this.suffix).concat(this.orderBy)
             .concat(this.quote).concat(key).concat(this.quote)
@@ -111,7 +111,7 @@ export class Api {
         });
     }
 
-    public filterByValueAndLimit<T extends Base>(base: T, key: string, value: string, limit: number,
+    public filterByValueAndLimit(base: Base, key: string, value: string, limit: number,
         source: string, func: Function, src: any): void {
         let tbl = base.table.toString();
         let _url = this.url.concat(tbl).concat(this.suffix).concat(this.orderBy)
@@ -130,7 +130,7 @@ export class Api {
         });
     }
 
-    public getAll<T extends Base>(base: T, source: string, func: Function, src: any): void {
+    public getAll(base: Base, source: string, func: Function, src: any): void {
         let tbl = base.table.toString();
         let _url = this.url.concat(tbl).concat(this.suffix);
 
@@ -142,7 +142,7 @@ export class Api {
         });
     }
 
-    public startsWith<T extends Base>(base: T, key: string, value: string, source: string, func: Function, src: any): void {
+    public startsWith(base: Base, key: string, value: string, source: string, func: Function, src: any): void {
         let tbl = base.table.toString();
         let _url = this.url.concat(tbl).concat(this.suffix)
             .concat(this.orderBy)
@@ -159,7 +159,7 @@ export class Api {
         });
     }
 
-    getByContains<T extends Base>(base: T, key: string, value: string, source: string, func: Function, src: any): void {
+    getByContains(base: Base, key: string, value: string, source: string, func: Function, src: any): void {
         let _url = "https://us-central1-worktostudents.cloudfunctions.net/contains";
         var body = {
             tbl: base.table,
@@ -174,11 +174,21 @@ export class Api {
         });
     }
 
+    getByKeyValueSortedBy(body:any, flag:string, func:Function, src:any):void{
+        var url = "https://us-central1-worktostudents.cloudfunctions.net/sortBy";
+        var response = this.http.post(url, body); 
+        response.forEach((obj)=>{
+            var json = JSON.parse(obj.text());
+            func.apply(src, [flag, json]);
+            return obj;
+        });
+    }
+
     /**
      * Retrieves the object with it'S id and returns the inner body.
      * @param json 
      */
-    getInnerJson(json: string): any {
+    private getInnerJson(json: string): any {
         var _id = this.getJsonId(json);
         var removeOuter = json.substr(1, json.length);
         var start = removeOuter.indexOf("{") + 1;
@@ -194,7 +204,7 @@ export class Api {
         }
     }
 
-    getInnerJsonArray(jarray: string) {
+    private getInnerJsonArray(jarray: string) {
         var removeOuter = jarray.substr(1, jarray.length - 2);
         var replaced = removeOuter.split("},").join("} , ");
 
@@ -211,7 +221,7 @@ export class Api {
 
     }
 
-    getJsonId(json: string): string {
+    private getJsonId(json: string): string {
         var replaced = json.split("{").join(" ")
             .split("}").join(" ")
             .split(":").join(" ")
