@@ -6,7 +6,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 import { LoginPage } from '../pages/login/login';
 import { ProfilePage } from '../pages/profile/profile';
-import { Profile_externPage } from '../pages/profile_extern/profile_extern';
+import { ProfileVarier } from '../pages/profile_varier/profile_varier';
 import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
 import { UniProfilePage } from '../pages/uni_profile/uni_profile';
 import { CompanyProfilePage } from '../pages/company_profile/company_profile';
@@ -45,7 +45,7 @@ export class MyApp {
         { title: translations.LOGOUT, component: LoginPage },
         { title: translations.LISTSEARCHPAGE, component: ListSearchPage },
         { title: translations.MAPPAGE, component: MapPage },        
-        { title: 'Extern Profile', component: Profile_externPage },
+        { title: 'Own Profile', component: ProfileVarier },
         { title: 'Edit Profile', component: Profile_EditPage },
         { title: 'Uni Profil', component: UniProfilePage },
         { title: "Message", component: MessagePage },

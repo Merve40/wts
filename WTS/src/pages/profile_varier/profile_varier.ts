@@ -11,11 +11,11 @@ import { UniProfilePage } from '../uni_profile/uni_profile';
 import { LoginPage } from '../login/login';
 
 @Component({
-    selector: 'page-profile_extern',
-    templateUrl: 'profile_extern.html'
+    selector: 'page-profile_varier',
+    templateUrl: 'profile_varier.html'
   })
 
-  export class Profile_externPage implements OnResultComplete{
+  export class ProfileVarier implements OnResultComplete{
 
     accID:string;   
     isOwn: boolean; 

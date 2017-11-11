@@ -6,7 +6,7 @@ import { OnResultComplete } from '../../providers/api/OnResultComplete';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
 
-import { Profile_externPage } from '../profile_extern/profile_extern';
+import { ProfileVarier } from '../profile_varier/profile_varier';
 import * as CryptoJS from 'crypto-js';
 
 @Component({
@@ -66,7 +66,7 @@ export class LoginPage implements OnResultComplete {
   navigateToUserProfile(json: any) {
     this.storage.set("user_id", json.id);
 
-    this.navCtrl.setRoot(Profile_externPage, { userId: json.id });
+    this.navCtrl.setRoot(ProfileVarier, { userId: json.id });
   }
 
   showLoginError(message) {
