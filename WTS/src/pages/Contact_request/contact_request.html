@@ -1,0 +1,22 @@
+<div class="full">
+    <ion-header class="header">
+      <ion-navbar>{{'LISTSEARCHPAGE' | translate}}
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      </ion-navbar>
+    </ion-header>
+  
+    <ion-content padding>
+  
+      <ion-list>
+        <ion-item *ngFor = "let item of result;">
+            <ion-item ion-item (click)="">
+                <ion-avatar item-start>
+                    <img src='assets/img/dog.jpeg' alt="your image">                  
+                </ion-avatar>
+              </ion-item>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </div>
