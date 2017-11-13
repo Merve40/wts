@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { ContactRequestTable } from '../../providers/api/contactrequests';
+import { ContactRequestTable } from '../../providers/api/contactrequest';
 import { ProfileVarier } from '../profile_varier/profile_varier';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
 
@@ -33,6 +33,7 @@ export class ContactRequestPage implements OnResultComplete {
 }
 
 searchForRequests(){
+  console.log(this.accId);
 this.ContactRequestTable.getByValue("receiver", this.accId, "contact-request", this.onComplete)
 }
 
