@@ -25,9 +25,12 @@ export class ContactRequestPage implements OnResultComplete {
     switch (src) {
       case "contact-request": {
         console.log("Started request");
-        var body = json.body;
+        var sender = json.body.sender;
         console.log(json.body.sender);
-        this.requests
+        this.requests.push(sender)
+      }
+      case "account-request": {
+        this.ContactRequestTable.getByValue("receiver", this.accId, "contact-request", this.onComplete)
       }
       default: {
         break;
