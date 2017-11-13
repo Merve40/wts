@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { Profile_EditPage } from '../profile_edit/profile_edit'
 import { StudentTable } from '../../providers/api/student';
 import { AccountTable } from '../../providers/api/account';
+import { ContactRequestTable } from '../../providers/api/contactrequest';
 import { AdressTable } from '../../providers/api/adress';
 import { Student_SkillTable } from '../../providers/api/student_skill';
 import { SkillTable } from '../../providers/api/skill';
@@ -18,10 +19,11 @@ import { OnResultComplete } from '../../providers/api/OnResultComplete';
 export class ProfilePage implements OnResultComplete {
 
   accID: string;
+  accID_extern: string;
   isOwn: boolean;
   @ViewChild ('myButton') button: Button;
 
-  constructor(public storage:Storage, public navCtrl: NavController, public navParams: NavParams, public AdressTable: AdressTable, public StudentTable: StudentTable, public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable, public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
+  constructor(public storage:Storage, public navCtrl: NavController, public navParams: NavParams, public AdressTable: AdressTable, public ContactRequestTable: ContactRequestTable, public StudentTable: StudentTable, public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable, public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
     StudentTable.setSrcClass(this);
     AccountTable.setSrcClass(this);
     AdressTable.setSrcClass(this);
@@ -29,7 +31,7 @@ export class ProfilePage implements OnResultComplete {
     SkillTable.setSrcClass(this);
     PassionTable.setSrcClass(this);
     StudentPassionTable.setSrcClass(this);
-
+    ContactRequestTable.setSrcClass(this);
     
     this.accID = navParams.get("userId");
     this.isOwn = navParams.get("isOwn");
@@ -57,6 +59,23 @@ export class ProfilePage implements OnResultComplete {
 
   edit() {
     this.navCtrl.push(Profile_EditPage, {userId:this.accID});
+  }
+
+  contactRequest(){
+    this.storage.get("user_id").then( (id) => this.loadAccount(id));
+    var receiver_id = this.accID;
+    
+    var contact = {
+      sender: this.accID_extern,
+      receiver: receiver_id
+  }
+
+    this.ContactRequestTable.push(contact, "contactrequest", this.onComplete);
+  }
+
+  loadAccount(id){
+    //Account-ID des aufgerufenene Profils
+    this.accID_extern = id;
   }
 
   onComplete(src, json) {
