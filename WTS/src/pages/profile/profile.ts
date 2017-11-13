@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { Profile_EditPage } from '../profile_edit/profile_edit'
 import { StudentTable } from '../../providers/api/student';
 import { AccountTable } from '../../providers/api/account';
+import { ContactRequestTable } from '../../providers/api/contactrequest';
 import { AdressTable } from '../../providers/api/adress';
 import { Student_SkillTable } from '../../providers/api/student_skill';
 import { SkillTable } from '../../providers/api/skill';
@@ -18,10 +19,11 @@ import { OnResultComplete } from '../../providers/api/OnResultComplete';
 export class ProfilePage implements OnResultComplete {
 
   accID: string;
+  accID_extern: string;
   isOwn: boolean;
-  @ViewChild ('myButton') button: Button;
+  @ViewChild('myButton') button: Button;
 
-  constructor(public storage:Storage, public navCtrl: NavController, public navParams: NavParams, public AdressTable: AdressTable, public StudentTable: StudentTable, public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable, public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
+  constructor(public storage: Storage, public navCtrl: NavController, public navParams: NavParams, public AdressTable: AdressTable, public ContactRequestTable: ContactRequestTable, public StudentTable: StudentTable, public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable, public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
     StudentTable.setSrcClass(this);
     AccountTable.setSrcClass(this);
     AdressTable.setSrcClass(this);
@@ -29,24 +31,24 @@ export class ProfilePage implements OnResultComplete {
     SkillTable.setSrcClass(this);
     PassionTable.setSrcClass(this);
     StudentPassionTable.setSrcClass(this);
+    ContactRequestTable.setSrcClass(this);
 
-    
     this.accID = navParams.get("userId");
     this.isOwn = navParams.get("isOwn");
-    console.log("Profile.ts: IsOwn is: "+ this.isOwn);
+    console.log("Profile.ts: IsOwn is: " + this.isOwn);
     this.load();
     //this.storage.get("user_id").then( (id) => this.load(id));
- }
+  }
 
-  load(){
-    if(this.isOwn == false){
+  load() {
+    if (this.isOwn == false) {
       console.log("Profile is extern, printed in profile.ts");
       this.accID = this.navParams.get("userId");
       this.StudentTable.getByValue("Account_Id", this.accID, "student-abfrage", this.onComplete);
       this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
       this.StudentPassionTable.filterByValue("Account_Id", this.accID, "passionStudent-abfrage", this.onComplete);
       this.StudentSkillTable.filterByValue("Account_Id", this.accID, "skill-abfrage", this.onComplete);
-    }else{
+    } else {
       console.log("Profile is own, printed in profile.ts");
       this.StudentTable.getByValue("Account_Id", this.accID, "student-abfrage", this.onComplete);
       this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
@@ -56,7 +58,26 @@ export class ProfilePage implements OnResultComplete {
   }
 
   edit() {
-    this.navCtrl.push(Profile_EditPage, {userId:this.accID});
+    this.navCtrl.push(Profile_EditPage, { userId: this.accID });
+  }
+
+  contactRequest() {
+    this.storage.get("user_id").then((id) => this.loadContact(id));
+  }
+
+
+
+  loadContact(id) {
+    //Account-ID des aufgerufenene Profils
+    this.accID_extern = id;
+    var receiver_id = this.accID;
+
+    var contact = {
+      sender: this.accID_extern,
+      receiver: receiver_id
+    }
+
+    this.ContactRequestTable.push(contact, "contactrequest", this.onComplete);
   }
 
   onComplete(src, json) {
@@ -135,7 +156,7 @@ export class ProfilePage implements OnResultComplete {
           var item = json[i];
 
           //anonymer Aufruf
-          let asyncCall:Function = (source, _json) =>{
+          let asyncCall: Function = (source, _json) => {
             var num = +source;
             skills += _json.body.Fähigkeit;
 
@@ -146,17 +167,17 @@ export class ProfilePage implements OnResultComplete {
             }
           }
 
-          this.SkillTable.getById(item.body.Fähigkeit_Id, ""+i, asyncCall);
+          this.SkillTable.getById(item.body.Fähigkeit_Id, "" + i, asyncCall);
         }
 
-      } else { 
-        document.getElementById("skills").className = "hidden"; 
+      } else {
+        document.getElementById("skills").className = "hidden";
       }
     }
   }
 
 
-  ngAfterViewInit() {    
+  ngAfterViewInit() {
     //document.getElementById("buttondiv").className = "hidden";
     // this.StudentTable.getByValue("Account_Id", this.accID, "student-abfrage", this.onComplete);
     // this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);

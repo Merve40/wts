@@ -44,7 +44,7 @@
     "ionic-plugin-keyboard": "~2.2.1",
     "ionicons": "3.0.0",
     "json-ignore": "^0.2.0",
-    "moment": "^2.19.1",
+    "moment": "^2.19.2",
     "phonegap-plugin-push": "^2.0.0",
     "promise-polyfill": "6.0.2",
     "rxjs": "5.4.3",
@@ -54,7 +54,7 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.0.0",
-    "@types/node": "^8.0.47",
+    "@types/node": "^8.0.51",
     "typescript": "2.3.4"
   },
   "description": "An Ionic project",

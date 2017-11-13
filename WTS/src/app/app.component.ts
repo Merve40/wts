@@ -9,6 +9,7 @@ import { ProfilePage } from '../pages/profile/profile';
 import { ProfileVarier } from '../pages/profile_varier/profile_varier';
 import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
 import { UniProfilePage } from '../pages/uni_profile/uni_profile';
+import { ContactRequestPage } from '../pages/contact_request/contact_request';
 import { CompanyProfilePage } from '../pages/company_profile/company_profile';
 import { ListSearchPage } from '../pages/list_search/list_search';
 import { MapPage } from '../pages/map/map';
@@ -38,20 +39,20 @@ export class MyApp {
     // used for an example of ngFor and navigation
     // Labels & Pages in navigationbar in upper left corner
 
-    translate.get(['LOGINPAGE', 'PROFILEPAGE', 'LOGOUT', 'LISTSEARCHPAGE', 'MAPPAGE']).subscribe(translations => {
+    translate.get(['LOGINPAGE', 'PROFILEPAGE', 'LOGOUT', 'LISTSEARCHPAGE', 'MAPPAGE', 'CONTACTREQUESTPAGE']).subscribe(translations => {
       this.pages = [
         { title: translations.LOGINPAGE, component: LoginPage },
         { title: translations.PROFILEPAGE, component: ProfileVarier },
         { title: translations.LOGOUT, component: LoginPage },
         { title: translations.LISTSEARCHPAGE, component: ListSearchPage },
         { title: translations.MAPPAGE, component: MapPage },
+        { title: translations.CONTACTREQUESTPAGE, component: ContactRequestPage },
         { title: 'Uni Profil', component: UniProfilePage },
         { title: 'Company Profil', component: CompanyProfilePage },
         { title: "Message", component: MessagePage },
         { title: "Messages", component: MessageListPage }
       ];
     })
-
   }
 
   initializeApp() {

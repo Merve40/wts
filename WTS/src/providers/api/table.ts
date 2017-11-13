@@ -16,4 +16,6 @@ export class Table{
     public static UNTERNEHMEN:string="Unternehmen";
     public static USER_GRUPPE:string="Usergruppe";
     public static NETZWERK:string="Netzwerk";
+    public static KONTAKTANFRAGE:string="Kontaktanfragen";
+
 }
