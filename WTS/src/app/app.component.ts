@@ -41,7 +41,7 @@ export class MyApp {
     translate.get(['LOGINPAGE', 'PROFILEPAGE', 'LOGOUT', 'LISTSEARCHPAGE', 'MAPPAGE']).subscribe(translations => {
       this.pages = [
         { title: translations.LOGINPAGE, component: LoginPage },
-        { title: translations.PROFILEPAGE, component: Profile_externPage },
+        { title: translations.PROFILEPAGE, component: ProfileVarier },
         { title: translations.LOGOUT, component: LoginPage },
         { title: translations.LISTSEARCHPAGE, component: ListSearchPage },
         { title: translations.MAPPAGE, component: MapPage },
