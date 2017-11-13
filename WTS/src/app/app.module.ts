@@ -10,7 +10,7 @@ import { ProfilePage } from '../pages/profile/profile';
 import { UniProfilePage } from '../pages/uni_profile/uni_profile';
 import { CompanyProfilePage } from '../pages/company_profile/company_profile';
 import { ProfileVarier } from '../pages/profile_varier/profile_varier';
-import { ContactRequestPage } from '../pages/contact_request/contact_request';
+import { ContactRequestPage } from '../pages/Contact_request/contact_request';
 import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
 import { ListSearchPage } from '../pages/list_search/list_search';
 import { MapPage } from '../pages/map/map';

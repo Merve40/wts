@@ -11,31 +11,6 @@ import { MessageTable } from '../../../providers/api/message';
 })
 export class MessagePage implements OnResultComplete {
 
-    //Testdaten Konversation
-    messages: any = [
-        { text: "hello, jane how are you doing?", isOwner: false, style: "txt" },
-        { text: "hello john", isOwner: true, style: "txt" },
-        {
-            text: "I'm doing very good. It has been a long time last we talked,"
-            + "how are things going with you now?", isOwner: true, style: "txt"
-        },
-        { text: "Things are going greate Jane!", isOwner: false, style: "txt" },
-        { text: "hello, jane how are you doing?", isOwner: false, style: "txt" },
-        { text: "hello john", isOwner: true, style: "txt" },
-        {
-            text: "I'm doing very good. It has been a long time last we talked,"
-            + "how are things going with you now?", isOwner: true, style: "txt"
-        },
-        { text: "Things are going greate Jane!", isOwner: false, style: "txt" },
-        { text: "hello, jane how are you doing?", isOwner: false, style: "txt" },
-        { text: "hello john", isOwner: true, style: "txt" },
-        {
-            text: "I'm doing very good. It has been a long time last we talked,"
-            + "how are things going with you now?", isOwner: true, style: "txt"
-        },
-        { text: "Things are going greate Jane!", isOwner: false, style: "txt" }
-    ];
-
     @ViewChild("content") content: Content;
     @ViewChild("userName", { read: ElementRef }) userName: ElementRef;
     @ViewChild("scrollView") scrollView;
@@ -47,10 +22,11 @@ export class MessagePage implements OnResultComplete {
 
     constructor(public navCtrl: NavController, public navparams: NavParams, public translate: TranslateService,
         public storage: Storage, public messageTable: MessageTable) {
-
+        
+        this.messageTable.setSrcClass(this);    
         this.id = navparams.get('id');
         this.name = navparams.get('name');
-        storage.get('user_id').then((_id) => {
+        storage.get("user_id").then((_id) => {
             this.accId = _id;
             messageTable.getByKeyValueSortedBy("Konversation_Id", this.id, "Zeitstempel", "nachrichten-abfrage",
                 this.onComplete, 0, true, 15);
@@ -60,7 +36,7 @@ export class MessagePage implements OnResultComplete {
     onComplete(flag: string, json: any) {
 
         if(flag == "nachrichten-abfrage"){
-            console.log(json);
+         
             for(var i = 0; i < json.length; i++){
                 var item = json[i].body;
                 var isOwner;
@@ -69,16 +45,25 @@ export class MessagePage implements OnResultComplete {
                 }else{
                     isOwner = false;
                 }
-                this.messageList.push({test:item.Inhalt, isOwner:isOwner});
+                this.messageList.push({text:item.Inhalt, isOwner:isOwner});              
             }
+            this.scrollToBottom();
         }
     }
 
     send() {
-        this.messages.push({ text: this.message, isOwner: true, style: "" });
+        this.messageList.push({ text: this.message, isOwner: true, style: "" });  
+        var msg = {
+            Anhang_Id :"",
+            Betreff:"",
+            Inhalt: this.message,
+            Konversation_Id: this.id,
+            Sender_Id: this.accId,
+            Zeitstempel: this.messageTable.TIMESTAMP
+        }
+        this.messageTable.push(msg, "", this.onComplete);
         this.message = "";
         this.scrollToBottom();
-        //TODO: send message to server
     }
 
     ngAfterViewInit() {

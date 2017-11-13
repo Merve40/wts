@@ -175,8 +175,8 @@ export class Api {
     }
 
     getByKeyValueSortedBy(body:any, flag:string, func:Function, src:any):void{
-        var url = "https://us-central1-worktostudents.cloudfunctions.net/sortBy";
-        var response = this.http.post(url, body); 
+        var _url = "https://us-central1-worktostudents.cloudfunctions.net/sortBy";
+        var response = this.http.post(_url, body); 
         response.forEach((obj)=>{
             var json = JSON.parse(obj.text());
             func.apply(src, [flag, json]);
