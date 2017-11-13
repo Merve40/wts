@@ -27,6 +27,7 @@ import { PassionTable } from '../providers/api/passion';
 import { UniversityTable } from '../providers/api/university';
 import { CompanyTable } from '../providers/api/company';
 import { ConversationTable } from '../providers/api/conversation';
+import { MessageTable } from '../providers/api/message';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -98,6 +99,7 @@ import { MockProvider } from '../pages/list_search/dataprovider';
     ScreenOrientation,
     MockProvider,
     ConversationTable,
+    MessageTable,
     // Storage,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]

@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import { OnResultComplete } from '../../../providers/api/OnResultComplete';
 import { ConversationTable } from '../../../providers/api/conversation';
 import { MessageTable } from '../../../providers/api/message';
+import { MessagePage } from '../message_item/message_item';
 
 export interface MessageItem {
     id: string;
@@ -28,16 +29,6 @@ export interface ConversationItem {
 })
 export class MessageListPage implements OnResultComplete {
 
-    //Testdaten Nachtichtenliste
-    messages: any = [
-        { id: 0, userName: "John Doe", img: "https://goo.gl/images/MyjyYu", lastMessage: "hello", dateTime: "20:49" },
-        { id: 1, userName: "Max Mustermann", img: "https://goo.gl/images/MyjyYu", lastMessage: "test", dateTime: "19:54" },
-        { id: 2, userName: "Michael Scott", img: "https://goo.gl/images/MyjyYu", lastMessage: "goodbye", dateTime: "07.11.2017" },
-        { id: 3, userName: "Dwight Schrute", img: "https://goo.gl/images/MyjyYu", lastMessage: "how are you?", dateTime: "06.11.2017" },
-        { id: 4, userName: "Jim Halpter", img: "https://goo.gl/images/MyjyYu", lastMessage: "see u later", dateTime: "17.10.2017" },
-        { id: 5, userName: "Pam Beesly", img: "https://goo.gl/images/MyjyYu", lastMessage: "by", dateTime: "01.10.2017" }
-    ];
-
     accID: string;
     messageArray: ConversationItem[] = new Array();;
     users: MessageItem[] = new Array();
@@ -47,13 +38,14 @@ export class MessageListPage implements OnResultComplete {
 
         conversationTable.setSrcClass(this);
         this.storage.get("user_id").then((id) => {
+            console.log("my id: "+id);
             this.accID = id;
             this.conversationTable.filterByValue("Account_Id_1", id, "query", this.onComplete);
         });
     }
 
-    openMessage(id) {
-        console.log(id);
+    openMessage(id, name) {
+        this.navCtrl.setRoot(MessagePage, {id:id, name:name});
     }
 
     onComplete(flag: string, json: any) {
@@ -106,6 +98,8 @@ export class MessageListPage implements OnResultComplete {
                         this.users.push({ id: _json.id, userName: name, img: "", lastMessage: "hello", dateTime: "06.11.2017" });
                     });
                 }
+
+                // this.messageTable.getByKeyValueSortedBy()                
             }
         }
 

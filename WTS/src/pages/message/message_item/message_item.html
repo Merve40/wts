@@ -25,7 +25,7 @@
         </div>
 
         <div #scrollView class="message_content">
-                <div *ngFor="let item of messages;">
+                <div *ngFor="let item of messageList;">
                     <ion-label *ngIf="!item.isOwner" class="txt">{{item.text}}</ion-label>
                     <ion-label *ngIf="item.isOwner" class="txt_owner">{{item.text}}</ion-label>
                 </div>

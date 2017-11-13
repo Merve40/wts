@@ -173,12 +173,12 @@ export abstract class Base {
 
         var body = {
             tbl: this.table,
-            key,
-            value,
-            sortKey,
-            startAt,
-            ascending,
-            limit
+            key: key,
+            value: value,
+            sortKey: sortKey,
+            startAt: startAt,
+            ascending: ascending,
+            limit: limit
         };
 
         this.api.getByKeyValueSortedBy(body, flag, func, this.srcClass);
