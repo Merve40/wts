@@ -50,6 +50,7 @@ import { MockProvider } from '../pages/list_search/dataprovider';
     Profile_EditPage,
     ListSearchPage,
     MapPage,
+    ContactRequestPage,
     CompanyProfilePage,
     MessagePage,
     MessageListPage,
