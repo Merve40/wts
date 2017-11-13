@@ -51,7 +51,6 @@ export class MyApp {
         { title: "Messages", component: MessageListPage }
       ];
     })
-
   }
 
   initializeApp() {
