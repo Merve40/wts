@@ -61,16 +61,13 @@ export class ListSearchPage implements OnResultComplete {
   }
 
   searchForStudents() {
-    console.log(this.searchParameter);
     this.result = [];
     if (this.searchParameter.length > 0 && this.searchParameter != "Name") {
       this.StudentTable.getAllContaining(this.searchParameter, this.filter, "search-query", this.onComplete);
     } else if (this.searchParameter.length > 0) {
-      console.log(this.searchParameter);
       if (this.filter.indexOf(" ") !== -1) {
         var paras = this.filter.split(" ");
         paras.forEach(element => {
-          console.log(element);
           this.StudentTable.getAllContaining("Nachname", this.filter, "search-query", this.onComplete);
           this.StudentTable.getAllContaining("Name", this.filter, "search-query", this.onComplete);
         });
