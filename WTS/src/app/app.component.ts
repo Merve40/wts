@@ -41,16 +41,14 @@ export class MyApp {
     translate.get(['LOGINPAGE', 'PROFILEPAGE', 'LOGOUT', 'LISTSEARCHPAGE', 'MAPPAGE']).subscribe(translations => {
       this.pages = [
         { title: translations.LOGINPAGE, component: LoginPage },
-        { title: translations.PROFILEPAGE, component: ProfilePage },
+        { title: translations.PROFILEPAGE, component: Profile_externPage },
         { title: translations.LOGOUT, component: LoginPage },
         { title: translations.LISTSEARCHPAGE, component: ListSearchPage },
-        { title: translations.MAPPAGE, component: MapPage },        
-        { title: 'Own Profile', component: ProfileVarier },
-        { title: 'Edit Profile', component: Profile_EditPage },
+        { title: translations.MAPPAGE, component: MapPage },
         { title: 'Uni Profil', component: UniProfilePage },
+        { title: 'Company Profil', component: CompanyProfilePage },
         { title: "Message", component: MessagePage },
-        { title: "Messages", component: MessageListPage },
-        { title: 'Company Profil', component: CompanyProfilePage }
+        { title: "Messages", component: MessageListPage }
       ];
     })
 
