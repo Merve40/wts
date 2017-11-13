@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { StudentTable } from '../../providers/api/student';
-import { AccountTable } from '../../providers/api/account';
-import { AdressTable } from '../../providers/api/adress';
-import { Student_SkillTable } from '../../providers/api/student_skill';
-import { SkillTable } from '../../providers/api/skill';
-import { Student_PassionTable } from '../../providers/api/student_passion';
-import { PassionTable } from '../../providers/api/passion';
+import { NavController, NavParams } from 'ionic-angular';
+import { ContactRequestTable } from '../../providers/api/contactrequests';
 import { ProfileVarier } from '../profile_varier/profile_varier';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
 
@@ -17,16 +11,33 @@ import { OnResultComplete } from '../../providers/api/OnResultComplete';
 })
 export class ContactRequestPage implements OnResultComplete {
 
-  constructor(public navCtrl: NavController) {
+  accId;
+  requests = [];
 
+  constructor(public navCtrl: NavController, public ContactRequestTable: ContactRequestTable,public navParams: NavParams,) {
+    ContactRequestTable.setSrcClass(this);
+    this.accId = navParams.get("userId");
   }
 
   onComplete(src, json) {
     switch (src) {
-      case "": {}
+      case "contact-request": {
+        console.log("Started account abfrage in uni_profile");
+        var body = json.body;
+        console.log("json.body: " + body);
+      }
       default: {
         break;
       }
     }
 }
+
+searchForRequests(){
+this.ContactRequestTable.getByValue("receiver", this.accId, "contact-request", this.onComplete)
+}
+
+ngAfterViewInit() {
+  this.searchForRequests();
+}
+
 }
