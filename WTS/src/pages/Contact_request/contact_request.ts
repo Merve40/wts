@@ -5,6 +5,9 @@ import { ProfileVarier } from '../profile_varier/profile_varier';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
 
 
+import { Storage } from '@ionic/storage';
+
+
 @Component({
   selector: 'page-contact_request',
   templateUrl: 'contact_request.html'
@@ -14,31 +17,33 @@ export class ContactRequestPage implements OnResultComplete {
   accId;
   requests = [];
 
-  constructor(public navCtrl: NavController, public ContactRequestTable: ContactRequestTable,public navParams: NavParams,) {
+  constructor(public storage: Storage, public navCtrl: NavController, public ContactRequestTable: ContactRequestTable) {
     ContactRequestTable.setSrcClass(this);
-    this.accId = navParams.get("userId");
   }
 
   onComplete(src, json) {
     switch (src) {
       case "contact-request": {
-        console.log("Started account abfrage in uni_profile");
+        console.log("Started request");
         var body = json.body;
-        console.log("json.body: " + body);
+        console.log(json.body.sender);
+        this.requests
       }
       default: {
         break;
       }
     }
-}
+  }
 
-searchForRequests(){
-  console.log(this.accId);
-this.ContactRequestTable.getByValue("receiver", this.accId, "contact-request", this.onComplete)
-}
+  searchForRequests(id) {
+    this.accId = id;
+    console.log("accId: " + this.accId);
+    this.ContactRequestTable.getByValue("receiver", this.accId, "contact-request", this.onComplete)
+  }
 
-ngAfterViewInit() {
-  this.searchForRequests();
-}
+  ngAfterViewInit() {
+
+    this.storage.get("user_id").then((id) => this.searchForRequests(id));
+  }
 
 }
