@@ -43,7 +43,7 @@ export class MessageListPage implements OnResultComplete {
     users: MessageItem[] = new Array();
 
     constructor(public navCtrl: NavController, public navparams: NavParams, public translate: TranslateService,
-        public storage: Storage, public conversationTable: ConversationTable, public messageTable:MessagePortEventMap) {
+        public storage: Storage, public conversationTable: ConversationTable, public messageTable:MessageTable) {
 
         conversationTable.setSrcClass(this);
         this.storage.get("user_id").then((id) => {
