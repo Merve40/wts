@@ -26,11 +26,15 @@ export class ContactRequestPage implements OnResultComplete {
       case "contact-request": {
         console.log("Started request");
         var sender = json.body.sender;
-        console.log(json.body.sender);
-        this.requests.push(sender)
+        console.log(sender);
+        this.requests.push(sender);
+        console.log("entry added")
+        break;
       }
       case "account-request": {
+        console.log("account-request");
         this.ContactRequestTable.getByValue("receiver", this.accId, "contact-request", this.onComplete)
+        break;
       }
       default: {
         break;
@@ -45,7 +49,7 @@ export class ContactRequestPage implements OnResultComplete {
   }
 
   ngAfterViewInit() {
-
+console.log("AfterView")
     this.storage.get("user_id").then((id) => this.searchForRequests(id));
   }
 
