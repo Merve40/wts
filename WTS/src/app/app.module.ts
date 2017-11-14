@@ -10,7 +10,7 @@ import { ProfilePage } from '../pages/profile/profile';
 import { UniProfilePage } from '../pages/uni_profile/uni_profile';
 import { CompanyProfilePage } from '../pages/company_profile/company_profile';
 import { ProfileVarier } from '../pages/profile_varier/profile_varier';
-import { ContactRequestPage } from '../pages/contact_request/contact_request';
+import { ContactRequestPage } from '../pages/Contact_request/contact_request';
 import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
 import { ListSearchPage } from '../pages/list_search/list_search';
 import { MapPage } from '../pages/map/map';
@@ -28,6 +28,7 @@ import { PassionTable } from '../providers/api/passion';
 import { UniversityTable } from '../providers/api/university';
 import { CompanyTable } from '../providers/api/company';
 import { ConversationTable } from '../providers/api/conversation';
+import { MessageTable } from '../providers/api/message';
 import { ContactRequestTable } from '../providers/api/contactrequest';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -103,6 +104,7 @@ import { MockProvider } from '../pages/list_search/dataprovider';
     ScreenOrientation,
     MockProvider,
     ConversationTable,
+    MessageTable,
     // Storage,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]

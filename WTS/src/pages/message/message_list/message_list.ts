@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import { OnResultComplete } from '../../../providers/api/OnResultComplete';
 import { ConversationTable } from '../../../providers/api/conversation';
 import { MessageTable } from '../../../providers/api/message';
+import { MessagePage } from '../message_item/message_item';
 
 export interface MessageItem {
     id: string;
@@ -28,22 +29,12 @@ export interface ConversationItem {
 })
 export class MessageListPage implements OnResultComplete {
 
-    //Testdaten Nachtichtenliste
-    messages: any = [
-        { id: 0, userName: "John Doe", img: "https://goo.gl/images/MyjyYu", lastMessage: "hello", dateTime: "20:49" },
-        { id: 1, userName: "Max Mustermann", img: "https://goo.gl/images/MyjyYu", lastMessage: "test", dateTime: "19:54" },
-        { id: 2, userName: "Michael Scott", img: "https://goo.gl/images/MyjyYu", lastMessage: "goodbye", dateTime: "07.11.2017" },
-        { id: 3, userName: "Dwight Schrute", img: "https://goo.gl/images/MyjyYu", lastMessage: "how are you?", dateTime: "06.11.2017" },
-        { id: 4, userName: "Jim Halpter", img: "https://goo.gl/images/MyjyYu", lastMessage: "see u later", dateTime: "17.10.2017" },
-        { id: 5, userName: "Pam Beesly", img: "https://goo.gl/images/MyjyYu", lastMessage: "by", dateTime: "01.10.2017" }
-    ];
-
     accID: string;
-    messageArray: ConversationItem[] = new Array();;
+    messageArray: ConversationItem[] = new Array();
     users: MessageItem[] = new Array();
 
     constructor(public navCtrl: NavController, public navparams: NavParams, public translate: TranslateService,
-        public storage: Storage, public conversationTable: ConversationTable, public messageTable:MessageTable) {
+        public storage: Storage, public conversationTable: ConversationTable, public messageTable: MessageTable) {
 
         conversationTable.setSrcClass(this);
         this.storage.get("user_id").then((id) => {
@@ -52,8 +43,8 @@ export class MessageListPage implements OnResultComplete {
         });
     }
 
-    openMessage(id) {
-        console.log(id);
+    openMessage(id, name) {
+        this.navCtrl.setRoot(MessagePage, { id: id, name: name });
     }
 
     onComplete(flag: string, json: any) {
@@ -66,33 +57,27 @@ export class MessageListPage implements OnResultComplete {
         }
 
         if (flag == "query") {
-            console.log("query1");
-
+          
             if (json[0].body) {
                 var arr: ConversationItem[] = json as ConversationItem[];
                 this.messageArray.push.apply(this.messageArray, arr);
+
+                Promise.resolve()
+                    .then(() => {
+
+                        for (var i = 0; i < this.messageArray.length; i++) {
+                            this.conversationTable.getUserTypeByAccountId(json[i].body.Account_Id_2, ""+i, (f, _json) => {
+                                var name = getName(_json.body);
+                                var _id = json[parseInt(f)].id;
+                                this.users.push({ id: _id, userName: name, img: "", lastMessage: "hello", dateTime: "06.11.2017" });
+                            });
+                        }
+
+                        return Promise.resolve();
+                    }).then(() => {
+                        this.conversationTable.filterByValue("Account_Id_2", this.accID, "query2", this.onComplete);
+                    });
             }
-
-            let self = this;
-            let callback = () => {
-                this.conversationTable.filterByValue("Account_Id_2", this.accID, "query2", this.onComplete);
-            }
-            console.log(new Date().getTime());
-
-            Promise.resolve()
-                .then(() => {
-
-                    for (var i = 0; i < this.messageArray.length; i++) {
-                        this.conversationTable.getUserTypeByAccountId(json[i].body.Account_Id_2, "", (f, _json) => {
-                            var name = getName(_json.body);
-                            this.users.push({ id: _json.id, userName: name, img: "", lastMessage: "hello", dateTime: "06.11.2017" });
-                        });
-                    }
-
-                    return Promise.resolve(callback);
-                }).then((cb) => {
-                    cb();
-                });
 
         } else if (flag == "query2") {
 
@@ -101,9 +86,10 @@ export class MessageListPage implements OnResultComplete {
                 this.messageArray.push.apply(this.messageArray, arr);
 
                 for (var i = 0; i < this.messageArray.length; i++) {
-                    this.conversationTable.getUserTypeByAccountId(json[i].body.Account_Id_1, "", (f, _json) => {
+                    this.conversationTable.getUserTypeByAccountId(json[i].body.Account_Id_1, ""+i, (f, _json) => {
                         var name = getName(_json.body);
-                        this.users.push({ id: _json.id, userName: name, img: "", lastMessage: "hello", dateTime: "06.11.2017" });
+                        var _id = json[parseInt(f)].id;
+                        this.users.push({ id: _id, userName: name, img: "", lastMessage: "hello", dateTime: "06.11.2017" });
                     });
                 }
             }

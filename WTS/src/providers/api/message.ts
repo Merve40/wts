@@ -8,7 +8,8 @@ export interface Message {
     Betreff: string;
     Inhalt: string;
     Konversation_Id: string;
-    Sende_Id: string;
+    Sender_Id: string;
+    Zeitstempel:any;
 }
 
 @Injectable()
@@ -22,7 +23,7 @@ export class MessageTable extends Base {
         this.api.put(this, id, body, source, func, this.srcClass);
     }
 
-    push(account: Message, source: string, func: Function) {
-        this.api.post(this, account, source, func, this.srcClass);
+    push(message: Message, source: string, func: Function) {
+        this.api.post(this, message, source, func, this.srcClass);
     }
 }

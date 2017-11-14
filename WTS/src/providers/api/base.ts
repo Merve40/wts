@@ -21,7 +21,6 @@ export abstract class Base {
      */
     getUserTypeByAccountId(id:string, flag:string, func:Function ){
         this.api.getByTable("Account", id, flag, (src, json)=>{
-            console.log(json);
             //generic wrapper callback
             let callback = function(userType, _json) {
                 func.apply(src, [flag, {id:_json.id, type:userType, body:_json.body}]);
@@ -166,21 +165,20 @@ export abstract class Base {
      * @param ascending (optional) true when ascending, false when descending sort is preferred
      * @param limit (optional) maximum amount of entries to be returned
      */
-    getByKeyValueSortedBy(key:string, value:string, sortKey:string, flag:string, func:Function, startAt?:any, ascending?:boolean, limit?:number):void{
-        if(!startAt) startAt = 0;
-        if(!ascending) ascending = true;
-        if(!limit) limit = 0;
-
+    getByKeyValueSortedBy(_key:string, _value:string, _sortKey:string, flag:string, func:Function, _startAt?:any, _ascending?:boolean, _limit?:number):void{
+        if(!_startAt) _startAt = 0;
+        if(!_ascending) _ascending = true;
+        if(!_limit) _limit = 0;
+        
         var body = {
             tbl: this.table,
-            key,
-            value,
-            sortKey,
-            startAt,
-            ascending,
-            limit
+            key: _key,
+            value: _value,
+            sortKey: _sortKey,
+            startAt: _startAt,
+            ascending: _ascending,
+            limit: _limit
         };
-
         this.api.getByKeyValueSortedBy(body, flag, func, this.srcClass);
     }
 
