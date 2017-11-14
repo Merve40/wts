@@ -76,3 +76,9 @@ moment library for dateformat:
 ```
 npm install --save moment
 ```
+
+Cloud Messaging / Push
+```
+cordova plugin add cordova-plugin-fcm
+```
+
