@@ -2,7 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { Storage, IonicStorageModule } from '@ionic/storage';
 import { HttpModule, Http } from '@angular/http';
+import { FCM } from '@ionic-native/fcm';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { BackgroundMode } from '@ionic-native/background-mode';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
@@ -88,6 +90,8 @@ import { MockProvider } from '../pages/list_search/dataprovider';
     CompanyProfilePage
   ],
   providers: [
+    FCM,
+    BackgroundMode,
     Api,
     AccountTable,
     AdressTable,

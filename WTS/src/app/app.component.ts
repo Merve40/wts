@@ -1,8 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, NavController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { FCM } from '@ionic-native/fcm';
+import { BackgroundMode } from '@ionic-native/background-mode';
 
 import { LoginPage } from '../pages/login/login';
 import { ProfilePage } from '../pages/profile/profile';
@@ -15,11 +17,13 @@ import { ListSearchPage } from '../pages/list_search/list_search';
 import { MapPage } from '../pages/map/map';
 import { MessagePage } from '../pages/message/message_item/message_item';
 import { MessageListPage } from '../pages/message/message_list/message_list';
+import { AccountTable } from '../providers/api/account';
 
 import { TranslateService } from '@ngx-translate/core';
 
 // import firebase from 'firebase';
 import { Storage } from '@ionic/storage';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -31,9 +35,12 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any }>;
 
-  constructor(public storage: Storage, public platform: Platform, public statusBar: StatusBar,
+  constructor( public storage: Storage, public platform: Platform, public statusBar: StatusBar,
     public splashScreen: SplashScreen, public screenOrientation: ScreenOrientation,
-    public translate: TranslateService) {
+    public translate: TranslateService, public fcm: FCM, public bgMode: BackgroundMode,
+    public accountTable: AccountTable) {
+
+    accountTable.setSrcClass(this);
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -52,7 +59,9 @@ export class MyApp {
         { title: "Message", component: MessagePage },
         { title: "Messages", component: MessageListPage }
       ];
-    })
+    });
+
+    // console.log(this.nav.getActive());
   }
 
   initializeApp() {
@@ -61,6 +70,42 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      /**
+      //background service that runs, when the app is closed.
+      this.bgMode.on("enable").subscribe(() => {
+
+        //updates the device token, if user uses a new device
+        this.fcm.onTokenRefresh().forEach(token => {
+          this.storage.get("user_id").then(id => {
+            this.accountTable.getById(id, "", (source, json) => {
+              json.body.Token = token;
+              this.accountTable.update(id, json, "", (src, res) => { });
+            });
+          });
+        });
+
+
+        this.fcm.onNotification().subscribe((data)=>{
+          if(data.wasTapped){
+            //TODO: open page; params: konversation id & name
+          }else{
+            
+          }
+        })
+
+
+
+      });
+
+      if(!this.bgMode.isActive()){
+        //activates the background service if it is not running yet
+        this.bgMode.enable();
+      }
+
+      */
+
+
       //var orient = this.screenOrientation.ORIENTATIONS.PORTRAIT;
       //ionViewWillUnload(this.orient);
       //console.log(this.screenOrientation.lock(orient));
@@ -78,6 +123,7 @@ export class MyApp {
     //   storageBucket: "worktostudents.appspot.com",
     //   messagingSenderId: "542302693567"
     // });
+
 
 
   }

@@ -1,6 +1,7 @@
 import { Http, Response } from '@angular/http';
 import { Injectable, Inject } from '@angular/core';
 import { Base } from './base';
+import { Message } from './message';
 
 @Injectable()
 export class Api {
@@ -49,10 +50,11 @@ export class Api {
         let body = JSON.stringify(obj);
 
         let response = this.http.post(_url, body);
-        response.forEach(obj => {
-            var json = JSON.parse(obj.text());
+        response.forEach(_obj => {
+            console.log(_obj.text());
+            var json = JSON.parse(_obj.text());
             func.apply(src, [source, json]);
-            return json.name;
+            return _obj;
         });
     }
 

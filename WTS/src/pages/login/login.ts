@@ -5,6 +5,7 @@ import { NavController, ToastController } from 'ionic-angular';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
+import { FCM } from '@ionic-native/fcm';
 
 import { ProfileVarier } from '../profile_varier/profile_varier';
 import * as CryptoJS from 'crypto-js';
@@ -17,7 +18,9 @@ export class LoginPage implements OnResultComplete {
   email: any;
   password: any;
 
-  constructor(public storage: Storage, public navCtrl: NavController, public toastCtrl: ToastController, @Inject(AccountTable) public accountTable: AccountTable, public translate: TranslateService) {
+  constructor(public storage: Storage, public navCtrl: NavController, public toastCtrl: ToastController, 
+    @Inject(AccountTable) public accountTable: AccountTable, public translate: TranslateService,
+    public fcm:FCM) {
     accountTable.setSrcClass(this);
   }
 
@@ -48,6 +51,15 @@ export class LoginPage implements OnResultComplete {
   }
 
   validateUser(json: any) {
+    
+    //registers the device token for Push Notifications
+    if(json.body.Token.length == 0){
+      this.fcm.getToken().then(token=>{
+        json.body.Token = token;
+        this.accountTable.update(json.id, json.body, "", this.onComplete);
+      });
+    }
+    
 
     if (json.body.Passwort == this.password ) {
       this.encrypt(this.password);

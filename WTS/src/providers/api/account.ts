@@ -7,6 +7,7 @@ export interface Account {
     Adresse_id: string;
     Email: string;
     Passwort: string;
+    Token: string;
     Usergruppe: string;
 }
 
@@ -14,14 +15,14 @@ export interface Account {
 export class AccountTable extends Base {
 
     constructor( @Inject(Api) public api: Api) {
-        super(api,Table.ACCOUNT);
+        super(api, Table.ACCOUNT);
     }
 
-    update(id:string, body:Account, source:string, func:Function){
+    update(id: string, body: Account, source: string, func: Function) {
         this.api.put(this, id, body, source, func, this.srcClass);
     }
 
-    push(account: Account, source:string, func: Function) {
+    push(account: Account, source: string, func: Function) {
         this.api.post(this, account, source, func, this.srcClass);
     }
 }

@@ -66,6 +66,10 @@ export class MessagePage implements OnResultComplete {
         this.scrollToBottom();
     }
 
+    notification(data){
+        console.log("received notification : \n "+data);
+    }
+
     ngAfterViewInit() {
         this.userName.nativeElement.innerText = this.name;
         this.scrollToBottom();
