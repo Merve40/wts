@@ -11,7 +11,7 @@ import { MessageTable } from '../../../providers/api/message';
 })
 export class MessagePage implements OnResultComplete {
 
-    @ViewChild("content") content: Content;
+    @ViewChild("content") content:Content;
     @ViewChild("userName", { read: ElementRef }) userName: ElementRef;
     @ViewChild("scrollView") scrollView;
     messageList: any = [];
@@ -51,7 +51,8 @@ export class MessagePage implements OnResultComplete {
         }
     }
 
-    send() {
+    send(event) {
+        console.log(event);
         this.messageList.push({ text: this.message, isOwner: true, style: "" });  
         var msg = {
             Anhang_Id :"",
@@ -77,5 +78,12 @@ export class MessagePage implements OnResultComplete {
 
     scrollToBottom() {
         this.scrollView.nativeElement.scrollTop = this.scrollView.nativeElement.scrollHeight;
+        // this.content.scrollTop = this.content.scrollHeight;
+        // console.log(this.content);
+    }
+
+    focus(){
+        // document.getElementById("msg").scroll();
+        this.scrollToBottom();
     }
 }

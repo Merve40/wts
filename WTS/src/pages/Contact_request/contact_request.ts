@@ -24,7 +24,7 @@ export class ContactRequestPage implements OnResultComplete {
 
   onComplete(src, json) {
     switch (src) {
-      case "contact-request": {
+      case "contact-request":
         console.log("Started request");
         var sender = json.body.sender;
         this.requests.push(sender);
@@ -33,15 +33,14 @@ export class ContactRequestPage implements OnResultComplete {
           this.StudentTable.getByValue("Account_Id", element, "account-request", this.onComplete);
         });
         break;
-      }
-      case "account-request": {
+
+      case "account-request":
         json.forEach(element => {
           var body = element.body;
           console.log(body);
-          break;
-      }
-  }
-}
+        });
+        break;
+    }
   }
 
   searchForRequests(id) {

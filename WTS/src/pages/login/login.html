@@ -10,12 +10,12 @@
     <!-- NAVBAR END; COMMENT/ DELETE UNTIL HERE -->
   </ion-header>
 
-  <ion-content padding>
+  <ion-content padding class="no-scroll">
 
-    <div class="logo">
+    <div class="top">
       <img src='assets/img/wts_logo.png' alt="your image">
     </div>
-    <div class="login">
+    <div class="middle">
       <div class="emailfield">
         <label id="mail" class="item item-input">
           <input type="text" placeholder="{{'EMAIL' | translate}}" [(ngModel)]="email">
@@ -26,12 +26,12 @@
           <input type="password" placeholder="{{'PASSWORD' | translate}}" [(ngModel)]="password">
         </label>
       </div>
-      <button class="button login" ion-button color="wts_grey" (click)="login()" block> {{ 'LOGIN' | translate }}</button>
-
+    </div>
+    <div class="bottom">
+      <button class="button" ion-button color="wts_grey" (click)="login()" block> {{ 'LOGIN' | translate }}</button>
       <div class="registerlink">
         <a href="http://www.google.com">{{ 'REGISTER' | translate }}</a>
       </div>
-
     </div>
 
   </ion-content>

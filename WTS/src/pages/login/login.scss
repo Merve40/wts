@@ -1,4 +1,28 @@
 page-login {
+    
+    div.top{
+        margin-top: 25px;
+        text-align: center;        
+    }
+    
+    div.middle{
+        font-size: 20px;
+        margin: auto;
+        margin-top: 50px;
+        width: 70%;
+        height: 50%;
+        // background-color: aqua;
+    }
+
+    div.bottom{
+        width: 90%;
+        margin: auto;
+        // bottom: 15px;
+        // position: fixed;
+        position: relative;
+        margin-bottom: 15px;
+    }
+
     div.logo {
       padding-top: 20px;
       text-align: center;
@@ -31,5 +55,10 @@ page-login {
 
     div.passwordfield{
         padding-bottom: 5px;
+    }
+
+    .button{
+       margin-bottom: 5px;
+       background-color: #002b4d;
     }
 }

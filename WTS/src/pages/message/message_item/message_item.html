@@ -9,39 +9,46 @@
     </ion-header>
 
 
-    <ion-content #content class="no-scroll">
-        <div class="main_bar">
-            <div class="image_container">
-                <div class="image_bar">
-                    <ion-avatar item-start>
-                        <img src='assets/img/dog.jpeg'>
-                    </ion-avatar>
+    <ion-content #content class="">
+        
+        <div #scrollView>
+        <!-- <ion-scroll #scrollView scrollY="true">     -->
+            <div class="main_bar">
+                <div class="image_container">
+                    <div class="image_bar">
+                        <ion-avatar item-start>
+                            <img src='assets/img/dog.jpeg'>
+                        </ion-avatar>
+                    </div>
+                </div>
+
+                <div class="title_bar">
+                    <ion-label #userName></ion-label>
                 </div>
             </div>
 
-            <div class="title_bar">
-                <ion-label #userName></ion-label>
-            </div>
-        </div>
-
-        <div #scrollView class="message_content">
-                <div *ngFor="let item of messageList;">
+            <div class="message_content">
+                <div class="" *ngFor="let item of messageList;">
                     <ion-label *ngIf="!item.isOwner" class="txt">{{item.text}}</ion-label>
                     <ion-label *ngIf="item.isOwner" class="txt_owner">{{item.text}}</ion-label>
                 </div>
-        </div>
+            </div>
 
 
-        <div class="text_bar">
-
-            <ion-input [(ngModel)]="message" placeholder="type message" type="text" class="message"></ion-input>
-            <div class="img_container">
-                <div class="send_bar">
-                    <ion-avatar item-start>
-                        <img (click)="send()" src='assets/img/send_icon.png'>
-                    </ion-avatar>
+            <div class="text_bar">
+                <div class="inner_bar">
+                    <ion-input (onclick)="focus()" id="msg" #msgInput [(ngModel)]="message" placeholder="type message" type="text" class="message"></ion-input>
+                    <div class="img_container">
+                        <div class="send_bar">
+                            <ion-avatar item-start>
+                                <img (mousedown)="$event.preventDefault(); send($event)" src='assets/img/send_icon.png'>
+                            </ion-avatar>
+                        </div>
+                    </div>
                 </div>
             </div>
+        <!-- </ion-scroll> -->
         </div>
+
     </ion-content>
 </div>
