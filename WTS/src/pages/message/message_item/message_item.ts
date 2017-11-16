@@ -11,9 +11,8 @@ import { MessageTable } from '../../../providers/api/message';
 })
 export class MessagePage implements OnResultComplete {
 
-    @ViewChild("content") content:Content;
+    @ViewChild(Content) content: Content;
     @ViewChild("userName", { read: ElementRef }) userName: ElementRef;
-    @ViewChild("scrollView") scrollView;
     messageList: any = [];
     message: any;
     accId: string;
@@ -22,8 +21,8 @@ export class MessagePage implements OnResultComplete {
 
     constructor(public navCtrl: NavController, public navparams: NavParams, public translate: TranslateService,
         public storage: Storage, public messageTable: MessageTable) {
-        
-        this.messageTable.setSrcClass(this);    
+
+        this.messageTable.setSrcClass(this);
         this.id = navparams.get('id');
         this.name = navparams.get('name');
         storage.get("user_id").then((_id) => {
@@ -31,21 +30,22 @@ export class MessagePage implements OnResultComplete {
             messageTable.getByKeyValueSortedBy("Konversation_Id", this.id, "Zeitstempel", "nachrichten-abfrage",
                 this.onComplete, 0, true, 15);
         });
+
     }
 
     onComplete(flag: string, json: any) {
 
-        if(flag == "nachrichten-abfrage"){
-         
-            for(var i = 0; i < json.length; i++){
+        if (flag == "nachrichten-abfrage") {
+
+            for (var i = 0; i < json.length; i++) {
                 var item = json[i].body;
                 var isOwner;
-                if(item.Sender_Id == this.accId){
+                if (item.Sender_Id == this.accId) {
                     isOwner = true;
-                }else{
+                } else {
                     isOwner = false;
                 }
-                this.messageList.push({text:item.Inhalt, isOwner:isOwner});              
+                this.messageList.push({ text: item.Inhalt, isOwner: isOwner });
             }
             this.scrollToBottom();
         }
@@ -53,10 +53,10 @@ export class MessagePage implements OnResultComplete {
 
     send(event) {
         console.log(event);
-        this.messageList.push({ text: this.message, isOwner: true, style: "" });  
+        this.messageList.push({ text: this.message, isOwner: true, style: "" });
         var msg = {
-            Anhang_Id :"",
-            Betreff:"",
+            Anhang_Id: "",
+            Betreff: "",
             Inhalt: this.message,
             Konversation_Id: this.id,
             Sender_Id: this.accId,
@@ -67,23 +67,21 @@ export class MessagePage implements OnResultComplete {
         this.scrollToBottom();
     }
 
-    notification(data){
-        console.log("received notification : \n "+data);
+    notification(data) {
+        console.log("received notification : \n " + data);
     }
 
     ngAfterViewInit() {
         this.userName.nativeElement.innerText = this.name;
+    }
+
+    ionViewDidEnter() {
         this.scrollToBottom();
     }
 
     scrollToBottom() {
-        this.scrollView.nativeElement.scrollTop = this.scrollView.nativeElement.scrollHeight;
-        // this.content.scrollTop = this.content.scrollHeight;
-        // console.log(this.content);
-    }
-
-    focus(){
-        // document.getElementById("msg").scroll();
-        this.scrollToBottom();
+        setTimeout(() => {
+            this.content.scrollToBottom();
+        });
     }
 }
