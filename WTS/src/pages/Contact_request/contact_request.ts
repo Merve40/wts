@@ -15,11 +15,13 @@ import { Storage } from '@ionic/storage';
 })
 export class ContactRequestPage implements OnResultComplete {
 
+  students = [];
   accId;
   requests = [];
 
   constructor(public storage: Storage, public navCtrl: NavController, public ContactRequestTable: ContactRequestTable, public StudentTable: StudentTable) {
     ContactRequestTable.setSrcClass(this);
+    StudentTable.setSrcClass(this);
   }
 
   onComplete(src, json) {
@@ -29,16 +31,15 @@ export class ContactRequestPage implements OnResultComplete {
         var sender = json.body.sender;
         this.requests.push(sender);
         console.log("entry added");
-        this.requests.forEach(element => {
-          this.StudentTable.getByValue("Account_Id", element, "account-request", this.onComplete);
-        });
+        for (var i = 0; i < this.requests.length; i++) {
+          this.StudentTable.getByValue("Account_Id", this.requests, "account-request", this.onComplete);
+        };
         break;
 
       case "account-request":
-        json.forEach(element => {
-          var body = element.body;
-          console.log(body);
-        });
+      console.log("test");
+        this.students.push(new Student(json.body.Account_Id, json.body.Name + " " + json.body.Nachname, json.body.Uni));
+        console.log(this.students);
         break;
     }
   }
@@ -50,8 +51,18 @@ export class ContactRequestPage implements OnResultComplete {
   }
 
   ngAfterViewInit() {
+    this.names = [];
     console.log("AfterView");
     this.storage.get("user_id").then((id) => this.searchForRequests(id));
   }
-
+}
+class Student {
+  id: string;
+  name: string;
+  university: string;
+  constructor(id: string, name: string, university: string) {
+    this.id = id;
+    this.name = name;
+    this.university = university;
+  }
 }
