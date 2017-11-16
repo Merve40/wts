@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { StudentTable } from '../../providers/api/student';
+import { UniversityTable } from '../../providers/api/university';
 import { ProfileVarier } from '../profile_varier/profile_varier';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
 
@@ -14,17 +15,21 @@ export class ListSearchPage implements OnResultComplete {
   result = [];
   filter = "";
   pagesize = 10;
-  searchParameter = "Abschluss";
+  searchObject = "Student";
+  searchParameterStudent = "Name";
+  searchParameterUniversity = "Universität";
 
-  constructor(public navCtrl: NavController, public StudentTable: StudentTable) {
+  constructor(public navCtrl: NavController, public StudentTable: StudentTable, public UniversityTable: UniversityTable) {
     StudentTable.setSrcClass(this);
+    UniversityTable.setSrcClass(this);
   }
 
   onComplete(src, json) {
+    var found = false;
+    console.log(json);
     switch (src) {
-      case "search-query": {
+      case "student-search-query": {
         if (this.result.length < this.pagesize) {
-          var found = false;
           json.forEach(element => {
             var body = element.body;
             found = false;
@@ -36,11 +41,29 @@ export class ListSearchPage implements OnResultComplete {
               }
             }
             if (this.result.indexOf(body) < 0 && this.result.length < this.pagesize && !found) {
-              this.result.push(new Student(body.Account_Id, body.Name + " " + body.Nachname, body.Uni));
+              this.result.push(new User(body.Account_Id, body.Name + " " + body.Nachname, body.Uni));
             }
           });
         }
         break;
+      }
+      case "university-search-query": {
+        if (this.result.length < this.pagesize) {
+          json.forEach(element => {
+            var body = element.body;
+            found = false;
+            for (var i = 0; i < this.result.length; i++) {
+              var id = this.result[i].id
+              if (id == body.id) {
+                found = true;
+                break;
+              }
+            }
+            if (this.result.indexOf(body) < 0 && this.result.length < this.pagesize && !found) {
+              this.result.push(new User(body.Account_Id, body.Universität, body.Fachrichtungen));
+            }
+          });
+        }
       }
       default: {
         break;
@@ -48,23 +71,44 @@ export class ListSearchPage implements OnResultComplete {
     }
   }
 
+  search() {
+    if(this.filter == ""){
+      return;
+    }
+    if (this.searchObject == 'Student') {
+      this.searchForStudents();
+    }
+
+    if (this.searchObject == 'University') {
+      this.searchForUniversity();
+    }
+  }
+
   searchForStudents() {
     this.result = [];
-    if (this.searchParameter.length > 0 && this.searchParameter != "Name") {
-      this.StudentTable.getAllContaining(this.searchParameter, this.filter, "search-query", this.onComplete);
-    } else if (this.searchParameter.length > 0) {
+    if (this.searchParameterStudent.length > 0 && this.searchParameterStudent != "Name") {
+      this.StudentTable.getAllContaining(this.searchParameterStudent, this.filter, "student-search-query", this.onComplete);
+    } else if (this.searchParameterStudent.length > 0) {
       if (this.filter.indexOf(" ") !== -1) {
         var paras = this.filter.split(" ");
         paras.forEach(element => {
-          this.StudentTable.getAllContaining("Nachname", this.filter, "search-query", this.onComplete);
-          this.StudentTable.getAllContaining("Name", this.filter, "search-query", this.onComplete);
+          this.StudentTable.getAllContaining("Nachname", this.filter, "student-search-query", this.onComplete);
+          this.StudentTable.getAllContaining("Name", this.filter, "student-search-query", this.onComplete);
         });
       } else {
-        this.StudentTable.getAllContaining("Nachname", this.filter, "search-query", this.onComplete);
-        this.StudentTable.getAllContaining("Name", this.filter, "search-query", this.onComplete);
+        this.StudentTable.getAllContaining("Nachname", this.filter, "student-search-query", this.onComplete);
+        this.StudentTable.getAllContaining("Name", this.filter, "student-search-query", this.onComplete);
       }
     }
 
+  }
+
+  searchForUniversity() {
+    this.result = [];
+    console.log(this.filter);
+    if (this.searchParameterUniversity.length > 0) {
+      this.UniversityTable.getAllContaining(this.searchParameterUniversity, this.filter, "university-search-query", this.onComplete);
+    }
   }
 
   navigateToUserProfile(id) {
@@ -73,17 +117,16 @@ export class ListSearchPage implements OnResultComplete {
   }
 
   ngAfterViewInit() {
-    this.searchForStudents();
   }
 }
 
-class Student {
+class User {
   id: string;
   name: string;
-  university: string;
-  constructor(id: string, name: string, university: string) {
+  discription: string;
+  constructor(id: string, name: string, discription: string) {
     this.id = id;
     this.name = name;
-    this.university = university;
+    this.discription = discription;
   }
 }
