@@ -76,7 +76,6 @@ export class ContactRequestPage implements OnResultComplete {
   }
 
   ngAfterViewInit() {
-    this.names = [];
     console.log("AfterView");
     this.storage.get("user_id").then((id) => this.searchForRequests(id));
   }
