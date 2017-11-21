@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, NavController } from 'ionic-angular';
+import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
@@ -7,12 +7,8 @@ import { FCM } from '@ionic-native/fcm';
 import { BackgroundMode } from '@ionic-native/background-mode';
 
 import { LoginPage } from '../pages/login/login';
-import { ProfilePage } from '../pages/profile/profile';
-import { ProfileVarier } from '../pages/profile_varier/profile_varier';
-import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
-import { UniProfilePage } from '../pages/uni_profile/uni_profile';
+import { Varier } from '../providers/varier';
 import { ContactRequestPage } from '../pages/Contact_request/contact_request';
-import { CompanyProfilePage } from '../pages/company_profile/company_profile';
 import { ListSearchPage } from '../pages/list_search/list_search';
 import { MapPage } from '../pages/map/map';
 import { MessagePage } from '../pages/message/message_item/message_item';
@@ -35,7 +31,7 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any }>;
 
-  constructor( public storage: Storage, public platform: Platform, public statusBar: StatusBar,
+  constructor(public varier:Varier, public storage: Storage, public platform: Platform, public statusBar: StatusBar,
     public splashScreen: SplashScreen, public screenOrientation: ScreenOrientation,
     public translate: TranslateService, public fcm: FCM, public bgMode: BackgroundMode,
     public accountTable: AccountTable) {
@@ -46,18 +42,14 @@ export class MyApp {
     // used for an example of ngFor and navigation
     // Labels & Pages in navigationbar in upper left corner
 
-    translate.get(['LOGINPAGE', 'PROFILEPAGE', 'LOGOUT', 'LISTSEARCHPAGE', 'MAPPAGE', 'CONTACTREQUESTPAGE']).subscribe(translations => {
+    translate.get(['LOGINPAGE', 'PROFILEPAGE', 'LOGOUT', 'LISTSEARCHPAGE', 'MAPPAGE', 'CONTACTREQUESTPAGE', 'MESSAGES']).subscribe(translations => {
       this.pages = [
-        { title: translations.LOGINPAGE, component: LoginPage },
-        { title: translations.PROFILEPAGE, component: ProfileVarier },
-        { title: translations.LOGOUT, component: LoginPage },
+        { title: translations.PROFILEPAGE, component: "Varier" },
         { title: translations.LISTSEARCHPAGE, component: ListSearchPage },
         { title: translations.MAPPAGE, component: MapPage },
         { title: translations.CONTACTREQUESTPAGE, component: ContactRequestPage },
-        { title: 'Uni Profil', component: UniProfilePage },
-        { title: 'Company Profil', component: CompanyProfilePage },
-        { title: "Message", component: MessagePage },
-        { title: "Messages", component: MessageListPage }
+        { title: translations.MESSAGES, component: MessageListPage },
+        { title: translations.LOGOUT, component: LoginPage }
       ];
     });
 
@@ -71,13 +63,16 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      /**
+
+      /*
       //background service that runs, when the app is closed.
       this.bgMode.on("enable").subscribe(() => {
 
         //updates the device token, if user uses a new device
         this.fcm.onTokenRefresh().forEach(token => {
+          console.log("on token refresh..");
           this.storage.get("user_id").then(id => {
+            console.log("got user id: "+id);
             this.accountTable.getById(id, "", (source, json) => {
               json.body.Token = token;
               this.accountTable.update(id, json, "", (src, res) => { });
@@ -89,6 +84,7 @@ export class MyApp {
         this.fcm.onNotification().subscribe((data)=>{
           if(data.wasTapped){
             //TODO: open page; params: konversation id & name
+
           }else{
             
           }
@@ -131,7 +127,16 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+
+    if (page.component === "Varier") {
+      this.storage.get("user_id").then(id => {
+        this.varier.forward(false, id);
+      });
+    } else {
+      console.log("in else");
+      this.nav.setRoot(page.component);
+    }
+
   }
 
   //   ionViewWillUnload(orientation:any){
