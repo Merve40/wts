@@ -89,7 +89,7 @@ export class ProfilePage implements OnResultComplete {
       var name = json.body.Name + " " + json.body.Nachname;
 
       document.getElementById("name").innerText = name;
-      document.getElementById("dateOfBirth").innerText = body.Geb_Datum != "" || body.Geb_Datum != null ? body.Geb_Datum : "01.01.1970";
+      document.getElementById("dateOfBirth").innerText = body.Geb_Datum == "" || body.Geb_Datum == null ? "01.01.1971": body.Geb_Datum;
       document.getElementById("uni").innerText = body.Uni;
       document.getElementById("studyProgram").innerText = body.Studiengang;
       document.getElementById("degree").innerText = body.Abschluss;

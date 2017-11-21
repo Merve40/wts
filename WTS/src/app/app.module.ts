@@ -11,7 +11,7 @@ import { LoginPage } from '../pages/login/login';
 import { ProfilePage } from '../pages/profile/profile';
 import { UniProfilePage } from '../pages/uni_profile/uni_profile';
 import { CompanyProfilePage } from '../pages/company_profile/company_profile';
-import { ProfileVarier } from '../pages/profile_varier/profile_varier';
+import { Varier } from '../providers/varier';
 import { ContactRequestPage } from '../pages/Contact_request/contact_request';
 import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
 import { ListSearchPage } from '../pages/list_search/list_search';
@@ -44,13 +44,13 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { MockProvider } from '../pages/list_search/dataprovider';
+import { NavController } from 'ionic-angular/navigation/nav-controller';
 
 @NgModule({
   declarations: [
     MyApp,
     LoginPage,
     ProfilePage,
-    ProfileVarier,
     Profile_EditPage,
     ListSearchPage,
     MapPage,
@@ -79,7 +79,6 @@ import { MockProvider } from '../pages/list_search/dataprovider';
     MyApp,
     LoginPage,
     ProfilePage,
-    ProfileVarier,
     Profile_EditPage,
     ListSearchPage,
     ContactRequestPage,
@@ -90,6 +89,7 @@ import { MockProvider } from '../pages/list_search/dataprovider';
     CompanyProfilePage
   ],
   providers: [
+    Varier,
     FCM,
     BackgroundMode,
     Api,

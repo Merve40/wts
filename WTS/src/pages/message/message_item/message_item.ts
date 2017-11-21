@@ -68,7 +68,7 @@ export class MessagePage implements OnResultComplete {
     }
 
     notification(data) {
-        console.log("received notification : \n " + data);
+        console.log("in Message Page received notification : \n " + data);
     }
 
     ngAfterViewInit() {

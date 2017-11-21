@@ -3,10 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ContactRequestTable } from '../../providers/api/contactrequest';
 import { StudentTable } from '../../providers/api/student';
-import { ProfileVarier } from '../profile_varier/profile_varier';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
-
-
 import { Storage } from '@ionic/storage';
 
 
@@ -22,7 +19,8 @@ export class ContactRequestPage implements OnResultComplete {
   accId;
   requests = [];
 
-  constructor(public storage: Storage, public navCtrl: NavController, public ContactRequestTable: ContactRequestTable, public StudentTable: StudentTable) {
+  constructor(public storage: Storage, public navCtrl: NavController, public ContactRequestTable: ContactRequestTable, 
+              public StudentTable: StudentTable) {
     ContactRequestTable.setSrcClass(this);
     StudentTable.setSrcClass(this);
   }
@@ -76,7 +74,6 @@ export class ContactRequestPage implements OnResultComplete {
   }
 
   ngAfterViewInit() {
-    this.names = [];
     console.log("AfterView");
     this.storage.get("user_id").then((id) => this.searchForRequests(id));
   }

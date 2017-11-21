@@ -9,10 +9,6 @@ import { Student_PassionTable } from '../../providers/api/student_passion';
 import { PassionTable } from '../../providers/api/passion';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
 
-//Testdaten
-
-
-
 @Component({
   selector: 'page-map',
   templateUrl: 'map.html'
