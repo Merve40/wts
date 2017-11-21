@@ -1,0 +1,41 @@
+page-newsfeed {
+
+    div.full {
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+    .text-on-image
+    {
+      position: absolute;
+      z-index: 10;
+      bottom: 0px;
+      padding: 15px;
+      text-align: left;
+    }
+    
+    .text-on-image h2
+    {
+      color: #fff;
+      font-size: 2em !important;
+    }
+    
+    .text-on-image h3
+    {
+      color: #fff;
+      padding-left: 3px;
+      font-weight: 300;
+    }
+    
+.white-tabs
+{
+  background: #fff !important;
+  border-top: 1px solid #ddd !important;
+}
+
+.white-tabs-text
+{
+  color: #444 !important;
+}    
+}
+

@@ -16,6 +16,7 @@ import { ContactRequestPage } from '../pages/Contact_request/contact_request';
 import { Profile_EditPage } from '../pages/profile/edit/profile_edit';
 import { ListSearchPage } from '../pages/list_search/list_search';
 import { MapPage } from '../pages/map/map';
+import { NewsfeedPage } from '../pages/newsfeed/newsfeed';
 import { MessagePage } from '../pages/message/message_item/message_item';
 import { MessageListPage } from '../pages/message/message_list/message_list';
 
@@ -56,7 +57,8 @@ import { MockProvider } from '../pages/list_search/dataprovider';
     CompanyProfilePage,
     MessagePage,
     MessageListPage,
-    UniProfilePage
+    UniProfilePage, 
+    NewsfeedPage
   ],
   imports: [
     BrowserModule,
@@ -84,7 +86,8 @@ import { MockProvider } from '../pages/list_search/dataprovider';
     UniProfilePage,
     MessagePage,
     MessageListPage,
-    CompanyProfilePage
+    CompanyProfilePage, 
+    NewsfeedPage
   ],
   providers: [
     Varier,
