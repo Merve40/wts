@@ -46,17 +46,14 @@ export class MyApp {
     // used for an example of ngFor and navigation
     // Labels & Pages in navigationbar in upper left corner
 
-    translate.get(['LOGINPAGE', 'PROFILEPAGE', 'LOGOUT', 'LISTSEARCHPAGE', 'MAPPAGE', 'CONTACTREQUESTPAGE']).subscribe(translations => {
+    translate.get(['LOGINPAGE', 'PROFILEPAGE', 'LOGOUT', 'LISTSEARCHPAGE', 'MAPPAGE', 'CONTACTREQUESTPAGE', 'MESSAGES']).subscribe(translations => {
       this.pages = [
-        { title: translations.LOGINPAGE, component: LoginPage },
         { title: translations.PROFILEPAGE, component: "Varier" },
-        { title: translations.LOGOUT, component: LoginPage },
         { title: translations.LISTSEARCHPAGE, component: ListSearchPage },
         { title: translations.MAPPAGE, component: MapPage },
         { title: translations.CONTACTREQUESTPAGE, component: ContactRequestPage },
-        { title: 'Uni Profil', component: UniProfilePage },
-        { title: 'Company Profil', component: CompanyProfilePage },
-        { title: "Nachrichten", component: MessageListPage }
+        { title: translations.MESSAGES, component: MessageListPage },
+        { title: translations.LOGOUT, component: LoginPage }
       ];
     });
 

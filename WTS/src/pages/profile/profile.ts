@@ -175,14 +175,4 @@ export class ProfilePage implements OnResultComplete {
       }
     }
   }
-
-
-  ngAfterViewInit() {
-    //document.getElementById("buttondiv").className = "hidden";
-    // this.StudentTable.getByValue("Account_Id", this.accID, "student-abfrage", this.onComplete);
-    // this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
-    // this.StudentPassionTable.filterByValue("Account_Id", this.accID, "passionStudent-abfrage", this.onComplete);
-    // this.StudentSkillTable.filterByValue("Account_Id", this.accID, "skill-abfrage", this.onComplete);
-  }
-
 }

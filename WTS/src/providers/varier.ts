@@ -39,7 +39,6 @@ export class Varier implements OnResultComplete {
         if (this.userId == undefined) {
             console.log("Profile_Extern: Own profile reached from Menubar");
             this.isOwn = true;
-            console.log("Own UserId: " + id);
             this.accID = id;
             this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
 
@@ -62,12 +61,9 @@ export class Varier implements OnResultComplete {
 
     onComplete(src, json) {
         if (src == "account-abfrage") {
-            console.log("Account abfrage in Profile_Extern");
             var body = json.body;
             var group_id = body.Usergruppe;
             console.log("json.id = " + json.id);
-            console.log("json.body.Email = " + json.body.Email);
-            console.log(this);
             this.navigateToUserProfile(json);
         }
     }
