@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { NavController } from 'ionic-angular';
+import { ToastController } from 'ionic-angular';
 import { ContactRequestTable } from '../../providers/api/contactrequest';
 import { StudentTable } from '../../providers/api/student';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
@@ -15,9 +16,8 @@ export class ContactRequestPage implements OnResultComplete {
 
   students = [];
   accId;
-  requests = [];
 
-  constructor(public storage: Storage, public navCtrl: NavController, public ContactRequestTable: ContactRequestTable, 
+  constructor(public storage: Storage, public navCtrl: NavController, public translate: TranslateService, public toastCtrl: ToastController, public ContactRequestTable: ContactRequestTable, 
               public StudentTable: StudentTable) {
     ContactRequestTable.setSrcClass(this);
     StudentTable.setSrcClass(this);
@@ -28,8 +28,10 @@ export class ContactRequestPage implements OnResultComplete {
       case "contact-request":
         for (var i = 0; i < json.length; i++) {
           var sender = json[i].body.sender;
+          var request = json[i].body.request;
+          if(request == false){
           this.StudentTable.getByValue("Account_Id", sender, "account-request", this.onComplete);
-        };
+        }};
         break;
 
       case "account-request":
@@ -40,32 +42,33 @@ export class ContactRequestPage implements OnResultComplete {
         var contactbody = json.body;
         var contactid = json.id;
         contactbody.request = true;
-        this.ContactRequestTable.update(contactid, contactbody, "", function (flag, json) {
+        this.ContactRequestTable.update(contactid, contactbody, "reload-request", this.onComplete);
+        break;
+
+      case "reload-request":
+      this.translate.get('CONTACTADDED').subscribe(
+        value => {
+          this.showContactAddedMessage(value);
         });
+      this.storage.get("user_id").then((id) => this.searchForRequests(id));
     }
+  }
+
+  showContactAddedMessage(message) {
+    const toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
   }
 
   accept(id) {
     this.ContactRequestTable.getByValue("sender", id, "accept-request", this.onComplete);
-
-    //this.ContactRequestTable.update(this.id, this.contactbody, "", function (flag, json) { 
-    /* 
-    if(json){ 
-       
-      this.translate.get("SAVED_CHANGES").subscribe( value =>{ 
-        const toast = this.toastCtrl.create({ 
-          message: "Kontakt erfolgreich hinzugefügt", 
-          duration: 3000, 
-          position: 'top' 
-        }); 
-        toast.present(); 
-      }); 
-    } 
-    */
-    //}); 
   }
 
   searchForRequests(id) {
+    this.students = [];
     this.accId = id;
     console.log("accId: " + this.accId);
     this.ContactRequestTable.filterByValue("receiver", this.accId, "contact-request", this.onComplete);
