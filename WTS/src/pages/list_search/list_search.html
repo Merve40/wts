@@ -47,13 +47,13 @@
             <img src='assets/img/dog.jpeg' alt="your image">
           </ion-avatar>
           <h2>{{item.name}}</h2>
-          <p>{{item.discription}}</p>
+          <p>{{item.description}}</p>
         </ion-item>
       </ion-item>
     </ion-list>
 
-    <ion-infinite-scroll threshold="100px">
-      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)" immediate-check="true">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="{{'SEARCHMORE' | translate}}">
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
   </ion-content>
