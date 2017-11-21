@@ -21,11 +21,15 @@ export class ListSearchPage implements OnResultComplete {
   searchParameterStudent = "Name";
   searchParameterUniversity = "Universität";
   infinityScroll;
+  accID;
 
   constructor(public StudentTable: StudentTable, public UniversityTable: UniversityTable,public storage:Storage, 
               public translate: TranslateService, public AccountTable: AccountTable, public varier:Varier) {
       StudentTable.setSrcClass(this);
       UniversityTable.setSrcClass(this);
+      this.storage.get("user_id").then((id) => {
+        this.accID = id;
+    });
   }
 
   onComplete(src, json) {
@@ -42,7 +46,7 @@ export class ListSearchPage implements OnResultComplete {
                 break;
               }
             }
-            if (this.result.indexOf(body) < 0 && this.result.length < this.pagesize && !found) {
+            if (this.result.indexOf(body) < 0 && this.result.length < this.pagesize && !found && body.Account_Id != this.accID) {
               var user = new User(body.Account_Id, body.Name + " " + body.Nachname, body.Uni);
               this.result.push(user);
             }
@@ -63,7 +67,7 @@ export class ListSearchPage implements OnResultComplete {
                 break;
               }
             }
-            if (this.result.indexOf(body) < 0 && this.result.length < this.pagesize && !found) {
+            if (this.result.indexOf(body) < 0 && this.result.length < this.pagesize && !found && body.Account_Id != this.accID) {
               var user = new User(body.Account_Id, body.Name + " " + body.Nachname, body.Uni);
               this.result.push(user);
             }
@@ -78,12 +82,12 @@ export class ListSearchPage implements OnResultComplete {
             var body = element.body;
             for (var i = 0; i < this.result.length; i++) {
               var id = this.result[i].id;
-              if (id == body.Account_Id) {
+              if (id == body.Account_Id ) {
                 found = true;
                 break;
               }
             }
-            if (this.result.indexOf(body) < 0 && this.result.length < this.pagesize && !found) {
+            if (this.result.indexOf(body) < 0 && this.result.length < this.pagesize && !found && body.Account_Id != this.accID) {
               var user = new User(body.Account_Id, body.Universität, body.Fachrichtungen);
               this.result.push(user);
             }
