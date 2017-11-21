@@ -11,6 +11,7 @@ import { Varier } from '../providers/varier';
 import { ContactRequestPage } from '../pages/Contact_request/contact_request';
 import { ListSearchPage } from '../pages/list_search/list_search';
 import { MapPage } from '../pages/map/map';
+import { NewsfeedPage } from '../pages/newsfeed/newsfeed';
 import { MessagePage } from '../pages/message/message_item/message_item';
 import { MessageListPage } from '../pages/message/message_list/message_list';
 import { AccountTable } from '../providers/api/account';
