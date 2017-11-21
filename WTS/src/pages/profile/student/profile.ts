@@ -1,22 +1,22 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, Button } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { Profile_EditPage } from '../profile_edit/profile_edit'
-import { StudentTable } from '../../providers/api/student';
-import { AccountTable } from '../../providers/api/account';
-import { ContactRequestTable } from '../../providers/api/contactrequest';
-import { AdressTable } from '../../providers/api/adress';
-import { Student_SkillTable } from '../../providers/api/student_skill';
-import { SkillTable } from '../../providers/api/skill';
-import { Student_PassionTable } from '../../providers/api/student_passion';
-import { PassionTable } from '../../providers/api/passion';
-import { OnResultComplete } from '../../providers/api/OnResultComplete';
+import { Profile_EditPage } from '../edit/profile_edit'
+import { StudentTable } from '../../../providers/api/student';
+import { AccountTable } from '../../../providers/api/account';
+import { ContactRequestTable } from '../../../providers/api/contactrequest';
+import { AdressTable } from '../../../providers/api/adress';
+import { Student_SkillTable } from '../../../providers/api/student_skill';
+import { SkillTable } from '../../../providers/api/skill';
+import { Student_PassionTable } from '../../../providers/api/student_passion';
+import { PassionTable } from '../../../providers/api/passion';
+import { OnResultComplete } from '../../../providers/api/OnResultComplete';
 
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html'
 })
-export class ProfilePage implements OnResultComplete {
+export class StudentProfilePage implements OnResultComplete {
 
   accID: string;
   accID_extern: string;
@@ -84,12 +84,11 @@ export class ProfilePage implements OnResultComplete {
 
     //Auslesen der Daten aus Tabelle Student where AccID = AccID
     if (src == "student-abfrage") {
-      var id = json.id;
       var body = json.body;
       var name = json.body.Name + " " + json.body.Nachname;
 
       document.getElementById("name").innerText = name;
-      document.getElementById("dateOfBirth").innerText = body.Geb_Datum != "" || body.Geb_Datum != null ? body.Geb_Datum : "01.01.1970";
+      document.getElementById("dateOfBirth").innerText = body.Geb_Datum == "" || body.Geb_Datum == null ? "01.01.1971": body.Geb_Datum;
       document.getElementById("uni").innerText = body.Uni;
       document.getElementById("studyProgram").innerText = body.Studiengang;
       document.getElementById("degree").innerText = body.Abschluss;
@@ -175,14 +174,4 @@ export class ProfilePage implements OnResultComplete {
       }
     }
   }
-
-
-  ngAfterViewInit() {
-    //document.getElementById("buttondiv").className = "hidden";
-    // this.StudentTable.getByValue("Account_Id", this.accID, "student-abfrage", this.onComplete);
-    // this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
-    // this.StudentPassionTable.filterByValue("Account_Id", this.accID, "passionStudent-abfrage", this.onComplete);
-    // this.StudentSkillTable.filterByValue("Account_Id", this.accID, "skill-abfrage", this.onComplete);
-  }
-
 }

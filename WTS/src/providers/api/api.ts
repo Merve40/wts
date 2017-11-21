@@ -1,7 +1,6 @@
-import { Http, Response } from '@angular/http';
+import { Http } from '@angular/http';
 import { Injectable, Inject } from '@angular/core';
 import { Base } from './base';
-import { Message } from './message';
 
 @Injectable()
 export class Api {

@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 import { StudentTable } from '../../providers/api/student';
 import { UniversityTable } from '../../providers/api/university';
-import { ProfileVarier } from '../profile_varier/profile_varier';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
+import { Varier } from '../../providers/varier';
+import { TranslateService } from '@ngx-translate/core';
+import { AccountTable } from '../../providers/api/account';
 
 
 @Component({
@@ -20,9 +22,10 @@ export class ListSearchPage implements OnResultComplete {
   searchParameterUniversity = "Universität";
   infinityScroll;
 
-  constructor(public navCtrl: NavController, public StudentTable: StudentTable, public UniversityTable: UniversityTable) {
-    StudentTable.setSrcClass(this);
-    UniversityTable.setSrcClass(this);
+  constructor(public StudentTable: StudentTable, public UniversityTable: UniversityTable,public storage:Storage, 
+              public translate: TranslateService, public AccountTable: AccountTable, public varier:Varier) {
+      StudentTable.setSrcClass(this);
+      UniversityTable.setSrcClass(this);
   }
 
   onComplete(src, json) {
@@ -145,7 +148,8 @@ export class ListSearchPage implements OnResultComplete {
   }
 
   navigateToUserProfile(id) {
-    this.navCtrl.setRoot(ProfileVarier, { userId: id });
+    console.log(id);
+    this.varier.forward(true, id);
   }
 
   ngAfterViewInit() {

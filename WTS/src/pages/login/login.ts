@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
-import { Inject } from '@angular/core';
 import { AccountTable } from '../../providers/api/account';
-import { NavController, ToastController } from 'ionic-angular';
+import { ToastController } from 'ionic-angular';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
 import { FCM } from '@ionic-native/fcm';
 
-import { ProfileVarier } from '../profile_varier/profile_varier';
+import { Varier } from '../../providers/varier';
 import * as CryptoJS from 'crypto-js';
 
 @Component({
@@ -18,9 +17,8 @@ export class LoginPage implements OnResultComplete {
   email: any;
   password: any;
 
-  constructor(public storage: Storage, public navCtrl: NavController, public toastCtrl: ToastController, 
-    @Inject(AccountTable) public accountTable: AccountTable, public translate: TranslateService,
-    public fcm:FCM) {
+  constructor(public storage: Storage, public toastCtrl: ToastController, public accountTable: AccountTable, 
+              public translate: TranslateService,public fcm:FCM, public varier:Varier) {
     accountTable.setSrcClass(this);
   }
 
@@ -53,13 +51,14 @@ export class LoginPage implements OnResultComplete {
   validateUser(json: any) {
     
     //registers the device token for Push Notifications
+    /*
     if(json.body.Token.length == 0){
       this.fcm.getToken().then(token=>{
         json.body.Token = token;
         this.accountTable.update(json.id, json.body, "", this.onComplete);
       });
     }
-    
+    */
 
     if (json.body.Passwort == this.password ) {
       this.encrypt(this.password);
@@ -77,8 +76,7 @@ export class LoginPage implements OnResultComplete {
 
   navigateToUserProfile(json: any) {
     this.storage.set("user_id", json.id);
-
-    this.navCtrl.setRoot(ProfileVarier, { userId: json.id });
+    this.varier.forward(false, json.id);
   }
 
   showLoginError(message) {
