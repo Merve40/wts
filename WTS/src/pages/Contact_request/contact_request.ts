@@ -17,8 +17,6 @@ import { Storage } from '@ionic/storage';
 export class ContactRequestPage implements OnResultComplete {
 
   students = [];
-  id;
-  contactbody;
   accId;
   requests = [];
 
@@ -30,49 +28,49 @@ export class ContactRequestPage implements OnResultComplete {
   onComplete(src, json) {
     switch (src) {
       case "contact-request":
-        console.log("Started request");
-        this.contactbody = json.body;
-        this.id = json.id;
-        var sender = json.body.sender;
-        this.requests.push(sender);
-        console.log("entry added");
-        for (var i = 0; i < this.requests.length; i++) {
-          if(json.body.request == false){
-          this.StudentTable.getByValue("Account_Id", this.requests, "account-request", this.onComplete);
-        }};
+        for (var i = 0; i < json.length; i++) {
+          var sender = json[i].body.sender;
+          this.StudentTable.getByValue("Account_Id", sender, "account-request", this.onComplete);
+        };
         break;
 
       case "account-request":
-      console.log("test");
         this.students.push(new Student(json.body.Account_Id, json.body.Name + " " + json.body.Nachname, json.body.Uni));
-        console.log(this.students);
         break;
+
+      case "accept-request":
+        var contactbody = json.body;
+        var contactid = json.id;
+        contactbody.request = true;
+        this.ContactRequestTable.update(contactid, contactbody, "", function (flag, json) {
+        });
     }
   }
 
-  accept(){
-    this.contactbody.request = true;
-    this.ContactRequestTable.update(this.id, this.contactbody, "", function (flag, json) {
-      /*
-      if(json){
-        
-        this.translate.get("SAVED_CHANGES").subscribe( value =>{
-          const toast = this.toastCtrl.create({
-            message: "Kontakt erfolgreich hinzugefügt",
-            duration: 3000,
-            position: 'top'
-          });
-          toast.present();
-        });
-      }
-      */
-    });
+  accept(id) {
+    this.ContactRequestTable.getByValue("sender", id, "accept-request", this.onComplete);
+
+    //this.ContactRequestTable.update(this.id, this.contactbody, "", function (flag, json) { 
+    /* 
+    if(json){ 
+       
+      this.translate.get("SAVED_CHANGES").subscribe( value =>{ 
+        const toast = this.toastCtrl.create({ 
+          message: "Kontakt erfolgreich hinzugefügt", 
+          duration: 3000, 
+          position: 'top' 
+        }); 
+        toast.present(); 
+      }); 
+    } 
+    */
+    //}); 
   }
 
   searchForRequests(id) {
     this.accId = id;
     console.log("accId: " + this.accId);
-    this.ContactRequestTable.getByValue("receiver", this.accId, "contact-request", this.onComplete);
+    this.ContactRequestTable.filterByValue("receiver", this.accId, "contact-request", this.onComplete);
   }
 
   ngAfterViewInit() {
