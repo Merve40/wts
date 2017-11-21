@@ -22,6 +22,7 @@ export class StudentProfilePage implements OnResultComplete {
   accID_extern: string;
   isOwn: boolean;
   @ViewChild('myButton') button: Button;
+  @ViewChild('myButton2') button2: Button;
 
   constructor(public storage: Storage, public navCtrl: NavController, public navParams: NavParams, public AdressTable: AdressTable, public ContactRequestTable: ContactRequestTable, public StudentTable: StudentTable, public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable, public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
     StudentTable.setSrcClass(this);
