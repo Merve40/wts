@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { AccountTable } from '../../providers/api/account';
-import { AdressTable } from '../../providers/api/adress';
-import {UniversityTable} from '../../providers/api/university';
-import { OnResultComplete } from '../../providers/api/OnResultComplete';
+import { AccountTable } from '../../../providers/api/account';
+import { AdressTable } from '../../../providers/api/adress';
+import {UniversityTable} from '../../../providers/api/university';
+import { OnResultComplete } from '../../../providers/api/OnResultComplete';
 
 @Component({
   selector: 'page-uni_profile',
-  templateUrl: 'uni_profile.html'
+  templateUrl: 'profile.html'
 })
 export class UniProfilePage implements OnResultComplete {
 
@@ -34,7 +34,6 @@ export class UniProfilePage implements OnResultComplete {
         // document.getElementById("uni").innerText = this.unijson.body.Universität;
         // document.getElementById("studyProgram").innerText = this.unijson.body.Fachrichtungen;
 
-        var id = json.id;
         var body = json.body;
         console.log(json.body.Fachrichtungen);
 

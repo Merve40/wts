@@ -1,13 +1,13 @@
-import { Component, Injectable, Inject } from '@angular/core';
-import { App, Nav, NavController, NavParams, ToastController } from 'ionic-angular';
+import { Injectable } from '@angular/core';
+import { App, ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { AccountTable } from './api/account';
 import { OnResultComplete } from './api/OnResultComplete';
 import { TranslateService } from '@ngx-translate/core';
 
-import { ProfilePage } from '../pages/profile/profile';
-import { CompanyProfilePage } from '../pages/company_profile/company_profile';
-import { UniProfilePage } from '../pages/uni_profile/uni_profile';
+import { StudentProfilePage } from '../pages/profile/student/profile';
+import { CompanyProfilePage } from '../pages/profile/company/profile';
+import { UniProfilePage } from '../pages/profile/university/profile';
 import { LoginPage } from '../pages/login/login';
 
 /**
@@ -62,7 +62,6 @@ export class Varier implements OnResultComplete {
     onComplete(src, json) {
         if (src == "account-abfrage") {
             var body = json.body;
-            var group_id = body.Usergruppe;
             console.log("json.id = " + json.id);
             this.navigateToUserProfile(json);
         }
@@ -75,9 +74,9 @@ export class Varier implements OnResultComplete {
 
                 if (!this.hasSource) {
                     // this.navCtrl.setRoot(ProfilePage, { userId: json.id, isOwn: this.isOwn });
-                    this.app.getActiveNav().setRoot(ProfilePage, { userId: json.id, isOwn: this.isOwn });
+                    this.app.getActiveNav().setRoot(StudentProfilePage, { userId: json.id, isOwn: this.isOwn });
                 } else {
-                    this.app.getActiveNav().push(ProfilePage, { userId: json.id, isOwn: this.isOwn });
+                    this.app.getActiveNav().push(StudentProfilePage, { userId: json.id, isOwn: this.isOwn });
                 }
                 break;
 

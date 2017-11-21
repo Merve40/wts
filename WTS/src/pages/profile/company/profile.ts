@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { AccountTable } from '../../providers/api/account';
-import { AdressTable } from '../../providers/api/adress';
-import { CompanyTable } from '../../providers/api/company';
-import { OnResultComplete } from '../../providers/api/OnResultComplete';
+import { AccountTable } from '../../../providers/api/account';
+import { AdressTable } from '../../../providers/api/adress';
+import { CompanyTable } from '../../../providers/api/company';
+import { OnResultComplete } from '../../../providers/api/OnResultComplete';
 
 @Component({
   selector: 'page-company_profile',
-  templateUrl: 'company_profile.html'
+  templateUrl: 'profile.html'
 })
 export class CompanyProfilePage implements OnResultComplete {
 
@@ -33,7 +33,6 @@ export class CompanyProfilePage implements OnResultComplete {
     if (src == "company-abfrage") {
         console.log("Started company abfrage");
 
-        var id = json.id;
         var body = json.body;
 
         document.getElementById("company").innerText = body.Unternehmen;

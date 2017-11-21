@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
-import { StudentTable } from '../../providers/api/student';
-import { AccountTable } from '../../providers/api/account';
-import { AdressTable } from '../../providers/api/adress';
-import { Student_SkillTable } from '../../providers/api/student_skill';
-import { SkillTable } from '../../providers/api/skill';
-import { Student_PassionTable } from '../../providers/api/student_passion';
-import { PassionTable } from '../../providers/api/passion';
-import { OnResultComplete } from '../../providers/api/OnResultComplete';
-import { ProfilePage } from '../profile/profile'
+import { StudentTable } from '../../../providers/api/student';
+import { AccountTable } from '../../../providers/api/account';
+import { AdressTable } from '../../../providers/api/adress';
+import { Student_SkillTable } from '../../../providers/api/student_skill';
+import { SkillTable } from '../../../providers/api/skill';
+import { Student_PassionTable } from '../../../providers/api/student_passion';
+import { PassionTable } from '../../../providers/api/passion';
+import { StudentProfilePage } from '../student/profile';
 
 import * as moment from 'moment';
 
@@ -99,7 +98,7 @@ export class Profile_EditPage {
 
   discardChanges() {
     this.StudentTable.getByValue("Account_id", this.accID, "student-abfrage", this.onComplete);
-    this.navCtrl.setRoot(ProfilePage);
+    this.navCtrl.setRoot(StudentProfilePage);
   }
 
   onComplete(src, json) {

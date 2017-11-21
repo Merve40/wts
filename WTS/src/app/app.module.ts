@@ -1,19 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { Storage, IonicStorageModule } from '@ionic/storage';
-import { HttpModule, Http } from '@angular/http';
+import { IonicStorageModule } from '@ionic/storage';
+import { HttpModule } from '@angular/http';
 import { FCM } from '@ionic-native/fcm';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { BackgroundMode } from '@ionic-native/background-mode';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
-import { ProfilePage } from '../pages/profile/profile';
-import { UniProfilePage } from '../pages/uni_profile/uni_profile';
-import { CompanyProfilePage } from '../pages/company_profile/company_profile';
+import { StudentProfilePage } from '../pages/profile/student/profile';
+import { UniProfilePage } from '../pages/profile/university/profile';
+import { CompanyProfilePage } from '../pages/profile/company/profile';
 import { Varier } from '../providers/varier';
 import { ContactRequestPage } from '../pages/Contact_request/contact_request';
-import { Profile_EditPage } from '../pages/profile_edit/profile_edit';
+import { Profile_EditPage } from '../pages/profile/edit/profile_edit';
 import { ListSearchPage } from '../pages/list_search/list_search';
 import { MapPage } from '../pages/map/map';
 import { MessagePage } from '../pages/message/message_item/message_item';
@@ -41,16 +41,14 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { MockProvider } from '../pages/list_search/dataprovider';
-import { NavController } from 'ionic-angular/navigation/nav-controller';
 
 @NgModule({
   declarations: [
     MyApp,
     LoginPage,
-    ProfilePage,
+    StudentProfilePage,
     Profile_EditPage,
     ListSearchPage,
     MapPage,
@@ -78,7 +76,7 @@ import { NavController } from 'ionic-angular/navigation/nav-controller';
   entryComponents: [
     MyApp,
     LoginPage,
-    ProfilePage,
+    StudentProfilePage,
     Profile_EditPage,
     ListSearchPage,
     ContactRequestPage,
@@ -109,7 +107,6 @@ import { NavController } from 'ionic-angular/navigation/nav-controller';
     MockProvider,
     ConversationTable,
     MessageTable,
-    // Storage,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

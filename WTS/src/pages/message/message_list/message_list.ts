@@ -1,10 +1,9 @@
-import { NavController, NavParams, ToastController, Content, Scroll } from 'ionic-angular';
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { NavController, NavParams } from 'ionic-angular';
+import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
 import { OnResultComplete } from '../../../providers/api/OnResultComplete';
 import { ConversationTable } from '../../../providers/api/conversation';
-import { MessageTable } from '../../../providers/api/message';
 import { MessagePage } from '../message_item/message_item';
 
 export interface MessageItem {

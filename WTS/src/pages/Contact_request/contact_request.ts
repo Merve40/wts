@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { ContactRequestTable } from '../../providers/api/contactrequest';
 import { StudentTable } from '../../providers/api/student';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';

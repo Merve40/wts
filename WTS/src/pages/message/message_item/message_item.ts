@@ -1,4 +1,4 @@
-import { NavController, NavParams, ToastController, Content, Scroll } from 'ionic-angular';
+import { NavController, NavParams, Content } from 'ionic-angular';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
