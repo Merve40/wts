@@ -50,8 +50,8 @@ export class MyApp {
         { title: translations.MAPPAGE, component: MapPage },
         { title: translations.CONTACTREQUESTPAGE, component: ContactRequestPage },
         { title: translations.MESSAGES, component: MessageListPage },
-        { title: translations.LOGOUT, component: LoginPage }, 
-        { title: translations.NEWSFEEDPAGE, component: NewsfeedPage }
+        { title: translations.NEWSFEEDPAGE, component: NewsfeedPage },        
+        { title: translations.LOGOUT, component: LoginPage }
         
       ];
     });
