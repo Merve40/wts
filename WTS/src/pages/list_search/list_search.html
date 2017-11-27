@@ -9,7 +9,7 @@
       <ion-item>
         <ion-label>{{'USERGROUP' | translate}}</ion-label>
         <ion-select [(ngModel)]="searchObject">
-          <ion-option value="Student" >{{'STUDENT' | translate}}</ion-option>
+          <ion-option value="Student">{{'STUDENT' | translate}}</ion-option>
           <ion-option value="University">{{'UNIVERSITY' | translate}}</ion-option>
         </ion-select>
       </ion-item>
@@ -26,14 +26,13 @@
         </ion-select>
       </ion-item>
       <ion-item *ngIf="searchObject === 'University'">
-          <ion-label>{{'SEARCHPARAMETER' | translate}}</ion-label>
-          <ion-select [(ngModel)]="searchParameterUniversity">
-            <ion-option value="Universität">{{'NAME' | translate}}</ion-option>
-            <ion-option value="Fachrichtungen">{{'SPECIALISATION' | translate}}</ion-option>
-          </ion-select>
-        </ion-item>
-      <ion-searchbar [(ngModel)]="filter" [showCancelButton]="shouldShowCancel" (ionInput)="search($event)" (ionCancel)="onCancel($event)"
-        aria-autocomplete="On" (debounce)=1000 placeholder="{{'SEARCH' | translate}}">
+        <ion-label>{{'SEARCHPARAMETER' | translate}}</ion-label>
+        <ion-select [(ngModel)]="searchParameterUniversity">
+          <ion-option value="Universität">{{'NAME' | translate}}</ion-option>
+          <ion-option value="Fachrichtungen">{{'SPECIALISATION' | translate}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-searchbar [(ngModel)]="filter" (ionInput)="search($event)" debounce=1000 placeholder="{{'SEARCH' | translate}}">
       </ion-searchbar>
     </ion-toolbar>
   </ion-header>
