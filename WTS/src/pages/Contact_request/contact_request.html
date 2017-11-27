@@ -1,6 +1,6 @@
 <div class="full">
     <ion-header class="header">
-      <ion-navbar>{{'LISTSEARCHPAGE' | translate}}
+      <ion-navbar>Kontaktanfragen
         <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
         </button>
@@ -21,10 +21,10 @@
                   <button #myButton id="edit" ion-button editProfile ion-button color="wts_grey" (click)="accept(item.id)"> 
                     <ion-icon id="contactcheck"name="checkmark"> Annehmen </ion-icon> 
                   </button>  
+                </div> 
                   <button #myButton id="contactrequest" ion-button editProfile ion-button color="wts_grey" (click)="contactRequest()"> 
                     <ion-icon id="contactdecline"name="close"> Ablehnen </ion-icon> 
                   </button>  
-                </div>  
               </ion-item>
         </ion-item>
       </ion-list>
