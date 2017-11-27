@@ -19,6 +19,7 @@ import { MapPage } from '../pages/map/map';
 import { NewsfeedPage } from '../pages/newsfeed/newsfeed';
 import { MessagePage } from '../pages/message/message_item/message_item';
 import { MessageListPage } from '../pages/message/message_list/message_list';
+import { Network } from '../pages/network/network';
 
 import { Api } from '../providers/api/api';
 import { AccountTable } from '../providers/api/account';
@@ -58,6 +59,7 @@ import { MockProvider } from '../pages/list_search/dataprovider';
     MessagePage,
     MessageListPage,
     UniProfilePage, 
+    Network,
     NewsfeedPage
   ],
   imports: [
@@ -87,6 +89,7 @@ import { MockProvider } from '../pages/list_search/dataprovider';
     MessagePage,
     MessageListPage,
     CompanyProfilePage, 
+    Network,
     NewsfeedPage
   ],
   providers: [
