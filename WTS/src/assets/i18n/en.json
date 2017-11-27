@@ -14,6 +14,7 @@
   "REGISTER": "Register",
   "MISSINGLOGINDATAMESSAGE": "Please fill in username and password.",
   "INCORRECTLOGIN": "Your input was not correct. Please try it again.",
+  "UNILOGIN":"As a university you are not allowed to use the app.",
   "DB-ERROR": "We are sorry, there is an internal Error. // Group in DB not correct.",
   "EDIT": "Edit Profile",
   "SAVE": "Save",
