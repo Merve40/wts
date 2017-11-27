@@ -49,6 +49,7 @@
     "firebase": "^4.5.0",
     "ionic-angular": "3.7.1",
     "ionic-plugin-keyboard": "~2.2.1",
+    "ionic2-super-tabs": "^4.1.5",
     "ionicons": "3.0.0",
     "json-ignore": "^0.2.0",
     "moment": "^2.19.2",
