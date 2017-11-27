@@ -27,11 +27,15 @@ export class ContactRequestPage implements OnResultComplete {
     switch (src) {
       case "contact-request":
         for (var i = 0; i < json.length; i++) {
+          if(json[i].body == null){
+            break;
+          }
+          else{
           var sender = json[i].body.sender;
           var request = json[i].body.request;
           if(request == false){
           this.StudentTable.getByValue("Account_Id", sender, "account-request", this.onComplete);
-        }};
+        }}};
         break;
 
       case "account-request":
