@@ -59,11 +59,10 @@ export class LoginPage implements OnResultComplete {
       });
     }
     */
+    var encrypted = this.encrypt(this.password);
 
-    if (json.body.Passwort == this.password ) {
-      this.encrypt(this.password);
+    if (json.body.Passwort == encrypted ) {
       this.navigateToUserProfile(json);
-    
     
     } else {
       console.log("Input was not correct");
@@ -91,6 +90,7 @@ export class LoginPage implements OnResultComplete {
   encrypt(password) {
     var hash = CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex);
     console.log(hash);
+    return hash;
   }
 
 }
