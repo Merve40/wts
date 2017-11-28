@@ -1,40 +1,25 @@
-
-        StudentTable.setSrcClass(this);
-    var provider =  new DataProvider();
-    this.result = provider.getData();
-  }
-
-  ngAfterViewInit(){
-  }
-
-  loadMore(event:any){
-    console.log("loading..");
-  }
-}
-=======
-  onComplete(src, json) {
-    switch (src) {
-      case "contact-request":
-        for (var i = 0; i < json.length; i++) {
-         }};
-        break;
-    }
-  }
->>>>>>> Stashed changes
-
+import { Component, ViewChild } from '@angular/core';
+import { NavController } from 'ionic-angular/navigation/nav-controller';
 import { AccountTable } from '../../../../providers/api/account';
 import { ContactRequestTable } from '../../../../providers/api/contactrequest';
 import { StudentTable } from '../../../../providers/api/student';
+import { DataProvider } from '../DataProvider';
+
+@Component({
+    selector: 'student-tab',
+    templateUrl: 'students.html'
+  })
+export class StudentNetwork{
+
     students = [];
+
+    constructor(public storage: Storage, public navCtrl: NavController, public ContactRequestTable: ContactRequestTable, public StudentTable: StudentTable) {
+        ContactRequestTable.setSrcClass(this);
         StudentTable.setSrcClass(this);
     var provider =  new DataProvider();
-    this.result = provider.getData();
-  }
     this.students = provider.getData();
     }
 
-  ngAfterViewInit(){
-  }
     onComplete(src, json) {
         switch (src) {
             case "contact-query":
@@ -76,13 +61,3 @@ import { StudentTable } from '../../../../providers/api/student';
     console.log("loading..");
   }
 }
-=======
-  onComplete(src, json) {
-    switch (src) {
-      case "contact-request":
-        for (var i = 0; i < json.length; i++) {
-         }};
-        break;
-    }
-  }
->>>>>>> Stashed changes
