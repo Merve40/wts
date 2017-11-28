@@ -47,8 +47,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { TranslateService } from '@ngx-translate/core';
-import { MockProvider } from '../pages/list_search/dataprovider';
-import { platform } from 'os';
+import { DataProvider } from '../providers/DataProvider';
 
 @NgModule({
   declarations: [
@@ -112,6 +111,7 @@ import { platform } from 'os';
     Student_PassionTable,
     Student_SkillTable,
     PassionTable,
+    DataProvider,
     SkillTable,
     UniversityTable,
     CompanyTable,
@@ -119,7 +119,6 @@ import { platform } from 'os';
     StatusBar,
     SplashScreen,
     ScreenOrientation,
-    MockProvider,
     ConversationTable,
     MessageTable,
     { provide: ErrorHandler, useClass: IonicErrorHandler }

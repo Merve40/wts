@@ -1,10 +1,15 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild , Injectable } from '@angular/core';
 import { NavController } from 'ionic-angular/navigation/nav-controller';
-import { AccountTable } from '../../../providers/api/account';
-import { ContactRequestTable } from '../../../providers/api/contactrequest';
-import { StudentTable } from '../../../providers/api/student';
+import { AccountTable } from '../providers/api/account';
+import { ContactRequestTable } from '../providers/api/contactrequest';
+import { StudentTable } from '../providers/api/student';
+import { OnResultComplete } from '../providers/api/OnResultComplete';
 
-export class DataProvider{
+/**
+ * Service Class for getting Network information
+ */
+@Injectable()
+export class DataProvider implements OnResultComplete{
 
 
     students = [];
