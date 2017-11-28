@@ -8,8 +8,8 @@ import { DataProvider } from '../DataProvider';
 @Component({
     selector: 'student-tab',
     templateUrl: 'students.html'
-  })
-export class StudentNetwork{
+})
+export class StudentNetwork {
 
     students = [];
 
@@ -29,8 +29,7 @@ export class StudentNetwork{
         this.ContactRequestTable.getAllContaining("sender", id, "contact-query", this.onComplete);
     }
 
-
-  loadMore(event:any){
-    console.log("loading..");
-  }
+    loadMore(event: any) {
+        console.log("loading..");
+    }
 }
