@@ -14,37 +14,10 @@ export class StudentNetwork{
     students = [];
 
     constructor(public storage: Storage, public navCtrl: NavController, public ContactRequestTable: ContactRequestTable, public StudentTable: StudentTable) {
-        ContactRequestTable.setSrcClass(this);
-        StudentTable.setSrcClass(this);
-    var provider =  new DataProvider();
+    var provider =  new DataProvider(storage, navCtrl, ContactRequestTable, StudentTable);
     this.students = provider.getData();
     }
 
-    onComplete(src, json) {
-        switch (src) {
-            case "contact-query":
-                for (var i = 0; i < json.length; i++) {
-                    if (json[i].body == null) {
-                        break;
-                    }
-                    else {
-                        var sender = json[i].body.sender;
-                        var receiver = json[i].body.receiver;
-                        var request = json[i].body.request;
-                        if (request == true) {
-                            this.StudentTable.getByValue("Account_Id", sender, "account-request", this.onComplete);
-                            this.StudentTable.getByValue("Account_Id", receiver, "account-request", this.onComplete);
-                        }
-                    }
-                };
-                break;
-
-            case "account-request":
-                this.students.push(new User(json.body.Account_Id, json.body.Name + " " + json.body.Nachname, json.body.Uni));
-                console.log(this.students);
-                break;
-        }
-    }
 
     ngAfterViewInit() {
         console.log("start");
