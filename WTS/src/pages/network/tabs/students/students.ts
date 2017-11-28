@@ -47,7 +47,7 @@ export class StudentNetwork{
     }
 
     ngAfterViewInit() {
-        console.log("test");
+        console.log("start");
         this.storage.get("user_id").then((id) => this.searchForContacts(id));
     }
 
