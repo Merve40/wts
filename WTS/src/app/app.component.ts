@@ -21,6 +21,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 // import firebase from 'firebase';
 import { Storage } from '@ionic/storage';
+import { Globalization } from '@ionic-native/globalization';
 
 
 @Component({
@@ -36,11 +37,24 @@ export class MyApp {
   constructor(public varier:Varier, public storage: Storage, public platform: Platform, public statusBar: StatusBar,
     public splashScreen: SplashScreen, public screenOrientation: ScreenOrientation,
     public translate: TranslateService, public fcm: FCM, public bgMode: BackgroundMode,
-    public accountTable: AccountTable) {
+    public accountTable: AccountTable, global:Globalization) {
 
     accountTable.setSrcClass(this);
     this.initializeApp();
 
+    //global.getPreferredLanguage().then(result => console.log("This is my language result "+result));
+    
+    //global.getPreferredLanguage().then(result => switch (result){
+    //   case 'de':
+    //     translate.use('de')
+    //     break;
+    //   case 'en':
+    //     translate.use('en')
+    //     break;
+    //   default: 
+    //   translate.setDefaultLang('en');
+    // }
+    
     // used for an example of ngFor and navigation
     // Labels & Pages in navigationbar in upper left corner
 
