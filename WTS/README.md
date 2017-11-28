@@ -81,4 +81,7 @@ Cloud Messaging / Push
 ```
 cordova plugin add cordova-plugin-fcm
 ```
+Globalization
+npm install --save @ionic-native/globalization
+```
 
