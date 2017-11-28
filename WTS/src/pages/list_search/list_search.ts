@@ -24,12 +24,12 @@ export class ListSearchPage implements OnResultComplete {
   infinityScroll;
   accID;
 
-  constructor(public StudentTable: StudentTable, public UniversityTable: UniversityTable,public storage:Storage, 
-              public translate: TranslateService, public AccountTable: AccountTable, public varier:Varier) {
-      StudentTable.setSrcClass(this);
-      UniversityTable.setSrcClass(this);
-      this.storage.get("user_id").then((id) => {
-        this.accID = id;
+  constructor(public StudentTable: StudentTable, public UniversityTable: UniversityTable, public storage: Storage,
+    public translate: TranslateService, public AccountTable: AccountTable, public varier: Varier) {
+    StudentTable.setSrcClass(this);
+    UniversityTable.setSrcClass(this);
+    this.storage.get("user_id").then((id) => {
+      this.accID = id;
     });
   }
 
@@ -53,9 +53,9 @@ export class ListSearchPage implements OnResultComplete {
             }
           });
         }
-        if (this.filter != ""){
-        this.StudentTable.getAllContaining("Nachname", this.filter, "student-search-query", this.onComplete);
-        return;
+        if (this.filter != "") {
+          this.StudentTable.getAllContaining("Nachname", this.filter, "student-search-query", this.onComplete);
+          return;
         }
       }
       case "student-search-query": {
@@ -86,7 +86,7 @@ export class ListSearchPage implements OnResultComplete {
             var body = element.body;
             for (var i = 0; i < this.result.length; i++) {
               var id = this.result[i].id;
-              if (id == body.Account_Id ) {
+              if (id == body.Account_Id) {
                 found = true;
                 break;
               }
@@ -113,7 +113,7 @@ export class ListSearchPage implements OnResultComplete {
   }
 
   search() {
-    while(this.isBusy){
+    while (this.isBusy) {
     }
     if (this.infinityScroll != null) {
       this.infinityScroll.enabled = true;
@@ -171,19 +171,8 @@ export class ListSearchPage implements OnResultComplete {
     if (this.pagesize == this.result.length) {
       this.pagesize += 1;
       this.searchForUser();
-    }else{
+    } else {
       this.infinityScroll.enabled = false;
     }
-  }
-}
-
-class User {
-  id: string;
-  name: string;
-  description: string;
-  constructor(id: string, name: string, description: string) {
-    this.id = id;
-    this.name = name;
-    this.description = description;
   }
 }

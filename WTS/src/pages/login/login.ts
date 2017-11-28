@@ -42,12 +42,6 @@ export class LoginPage implements OnResultComplete {
             this.showLoginError(value);
           });
       }
-      // if(json.body.Usergruppe = "gruppe_3"){        
-      //   this.translate.get('UNILOGIN').subscribe(
-      //      value => {
-      //        this.showLoginError(value);
-      //      });
-      //  }
     else{
       this.validateUser(json);
       }
@@ -68,7 +62,16 @@ export class LoginPage implements OnResultComplete {
     var encrypted = this.encrypt(this.password);
 
     if (json.body.Passwort == encrypted ) {
-      this.navigateToUserProfile(json);
+
+      if(json.body.Usergruppe == "gruppe_3"){        
+        this.translate.get('UNILOGIN').subscribe(
+           value => {
+             this.showLoginError(value);
+           });
+      }
+      else{ 
+          this.navigateToUserProfile(json)
+      }
     
     } else {
       console.log("Input was not correct");

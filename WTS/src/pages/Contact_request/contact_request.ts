@@ -39,7 +39,7 @@ export class ContactRequestPage implements OnResultComplete {
         break;
 
       case "account-request":
-        this.students.push(new Student(json.body.Account_Id, json.body.Name + " " + json.body.Nachname, json.body.Uni));
+        this.students.push(new User(json.body.Account_Id, json.body.Name + " " + json.body.Nachname, json.body.Uni));
         break;
 
       case "accept-request":
@@ -81,15 +81,5 @@ export class ContactRequestPage implements OnResultComplete {
   ngAfterViewInit() {
     console.log("AfterView");
     this.storage.get("user_id").then((id) => this.searchForRequests(id));
-  }
-}
-class Student {
-  id: string;
-  name: string;
-  university: string;
-  constructor(id: string, name: string, university: string) {
-    this.id = id;
-    this.name = name;
-    this.university = university;
   }
 }

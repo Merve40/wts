@@ -59,8 +59,14 @@ $background-wp-color: #E5E9ED;
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
+// $tabs-md-tab-text-color: black;
+$tabbar-md-background: black;
 
+$tabs-md-tab-text-color-active: blue;
 
+//inactive tab color
+$tabs-md-tab-text-color: black;
+$tabs-md-tab-icon-color: black;
 
 // App Windows Variables
 // --------------------------------------------------
