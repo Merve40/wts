@@ -42,12 +42,12 @@ export class LoginPage implements OnResultComplete {
             this.showLoginError(value);
           });
       }
-      if(json.body.Usergruppe = "gruppe_3"){        
-        this.translate.get('UNILOGIN').subscribe(
-           value => {
-             this.showLoginError(value);
-           });
-       }
+      // if(json.body.Usergruppe = "gruppe_3"){        
+      //   this.translate.get('UNILOGIN').subscribe(
+      //      value => {
+      //        this.showLoginError(value);
+      //      });
+      //  }
     else{
       this.validateUser(json);
       }
