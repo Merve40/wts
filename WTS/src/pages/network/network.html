@@ -10,17 +10,17 @@
     <!-- NAVBAR END; COMMENT/ DELETE UNTIL HERE -->
   </ion-header>
 
-  <ion-content padding class="">
+  <ion-content>
 
-    <super-tabs selectedTabIndex="0" [config]="{ sideMenu: 'left' }" (tabSelect)="onTabSelect($event)">
-      <super-tab  id="tab-item" class="tab-item" [root]="page" title="All"></super-tab>
-      <super-tab class="tab-item" [root]="page" title="Students"></super-tab>
-      <super-tab class="tab-item" [root]="page" title="Companies"></super-tab>
-      <super-tab class="tab-item" [root]="page" title="Universities"></super-tab>
-    </super-tabs>
+    <ion-tabs class="no-scroll" tabsHighlight="true" selectedIndex="0" tabsPlacement="top" (ionChange)="onSelect($event)">
+      <ion-tab [root]="page" tabTitle="All" show="true" enabled="true">
+      </ion-tab>
+      <ion-tab [root]="page" tabTitle="Students" show="true" enabled="true"></ion-tab>
+      <ion-tab [root]="page" tabTitle="Companies" show="true"></ion-tab>
+      <ion-tab [root]="page" tabTitle="Universities"></ion-tab>
+    </ion-tabs>
 
 
   </ion-content>
-
 
 </div>

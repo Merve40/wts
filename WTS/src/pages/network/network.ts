@@ -3,6 +3,8 @@ import { NavController } from 'ionic-angular/navigation/nav-controller';
 
 import { TabsAll } from './tabs/all/all';
 import { SuperTabs, SuperTabsController, SuperTab } from 'ionic2-super-tabs';
+import { Tabs } from 'ionic-angular/components/tabs/tabs';
+import { Tab } from 'ionic-angular/navigation/nav-interfaces';
 
 @Component({
     selector: 'page-network',
@@ -10,27 +12,21 @@ import { SuperTabs, SuperTabsController, SuperTab } from 'ionic2-super-tabs';
   })
 export class Network{
 
-  @ViewChild(SuperTabs) superTabs: SuperTabs;
+
+  @ViewChild(Tabs) tabs: Tabs;
   page: any = TabsAll;
 
-  currentTab:SuperTab;
+  currentTab:Tab;
 
   constructor(public navCtrl:NavController, public superTabsCtrl:SuperTabsController){    
   }
 
   ngAfterViewInit(){
-    this.superTabsCtrl.enableTabsSwipe(true);    
-    this.currentTab = this.superTabs.getActiveTab();
-    this.currentTab.color = "light";
+    
   }
 
-  slideToIndex(index: number) {
-    console.log("sliding..");
-    this.superTabs.slideTo(index);
-  }
-
-  onTabSelect(ev: any) {
-    console.log('Tab selected', 'Index: ' + ev.index, 'Unique ID: ' + ev.id);
+  onSelect(ev: any) {
+    console.log(ev);
   }
 
 }

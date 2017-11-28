@@ -2,8 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular/navigation/nav-controller';
 
 @Component({
-    selector: 'page-network',
-    templateUrl: 'network.html'
+    selector: 'student-tab',
+    templateUrl: 'students.html'
   })
 export class StudentNetwork{
 
