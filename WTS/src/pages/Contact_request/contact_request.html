@@ -17,11 +17,11 @@
                 </ion-avatar>
                 <h2>{{item.name}}</h2>
                 <p>{{item.university}}</p>
-                <div id="buttondiv">  
+                <div class="buttondiv">  
                   <button #myButton id="edit" ion-button editProfile ion-button color="wts_grey" (click)="accept(item.id)"> 
                     <ion-icon id="contactcheck"name="checkmark"> Annehmen </ion-icon> 
                   </button>  
-                </div> 
+                </div>
                   <button #myButton id="contactrequest" ion-button editProfile ion-button color="wts_grey" (click)="contactRequest()"> 
                     <ion-icon id="contactdecline"name="close"> Ablehnen </ion-icon> 
                   </button>  
