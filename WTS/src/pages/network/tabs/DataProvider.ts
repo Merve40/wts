@@ -7,16 +7,13 @@ import { StudentTable } from '../../../providers/api/student';
 export class DataProvider{
 
 
-    data = [];
+    students = [];
 
     constructor(public storage: Storage, public navCtrl: NavController, public ContactRequestTable: ContactRequestTable, public StudentTable: StudentTable){
         ContactRequestTable.setSrcClass(this);
         StudentTable.setSrcClass(this);
-        this.load();
-    }
-
-    private load():void{
-        
+        console.log("start");
+        this.storage.get("user_id").then((id) => this.searchForContacts(id));
     }
 
     onComplete(src, json) {
@@ -46,7 +43,7 @@ export class DataProvider{
 
 
     searchForContacts(id) {
-        this.ContactRequestTable.getAllContaining("reciever", id, "contact-query", this.onComplete);
+        this.ContactRequestTable.getAllContaining("receiver", id, "contact-query", this.onComplete);
         this.ContactRequestTable.getAllContaining("sender", id, "contact-query", this.onComplete);
     }
 
@@ -55,8 +52,8 @@ export class DataProvider{
     console.log("loading..");
   }
 
-    public getData():any{
-        return this.data;
+    public getStudents(){
+        return this.students;
     }
 
 }

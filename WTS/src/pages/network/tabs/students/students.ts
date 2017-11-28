@@ -15,22 +15,6 @@ export class StudentNetwork{
 
     constructor(public storage: Storage, public navCtrl: NavController, public ContactRequestTable: ContactRequestTable, public StudentTable: StudentTable) {
     var provider =  new DataProvider(storage, navCtrl, ContactRequestTable, StudentTable);
-    this.students = provider.getData();
+    this.students = provider.getStudents();
     }
-
-
-    ngAfterViewInit() {
-        console.log("start");
-        this.storage.get("user_id").then((id) => this.searchForContacts(id));
-    }
-
-    searchForContacts(id) {
-        this.ContactRequestTable.getAllContaining("reciever", id, "contact-query", this.onComplete);
-        this.ContactRequestTable.getAllContaining("sender", id, "contact-query", this.onComplete);
-    }
-
-
-  loadMore(event:any){
-    console.log("loading..");
-  }
 }
