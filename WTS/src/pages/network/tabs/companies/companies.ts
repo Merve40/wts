@@ -1,10 +1,25 @@
 import { Component } from "@angular/core/src/metadata/directives";
+import { NavController } from "ionic-angular/navigation/nav-controller";
+import { DataProvider } from "../DataProvider";
 
 
 @Component({
     selector: 'company-tab',
     templateUrl: 'companies.html'
 })
-export class CompanyNetwork{
+export class CompanyNetwork {
 
+    result: any[];
+
+    constructor(public navCtrl: NavController) {
+        var provider = new DataProvider();
+        this.result = provider.getData();
+    }
+
+    ngAfterViewInit() {
+    }
+
+    loadMore(event: any) {
+        console.log("loading..");
+    }
 }
