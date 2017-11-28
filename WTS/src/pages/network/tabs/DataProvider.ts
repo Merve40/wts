@@ -8,13 +8,13 @@ export class DataProvider{
     }
 
     private load():void{
-        this.data.push({name: "Max Mustermann", description: "Freunde"});
-        this.data.push({name: "Hans Müller", description: "Freunde"});
-        this.data.push({name: "Cindy aus Marzahn", description: "Freunde"});
-        this.data.push({name: "Chuck Norris", description: "Freunde"});
-        this.data.push({name: "John Doe", description: "Freunde"});
-        this.data.push({name: "Micheal Scott", description: "Freunde"});
-        this.data.push({name: "Diwght Schrute", description: "Freunde"});
+        this.data.push({id:"acc_1", name: "Max Mustermann", description: "Freunde"});
+        this.data.push({id:"acc_10",name: "Hans Müller", description: "Freunde"});
+        this.data.push({id:"acc_7",name: "Cindy aus Marzahn", description: "Freunde"});
+        this.data.push({id:"acc_12",name: "Chuck Norris", description: "Freunde"});
+        this.data.push({id:"acc_17",name: "John Doe", description: "Freunde"});
+        this.data.push({id:"KxC9j2zmz4VEv47-gba",name: "Micheal Scott", description: "Freunde"});
+        this.data.push({id:"KxAlMebhrd5hOJd6ilL",name: "Diwght Schrute", description: "Freunde"});
     }
 
     public getData():any{

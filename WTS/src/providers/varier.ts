@@ -73,7 +73,6 @@ export class Varier implements OnResultComplete {
             case "gruppe_1":
 
                 if (!this.hasSource) {
-                    // this.navCtrl.setRoot(ProfilePage, { userId: json.id, isOwn: this.isOwn });
                     this.app.getActiveNav().setRoot(StudentProfilePage, { userId: json.id, isOwn: this.isOwn });
                 } else {
                     this.app.getActiveNav().push(StudentProfilePage, { userId: json.id, isOwn: this.isOwn });
@@ -83,7 +82,6 @@ export class Varier implements OnResultComplete {
             case "gruppe_2":
 
                 if (!this.hasSource) {
-                    // this.navCtrl.setRoot(CompanyProfilePage, { userId: json.id });
                     this.app.getActiveNav().setRoot(CompanyProfilePage, { userId: json.id });
                 } else {
                     this.app.getActiveNav().push(CompanyProfilePage, { userId: json.id });
