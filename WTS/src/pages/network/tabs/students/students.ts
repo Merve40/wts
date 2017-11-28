@@ -4,20 +4,24 @@ import { AccountTable } from '../../../../providers/api/account';
 import { ContactRequestTable } from '../../../../providers/api/contactrequest';
 import { StudentTable } from '../../../../providers/api/student';
 import { DataProvider } from '../DataProvider';
+import { App } from 'ionic-angular/components/app/app';
+import { StudentProfilePage } from '../../../profile/student/profile';
 
 @Component({
     selector: 'student-tab',
     templateUrl: 'students.html'
-  })
-export class StudentNetwork{
+})
+export class StudentNetwork {
 
     students = [];
 
-    constructor(public storage: Storage, public navCtrl: NavController, public ContactRequestTable: ContactRequestTable, public StudentTable: StudentTable) {
+    constructor(public storage: Storage, public navCtrl: NavController, public app:App,
+        public ContactRequestTable: ContactRequestTable, public StudentTable: StudentTable) {
+
         ContactRequestTable.setSrcClass(this);
         StudentTable.setSrcClass(this);
-    var provider =  new DataProvider();
-    this.students = provider.getData();
+        var provider = new DataProvider();
+        this.students = provider.getData();
     }
 
     onComplete(src, json) {
@@ -56,8 +60,11 @@ export class StudentNetwork{
         this.ContactRequestTable.getAllContaining("sender", id, "contact-query", this.onComplete);
     }
 
+    navigateToUserProfile(id:string){
+        this.app.getRootNav().push(StudentProfilePage, { userId: id});
+    }
 
-  loadMore(event:any){
-    console.log("loading..");
-  }
+    loadMore(event: any) {
+        console.log("loading..");
+    }
 }
