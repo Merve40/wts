@@ -6,6 +6,7 @@ import { FCM } from '@ionic-native/fcm';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { BackgroundMode } from '@ionic-native/background-mode';
 import { SuperTabsModule } from 'ionic2-super-tabs';
+import { Globalization } from '@ionic-native/globalization';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
@@ -46,7 +47,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { TranslateService } from '@ngx-translate/core';
-import { MockProvider } from '../pages/list_search/dataprovider';
+import { DataProvider } from '../providers/DataProvider';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,7 @@ import { MockProvider } from '../pages/list_search/dataprovider';
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     SuperTabsModule.forRoot(),
-    TranslateModule.forRoot({
+        TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: (createTranslateLoader),
@@ -100,6 +101,7 @@ import { MockProvider } from '../pages/list_search/dataprovider';
   ],
   providers: [
     Varier,
+    Globalization,
     FCM,
     BackgroundMode,
     Api,
@@ -109,6 +111,7 @@ import { MockProvider } from '../pages/list_search/dataprovider';
     Student_PassionTable,
     Student_SkillTable,
     PassionTable,
+    DataProvider,
     SkillTable,
     UniversityTable,
     CompanyTable,
@@ -116,7 +119,6 @@ import { MockProvider } from '../pages/list_search/dataprovider';
     StatusBar,
     SplashScreen,
     ScreenOrientation,
-    MockProvider,
     ConversationTable,
     MessageTable,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
@@ -129,8 +131,9 @@ export class AppModule {
 
     // the lang to use, if the lang isn't available, it will use the current loader to get them
     translate.use('de');
-  }
-}
+
+  } 
+ }
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');

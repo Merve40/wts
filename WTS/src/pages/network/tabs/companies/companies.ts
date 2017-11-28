@@ -1,8 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
-import { NavController } from "ionic-angular/navigation/nav-controller";
-import { DataProvider } from "../DataProvider";
+import { Component } from '@angular/core';
 import { App } from 'ionic-angular/components/app/app';
 import { CompanyProfilePage } from '../../../profile/company/profile';
+import { NavController } from 'ionic-angular/navigation/nav-controller';
+import { DataProvider } from '../../../../providers/DataProvider';
 
 
 @Component({
@@ -11,18 +11,14 @@ import { CompanyProfilePage } from '../../../profile/company/profile';
 })
 export class CompanyNetwork {
 
-    result: any[];
+    companies = [];
 
-    constructor(public navCtrl: NavController, public app:App) {
-        var provider = new DataProvider();
-        this.result = provider.getData();
+    constructor(public dataProvider: DataProvider, public app: App) {
+        this.companies = dataProvider.getStudents();
     }
 
-    navigateToUserProfile(id:string){
-        this.app.getRootNav().push(CompanyProfilePage, { userId: id});
-    }
-
-    ngAfterViewInit() {
+    navigateToUserProfile(id: string) {
+        this.app.getRootNav().push(CompanyProfilePage, { userId: id });
     }
 
     loadMore(event: any) {
