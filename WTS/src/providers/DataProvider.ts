@@ -3,6 +3,7 @@ import { AccountTable } from '../providers/api/account';
 import { ContactRequestTable } from '../providers/api/contactrequest';
 import { StudentTable } from '../providers/api/student';
 import { OnResultComplete } from '../providers/api/OnResultComplete';
+import { Storage } from '@ionic/storage';
 
 /**
  * Service Class for getting Network information
@@ -38,15 +39,17 @@ export class DataProvider implements OnResultComplete {
                 };
                 break;
             case "account-request":
-                this.students.push(new User(json.body.Account_Id, json.body.Name + " " + json.body.Nachname, json.body.Uni));
+                var user = new User(json.body.Account_Id, json.body.Name + " " + json.body.Nachname, json.body.Uni);
+                user.usergroup = "gruppe_1";
+                this.students.push(user);
                 console.log(this.students);
                 break;
         }
     }
 
     searchForContacts(id) {
-        this.ContactRequestTable.getAllContaining("receiver", id, "contact-query", this.onComplete);
-        this.ContactRequestTable.getAllContaining("sender", id, "contact-query", this.onComplete);
+        this.ContactRequestTable.filterByValue("receiver", id, "contact-query", this.onComplete);
+        this.ContactRequestTable.filterByValue("sender", id, "contact-query", this.onComplete);
     }
 
 
@@ -59,3 +62,15 @@ export class DataProvider implements OnResultComplete {
     }
 
 }
+
+class User {
+    id: string;
+    name: string;
+    description: string;
+    usergroup: string;
+    constructor(id: string, name: string, description: string) {
+      this.id = id;
+      this.name = name;
+      this.description = description;
+    }
+  }
