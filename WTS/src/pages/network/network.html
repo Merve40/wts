@@ -1,0 +1,26 @@
+<div class="full">
+  <ion-header class="header">
+    <!-- For deleting the navigationbar on loginpage
+      COMMENT/ DELETE FROM HERE ON UNTIL NEXT COMMENT-->
+    <ion-navbar>{{'LOGINPAGE' | translate}}
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-navbar>
+    <!-- NAVBAR END; COMMENT/ DELETE UNTIL HERE -->
+  </ion-header>
+
+  <ion-content padding class="">
+
+    <super-tabs selectedTabIndex="0" [config]="{ sideMenu: 'left' }" (tabSelect)="onTabSelect($event)">
+      <super-tab  id="tab-item" class="tab-item" [root]="page" title="All"></super-tab>
+      <super-tab class="tab-item" [root]="page" title="Students"></super-tab>
+      <super-tab class="tab-item" [root]="page" title="Companies"></super-tab>
+      <super-tab class="tab-item" [root]="page" title="Universities"></super-tab>
+    </super-tabs>
+
+
+  </ion-content>
+
+
+</div>

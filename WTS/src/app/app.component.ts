@@ -15,6 +15,7 @@ import { NewsfeedPage } from '../pages/newsfeed/newsfeed';
 import { MessagePage } from '../pages/message/message_item/message_item';
 import { MessageListPage } from '../pages/message/message_list/message_list';
 import { AccountTable } from '../providers/api/account';
+import { Network } from '../pages/network/network';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -43,15 +44,16 @@ export class MyApp {
     // used for an example of ngFor and navigation
     // Labels & Pages in navigationbar in upper left corner
 
-    translate.get(['LOGINPAGE', 'PROFILEPAGE', 'LOGOUT', 'LISTSEARCHPAGE', 'MAPPAGE', 'CONTACTREQUESTPAGE', 'MESSAGES', 'NEWSFEEDPAGE']).subscribe(translations => {
+    translate.get(['LOGINPAGE', 'PROFILEPAGE', 'LOGOUT', 'LISTSEARCHPAGE', 'MAPPAGE', 'CONTACTREQUESTPAGE', 'MESSAGES', 'NETWORK', 'NEWSFEEDPAGE']).subscribe(translations => {
       this.pages = [
         { title: translations.PROFILEPAGE, component: "Varier" },
         { title: translations.LISTSEARCHPAGE, component: ListSearchPage },
         { title: translations.MAPPAGE, component: MapPage },
         { title: translations.CONTACTREQUESTPAGE, component: ContactRequestPage },
         { title: translations.MESSAGES, component: MessageListPage },
-        { title: translations.NEWSFEEDPAGE, component: NewsfeedPage },        
-        { title: translations.LOGOUT, component: LoginPage }
+        { title: translations.LOGOUT, component: LoginPage }, 
+        { title: translations.NETWORK, component: Network },
+        { title: translations.NEWSFEEDPAGE, component: NewsfeedPage }
         
       ];
     });

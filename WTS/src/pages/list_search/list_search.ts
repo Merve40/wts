@@ -17,6 +17,7 @@ export class ListSearchPage implements OnResultComplete {
   result = [];
   filter = "";
   pagesize = 4;
+  isBusy = false;
   searchObject = "Student";
   searchParameterStudent = "Name";
   searchParameterUniversity = "Universität";
@@ -52,8 +53,10 @@ export class ListSearchPage implements OnResultComplete {
             }
           });
         }
+        if (this.filter != ""){
         this.StudentTable.getAllContaining("Nachname", this.filter, "student-search-query", this.onComplete);
         return;
+        }
       }
       case "student-search-query": {
         if (this.result.length < this.pagesize) {
@@ -73,6 +76,7 @@ export class ListSearchPage implements OnResultComplete {
             }
           });
         }
+        this.isBusy = false;
         break;
       }
       case "university-search-query": {
@@ -93,6 +97,7 @@ export class ListSearchPage implements OnResultComplete {
             }
           });
         }
+        this.isBusy = false;
         break;
       }
       default: {
@@ -105,17 +110,19 @@ export class ListSearchPage implements OnResultComplete {
         this.infinityScroll.enabled = false;
       }
     }
-
   }
 
   search() {
+    while(this.isBusy){
+    }
     if (this.infinityScroll != null) {
       this.infinityScroll.enabled = true;
       this.infinityScroll = null;
     }
     this.pagesize = 4;
     this.result = [];
-    if (this.filter != "") {
+    if (this.filter != "" && this.isBusy == false) {
+      this.isBusy = true;
       this.searchForUser();
     }
   }

@@ -14,6 +14,7 @@
   "REGISTER": "Registrieren",
   "MISSINGLOGINDATAMESSAGE": "Bitte Benutzernamen und Passwort eintragen.",
   "INCORRECTLOGIN": "Ihre Eingabe war nicht korrekt. Bitte versuchen Sie es erneut.",
+  "UNILOGIN":"Als Universität haben Sie keine Berechtigung die App zu Nutzen.",
   "DB-ERROR": "Entschuldigung, wir haben einen internen Fehler. // Gruppe in DB nicht korrekt.",
   "SAVE": "Speichern",
   "MAP": "Karte",
@@ -49,5 +50,6 @@
   "EMPLOYMENT": "Beschäftigung",
   "SAVED_CHANGES": "Änderungen wurden gespeichert",
   "MESSAGES":"Nachrichten",
+  "NETWORK": "Netzwerk",
   "PROFILE": "Mein Profil"
  }

@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { FCM } from '@ionic-native/fcm';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { BackgroundMode } from '@ionic-native/background-mode';
+import { SuperTabsModule } from 'ionic2-super-tabs';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
@@ -19,6 +20,7 @@ import { MapPage } from '../pages/map/map';
 import { NewsfeedPage } from '../pages/newsfeed/newsfeed';
 import { MessagePage } from '../pages/message/message_item/message_item';
 import { MessageListPage } from '../pages/message/message_list/message_list';
+import { Network } from '../pages/network/network';
 
 import { Api } from '../providers/api/api';
 import { AccountTable } from '../providers/api/account';
@@ -33,6 +35,7 @@ import { CompanyTable } from '../providers/api/company';
 import { ConversationTable } from '../providers/api/conversation';
 import { MessageTable } from '../providers/api/message';
 import { ContactRequestTable } from '../providers/api/contactrequest';
+import { TabsAll } from '../pages/network/tabs/all/all';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -57,15 +60,19 @@ import { MockProvider } from '../pages/list_search/dataprovider';
     CompanyProfilePage,
     MessagePage,
     MessageListPage,
-    UniProfilePage, 
+    UniProfilePage,
+    Network,
+    TabsAll,
     NewsfeedPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
     HttpClientModule,
+    SuperTabsModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
+    SuperTabsModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -86,7 +93,9 @@ import { MockProvider } from '../pages/list_search/dataprovider';
     UniProfilePage,
     MessagePage,
     MessageListPage,
-    CompanyProfilePage, 
+    CompanyProfilePage,
+    Network,
+    TabsAll,
     NewsfeedPage
   ],
   providers: [
