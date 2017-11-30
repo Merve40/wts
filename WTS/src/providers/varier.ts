@@ -15,11 +15,12 @@ import { LoginPage } from '../pages/login/login';
  */
 @Injectable()
 export class Varier implements OnResultComplete {
-
+    
     userId: string;
     accID: string;
     isOwn: boolean;
     hasSource: boolean; //true, wenn diese Seite von Search aus aufgerufen wird
+    hasContact: boolean;
 
     constructor(public storage: Storage, public app:App, public toastCtrl: ToastController,
         public translate: TranslateService, public AccountTable: AccountTable) {
@@ -30,7 +31,7 @@ export class Varier implements OnResultComplete {
         this.AccountTable.setSrcClass(this);
         this.userId = userId;
         this.hasSource = hasSource;
-        this.storage.get("user_id").then((id) => this.load(id));
+        this.storage.get("user_id").then((id) => this.load(id));        
     }
 
     load(id) {
@@ -40,22 +41,25 @@ export class Varier implements OnResultComplete {
             console.log("Profile_Extern: Own profile reached from Menubar");
             this.isOwn = true;
             this.accID = id;
+            this.hasContact = true;
             this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
-
+           
             // Navigates to own profile 
         } else if (id == this.userId) {
             console.log("Profile_Extern: Own profile reached from Login");
             this.isOwn = true;
             this.accID = id;
+            this.hasContact = true;
             this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
-
+           
             //Navigates to foreign profile
         } else {
             console.log("Profile_Extern: Extern profile reached");
             this.isOwn = false;
             this.accID = this.userId;
+            this.hasContact = false;
             console.log("accID ist jetzt: " + this.accID);
-            this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
+            this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);           
         }
     }
 
@@ -73,9 +77,9 @@ export class Varier implements OnResultComplete {
             case "gruppe_1":
 
                 if (!this.hasSource) {
-                    this.app.getActiveNav().setRoot(StudentProfilePage, { userId: json.id, isOwn: this.isOwn });
+                    this.app.getActiveNav().setRoot(StudentProfilePage, { userId: json.id, isOwn: this.isOwn , hasContact: this.hasContact});
                 } else {
-                    this.app.getActiveNav().push(StudentProfilePage, { userId: json.id, isOwn: this.isOwn });
+                    this.app.getActiveNav().push(StudentProfilePage, { userId: json.id, isOwn: this.isOwn, hasContact: this.hasContact });
                 }
                 break;
 

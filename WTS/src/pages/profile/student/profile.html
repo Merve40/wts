@@ -4,7 +4,8 @@
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-      <ion-title>{{ 'PROFILE' | translate }}</ion-title>
+      <ion-title *ngIf="isOwn">{{ 'MY_PROFILE' | translate }}</ion-title>
+      <ion-title *ngIf="!isOwn">{{ 'PROFILE' | translate }}</ion-title>
     </ion-navbar>
   </ion-header>
 
@@ -15,7 +16,7 @@
     <button #myButton *ngIf="isOwn" id="edit" ion-button editProfile ion-button color="wts_grey" (click)="edit()"> 
       <ion-icon id="iconedit"name="create"> {{ 'EDIT' | translate }} </ion-icon> 
     </button>  
-    <button #myButton2 *ngIf="!isOwn" id="contactrequest" ion-button editProfile ion-button color="wts_grey" (click)="contactRequest()"> 
+    <button #myButton2 *ngIf="!hasContact" id="contactrequest" ion-button editProfile ion-button color="wts_grey" (click)="contactRequest()"> 
       <ion-icon id="contact"name="md-add"> Kontaktanfrage </ion-icon> 
     </button>  
   </div>  

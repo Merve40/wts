@@ -24,7 +24,7 @@ export class TabsAll {
 
     navigateToUserProfile(id: string, gruppe: string) {
         if (gruppe == "gruppe_1") {
-            this.app.getRootNav().push(StudentProfilePage, { userId: id, isOwn: false });
+            this.app.getRootNav().push(StudentProfilePage, { userId: id, isOwn: false, hasContact: true });
         } else if (gruppe == "gruppe_2") {
             this.app.getRootNav().push(CompanyProfilePage, { userId: id });
         } else if (gruppe == "gruppe_3") {
