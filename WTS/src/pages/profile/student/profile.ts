@@ -75,7 +75,8 @@ export class StudentProfilePage implements OnResultComplete {
 
     var contact = {
       sender: this.accID_extern,
-      receiver: receiver_id
+      receiver: receiver_id,
+      request: false
     }
 
     this.ContactRequestTable.push(contact, "contactrequest", this.onComplete);
