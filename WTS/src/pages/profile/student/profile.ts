@@ -71,18 +71,67 @@ export class StudentProfilePage implements OnResultComplete {
   sendRequest(id) {
     //Account-ID des aufgerufenene Profils
     this.accID_extern = id;
-    var receiver_id = this.accID;
-
-    var contact = {
-      sender: this.accID_extern,
-      request: false,
-      receiver: receiver_id
-    }
-
-    this.ContactRequestTable.push(contact, "contactrequest", this.onComplete);
+    this.ContactRequestTable.filterByValue("receiver", this.accID_extern, "receiversearch-query", this.onComplete);
   }
 
   onComplete(src, json) {
+
+    if (src == "receiversearch-query") {
+      if (json.body == null) {
+        this.ContactRequestTable.filterByValue("sender", this.accID_extern, "sendersearch-query", this.onComplete);
+      }
+      else {
+        var found = false;
+        for (var i = 0; i < json.body.length; i++) {
+          if (json.body.sender == this.accID) {
+            found = true;
+            console.log(found);
+            break;
+          }
+        }
+        if (found == false) {
+          var receiver_id = this.accID;
+          var contact = {
+            sender: this.accID_extern,
+            request: false,
+            receiver: receiver_id
+          }
+          this.ContactRequestTable.push(contact, "contactrequest", this.onComplete);
+        }
+      }
+    }
+
+    if (src == "sendersearch-query") {
+      if (json.body == null) {
+        var receiver_id = this.accID;
+        var contact = {
+          sender: this.accID_extern,
+          request: false,
+          receiver: receiver_id
+        }
+        this.ContactRequestTable.push(contact, "contactrequest", this.onComplete);
+      }
+      else {
+        var found = false;
+        for (var i = 0; i < json.body.length; i++) {
+          if (json.body.receiver == this.accID) {
+            found = true;
+            console.log(found);
+            break;
+          }
+        }
+        if (found == false) {
+          var receiver_id = this.accID;
+          var contact = {
+            sender: this.accID_extern,
+            request: false,
+            receiver: receiver_id
+          }
+          this.ContactRequestTable.push(contact, "contactrequest", this.onComplete);
+        }
+      }
+
+    }
 
     //Auslesen der Daten aus Tabelle Student where AccID = AccID
     if (src == "student-abfrage") {
@@ -90,7 +139,7 @@ export class StudentProfilePage implements OnResultComplete {
       var name = json.body.Name + " " + json.body.Nachname;
 
       document.getElementById("name").innerText = name;
-      document.getElementById("dateOfBirth").innerText = body.Geb_Datum == "" || body.Geb_Datum == null ? "01.01.1971": body.Geb_Datum;
+      document.getElementById("dateOfBirth").innerText = body.Geb_Datum == "" || body.Geb_Datum == null ? "01.01.1971" : body.Geb_Datum;
       document.getElementById("uni").innerText = body.Uni;
       document.getElementById("studyProgram").innerText = body.Studiengang;
       document.getElementById("degree").innerText = body.Abschluss;
