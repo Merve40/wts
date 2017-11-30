@@ -148,11 +148,8 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
 
     if (page.component === "Varier") {
-      this.storage.get("user_id").then(id => {
-        this.varier.forward(false, id);
-      });
-    } else {
-      console.log("in else");
+      this.varier.forward(false, undefined);
+  } else {
       this.nav.setRoot(page.component);
     }
 

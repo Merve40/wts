@@ -1,6 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
-import { NavController } from 'ionic-angular/navigation/nav-controller';
-import { DataProvider} from '../../../../providers/DataProvider';
+import { Component } from '@angular/core';
+import { App } from 'ionic-angular/components/app/app';
+import { StudentProfilePage } from '../../../profile/student/profile';
+import { DataProvider } from '../../../../providers/DataProvider';
 
 @Component({
     selector: 'student-tab',
@@ -10,7 +11,15 @@ export class StudentNetwork {
 
     students = [];
 
-    constructor(public dataProvider: DataProvider) {
-    this.students = dataProvider.getStudents();
+    constructor(public dataProvider: DataProvider, public app: App) {
+        this.students = dataProvider.getStudents();
+    }
+    
+    navigateToUserProfile(id: string) {
+        this.app.getRootNav().push(StudentProfilePage, { userId: id });
+    }
+
+    loadMore(event: any) {
+        console.log("loading..");
     }
 }
