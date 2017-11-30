@@ -9,27 +9,32 @@ import { CompanyNetwork } from './tabs/companies/companies';
 import { UniversityNetwork } from './tabs/universities/universities';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
+/**
+ * Page for displaying all contacts within the social network.
+ */
 @Component({
-    selector: 'page-network',
-    templateUrl: 'network.html'
-  })
-export class Network{
+  selector: 'page-network',
+  templateUrl: 'network.html'
+})
+export class Network {
 
   @ViewChild(Tabs) tabs: Tabs;
 
+  //each page is corresping to a tab
   page: any = TabsAll;
-  pageStudent:any = StudentNetwork;
-  pageCompaney:any = CompanyNetwork;
-  pageUniversity:any = UniversityNetwork;
+  pageStudent: any = StudentNetwork;
+  pageCompaney: any = CompanyNetwork;
+  pageUniversity: any = UniversityNetwork;
 
-  currentTab:Tab;
+  currentTab: Tab;
 
-  constructor(public navCtrl:NavController,  public translate: TranslateService){    
+  constructor(public navCtrl: NavController, public translate: TranslateService) {
   }
 
-  ngAfterViewInit(){
-  }
-
+  /**
+   * This method is triggered, when a tab was clicked.
+   * @param ev 
+   */
   onSelect(ev: any) {
     console.log(ev);
   }

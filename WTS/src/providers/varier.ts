@@ -19,14 +19,20 @@ export class Varier implements OnResultComplete {
     userId: string;
     accID: string;
     isOwn: boolean;
-    hasSource: boolean; //true, wenn diese Seite von Search aus aufgerufen wird
-    hasContact: boolean;
+    hasSource: boolean; //true, if the page was called from Search
+    hasContact: boolean; //true, if the user is in contact
 
     constructor(public storage: Storage, public app:App, public toastCtrl: ToastController,
         public translate: TranslateService, public AccountTable: AccountTable) {
         this.hasSource = false;        
     }
 
+    /**
+     * Forwards the user to a profile, regardless of the usergroup.
+     * 
+     * @param hasSource true if this method is being called from Search-Page
+     * @param userId account id of user, might be undefined if called from the menu
+     */
     public forward(hasSource: boolean, userId: string) {
         this.AccountTable.setSrcClass(this);
         this.userId = userId;
@@ -35,6 +41,11 @@ export class Varier implements OnResultComplete {
         this.storage.get("user_id").then((id) => this.load(id));        
     }
 
+    /**
+     * Loads User by it's id.
+     * 
+     * @param id account id of user 
+     */
     load(id) {
         //Checks if navigation was made from side menu.
         //Navigates to own profile
@@ -64,6 +75,12 @@ export class Varier implements OnResultComplete {
         }
     }
 
+    /**
+     * Processes result from server.
+     * 
+     * @param src query source
+     * @param json data in JSON-Format
+     */
     onComplete(src, json) {
         if (src == "account-abfrage") {
             var body = json.body;
@@ -72,6 +89,11 @@ export class Varier implements OnResultComplete {
         }
     }
 
+    /**
+     * Navigates to specific Usr Profile -> Student, Company or university.
+     * 
+     * @param json data in JSON-Format 
+     */
     navigateToUserProfile(json) {
         console.log("opened navigate to profile in profile_extern");
         switch (json.body.Usergruppe) {
@@ -101,7 +123,7 @@ export class Varier implements OnResultComplete {
                 }
                 break;
 
-            default:
+            default: // throw error if usergroup is undefined
                 console.log("Entered navigation: DB Error");
                 this.app.getRootNav().setRoot(LoginPage, { userId: json.id });
                 this.translate.get('DB-ERROR').subscribe(
@@ -111,6 +133,11 @@ export class Varier implements OnResultComplete {
         }
     }
 
+    /**
+     * Displays a message.
+     * 
+     * @param message 
+     */
     showError(message) {
         const toast = this.toastCtrl.create({
             message: message,
@@ -118,8 +145,5 @@ export class Varier implements OnResultComplete {
             position: 'top'
         });
         toast.present();
-    }
-
-    ngAfterViewInit() {
     }
 }
