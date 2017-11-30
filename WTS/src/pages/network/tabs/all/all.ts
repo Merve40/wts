@@ -22,9 +22,15 @@ export class TabsAll {
         console.log("loading..");
     }
 
+    /**
+     * Navigates to a User Profile, depending on the usergroup.
+     * 
+     * @param id account id of the user
+     * @param gruppe usergroup -> gruppe_1 (student), gruppe_2 (company), gruppe_3 (university)
+     */
     navigateToUserProfile(id: string, gruppe: string) {
         if (gruppe == "gruppe_1") {
-            this.app.getRootNav().push(StudentProfilePage, { userId: id, isOwn: false });
+            this.app.getRootNav().push(StudentProfilePage, { userId: id, isOwn: false, hasContact: true });
         } else if (gruppe == "gruppe_2") {
             this.app.getRootNav().push(CompanyProfilePage, { userId: id });
         } else if (gruppe == "gruppe_3") {

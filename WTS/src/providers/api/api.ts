@@ -2,6 +2,10 @@ import { Http } from '@angular/http';
 import { Injectable, Inject } from '@angular/core';
 import { Base } from './base';
 
+/**
+ * Service class for handling Server Requests.
+ * This class has basic / generic functions, which can be used in any Table-Class.
+ */
 @Injectable()
 export class Api {
     url: string = "https://worktostudents.firebaseio.com/";
@@ -17,6 +21,15 @@ export class Api {
     constructor( @Inject(Http) public http: Http) {
     }
 
+    /**
+     * Deletes an entry from the database.
+     * 
+     * @param base Class representing the table
+     * @param id id of the entry
+     * @param source query source
+     * @param func callback function to be called once the result is returned from the server
+     * @param src source class to use the 'this' identifier within the callback function
+     */
     public delete(base: Base, id: string, source: string, func: Function, src: any): void {
         let tbl = base.table.toString();
         let _url = this.url.concat(tbl).concat("/").concat(id)
@@ -30,6 +43,16 @@ export class Api {
         });
     }
 
+    /**
+     * Updates an entry in the database.
+     * 
+     * @param base Class representing the table
+     * @param id unique id of the entry to update
+     * @param body content of the entry
+     * @param source query source
+     * @param func callback function to be called once the result is returned from the server
+     * @param src source class to use the 'this' identifier within the callback function
+     */
     public put<T extends Base>(base: T, id: string, body: any, source: string, func: Function, src: any): void {
         let tbl = base.table.toString();
         let _url = this.url.concat(tbl).concat("/").concat(id)
@@ -43,6 +66,15 @@ export class Api {
         });
     }
 
+    /**
+     * Creates a new entry in the database.
+     * 
+     * @param base Class representing table
+     * @param obj content of the entry to create
+     * @param source query source
+     * @param func callback function to be called once the result is returned from the server
+     * @param src source class to use the 'this' identifier within the callback function
+     */
     public post<T>(base: Base, obj: T, source: string, func: Function, src: any): void {
         let tbl = base.table.toString();
         let _url = this.url.concat(tbl).concat(this.suffix);
@@ -57,10 +89,28 @@ export class Api {
         });
     }
 
+    /**
+     * Retrieves an entry by it's unique id.
+     * 
+     * @param base Class representing the Table
+     * @param id unique id
+     * @param source query source
+     * @param func callback function to be called once the result is returned from the server
+     * @param src source class to use the 'this' identifier within the callback function
+     */
     public get(base: Base, id: string, source: string, func: Function, src: any): void {
         this.getByTable(base.table, id, source, func, src);
     }
 
+    /**
+     * Generic method to retrieve an entry by a table.
+     * 
+     * @param tbl Table in the database
+     * @param id unique id
+     * @param source query source
+     * @param func callback function to be called once the result is returned from the server
+     * @param src source class to use the 'this' identifier within the callback function
+     */
     public getByTable(tbl: string, id: string, source: string, func: Function, src: any): void {
         let _url = this.url.concat(tbl).concat("/").concat(id)
             .concat(".json");
@@ -73,10 +123,30 @@ export class Api {
         });
     }
 
+    /**
+     * Retrieves an entry by comparing a specific field with a value.
+     * 
+     * @param base Class representing the Table
+     * @param key field of an entry
+     * @param value value of the specified field
+     * @param source query source
+     * @param func callback function to be called once the result is returned from the server
+     * @param src source class to use the 'this' identifier within the callback function
+     */
     public getByValue(base: Base, key: string, value: string, source: string, func: Function, src: any): void {
         this.getByValueWithTable(base.table, key, value, source, func, src);
     }
 
+    /**
+     * Retrieves an entry by comparing a specific field with a value an a specified table.
+     * 
+     * @param tbl Table in the database
+     * @param key field of an entry
+     * @param value value of the sepcified field
+     * @param source query source
+     * @param func callback function to be called once the result is returned from the server
+     * @param src source class to use the 'this' identifier within the callback function
+     */
     public getByValueWithTable(tbl: string, key: string, value: string, source: string, func: Function, src: any): void {
         let _url = this.url.concat(tbl).concat(this.suffix)
             .concat(this.orderBy)
@@ -95,6 +165,16 @@ export class Api {
         });
     }
 
+    /**
+     * Retrieves a list of entries by comparing a field with a given value.
+     * 
+     * @param base Class representing the Table
+     * @param key field of an entry
+     * @param value value of the specied fiels
+     * @param source query source
+     * @param func callback function to be called once the result is returned from the server
+     * @param src source class to use the 'this' identifier within the callback function
+     */
     public filterByValue(base: Base, key: string, value: string, source: string, func: Function, src: any): void {
         let tbl = base.table.toString();
         let _url = this.url.concat(tbl).concat(this.suffix).concat(this.orderBy)
@@ -112,6 +192,17 @@ export class Api {
         });
     }
 
+    /**
+     * Retrieves entries by comparing a field with a value, but limiting the amount of results.
+     * 
+     * @param base Class representing the Table
+     * @param key field of an entry
+     * @param value value of the specified field
+     * @param limit maximum amount of entries to be returned
+     * @param source query source
+     * @param func callback function to be called once the result is returned from the server
+     * @param src source class to use the 'this' identifier within the callback function
+     */
     public filterByValueAndLimit(base: Base, key: string, value: string, limit: number,
         source: string, func: Function, src: any): void {
         let tbl = base.table.toString();
@@ -131,6 +222,14 @@ export class Api {
         });
     }
 
+    /**
+     * Retrieves all entries within a table.
+     * 
+     * @param base Class representing the table.
+     * @param source query source 
+     * @param func callback function to be called once the result is returned from the server
+     * @param src source class to use the 'this' identifier within the callback function
+     */
     public getAll(base: Base, source: string, func: Function, src: any): void {
         let tbl = base.table.toString();
         let _url = this.url.concat(tbl).concat(this.suffix);
@@ -143,6 +242,16 @@ export class Api {
         });
     }
 
+    /**
+     * Retrieves all entries whose specified field start with a regex.
+     * 
+     * @param base Class representing the Table
+     * @param key field of an entry
+     * @param value value of the specified field
+     * @param source query source
+     * @param func callback function to be called once the result is returned from the server
+     * @param src source class to use the 'this' identifier within the callback function
+     */
     public startsWith(base: Base, key: string, value: string, source: string, func: Function, src: any): void {
         let tbl = base.table.toString();
         let _url = this.url.concat(tbl).concat(this.suffix)
@@ -160,6 +269,16 @@ export class Api {
         });
     }
 
+    /**
+     * Retrives all entries whose specified field contains an expression.
+     * 
+     * @param base Class representing the Table
+     * @param key field of an entry
+     * @param value value of the specified field
+     * @param source query source
+     * @param func callback function to be called once the result is returned from the server
+     * @param src source class to use the 'this' identifier within the callback function
+     */
     getByContains(base: Base, key: string, value: string, source: string, func: Function, src: any): void {
         let _url = "https://us-central1-worktostudents.cloudfunctions.net/contains";
         var body = {
@@ -175,6 +294,21 @@ export class Api {
         });
     }
 
+    /**
+     * Retrieves all entries that are compared to a given field & value and are sorted by a given field.
+     *  
+     * @param body body = {     tbl,
+     *                          key,
+     *                          value,
+     *                          sortKey,
+     *                          startAt,
+     *                          ascending,
+     *                          limit
+     *                      }
+     * @param flag query source
+     * @param func callback function to be called once the result is returned from the server
+     * @param src source class to use the 'this' identifier within the callback function
+     */
     getByKeyValueSortedBy(body:any, flag:string, func:Function, src:any):void{
         var _url = "https://us-central1-worktostudents.cloudfunctions.net/sortBy";
         var response = this.http.post(_url, body); 

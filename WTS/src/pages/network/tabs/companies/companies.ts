@@ -17,6 +17,10 @@ export class CompanyNetwork {
         this.companies = dataProvider.getStudents();
     }
 
+    /**
+     * Navigates to the profile of the company
+     * @param id account id
+     */
     navigateToUserProfile(id: string) {
         this.app.getRootNav().push(CompanyProfilePage, { userId: id });
     }

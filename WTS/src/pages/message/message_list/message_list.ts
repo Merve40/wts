@@ -21,7 +21,9 @@ export interface ConversationItem {
         Account_Id_2: string;
     }
 }
-
+/**
+ * Page for displaying all conversations.
+ */
 @Component({
     selector: "message_list",
     templateUrl: 'message_list.html'
@@ -43,12 +45,23 @@ export class MessageListPage implements OnResultComplete {
         });
     }
 
+    /**
+     * Navigates to MessagePage to display conversation
+     * 
+     * @param id unique id of the conversation
+     * @param name name of the receiver
+     */
     openMessage(id, name) {
         this.navCtrl.setRoot(MessagePage, { id: id, name: name });
     }
 
     onComplete(flag: string, json: any) {
 
+        /**
+         * Since the usergroup is not known during the query, 
+         * the name is composed by checking all cases for each usergroup.
+         * @param js data in JSON-Format
+         */
         let getName = (js) => {
             return js.Name ? js.Name + " " + js.Nachname
                 : js.Unternehmen ? js.Unternehmen

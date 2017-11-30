@@ -1,5 +1,8 @@
 import { Api } from './api';
 
+/**
+ * Base Class for providing functionalities to Tables.
+ */
 export abstract class Base {
     public TIMESTAMP={
         ".sv": "timestamp"

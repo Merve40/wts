@@ -14,7 +14,11 @@ export class StudentNetwork {
     constructor(public dataProvider: DataProvider, public app: App) {
         this.students = dataProvider.getStudents();
     }
-    
+
+    /**
+     * Navigates to the profile of the student
+     * @param id account id
+     */
     navigateToUserProfile(id: string) {
         this.app.getRootNav().push(StudentProfilePage, { userId: id });
     }

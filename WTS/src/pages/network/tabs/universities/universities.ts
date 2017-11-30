@@ -16,6 +16,10 @@ export class UniversityNetwork {
         this.universities = dataProvider.getStudents();
     }
 
+    /**
+     * Navigates to the profile of the university
+     * @param id account id
+     */
     navigateToUserProfile(id: string) {
         this.app.getRootNav().push(UniProfilePage, { userId: id });
     }
