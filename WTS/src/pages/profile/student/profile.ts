@@ -21,6 +21,7 @@ export class StudentProfilePage implements OnResultComplete {
   accID: string;
   accID_extern: string;
   isOwn: boolean;
+  hasContact:boolean;
   @ViewChild('myButton') button: Button;
   @ViewChild('myButton2') button2: Button;
 
@@ -36,9 +37,11 @@ export class StudentProfilePage implements OnResultComplete {
 
     this.accID = navParams.get("userId");
     this.isOwn = navParams.get("isOwn");
+    this.hasContact = navParams.get("hasContact");
+
     console.log("Profile.ts: IsOwn is: " + this.isOwn);
+    console.log("Has Contact ? "+this.hasContact);
     this.load();
-    //this.storage.get("user_id").then( (id) => this.load(id));
   }
 
   load() {
