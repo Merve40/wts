@@ -15,19 +15,16 @@ export class TabsAll {
     users = [];
 
     constructor(public dataProvider: DataProvider, public app: App, ) {
-        this.users = dataProvider.getStudents();
+        console.log("1");
+        this.users = dataProvider.getUser();
     }
 
-    loadMore(event: any) {
-        console.log("loading..");
-    }
-
-    navigateToUserProfile(id: string, gruppe: string) {
-        if (gruppe == "gruppe_1") {
+    navigateToUserProfile(id: string, group: string) {
+        if (group == "group_1") {
             this.app.getRootNav().push(StudentProfilePage, { userId: id, isOwn: false, hasContact: true });
-        } else if (gruppe == "gruppe_2") {
+        } else if (group == "group_2") {
             this.app.getRootNav().push(CompanyProfilePage, { userId: id });
-        } else if (gruppe == "gruppe_3") {
+        } else if (group == "group_3") {
             this.app.getRootNav().push(UniProfilePage, { userId: id });
         }
     }

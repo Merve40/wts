@@ -13,14 +13,16 @@ export class UniversityNetwork {
     universities = [];
 
     constructor(public dataProvider: DataProvider, public app: App) {
-        this.universities = dataProvider.getStudents();
+        dataProvider.getUser().forEach(element => {
+            console.log("checkelements");
+            if (element.usergroup == "group_3")
+                this.universities.push(element);
+        });
+        console.log("uni");
+        console.log(this.universities);
     }
 
     navigateToUserProfile(id: string) {
         this.app.getRootNav().push(UniProfilePage, { userId: id });
-    }
-
-    loadMore(event: any) {
-        console.log("loading..");
     }
 }

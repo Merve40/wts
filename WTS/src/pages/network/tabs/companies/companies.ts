@@ -14,14 +14,14 @@ export class CompanyNetwork {
     companies = [];
 
     constructor(public dataProvider: DataProvider, public app: App) {
-        this.companies = dataProvider.getStudents();
+        dataProvider.getUser().forEach(element => {
+            console.log("checkelements");
+            if (element.usergroup == "group_2")
+                this.companies.push(element);
+        });
     }
 
     navigateToUserProfile(id: string) {
         this.app.getRootNav().push(CompanyProfilePage, { userId: id });
-    }
-
-    loadMore(event: any) {
-        console.log("loading..");
     }
 }

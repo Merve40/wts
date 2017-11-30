@@ -11,11 +11,11 @@
   </ion-header>
 
   <ion-content>
-    <ion-tabs class="" tabsHighlight="true" selectedIndex="0" tabsPlacement="top" (ionChange)="onSelect($event)">
-      <ion-tab [root]="page" [tabTitle]="'ALL'|translate"></ion-tab>
-      <ion-tab [root]="page" [tabTitle]="'STUDENTS'|translate"></ion-tab>
-      <ion-tab [root]="page" [tabTitle]="'COMPANIES' |translate"></ion-tab>
-      <ion-tab [root]="page" [tabTitle]="'UNIVERSITIES' | translate"></ion-tab>
+    <ion-tabs class="" tabsHighlight="true" [selectedIndex]="index" tabsPlacement="top" (ionChange)="onSelect($event)">
+      <ion-tab [root]="page" [tabTitle]="'All' | translate"></ion-tab>
+      <ion-tab [root]="pageStudent" [tabTitle]="'STUDENTS'|translate"></ion-tab>
+      <ion-tab [root]="pageCompaney" [tabTitle]="'COMPANIES' |translate"></ion-tab>
+      <ion-tab [root]="pageUniversity" [tabTitle]="'UNIVERSITIES' | translate"></ion-tab>
     </ion-tabs>
 
   </ion-content>

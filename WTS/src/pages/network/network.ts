@@ -17,6 +17,7 @@ export class Network{
 
   @ViewChild(Tabs) tabs: Tabs;
 
+  index: any = 0;
   page: any = TabsAll;
   pageStudent:any = StudentNetwork;
   pageCompaney:any = CompanyNetwork;
@@ -32,6 +33,7 @@ export class Network{
 
   onSelect(ev: any) {
     console.log(ev);
+    this.index =ev.index;
   }
 
 }

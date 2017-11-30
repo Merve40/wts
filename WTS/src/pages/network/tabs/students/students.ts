@@ -12,14 +12,15 @@ export class StudentNetwork {
     students = [];
 
     constructor(public dataProvider: DataProvider, public app: App) {
-        this.students = dataProvider.getStudents();
-    }
-    
-    navigateToUserProfile(id: string) {
-        this.app.getRootNav().push(StudentProfilePage, { userId: id });
+        console.log("start");
+        dataProvider.getUser().forEach(element => {
+            console.log("checkelements");
+            if (element.usergroup == "group_1")
+                this.students.push(element);
+        });
     }
 
-    loadMore(event: any) {
-        console.log("loading..");
+    navigateToUserProfile(id: string) {
+        this.app.getRootNav().push(StudentProfilePage, { userId: id });
     }
 }
