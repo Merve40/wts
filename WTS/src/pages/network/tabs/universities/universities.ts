@@ -22,6 +22,10 @@ export class UniversityNetwork {
         console.log(this.universities);
     }
 
+    /**
+     * Navigates to the profile of the university
+     * @param id account id
+     */
     navigateToUserProfile(id: string) {
         this.app.getRootNav().push(UniProfilePage, { userId: id });
     }

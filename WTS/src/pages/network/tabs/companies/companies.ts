@@ -21,6 +21,10 @@ export class CompanyNetwork {
         });
     }
 
+    /**
+     * Navigates to the profile of the company
+     * @param id account id
+     */
     navigateToUserProfile(id: string) {
         this.app.getRootNav().push(CompanyProfilePage, { userId: id });
     }

@@ -9,6 +9,9 @@ import { FCM } from '@ionic-native/fcm';
 import { Varier } from '../../providers/varier';
 import * as CryptoJS from 'crypto-js';
 
+/**
+ * Page for Log-In
+ */
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'

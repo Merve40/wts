@@ -5,6 +5,9 @@ import { Storage } from '@ionic/storage';
 import { OnResultComplete } from '../../../providers/api/OnResultComplete';
 import { MessageTable } from '../../../providers/api/message';
 
+/**
+ * Page for displaying conversation.
+ */
 @Component({
     selector: "message_item",
     templateUrl: 'message_item.html'
@@ -35,6 +38,7 @@ export class MessagePage implements OnResultComplete {
 
     onComplete(flag: string, json: any) {
 
+        // retrieves all messages corresponding to the conversation id, sorted by the timestamp
         if (flag == "nachrichten-abfrage") {
 
             for (var i = 0; i < json.length; i++) {
@@ -51,8 +55,11 @@ export class MessagePage implements OnResultComplete {
         }
     }
 
+    /**
+     * Sends a Message to the other User.
+     * @param event 
+     */
     send(event) {
-        console.log(event);
         this.messageList.push({ text: this.message, isOwner: true, style: "" });
         var msg = {
             Anhang_Id: "",

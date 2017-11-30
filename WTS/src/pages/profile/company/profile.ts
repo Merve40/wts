@@ -31,23 +31,18 @@ export class CompanyProfilePage implements OnResultComplete {
 
     //Auslesen der Daten aus Tabelle Student where AccID = AccID
     if (src == "company-abfrage") {
-        console.log("Started company abfrage");
-
         var body = json.body;
 
         document.getElementById("company").innerText = body.Unternehmen;
         document.getElementById("branches").innerText = body.Branche;
         document.getElementById("link").innerText = body.Webseite;
-        console.log("Ended company abfrage");
       }
 
       //Auslesen der Daten aus Tabelle Account
       if(src == "account-abfrage") {
-        console.log("Started account abfrage");
         var body = json.body;
         var adresse_id = body.Adresse_id;
-        console.log("Adresse id: " + adresse_id);
-    
+       
         //Verschachtelte Abfrage Account mit Adresse
         this.AdressTable.getById(adresse_id, "adresse-abfrage", this.onComplete);
       }
@@ -65,8 +60,5 @@ export class CompanyProfilePage implements OnResultComplete {
   loadData(){
     this.CompanyTable.getByValue("Account_id", this.AccID, "company-abfrage", this.onComplete);
     this.AccountTable.getById(this.AccID, "account-abfrage", this.onComplete);    
-  }
-
-  ngAfterViewInit() {
   }
 }

@@ -20,6 +20,10 @@ export class StudentNetwork {
         });
     }
 
+    /**
+     * Navigates to the profile of the student
+     * @param id account id
+     */
     navigateToUserProfile(id: string) {
         this.app.getRootNav().push(StudentProfilePage, { userId: id });
     }

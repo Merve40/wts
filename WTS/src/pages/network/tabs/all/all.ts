@@ -19,6 +19,12 @@ export class TabsAll {
         this.users = dataProvider.getUser();
     }
 
+    /**
+     * Navigates to a User Profile, depending on the usergroup.
+     * 
+     * @param id account id of the user
+     * @param gruppe usergroup -> gruppe_1 (student), gruppe_2 (company), gruppe_3 (university)
+     */
     navigateToUserProfile(id: string, group: string) {
         if (group == "group_1") {
             this.app.getRootNav().push(StudentProfilePage, { userId: id, isOwn: false, hasContact: true });

@@ -30,13 +30,8 @@ export class UniProfilePage implements OnResultComplete {
 
     //Auslesen der Daten aus Tabelle Student where AccID = AccID
     if (src == "uni-abfrage") {
-        // this.unijson = json;
-        // document.getElementById("uni").innerText = this.unijson.body.Universität;
-        // document.getElementById("studyProgram").innerText = this.unijson.body.Fachrichtungen;
-
         var body = json.body;
-        console.log(json.body.Fachrichtungen);
-
+        
         document.getElementById("uni").innerText = body.Universität;
         document.getElementById("branches").innerText = body.Fachrichtungen;
       }
@@ -46,18 +41,15 @@ export class UniProfilePage implements OnResultComplete {
         console.log("Started account abfrage in uni_profile");
         var body = json.body;
         var adresse_id = body.Adresse_id;
-        console.log("Adresse id: " + adresse_id);
-    
+     
         //Verschachtelte Abfrage Account mit Adresse
         this.AdressTable.getById(adresse_id, "adresse-abfrage", this.onComplete);
       }
   
       //Auslesen der Daten aus Tabelle Adresse
       if(src == "adresse-abfrage"){
-        console.log("Started adresse abfrage in Uni_profile");
         var body = json.body;
         var adresse = body.Straße + ', ' + body.PLZ + ', ' + body.Land;
-        console.log("Adresse: "+ adresse);
         document.getElementById("address").innerText = adresse;
       }
     }
@@ -65,8 +57,5 @@ export class UniProfilePage implements OnResultComplete {
   loadData(){
     this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
     this.UniversityTable.getByValue("Account_Id", this.accID, "uni-abfrage", this.onComplete);
-  }
-
-  ngAfterViewInit() {
   }
 }

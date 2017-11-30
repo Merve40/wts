@@ -12,10 +12,10 @@
 
   <ion-content>
     <ion-tabs class="" tabsHighlight="true" [selectedIndex]="index" tabsPlacement="top" (ionChange)="onSelect($event)">
-      <ion-tab [root]="page" [tabTitle]="'All' | translate"></ion-tab>
-      <ion-tab [root]="pageStudent" [tabTitle]="'STUDENTS'|translate"></ion-tab>
-      <ion-tab [root]="pageCompaney" [tabTitle]="'COMPANIES' |translate"></ion-tab>
-      <ion-tab [root]="pageUniversity" [tabTitle]="'UNIVERSITIES' | translate"></ion-tab>
+      <ion-tab [root]="page" [tabTitle]="'ALL'|translate" tabIcon="people"></ion-tab>
+      <ion-tab [root]="pageStudent" [tabTitle]="'STUDENTS'|translate" tabIcon="contact"></ion-tab>
+      <ion-tab [root]="pageCompaney" [tabTitle]="'COMPANIES' |translate" tabIcon="wts-company"></ion-tab>
+      <ion-tab [root]="pageUniversity" [tabTitle]="'UNIVERSITIES' | translate" tabIcon="wts-university"></ion-tab>
     </ion-tabs>
 
   </ion-content>

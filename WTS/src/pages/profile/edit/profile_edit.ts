@@ -12,6 +12,9 @@ import { StudentProfilePage } from '../student/profile';
 
 import * as moment from 'moment';
 
+/**
+ * Page for editing Student Profile.
+ */
 @Component({
   selector: 'page-profile_edit',
   templateUrl: 'profile_edit.html'
@@ -104,7 +107,6 @@ export class Profile_EditPage {
   onComplete(src, json) {
     //Auslesen der Daten aus Tabelle Student where AccID = AccID
     if (src == "student-abfrage") {
-      console.log("student-abfrage");
       console.log(json);
       this.studentjson = json;
 
@@ -126,10 +128,6 @@ export class Profile_EditPage {
   }
 
   loadData() {
-    console.log("Beginn LoadData")
     this.StudentTable.getByValue("Account_Id", this.accID, "student-abfrage", this.onComplete);
-  }
-
-  ngAfterViewInit() {
   }
 }
