@@ -7,6 +7,7 @@ import { Tab } from 'ionic-angular/navigation/nav-interfaces';
 import { StudentNetwork } from './tabs/students/students';
 import { CompanyNetwork } from './tabs/companies/companies';
 import { UniversityNetwork } from './tabs/universities/universities';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
 @Component({
     selector: 'page-network',
@@ -23,11 +24,10 @@ export class Network{
 
   currentTab:Tab;
 
-  constructor(public navCtrl:NavController){    
+  constructor(public navCtrl:NavController,  public translate: TranslateService){    
   }
 
   ngAfterViewInit(){
-    
   }
 
   onSelect(ev: any) {

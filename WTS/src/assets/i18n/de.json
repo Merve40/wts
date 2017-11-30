@@ -51,5 +51,9 @@
   "SAVED_CHANGES": "Änderungen wurden gespeichert",
   "MESSAGES":"Nachrichten",
   "NETWORK": "Netzwerk",
+  "ALL":"Alle",
+  "STUDENTS": "Studenten",
+  "COMPANIES":"Unternehmen",
+  "UNIVERSITIES":"Universitäten",
   "PROFILE": "Mein Profil"
  }

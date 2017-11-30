@@ -2,7 +2,7 @@
   <ion-header class="header">
     <!-- For deleting the navigationbar on loginpage
       COMMENT/ DELETE FROM HERE ON UNTIL NEXT COMMENT-->
-    <ion-navbar>{{'LOGINPAGE' | translate}}
+    <ion-navbar>{{'NETWORK' | translate}}
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
@@ -13,12 +13,11 @@
   <ion-content>
 
     <ion-tabs class="" tabsHighlight="true" selectedIndex="0" tabsPlacement="top" (ionChange)="onSelect($event)">
-      <ion-tab [root]="page" tabTitle="All" show="true" enabled="true"></ion-tab>
-      <ion-tab [root]="page" tabTitle="Students" show="true" enabled="true"></ion-tab>
-      <ion-tab [root]="page" tabTitle="Companies" show="true"></ion-tab>
-      <ion-tab [root]="page" tabTitle="Universities"></ion-tab>
+      <ion-tab [root]="page" [tabTitle]="'ALL'|translate"></ion-tab>
+      <ion-tab [root]="page" [tabTitle]="'STUDENTS'|translate"></ion-tab>
+      <ion-tab [root]="page" [tabTitle]="'COMPANIES' |translate"></ion-tab>
+      <ion-tab [root]="page" [tabTitle]="'UNIVERSITIES' | translate"></ion-tab>
     </ion-tabs>
-
 
   </ion-content>
 
