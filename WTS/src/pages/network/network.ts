@@ -20,6 +20,8 @@ export class Network {
 
   @ViewChild(Tabs) tabs: Tabs;
 
+  index:any = 0;
+
   //each page is corresping to a tab
   page: any = TabsAll;
   pageStudent: any = StudentNetwork;
@@ -37,6 +39,7 @@ export class Network {
    */
   onSelect(ev: any) {
     console.log(ev);
+    this.index = ev.index;
   }
 
 }
