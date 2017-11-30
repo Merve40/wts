@@ -37,6 +37,9 @@ import { ConversationTable } from '../providers/api/conversation';
 import { MessageTable } from '../providers/api/message';
 import { ContactRequestTable } from '../providers/api/contactrequest';
 import { TabsAll } from '../pages/network/tabs/all/all';
+import { StudentNetwork } from '../pages/network/tabs/students/students';
+import { CompanyNetwork } from '../pages/network/tabs/companies/companies';
+import { UniversityNetwork } from '../pages/network/tabs/universities/universities';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -62,6 +65,9 @@ import { DataProvider } from '../providers/DataProvider';
     MessagePage,
     MessageListPage,
     UniProfilePage,
+    StudentNetwork,
+    CompanyNetwork,
+    UniversityNetwork,
     Network,
     TabsAll,
     NewsfeedPage
@@ -95,6 +101,9 @@ import { DataProvider } from '../providers/DataProvider';
     MessagePage,
     MessageListPage,
     CompanyProfilePage,
+    StudentNetwork,
+    CompanyNetwork,
+    UniversityNetwork,
     Network,
     TabsAll,
     NewsfeedPage
