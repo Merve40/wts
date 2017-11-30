@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AccountTable } from '../../providers/api/account';
 
 
+
 @Component({
   selector: 'page-list_search',
   templateUrl: 'list_search.html'
@@ -174,5 +175,16 @@ export class ListSearchPage implements OnResultComplete {
     } else {
       this.infinityScroll.enabled = false;
     }
+  }
+}
+
+class User {
+  id: string;
+  name: string;
+  description: string;
+  constructor(id: string, name: string, description: string) {
+    this.id = id;
+    this.name = name;
+    this.description = description;
   }
 }

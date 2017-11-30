@@ -1,17 +1,27 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
+import { App } from 'ionic-angular/components/app/app';
+import { CompanyProfilePage } from '../../../profile/company/profile';
 import { NavController } from 'ionic-angular/navigation/nav-controller';
-import { DataProvider} from '../../../../providers/DataProvider';
+import { DataProvider } from '../../../../providers/DataProvider';
 
 
 @Component({
     selector: 'company-tab',
     templateUrl: 'companies.html'
 })
-export class CompanyNetwork{
-    
-        companies = [];
-    
-        constructor(public dataProvider: DataProvider) {
+export class CompanyNetwork {
+
+    companies = [];
+
+    constructor(public dataProvider: DataProvider, public app: App) {
         this.companies = dataProvider.getStudents();
-        }
     }
+
+    navigateToUserProfile(id: string) {
+        this.app.getRootNav().push(CompanyProfilePage, { userId: id });
+    }
+
+    loadMore(event: any) {
+        console.log("loading..");
+    }
+}
