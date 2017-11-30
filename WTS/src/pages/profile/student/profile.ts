@@ -63,20 +63,20 @@ export class StudentProfilePage implements OnResultComplete {
   }
 
   contactRequest() {
-    this.storage.get("user_id").then((id) => this.loadContact(id));
+    this.storage.get("user_id").then((id) => this.sendRequest(id));
   }
 
 
 
-  loadContact(id) {
+  sendRequest(id) {
     //Account-ID des aufgerufenene Profils
     this.accID_extern = id;
     var receiver_id = this.accID;
 
     var contact = {
       sender: this.accID_extern,
-      receiver: receiver_id,
-      request: false
+      request: false,
+      receiver: receiver_id
     }
 
     this.ContactRequestTable.push(contact, "contactrequest", this.onComplete);
