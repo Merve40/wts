@@ -53,9 +53,9 @@ export class DataProvider implements OnResultComplete {
     }
 
 
-    loadMore(event: any) {
-        console.log("loading..");
-    }
+  loadMore(event:any){
+    console.log("loading...");
+  }
 
     public getStudents() {
         return this.students;
