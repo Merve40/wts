@@ -77,32 +77,32 @@ export class Varier implements OnResultComplete {
             case "gruppe_1":
 
                 if (!this.hasSource) {
-                    this.app.getActiveNav().setRoot(StudentProfilePage, { userId: json.id, isOwn: this.isOwn , hasContact: this.hasContact});
+                    this.app.getRootNav().setRoot(StudentProfilePage, { userId: json.id, isOwn: this.isOwn , hasContact: this.hasContact});
                 } else {
-                    this.app.getActiveNav().push(StudentProfilePage, { userId: json.id, isOwn: this.isOwn, hasContact: this.hasContact });
+                    this.app.getRootNav().push(StudentProfilePage, { userId: json.id, isOwn: this.isOwn, hasContact: this.hasContact });
                 }
                 break;
 
             case "gruppe_2":
 
                 if (!this.hasSource) {
-                    this.app.getActiveNav().setRoot(CompanyProfilePage, { userId: json.id });
+                    this.app.getRootNav().setRoot(CompanyProfilePage, { userId: json.id });
                 } else {
-                    this.app.getActiveNav().push(CompanyProfilePage, { userId: json.id });
+                    this.app.getRootNav().push(CompanyProfilePage, { userId: json.id });
                 }
                 break;
 
             case "gruppe_3":
                 if (!this.hasSource) {
-                    this.app.getActiveNav().setRoot(UniProfilePage, { userId: json.id });
+                    this.app.getRootNav().setRoot(UniProfilePage, { userId: json.id });
                 } else {
-                    this.app.getActiveNav().push(UniProfilePage, { userId: json.id });
+                    this.app.getRootNav().push(UniProfilePage, { userId: json.id });
                 }
                 break;
 
             default:
                 console.log("Entered navigation: DB Error");
-                this.app.getActiveNav().setRoot(LoginPage, { userId: json.id });
+                this.app.getRootNav().setRoot(LoginPage, { userId: json.id });
                 this.translate.get('DB-ERROR').subscribe(
                     value => {
                         this.showError(value);
