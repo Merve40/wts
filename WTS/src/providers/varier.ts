@@ -31,6 +31,7 @@ export class Varier implements OnResultComplete {
         this.AccountTable.setSrcClass(this);
         this.userId = userId;
         this.hasSource = hasSource;
+        this.hasContact = false;
         this.storage.get("user_id").then((id) => this.load(id));        
     }
 
