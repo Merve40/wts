@@ -13,37 +13,40 @@
 
         <ion-list>
             <ion-item no-lines>
-                <ion-label class="profilesettings" stacked color="wts_blue">{{ 'PROFILESETTINGS' | translate }}</ion-label>
+                <ion-label class="profilesettings" stacked color="wts_blue"> <h2>{{ 'PROFILESETTINGS' | translate }}</h2></ion-label>
             </ion-item>
 
             <ion-item>
-                <ion-label class="visibility" stacked color="wts_blue"> {{ 'VISIBILITY' | translate }} </ion-label>
+                <ion-label class="visibility" stacked color="wts_blue"> <h2>{{ 'VISIBILITY' | translate }} </h2> </ion-label>
             </ion-item>
 
             <ion-item>
-                <ion-label class="address" stacked color="wts_blue">{{ 'Address' | translate }}</ion-label>
-               <ion-toggle [(ngModel)]="addresstoggle"></ion-toggle>
+                <ion-label class="address" stacked color="wts_blue">{{ 'ADDRESS' | translate }}</ion-label>
+                <ion-label class="addressdescription" stacked color="wts_grey">{{ 'ADDRESSDESC' | translate }}</ion-label>
+                <ion-toggle [(ngModel)]="addresstoggle"></ion-toggle>
             </ion-item>
 
             <ion-item>
                 <ion-label class="personal" stacked color="wts_blue">{{ 'PROFILEPAGE' | translate }}</ion-label>
+                <ion-label class="personaldescription" stacked color="wts_grey">{{ 'PERSONALDESC' | translate }}</ion-label>
                <ion-toggle [(ngModel)]="personaltoggle"></ion-toggle>
             </ion-item>
 
-            <ion-item>
+            <!-- <ion-item>
                 <ion-label class="workexperience" stacked color="wts_blue">{{ 'WORKEXPERIENCE' | translate }}</ion-label>
                 <ion-toggle [(ngModel)]="experiencetoggle"></ion-toggle>
-            </ion-item>
+            </ion-item> -->
 
             <ion-item>
-                <ion-label class="other" stacked color="wts_blue">{{ 'OTHERINFO' | translate }}</ion-label>
-               <ion-toggle [(ngModel)]="othertoggle"></ion-toggle>
+                <ion-label class="studies" stacked color="wts_blue">{{ 'STUDYINFO' | translate }}</ion-label>
+                <ion-label class="personaldescription" stacked color="wts_grey">{{ 'STUDYDESC' | translate }}</ion-label>
+                <ion-toggle [(ngModel)]="studytoggle"></ion-toggle>
             </ion-item>
 
             <!-- Below are the account settings -->
 
             <ion-item no-lines>
-                <ion-label class="accountsettings" stacked color="wts_blue">{{ 'ACCOUNTSETTINGS' | translate }}</ion-label>
+                <ion-label class="accountsettings" stacked color="wts_blue"><h2>{{ 'ACCOUNTSETTINGS' | translate }}</h2></ion-label>
             </ion-item>
 
 
