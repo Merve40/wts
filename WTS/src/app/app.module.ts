@@ -22,6 +22,7 @@ import { NewsfeedPage } from '../pages/newsfeed/newsfeed';
 import { MessagePage } from '../pages/message/message_item/message_item';
 import { MessageListPage } from '../pages/message/message_list/message_list';
 import { Network } from '../pages/network/network';
+import { Settings } from '../pages/settings/settings';
 
 import { Api } from '../providers/api/api';
 import { AccountTable } from '../providers/api/account';
@@ -64,6 +65,7 @@ import { DataProvider } from '../providers/DataProvider';
     UniProfilePage,
     Network,
     TabsAll,
+    Settings,
     NewsfeedPage
   ],
   imports: [
@@ -96,6 +98,7 @@ import { DataProvider } from '../providers/DataProvider';
     MessageListPage,
     CompanyProfilePage,
     Network,
+    Settings,
     TabsAll,
     NewsfeedPage
   ],
