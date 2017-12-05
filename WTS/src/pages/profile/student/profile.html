@@ -16,7 +16,7 @@
     <button #myButton *ngIf="isOwn" id="edit" ion-button editProfile ion-button color="wts_grey" (click)="edit()"> 
       <ion-icon id="iconedit"name="create"> {{ 'EDIT' | translate }} </ion-icon> 
     </button>  
-    <button #myButton2 *ngIf="!hasContact" id="contactrequest" ion-button editProfile ion-button color="wts_grey" (click)="contactRequest()"> 
+    <button #myButton2 *ngIf="hasContact" id="contactrequest" ion-button editProfile ion-button color="wts_grey" (click)="contactRequest()"> 
       <ion-icon id="contact"name="md-add"> Kontaktanfrage </ion-icon> 
     </button>  
   </div>  

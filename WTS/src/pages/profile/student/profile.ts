@@ -21,7 +21,7 @@ export class StudentProfilePage implements OnResultComplete {
   accID: string;
   accID_extern: string;
   isOwn: boolean;
-  hasContact:boolean;
+  hasContact: boolean;
   @ViewChild('myButton') button: Button;
   @ViewChild('myButton2') button2: Button;
 
@@ -40,7 +40,7 @@ export class StudentProfilePage implements OnResultComplete {
     this.hasContact = navParams.get("hasContact");
 
     console.log("Profile.ts: IsOwn is: " + this.isOwn);
-    console.log("Has Contact ? "+this.hasContact);
+    console.log("Has Contact ? " + this.hasContact);
     this.load();
   }
 
@@ -80,13 +80,14 @@ export class StudentProfilePage implements OnResultComplete {
   onComplete(src, json) {
 
     if (src == "receiversearch-query") {
-      if (json.body == null) {
+      console.log(json);
+      if (json[0].body == null) {
         this.ContactRequestTable.filterByValue("sender", this.accID_extern, "sendersearch-query", this.onComplete);
       }
       else {
         var found = false;
-        for (var i = 0; i < json.body.length; i++) {
-          if (json.body.sender == this.accID) {
+        for (var i = 0; i < json.length; i++) {
+          if (json[i].body.sender == this.accID) {
             found = true;
             console.log(found);
             break;
@@ -99,13 +100,14 @@ export class StudentProfilePage implements OnResultComplete {
             request: false,
             receiver: receiver_id
           }
-          this.ContactRequestTable.push(contact, "contactrequest", this.onComplete);
+          this.ContactRequestTable.filterByValue("sender", this.accID_extern, "sendersearch-query", this.onComplete);
         }
       }
     }
 
     if (src == "sendersearch-query") {
-      if (json.body == null) {
+      console.log(json);
+      if (json[0].body == null) {
         var receiver_id = this.accID;
         var contact = {
           sender: this.accID_extern,
@@ -116,8 +118,8 @@ export class StudentProfilePage implements OnResultComplete {
       }
       else {
         var found = false;
-        for (var i = 0; i < json.body.length; i++) {
-          if (json.body.receiver == this.accID) {
+        for (var i = 0; i < json.length; i++) {
+          if (json[i].body.receiver == this.accID) {
             found = true;
             console.log(found);
             break;
