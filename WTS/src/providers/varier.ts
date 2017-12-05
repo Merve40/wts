@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { App, ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { AccountTable } from './api/account';
+import { ContactRequestTable } from './api/contactrequest';
 import { OnResultComplete } from './api/OnResultComplete';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -23,7 +24,8 @@ export class Varier implements OnResultComplete {
     hasContact: boolean; //true, if the user is in contact
 
     constructor(public storage: Storage, public app:App, public toastCtrl: ToastController,
-        public translate: TranslateService, public AccountTable: AccountTable) {
+        public translate: TranslateService, public AccountTable: AccountTable, public ContactRequestTable:
+        ContactRequestTable) {
         this.hasSource = false;        
     }
 
@@ -71,9 +73,26 @@ export class Varier implements OnResultComplete {
             this.accID = this.userId;
             this.hasContact = false;
             console.log("accID ist jetzt: " + this.accID);
-            this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);           
+            this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);   
+            //sichtbarkeit des buttons einstellen
+            this.storage.get("user_id").then((id) => {
+            this.ContactRequestTable.filterByValue("receiver", id, "receiversearch-query", this.onComplete);
+      });        
         }
     }
+
+      sendRequest(id) {
+        //Account-ID des aufgerufenene Profils
+        var receiver_id = id;
+        var contact = {
+          sender: this.accID,
+          request: false,
+          receiver: receiver_id
+        }
+        this.ContactRequestTable.push(contact, "contactrequest", this.onComplete);
+        this.hasContact = true;
+      }
+    
 
     /**
      * Processes result from server.
@@ -87,6 +106,55 @@ export class Varier implements OnResultComplete {
             console.log("json.id = " + json.id);
             this.navigateToUserProfile(json);
         }
+
+
+    if (src == "receiversearch-query") {
+        console.log(json);
+        if (json[0].body == null) {
+          this.ContactRequestTable.filterByValue("sender", this.accID_extern, "sendersearch-query", this.onComplete);
+        }
+        else {
+          var found = false;
+          for (var i = 0; i < json.length; i++) {
+            if (json[i].body.sender == this.accID) {
+              found = true;
+              console.log(found);
+              break;
+            }
+          }
+          if (found == false) {
+            this.ContactRequestTable.filterByValue("sender", this.accID_extern, "sendersearch-query", this.onComplete);
+          }
+        }
+      }
+  
+      if (src == "sendersearch-query") {
+        console.log(json);
+        if (json[0].body == null) {
+          var receiver_id = this.accID;
+          var contact = {
+            sender: this.accID_extern,
+            request: false,
+            receiver: receiver_id
+          }
+          this.ContactRequestTable.push(contact, "contactrequest", this.onComplete);
+        }
+        else {
+          var found = false;
+          for (var i = 0; i < json.length; i++) {
+            if (json[i].body.receiver == this.accID) {
+              found = true;
+              console.log(found);
+              break;
+            }
+          }
+          if (found == false) {
+            /*  */
+            this.isFriends = false;
+          }
+        }
+  
+      }
     }
 
     /**
