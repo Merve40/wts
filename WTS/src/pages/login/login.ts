@@ -8,6 +8,7 @@ import { FCM } from '@ionic-native/fcm';
 
 import { Varier } from '../../providers/varier';
 import * as CryptoJS from 'crypto-js';
+import { Events } from 'ionic-angular/util/events';
 
 /**
  * Page for Log-In
@@ -21,12 +22,13 @@ export class LoginPage implements OnResultComplete {
   password: any;
 
   constructor(public storage: Storage, public toastCtrl: ToastController, public accountTable: AccountTable, 
-              public translate: TranslateService,public fcm:FCM, public varier:Varier) {
+              public translate: TranslateService,public fcm:FCM, public varier:Varier, public events:Events) {
     accountTable.setSrcClass(this);
   }
 
   login() {
     if (this.email && this.password) {
+
       this.accountTable.getByValue("Email", this.email, "1", this.onComplete);
     }
     else{
@@ -86,6 +88,9 @@ export class LoginPage implements OnResultComplete {
   }
 
   navigateToUserProfile(json: any) {
+    if(json.body.Usergruppe == "gruppe_2"){
+      this.events.publish("login", "delete");
+    }
     this.storage.set("user_id", json.id);
     this.varier.forward(false, json.id);
   }
