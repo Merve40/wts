@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
@@ -25,6 +25,7 @@ import { Storage } from '@ionic/storage';
 import { Globalization } from '@ionic-native/globalization';
 
 
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -38,10 +39,16 @@ export class MyApp {
   constructor(public varier:Varier, public storage: Storage, public platform: Platform, public statusBar: StatusBar,
     public splashScreen: SplashScreen, public screenOrientation: ScreenOrientation,
     public translate: TranslateService, public fcm: FCM, public bgMode: BackgroundMode,
-    public accountTable: AccountTable, global:Globalization) {
+    public accountTable: AccountTable, global:Globalization, public events:Events) {
 
     accountTable.setSrcClass(this);
     this.initializeApp();
+
+    //this event is only fired when usergroup company is being logged in
+    //changes the menu-item in the side-bar
+    this.events.subscribe("login", usergroup => {
+      this.pages.splice(7,1);
+    });
 
     //global.getPreferredLanguage().then(result => console.log("This is my language result "+result));
     

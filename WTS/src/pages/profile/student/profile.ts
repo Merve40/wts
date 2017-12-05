@@ -21,6 +21,7 @@ export class StudentProfilePage implements OnResultComplete {
   accID: string;
   accID_extern: string;
   isOwn: boolean;
+  bla:boolean;
   hasContact: boolean;
   canRemove:boolean;
   contactId:string;
@@ -39,6 +40,7 @@ export class StudentProfilePage implements OnResultComplete {
 
     this.accID = navParams.get("userId");
     this.isOwn = navParams.get("isOwn");
+    this.bla = navParams.get("bla");
     this.hasContact = navParams.get("hasContact");
     this.canRemove = !this.isOwn && this.hasContact;
 
