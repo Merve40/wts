@@ -33,12 +33,13 @@ export class ContactRequestPage implements OnResultComplete {
             break;
           }
           else{
+            this.contactrequests = false;
           var sender = json[i].body.sender;
           var request = json[i].body.request;
           console.log(json[i]);
-          this.contactrequests = true;
           if(request == false){
           this.StudentTable.getByValue("Account_Id", sender, "account-request", this.onComplete);
+          this.contactrequests = true;
         }}};
         break;
 
