@@ -19,6 +19,8 @@ export class DataProvider implements OnResultComplete {
     constructor(public storage: Storage, public ContactRequestTable: ContactRequestTable, public StudentTable: StudentTable, public UniversityTable: UniversityTable, public CompanyTable: CompanyTable) {
         ContactRequestTable.setSrcClass(this);
         StudentTable.setSrcClass(this);
+        UniversityTable.setSrcClass(this);
+        CompanyTable.setSrcClass(this);
         this.storage.get("user_id").then((id) => this.searchForAllContacts(id));
     }
 
@@ -58,14 +60,14 @@ export class DataProvider implements OnResultComplete {
 
             case "company-request":
                 if (json.body == null) return;
-                var company = new User(json.body.Account_Id, json.body.Name + " " + json.body.Nachname, json.body.Uni);
+                var company = new User(json.body.Account_Id, json.body.Unternehmen, json.body.Uni);
                 company.usergroup = "group_2";
                 this.user.push(company);
                 break;
 
             case "university-request":
                 if (json.body == null) return;
-                var university = new User(json.body.Account_Id, json.body.Name + " " + json.body.Nachname, json.body.Uni);
+                var university = new User(json.body.Account_Id, json.body.Universität, json.body.Uni);
                 university.usergroup = "group_3";
                 this.user.push(university);
                 break;

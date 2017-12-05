@@ -18,8 +18,8 @@ export class ContactRequestPage implements OnResultComplete {
   accId;
   contactrequests: boolean;
 
-  constructor(public storage: Storage, public navCtrl: NavController, public translate: TranslateService, public toastCtrl: ToastController, public ContactRequestTable: ContactRequestTable, 
-              public StudentTable: StudentTable) {
+  constructor(public storage: Storage, public navCtrl: NavController, public translate: TranslateService, public toastCtrl: ToastController, public ContactRequestTable: ContactRequestTable,
+    public StudentTable: StudentTable) {
     ContactRequestTable.setSrcClass(this);
     StudentTable.setSrcClass(this);
   }
@@ -28,21 +28,26 @@ export class ContactRequestPage implements OnResultComplete {
     switch (src) {
       case "contact-request":
         for (var i = 0; i < json.length; i++) {
-          if(json[i].body == null){
+          if (json[i].body == null) {
             this.contactrequests = false;
             break;
           }
-          else{
-          var sender = json[i].body.sender;
-          var request = json[i].body.request;
-          console.log(json[i]);
-          this.contactrequests = true;
-          if(request == false){
-          this.StudentTable.getByValue("Account_Id", sender, "account-request", this.onComplete);
-        }}};
+          else {
+            var sender = json[i].body.sender;
+            var request = json[i].body.request;
+            console.log(json[i]);
+            this.contactrequests = true;
+            if (request == false) {
+              console.log("sender: "+sender);
+              //TODO: für alle User implementieren!!
+              this.StudentTable.getByValue("Account_Id", sender, "account-request", this.onComplete);
+            }
+          }
+        };
         break;
 
       case "account-request":
+        console.log(json);
         this.students.push(new User(json.body.Account_Id, json.body.Name + " " + json.body.Nachname, json.body.Uni));
         break;
 
@@ -54,11 +59,11 @@ export class ContactRequestPage implements OnResultComplete {
         break;
 
       case "reload-request":
-      this.translate.get('CONTACTADDED').subscribe(
-        value => {
-          this.showContactAddedMessage(value);
-        });
-      this.storage.get("user_id").then((id) => this.searchForRequests(id));
+        this.translate.get('CONTACTADDED').subscribe(
+          value => {
+            this.showContactAddedMessage(value);
+          });
+        this.storage.get("user_id").then((id) => this.searchForRequests(id));
     }
   }
 
