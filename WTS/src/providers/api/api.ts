@@ -31,6 +31,9 @@ export class Api {
      * @param src source class to use the 'this' identifier within the callback function
      */
     public delete(base: Base, id: string, source: string, func: Function, src: any): void {
+        if(!id || id.trim().length == 0){
+            return;
+        }
         let tbl = base.table.toString();
         let _url = this.url.concat(tbl).concat("/").concat(id)
             .concat(".json");
