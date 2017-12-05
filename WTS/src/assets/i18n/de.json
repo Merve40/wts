@@ -60,6 +60,7 @@
   "STUDYDESC": "Zeigt deine Informationen zu deinem Studium, wie Universität, Studiengang, Abschluss, Studienfortschritt und vorraussichtliches Studienende.",
   "PERSONALDESC": "Zeigt deine persönlichen Informationen wie Geburtsdatum, Fähigkeiten und Leidenschaften.",
   "ADDRESSDESC": "Zeigt deine Adresse mit Straße, PLZ, Stadt und Land.",
+  "EMAILDESC": "Zeigt deine E-Mail Adresse.",
   "ALL":"Alle",
   "STUDENTS": "Studenten",
   "COMPANIES":"Unternehmen",

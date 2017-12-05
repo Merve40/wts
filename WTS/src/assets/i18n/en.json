@@ -60,6 +60,7 @@
   "STUDYDESC": "Shows your study information like university, study course, degree, progress and  expeced time of approxamitely end of study.",
   "PERSONALDESC": "Shows your personal information like date of birth, skills and passion.",
   "ADDRESSDESC": "Shows your address with street, postcode, city and country.",
+  "EMAILDESC": "Shows your E-Mail adress.",
   "ALL":"All",
   "STUDENTS": "Students",
   "COMPANIES":"Companies",
