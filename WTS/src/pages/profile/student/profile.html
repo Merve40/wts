@@ -33,45 +33,53 @@
         <ion-label id="name"></ion-label>                     
       </ion-item>
 
-      <ion-item *ngIf = "datofBiethIsVisible">
-        <ion-label class="test" stacked color="wts_blue">{{ 'BIRTHDAY' | translate }}</ion-label>
-        <ion-label id="dateOfBirth" ></ion-label>
-      </ion-item>
+        <ion-item *ngIf="personalIsVisible">
+          <ion-label class="test" stacked color="wts_blue">{{ 'BIRTHDAY' | translate }}</ion-label>
+          <ion-label id="dateOfBirth" ></ion-label>
+        </ion-item>
+      
+      <div *ngIf="studyIsVisible">
+        <ion-item>
+          <ion-label stacked color="wts_blue">{{ 'UNIVERSITY' | translate }}</ion-label>
+          <ion-label id="uni"></ion-label>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label stacked color="wts_blue">{{ 'STUDYPROGRAM' | translate }}</ion-label>
+          <ion-label id="studyProgram"></ion-label>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label stacked color="wts_blue">{{ 'DEGREE' | translate }}</ion-label>
+          <ion-label id="degree" type="degree"></ion-label>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label stacked color="wts_blue">{{ 'STUDYPROGRESS' | translate }}</ion-label>
+          <ion-label id=studyProgress></ion-label>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label stacked color="wts_blue">{{ 'ENDOFSTUDY' | translate }}</ion-label>
+          <ion-label id="endOfStudy" ></ion-label>
+        </ion-item>
+      </div>
 
-      <ion-item *ngIf = "uniIsVisible">
-        <ion-label stacked color="wts_blue">{{ 'UNIVERSITY' | translate }}</ion-label>
-        <ion-label id="uni"></ion-label>
-      </ion-item>
+      
 
-      <ion-item *ngIf = "studyProgramIsVisible">
-        <ion-label stacked color="wts_blue">{{ 'STUDYPROGRAM' | translate }}</ion-label>
-        <ion-label id="studyProgram"></ion-label>
-      </ion-item>
+      <div *ngIf="personalIsVisible">
+        <ion-item >
+          <ion-label stacked color="wts_blue">{{ 'INTERESTS' | translate }}</ion-label>
+          <ion-label id="interests" ></ion-label>
+        </ion-item>
+  
+        <ion-item >
+          <ion-label stacked color="wts_blue">{{ 'SKILLS' | translate }}</ion-label>
+          <ion-label id="skills"></ion-label>
+        </ion-item>
+      </div>
 
-      <ion-item *ngIf = "degreeIsVisible">
-        <ion-label stacked color="wts_blue">{{ 'DEGREE' | translate }}</ion-label>
-        <ion-label id="degree" type="degree"></ion-label>
-      </ion-item>
 
-      <ion-item *ngIf = "studyProgessIsVisible">
-        <ion-label stacked color="wts_blue">{{ 'STUDYPROGRESS' | translate }}</ion-label>
-        <ion-label id=studyProgress></ion-label>
-      </ion-item>
-
-      <ion-item *ngIf = "endofstudyIsVisible">
-        <ion-label stacked color="wts_blue">{{ 'ENDOFSTUDY' | translate }}</ion-label>
-        <ion-label id="endOfStudy" ></ion-label>
-      </ion-item>
-
-      <ion-item *ngIf = "interestsIsVisible">
-        <ion-label stacked color="wts_blue">{{ 'INTERESTS' | translate }}</ion-label>
-        <ion-label id="interests" ></ion-label>
-      </ion-item>
-
-      <ion-item *ngIf = "skillsIsVisible">
-        <ion-label stacked color="wts_blue">{{ 'SKILLS' | translate }}</ion-label>
-        <ion-label id="skills"></ion-label>
-      </ion-item>
 
       <ion-item *ngIf = "mailIsVisible">
         <ion-label stacked color="wts_blue">{{ 'EMAIL' | translate }}</ion-label>
