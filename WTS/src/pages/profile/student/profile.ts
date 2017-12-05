@@ -18,11 +18,12 @@ import { OnResultComplete } from '../../../providers/api/OnResultComplete';
 })
 export class StudentProfilePage implements OnResultComplete {
 
-  isFriends:boolean;
   accID: string;
   accID_extern: string;
   isOwn: boolean;
   hasContact: boolean;
+  canRemove:boolean;
+  contactId:string;
   @ViewChild('myButton') button: Button;
   @ViewChild('myButton2') button2: Button;
 
@@ -39,6 +40,7 @@ export class StudentProfilePage implements OnResultComplete {
     this.accID = navParams.get("userId");
     this.isOwn = navParams.get("isOwn");
     this.hasContact = navParams.get("hasContact");
+    this.canRemove = !this.isOwn && this.hasContact;
 
     console.log("Profile.ts: IsOwn is: " + this.isOwn);
     console.log("Has Contact ? " + this.hasContact);
@@ -54,6 +56,14 @@ export class StudentProfilePage implements OnResultComplete {
       this.StudentPassionTable.filterByValue("Account_Id", this.accID, "passionStudent-abfrage", this.onComplete);
       this.StudentSkillTable.filterByValue("Account_Id", this.accID, "skill-abfrage", this.onComplete);
 
+      //Kontakt-Anfragen sollen nur abgefragt werden wenn man im fremden Profil ist
+      if(!this.isOwn){
+        this.storage.get("user_id").then((id) => {
+          this.accID_extern = id;
+          this.ContactRequestTable.filterByValue("receiver", this.accID_extern, "receiversearch-query", this.onComplete);
+        });
+      }
+ 
     } else {
       console.log("Profile is own, printed in profile.ts");
       this.StudentTable.getByValue("Account_Id", this.accID, "student-abfrage", this.onComplete);
@@ -63,11 +73,92 @@ export class StudentProfilePage implements OnResultComplete {
     }
   }
 
+  sendRequest() {
+    //Account-ID des aufgerufenene Profils
+    //var receiver_id = this.accID_extern;
+    var contact = {
+      sender: this.accID_extern,
+      request: false,
+      receiver: this.accID
+    }
+    this.ContactRequestTable.push(contact, "contactrequest", this.onComplete);
+  }
+
+  removeContact(){
+    console.log(" contact ID : "+this.contactId);
+    this.ContactRequestTable.delete(this.contactId, "delete-contact", this.onComplete);
+  }
+
   edit() {
     this.navCtrl.push(Profile_EditPage, { userId: this.accID });
   }
 
   onComplete(src, json) {
+
+    if(src == "contactrequest"){
+      this.contactId = json.name;
+      this.hasContact = true;
+      this.canRemove = !this.isOwn && this.hasContact;
+    }
+
+    if (src == "receiversearch-query") {
+      console.log(json);
+      if (json[0].body == null) {
+        this.ContactRequestTable.filterByValue("sender", this.accID_extern, "sendersearch-query", this.onComplete);
+      }
+      else {
+        var found = false;
+        for (var i = 0; i < json.length; i++) {
+          if (json[i].body.sender == this.accID) {
+            found = true;
+            this.contactId = json[i].id;
+            console.log(found);
+            break;
+          }
+        }
+        if (found == false) {
+          this.ContactRequestTable.filterByValue("sender", this.accID_extern, "sendersearch-query", this.onComplete);
+        }
+      }
+    }
+
+    if (src == "sendersearch-query") {
+      console.log(json);
+      if (json[0].body == null) {
+        var receiver_id = this.accID;
+        var contact = {
+          sender: this.accID_extern,
+          request: false,
+          receiver: receiver_id
+        }
+        this.ContactRequestTable.push(contact, "contactrequest", this.onComplete);
+      }
+      else {
+        var found = false;
+        for (var i = 0; i < json.length; i++) {
+          if (json[i].body.receiver == this.accID) {
+            found = true;
+            this.contactId = json[i].id;
+            console.log(found);
+            break;
+          }
+        }
+        if (found == false) {
+          this.hasContact = false;
+          this.canRemove = !this.isOwn && this.hasContact;
+        }else{
+          this.hasContact = true;
+          this.canRemove = !this.isOwn && this.hasContact;
+        }
+      }
+
+    }
+
+    if(src == "delete-contact"){
+      this.hasContact = false;
+      this.canRemove = !this.isOwn && this.hasContact;
+    }
+
 
     //Auslesen der Daten aus Tabelle Student where AccID = AccID
     if (src == "student-abfrage") {

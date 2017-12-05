@@ -16,17 +16,17 @@ import { LoginPage } from '../pages/login/login';
  */
 @Injectable()
 export class Varier implements OnResultComplete {
-    
+
     userId: string;
     accID: string;
     isOwn: boolean;
     hasSource: boolean; //true, if the page was called from Search
     hasContact: boolean; //true, if the user is in contact
 
-    constructor(public storage: Storage, public app:App, public toastCtrl: ToastController,
+    constructor(public storage: Storage, public app: App, public toastCtrl: ToastController,
         public translate: TranslateService, public AccountTable: AccountTable, public ContactRequestTable:
-        ContactRequestTable) {
-        this.hasSource = false;        
+            ContactRequestTable) {
+        this.hasSource = false;
     }
 
     /**
@@ -40,7 +40,7 @@ export class Varier implements OnResultComplete {
         this.userId = userId;
         this.hasSource = hasSource;
         this.hasContact = false;
-        this.storage.get("user_id").then((id) => this.load(id));        
+        this.storage.get("user_id").then((id) => this.load(id));
     }
 
     /**
@@ -57,7 +57,7 @@ export class Varier implements OnResultComplete {
             this.accID = id;
             this.hasContact = true;
             this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
-           
+
             // Navigates to own profile 
         } else if (id == this.userId) {
             console.log("Profile_Extern: Own profile reached from Login");
@@ -65,7 +65,7 @@ export class Varier implements OnResultComplete {
             this.accID = id;
             this.hasContact = true;
             this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
-           
+
             //Navigates to foreign profile
         } else {
             console.log("Profile_Extern: Extern profile reached");
@@ -73,26 +73,12 @@ export class Varier implements OnResultComplete {
             this.accID = this.userId;
             this.hasContact = false;
             console.log("accID ist jetzt: " + this.accID);
-            this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);   
-            //sichtbarkeit des buttons einstellen
-            this.storage.get("user_id").then((id) => {
-            this.ContactRequestTable.filterByValue("receiver", id, "receiversearch-query", this.onComplete);
-      });        
+            this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
         }
     }
 
-      sendRequest(id) {
-        //Account-ID des aufgerufenene Profils
-        var receiver_id = id;
-        var contact = {
-          sender: this.accID,
-          request: false,
-          receiver: receiver_id
-        }
-        this.ContactRequestTable.push(contact, "contactrequest", this.onComplete);
-        this.hasContact = true;
-      }
-    
+   
+
 
     /**
      * Processes result from server.
@@ -106,55 +92,6 @@ export class Varier implements OnResultComplete {
             console.log("json.id = " + json.id);
             this.navigateToUserProfile(json);
         }
-
-
-    if (src == "receiversearch-query") {
-        console.log(json);
-        if (json[0].body == null) {
-          this.ContactRequestTable.filterByValue("sender", this.accID_extern, "sendersearch-query", this.onComplete);
-        }
-        else {
-          var found = false;
-          for (var i = 0; i < json.length; i++) {
-            if (json[i].body.sender == this.accID) {
-              found = true;
-              console.log(found);
-              break;
-            }
-          }
-          if (found == false) {
-            this.ContactRequestTable.filterByValue("sender", this.accID_extern, "sendersearch-query", this.onComplete);
-          }
-        }
-      }
-  
-      if (src == "sendersearch-query") {
-        console.log(json);
-        if (json[0].body == null) {
-          var receiver_id = this.accID;
-          var contact = {
-            sender: this.accID_extern,
-            request: false,
-            receiver: receiver_id
-          }
-          this.ContactRequestTable.push(contact, "contactrequest", this.onComplete);
-        }
-        else {
-          var found = false;
-          for (var i = 0; i < json.length; i++) {
-            if (json[i].body.receiver == this.accID) {
-              found = true;
-              console.log(found);
-              break;
-            }
-          }
-          if (found == false) {
-            /*  */
-            this.isFriends = false;
-          }
-        }
-  
-      }
     }
 
     /**
@@ -168,7 +105,7 @@ export class Varier implements OnResultComplete {
             case "gruppe_1":
 
                 if (!this.hasSource) {
-                    this.app.getRootNav().setRoot(StudentProfilePage, { userId: json.id, isOwn: this.isOwn , hasContact: this.hasContact});
+                    this.app.getRootNav().setRoot(StudentProfilePage, { userId: json.id, isOwn: this.isOwn, hasContact: this.hasContact });
                 } else {
                     this.app.getRootNav().push(StudentProfilePage, { userId: json.id, isOwn: this.isOwn, hasContact: this.hasContact });
                 }
