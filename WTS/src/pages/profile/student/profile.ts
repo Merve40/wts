@@ -40,7 +40,8 @@ export class StudentProfilePage implements OnResultComplete {
 
     this.accID = navParams.get("userId");
     this.isOwn = navParams.get("isOwn");
-    this.bla = navParams.get("bla");
+    // this.bla = navParams.get("bla");
+    this.bla = false;
     this.hasContact = navParams.get("hasContact");
     this.canRemove = !this.isOwn && this.hasContact;
 
@@ -190,7 +191,10 @@ export class StudentProfilePage implements OnResultComplete {
       var body = json.body;
       var adresse = body.Straße + ', ' + body.PLZ + ', ' + body.Land;
 
-      document.getElementById("address").innerText = adresse;
+      if(this.bla){
+        document.getElementById("address").innerText = adresse;
+      }
+      
     }
     //Auslesen der Daten aus Tabelle Leidenschaft
     if (src == "passionStudent-abfrage") {
