@@ -60,6 +60,12 @@ export class ContactRequestPage implements OnResultComplete {
           this.showContactAddedMessage(value);
         });
       this.storage.get("user_id").then((id) => this.searchForRequests(id));
+        break;
+        
+      case "delete-request":
+       console.log(json.id);
+       var contactId = json.id;
+       this.ContactRequestTable.delete(contactId, "delete-contact", this.onComplete);
     }
   }
 
@@ -74,6 +80,10 @@ export class ContactRequestPage implements OnResultComplete {
 
   accept(id) {
     this.ContactRequestTable.getByValue("sender", id, "accept-request", this.onComplete);
+  }
+
+  removeRequest(id){
+    this.ContactRequestTable.getByValue("sender", id, "delete-request", this.onComplete);
   }
 
   searchForRequests(id) {
