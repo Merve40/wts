@@ -60,7 +60,6 @@ export class ContactRequestPage implements OnResultComplete {
         break;
 
       case "reload-request":
-<<<<<<< HEAD
       this.translate.get('CONTACTADDED').subscribe(
         value => {
           this.showContactAddedMessage(value);
@@ -72,13 +71,6 @@ export class ContactRequestPage implements OnResultComplete {
        console.log(json.id);
        var contactId = json.id;
        this.ContactRequestTable.delete(contactId, "delete-contact", this.onComplete);
-=======
-        this.translate.get('CONTACTADDED').subscribe(
-          value => {
-            this.showContactAddedMessage(value);
-          });
-        this.storage.get("user_id").then((id) => this.searchForRequests(id));
->>>>>>> master
     }
   }
 
