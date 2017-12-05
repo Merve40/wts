@@ -51,6 +51,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { DataProvider } from '../providers/DataProvider';
 import { BlockTable } from '../providers/api/block';
 import { VisibilityTable } from '../providers/api/visibility';
+import { StudentNetwork } from '../pages/network/tabs/students/students';
+import { UniversityNetwork } from '../pages/network/tabs/universities/universities';
+import { CompanyNetwork } from '../pages/network/tabs/companies/companies';
 
 @NgModule({
   declarations: [
@@ -66,6 +69,9 @@ import { VisibilityTable } from '../providers/api/visibility';
     MessageListPage,
     UniProfilePage,
     Network,
+    StudentNetwork,
+    UniversityNetwork,
+    CompanyNetwork,
     TabsAll,
     Settings,
     NewsfeedPage
@@ -100,6 +106,9 @@ import { VisibilityTable } from '../providers/api/visibility';
     MessageListPage,
     CompanyProfilePage,
     Network,
+    StudentNetwork,
+    UniversityNetwork,
+    CompanyNetwork,
     Settings,
     TabsAll,
     NewsfeedPage
