@@ -32,6 +32,7 @@ export class ContactRequestPage implements OnResultComplete {
             this.contactrequests = false;
             break;
           }
+          
           else {
             var sender = json[i].body.sender;
             var request = json[i].body.request;
