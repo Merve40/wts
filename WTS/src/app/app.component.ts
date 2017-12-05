@@ -16,6 +16,7 @@ import { MessagePage } from '../pages/message/message_item/message_item';
 import { MessageListPage } from '../pages/message/message_list/message_list';
 import { AccountTable } from '../providers/api/account';
 import { Network } from '../pages/network/network';
+import { Settings } from '../pages/settings/settings';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -58,7 +59,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     // Labels & Pages in navigationbar in upper left corner
 
-    translate.get(['LOGINPAGE', 'PROFILEPAGE', 'LOGOUT', 'LISTSEARCHPAGE', 'MAPPAGE', 'CONTACTREQUESTPAGE', 'MESSAGES', 'NETWORK', 'NEWSFEEDPAGE']).subscribe(translations => {
+    translate.get(['LOGINPAGE', 'PROFILEPAGE', 'LOGOUT', 'LISTSEARCHPAGE', 'MAPPAGE', 'CONTACTREQUESTPAGE', 'MESSAGES', 'NETWORK', 'SETTINGS', 'NEWSFEEDPAGE']).subscribe(translations => {
       this.pages = [
         { title: translations.PROFILEPAGE, component: "Varier" },
         { title: translations.LISTSEARCHPAGE, component: ListSearchPage },
@@ -67,6 +68,7 @@ export class MyApp {
         { title: translations.MESSAGES, component: MessageListPage },
         { title: translations.LOGOUT, component: LoginPage }, 
         { title: translations.NETWORK, component: Network },
+        { title: translations.SETTINGS, component: Settings},
         { title: translations.NEWSFEEDPAGE, component: NewsfeedPage }
         
       ];
