@@ -52,7 +52,7 @@ export class MessageListPage implements OnResultComplete {
      * @param name name of the receiver
      */
     openMessage(id, name) {
-        this.navCtrl.setRoot(MessagePage, { id: id, name: name });
+        this.navCtrl.push(MessagePage, { id: id, name: name });
     }
 
     onComplete(flag: string, json: any) {

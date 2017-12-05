@@ -18,8 +18,8 @@ import { Events } from 'ionic-angular/util/events';
   templateUrl: 'login.html'
 })
 export class LoginPage implements OnResultComplete {
-  email: any;
-  password: any;
+  email: string;
+  password: string;
 
   constructor(public storage: Storage, public toastCtrl: ToastController, public accountTable: AccountTable,
     public translate: TranslateService, public fcm: FCM, public varier: Varier, public events: Events) {
@@ -29,7 +29,7 @@ export class LoginPage implements OnResultComplete {
   login() {
     if (this.email && this.password) {
 
-      this.accountTable.getByValue("Email", this.email, "1", this.onComplete);
+      this.accountTable.getByValue("Email", this.email.toLowerCase(), "1", this.onComplete);
     }
     else {
       this.translate.get('MISSINGLOGINDATAMESSAGE').subscribe(
