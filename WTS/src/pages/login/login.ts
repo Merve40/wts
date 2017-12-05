@@ -21,8 +21,8 @@ export class LoginPage implements OnResultComplete {
   email: any;
   password: any;
 
-  constructor(public storage: Storage, public toastCtrl: ToastController, public accountTable: AccountTable, 
-              public translate: TranslateService,public fcm:FCM, public varier:Varier, public events:Events) {
+  constructor(public storage: Storage, public toastCtrl: ToastController, public accountTable: AccountTable,
+    public translate: TranslateService, public fcm: FCM, public varier: Varier, public events: Events) {
     accountTable.setSrcClass(this);
   }
 
@@ -31,7 +31,7 @@ export class LoginPage implements OnResultComplete {
 
       this.accountTable.getByValue("Email", this.email, "1", this.onComplete);
     }
-    else{
+    else {
       this.translate.get('MISSINGLOGINDATAMESSAGE').subscribe(
         value => {
           this.showLoginError(value);
@@ -41,20 +41,20 @@ export class LoginPage implements OnResultComplete {
 
   onComplete(source, json) {
     if (source == "1") {
-      if(json.body == null){        
-       this.translate.get('INCORRECTLOGIN').subscribe(
+      if (json.body == null) {
+        this.translate.get('INCORRECTLOGIN').subscribe(
           value => {
             this.showLoginError(value);
           });
       }
-    else{
-      this.validateUser(json);
+      else {
+        this.validateUser(json);
       }
     }
   }
 
   validateUser(json: any) {
-    
+
     //registers the device token for Push Notifications
     /*
     if(json.body.Token.length == 0){
@@ -66,18 +66,18 @@ export class LoginPage implements OnResultComplete {
     */
     var encrypted = this.encrypt(this.password);
 
-    if (json.body.Passwort == encrypted ) {
+    if (json.body.Passwort == encrypted) {
 
-      if(json.body.Usergruppe == "gruppe_3"){        
+      if (json.body.Usergruppe == "gruppe_3") {
         this.translate.get('UNILOGIN').subscribe(
-           value => {
-             this.showLoginError(value);
-           });
+          value => {
+            this.showLoginError(value);
+          });
       }
-      else{ 
-          this.navigateToUserProfile(json)
+      else {
+        this.navigateToUserProfile(json)
       }
-    
+
     } else {
       console.log("Input was not correct");
       this.translate.get('INCORRECTLOGIN').subscribe(
@@ -88,11 +88,11 @@ export class LoginPage implements OnResultComplete {
   }
 
   navigateToUserProfile(json: any) {
-    if(json.body.Usergruppe == "gruppe_2"){
+    if (json.body.Usergruppe == "gruppe_2") {
       this.events.publish("login", "delete");
     }
     this.storage.set("user_id", json.id);
-    this.varier.forward(false, json.id);
+    this.varier.forward(false, undefined);
   }
 
   showLoginError(message) {

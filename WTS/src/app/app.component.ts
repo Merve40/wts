@@ -36,10 +36,10 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any }>;
 
-  constructor(public varier:Varier, public storage: Storage, public platform: Platform, public statusBar: StatusBar,
+  constructor(public varier: Varier, public storage: Storage, public platform: Platform, public statusBar: StatusBar,
     public splashScreen: SplashScreen, public screenOrientation: ScreenOrientation,
     public translate: TranslateService, public fcm: FCM, public bgMode: BackgroundMode,
-    public accountTable: AccountTable, global:Globalization, public events:Events) {
+    public accountTable: AccountTable, global: Globalization, public events: Events) {
 
     accountTable.setSrcClass(this);
     this.initializeApp();
@@ -47,11 +47,11 @@ export class MyApp {
     //this event is only fired when usergroup company is being logged in
     //changes the menu-item in the side-bar
     this.events.subscribe("login", usergroup => {
-      this.pages.splice(7,1);
+      this.pages.splice(7, 1);
     });
 
     //global.getPreferredLanguage().then(result => console.log("This is my language result "+result));
-    
+
     //global.getPreferredLanguage().then(result => switch (result){
     //   case 'de':
     //     translate.use('de')
@@ -62,7 +62,7 @@ export class MyApp {
     //   default: 
     //   translate.setDefaultLang('en');
     // }
-    
+
     // used for an example of ngFor and navigation
     // Labels & Pages in navigationbar in upper left corner
 
@@ -73,11 +73,11 @@ export class MyApp {
         { title: translations.MAPPAGE, component: MapPage },
         { title: translations.CONTACTREQUESTPAGE, component: ContactRequestPage },
         { title: translations.MESSAGES, component: MessageListPage },
-        { title: translations.LOGOUT, component: LoginPage }, 
+        { title: translations.LOGOUT, component: LoginPage },
         { title: translations.NETWORK, component: Network },
-        { title: translations.SETTINGS, component: Settings},
+        { title: translations.SETTINGS, component: Settings },
         { title: translations.NEWSFEEDPAGE, component: NewsfeedPage }
-        
+
       ];
     });
 
@@ -158,7 +158,7 @@ export class MyApp {
 
     if (page.component === "Varier") {
       this.varier.forward(false, undefined);
-  } else {
+    } else {
       this.nav.setRoot(page.component);
     }
 
