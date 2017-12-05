@@ -18,10 +18,11 @@ import { OnResultComplete } from '../../../providers/api/OnResultComplete';
 })
 export class StudentProfilePage implements OnResultComplete {
 
+  isFriends:boolean;
   accID: string;
   accID_extern: string;
   isOwn: boolean;
-  hasContact:boolean;
+  hasContact: boolean;
   @ViewChild('myButton') button: Button;
   @ViewChild('myButton2') button2: Button;
 
@@ -40,7 +41,7 @@ export class StudentProfilePage implements OnResultComplete {
     this.hasContact = navParams.get("hasContact");
 
     console.log("Profile.ts: IsOwn is: " + this.isOwn);
-    console.log("Has Contact ? "+this.hasContact);
+    console.log("Has Contact ? " + this.hasContact);
     this.load();
   }
 
@@ -52,6 +53,7 @@ export class StudentProfilePage implements OnResultComplete {
       this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
       this.StudentPassionTable.filterByValue("Account_Id", this.accID, "passionStudent-abfrage", this.onComplete);
       this.StudentSkillTable.filterByValue("Account_Id", this.accID, "skill-abfrage", this.onComplete);
+
     } else {
       console.log("Profile is own, printed in profile.ts");
       this.StudentTable.getByValue("Account_Id", this.accID, "student-abfrage", this.onComplete);
@@ -65,76 +67,7 @@ export class StudentProfilePage implements OnResultComplete {
     this.navCtrl.push(Profile_EditPage, { userId: this.accID });
   }
 
-  contactRequest() {
-    this.storage.get("user_id").then((id) => this.sendRequest(id));
-  }
-
-
-
-  sendRequest(id) {
-    //Account-ID des aufgerufenene Profils
-    this.accID_extern = id;
-    this.ContactRequestTable.filterByValue("receiver", this.accID_extern, "receiversearch-query", this.onComplete);
-  }
-
   onComplete(src, json) {
-
-    if (src == "receiversearch-query") {
-      if (json.body == null) {
-        this.ContactRequestTable.filterByValue("sender", this.accID_extern, "sendersearch-query", this.onComplete);
-      }
-      else {
-        var found = false;
-        for (var i = 0; i < json.body.length; i++) {
-          if (json.body.sender == this.accID) {
-            found = true;
-            console.log(found);
-            break;
-          }
-        }
-        if (found == false) {
-          var receiver_id = this.accID;
-          var contact = {
-            sender: this.accID_extern,
-            request: false,
-            receiver: receiver_id
-          }
-          this.ContactRequestTable.push(contact, "contactrequest", this.onComplete);
-        }
-      }
-    }
-
-    if (src == "sendersearch-query") {
-      if (json.body == null) {
-        var receiver_id = this.accID;
-        var contact = {
-          sender: this.accID_extern,
-          request: false,
-          receiver: receiver_id
-        }
-        this.ContactRequestTable.push(contact, "contactrequest", this.onComplete);
-      }
-      else {
-        var found = false;
-        for (var i = 0; i < json.body.length; i++) {
-          if (json.body.receiver == this.accID) {
-            found = true;
-            console.log(found);
-            break;
-          }
-        }
-        if (found == false) {
-          var receiver_id = this.accID;
-          var contact = {
-            sender: this.accID_extern,
-            request: false,
-            receiver: receiver_id
-          }
-          this.ContactRequestTable.push(contact, "contactrequest", this.onComplete);
-        }
-      }
-
-    }
 
     //Auslesen der Daten aus Tabelle Student where AccID = AccID
     if (src == "student-abfrage") {
