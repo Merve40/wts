@@ -21,7 +21,16 @@ export class StudentProfilePage implements OnResultComplete {
   accID: string;
   accID_extern: string;
   isOwn: boolean;
-  bla:boolean;
+  addressIsVisible:boolean;
+  mailIsVisible:boolean;
+  skillsIsVisible:boolean;
+  interestsIsVisible:boolean;
+  endofstudyIsVisible:boolean;
+  studyProgessIsVisible:boolean;
+  degreeIsVisible:boolean;
+  studyProgramIsVisible:boolean;
+  uniIsVisible:boolean;
+  datofBirthIsVisible:boolean;
   hasContact: boolean;
   canRemove:boolean;
   contactId:string;
@@ -40,7 +49,17 @@ export class StudentProfilePage implements OnResultComplete {
 
     this.accID = navParams.get("userId");
     this.isOwn = navParams.get("isOwn");
-    this.bla = navParams.get("bla");
+    this.addressIsVisible = navParams.get("addressIsVisible");
+    this.mailIsVisible = navParams.get("mailIsVisible");
+    this.skillsIsVisible = navParams.get("skillsIsVisible");
+    this.interestsIsVisible = navParams.get("interestsIsVisible");
+    this.endofstudyIsVisible = navParams.get("endofstudyIsVisible");
+    this.studyProgessIsVisible = navParams.get("studyProgessIsVisible");
+    this.degreeIsVisible = navParams.get("degreeIsVisible");
+    this.studyProgramIsVisible = navParams.get("studyProgramIsVisible");
+    this.uniIsVisible = navParams.get("uniIsVisible");
+    this.datofBirthIsVisible = navParams.get("dateOfBirth");
+
     this.hasContact = navParams.get("hasContact");
     this.canRemove = !this.isOwn && this.hasContact;
 
