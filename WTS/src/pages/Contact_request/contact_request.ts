@@ -16,6 +16,7 @@ export class ContactRequestPage implements OnResultComplete {
 
   students = [];
   accId;
+  contactrequests: boolean;
 
   constructor(public storage: Storage, public navCtrl: NavController, public translate: TranslateService, public toastCtrl: ToastController, public ContactRequestTable: ContactRequestTable, 
               public StudentTable: StudentTable) {
@@ -28,11 +29,14 @@ export class ContactRequestPage implements OnResultComplete {
       case "contact-request":
         for (var i = 0; i < json.length; i++) {
           if(json[i].body == null){
+            this.contactrequests = false;
             break;
           }
           else{
           var sender = json[i].body.sender;
           var request = json[i].body.request;
+          console.log(json[i]);
+          this.contactrequests = true;
           if(request == false){
           this.StudentTable.getByValue("Account_Id", sender, "account-request", this.onComplete);
         }}};
