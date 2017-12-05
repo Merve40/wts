@@ -49,6 +49,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { TranslateService } from '@ngx-translate/core';
 import { DataProvider } from '../providers/DataProvider';
+import { BlockTable } from '../providers/api/block';
+import { VisibilityTable } from '../providers/api/visibility';
 
 @NgModule({
   declarations: [
@@ -124,6 +126,8 @@ import { DataProvider } from '../providers/DataProvider';
     ScreenOrientation,
     ConversationTable,
     MessageTable,
+    BlockTable,
+    VisibilityTable,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
