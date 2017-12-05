@@ -21,7 +21,16 @@ export class StudentProfilePage implements OnResultComplete {
   accID: string;
   accID_extern: string;
   isOwn: boolean;
-  bla:boolean;
+  addressIsVisible:boolean;
+  mailIsVisible:boolean;
+  skillsIsVisible:boolean;
+  interestsIsVisible:boolean;
+  endofstudyIsVisible:boolean;
+  studyProgessIsVisible:boolean;
+  degreeIsVisible:boolean;
+  studyProgramIsVisible:boolean;
+  uniIsVisible:boolean;
+  datofBirthIsVisible:boolean;
   hasContact: boolean;
   canRemove:boolean;
   contactId:string;
@@ -40,8 +49,6 @@ export class StudentProfilePage implements OnResultComplete {
 
     this.accID = navParams.get("userId");
     this.isOwn = navParams.get("isOwn");
-    // this.bla = navParams.get("bla");
-    this.bla = false;
     this.hasContact = navParams.get("hasContact");
     this.canRemove = !this.isOwn && this.hasContact;
 
@@ -189,12 +196,7 @@ export class StudentProfilePage implements OnResultComplete {
     //Auslesen der Daten aus Tabelle Adresse
     if (src == "adresse-abfrage") {
       var body = json.body;
-      var adresse = body.Straße + ', ' + body.PLZ + ', ' + body.Land;
-
-      if(this.bla){
-        document.getElementById("address").innerText = adresse;
-      }
-      
+      var adresse = body.Straße + ', ' + body.PLZ + ', ' + body.Land;  
     }
     //Auslesen der Daten aus Tabelle Leidenschaft
     if (src == "passionStudent-abfrage") {
