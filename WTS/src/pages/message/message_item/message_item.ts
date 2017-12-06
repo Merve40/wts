@@ -72,6 +72,7 @@ export class MessagePage implements OnResultComplete {
         this.messageTable.push(msg, "", this.onComplete);
         this.message = "";
         this.scrollToBottom();
+        console.log(msg);
     }
 
     notification(data) {
