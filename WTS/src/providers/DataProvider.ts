@@ -53,21 +53,25 @@ export class DataProvider implements OnResultComplete {
 
             case "student-request":
                 if (json.body == null) return;
+
+                console.log("0");
+                console.log(json);
                 var student = new User(json.body.Account_Id, json.body.Name + " " + json.body.Nachname, json.body.Uni);
+                console.log(student);
                 student.usergroup = "group_1";
                 this.user.push(student);
                 break;
 
             case "company-request":
                 if (json.body == null) return;
-                var company = new User(json.body.Account_Id, json.body.Unternehmen, json.body.Uni);
+                var company = new User(json.body.Account_Id, json.body.Unternehmen, json.body.Branche);
                 company.usergroup = "group_2";
                 this.user.push(company);
                 break;
 
             case "university-request":
                 if (json.body == null) return;
-                var university = new User(json.body.Account_Id, json.body.Universität, json.body.Uni);
+                var university = new User(json.body.Account_Id, json.body.Universität, json.body.Fachrichtungen);
                 university.usergroup = "group_3";
                 this.user.push(university);
                 break;
