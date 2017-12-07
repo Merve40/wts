@@ -10,6 +10,18 @@
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.wts"
     },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.wts"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.wts"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.wts"
+    },
+    "cordova-plugin-background-mode": {
+      "PACKAGE_NAME": "com.wts"
+    },
     "cordova-plugin-fcm": {
       "PACKAGE_NAME": "com.wts"
     }
