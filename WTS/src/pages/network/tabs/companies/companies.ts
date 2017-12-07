@@ -28,4 +28,8 @@ export class CompanyNetwork {
     navigateToUserProfile(id: string) {
         this.app.getRootNav().push(CompanyProfilePage, { userId: id });
     }
+
+    loadMore(event){
+        
+    }
 }

@@ -27,4 +27,8 @@ export class StudentNetwork {
     navigateToUserProfile(id: string) {
         this.app.getRootNav().push(StudentProfilePage, { userId: id });
     }
+
+    loadMore(event){
+        
+    }
 }

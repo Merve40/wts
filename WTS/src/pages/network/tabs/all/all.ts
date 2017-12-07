@@ -20,8 +20,8 @@ export class TabsAll {
     constructor(public dataProvider: DataProvider, public app: App, public events:Events, 
         public contactTable:ContactRequestTable, public accountTable:AccountTable ) {
         console.log("1");
-        this.contactTable.setSrcClass(this);
-        this.accountTable.setSrcClass(this);
+        // this.contactTable.setSrcClass(this);
+        // this.accountTable.setSrcClass(this);
         this.users = dataProvider.getUser();
 
         events.subscribe("user-added", contactId =>{
@@ -49,5 +49,9 @@ export class TabsAll {
         } else if (group == "group_3") {
             this.app.getRootNav().push(UniProfilePage, { userId: id });
         }
+    }
+
+    loadMore(event){
+        
     }
 }

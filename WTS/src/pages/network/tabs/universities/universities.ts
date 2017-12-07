@@ -29,4 +29,8 @@ export class UniversityNetwork {
     navigateToUserProfile(id: string) {
         this.app.getRootNav().push(UniProfilePage, { userId: id });
     }
+
+    loadMore(event){
+        
+    }
 }
