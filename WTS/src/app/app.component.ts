@@ -92,42 +92,40 @@ export class MyApp {
       this.splashScreen.hide();
 
 
-      /*
+
       //background service that runs, when the app is closed.
       this.bgMode.on("enable").subscribe(() => {
 
         //updates the device token, if user uses a new device
-        this.fcm.onTokenRefresh().forEach(token => {
-          console.log("on token refresh..");
-          this.storage.get("user_id").then(id => {
-            console.log("got user id: "+id);
-            this.accountTable.getById(id, "", (source, json) => {
-              json.body.Token = token;
-              this.accountTable.update(id, json, "", (src, res) => { });
+        if (typeof (FCM) !== "undefined") {
+          this.fcm.onTokenRefresh().forEach(token => {
+            console.log("on token refresh..");
+            this.storage.get("user_id").then(id => {
+              console.log("got user id: " + id);
+              this.accountTable.getById(id, "", (source, json) => {
+                json.body.Token = token;
+                this.accountTable.update(id, json, "", (src, res) => { });
+              });
             });
           });
-        });
-
-
-        this.fcm.onNotification().subscribe((data)=>{
-          if(data.wasTapped){
-            //TODO: open page; params: konversation id & name
-
-          }else{
-            
-          }
-        })
-
-
-
+        }
       });
 
-      if(!this.bgMode.isActive()){
+      if (!this.bgMode.isActive()) {
         //activates the background service if it is not running yet
         this.bgMode.enable();
       }
 
-      */
+      this.fcm.onNotification().subscribe((data) => {
+        console.log("==== RECEIVED NOTIFICATION : " + JSON.stringify(data));
+        if (data.wasTapped) {
+          //TODO: open page; params: konversation id & name
+          console.log("tapped!");
+        } else {
+          console.log("not tapped!");
+        }
+
+      });
 
 
       //var orient = this.screenOrientation.ORIENTATIONS.PORTRAIT;

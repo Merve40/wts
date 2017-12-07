@@ -56,14 +56,14 @@ export class LoginPage implements OnResultComplete {
   validateUser(json: any) {
 
     //registers the device token for Push Notifications
-    /*
+    
     if(json.body.Token.length == 0){
       this.fcm.getToken().then(token=>{
         json.body.Token = token;
         this.accountTable.update(json.id, json.body, "", this.onComplete);
       });
     }
-    */
+    
     var encrypted = this.encrypt(this.password);
 
     if (json.body.Passwort == encrypted) {
