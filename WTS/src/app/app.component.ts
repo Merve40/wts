@@ -157,6 +157,9 @@ export class MyApp {
 
     if (page.component === "Varier") {
       this.varier.forward(false, undefined);
+    }else if(page.component == LoginPage){
+      this.storage.clear();
+      this.nav.setRoot(page.component);
     } else {
       this.nav.setRoot(page.component);
     }

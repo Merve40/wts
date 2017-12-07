@@ -91,8 +91,10 @@ export class LoginPage implements OnResultComplete {
     if (json.body.Usergruppe == "gruppe_2") {
       this.events.publish("login", "delete");
     }
-    this.storage.set("user_id", json.id);
-    this.varier.forward(false, undefined);
+    this.storage.set("user_id",  json.id).then(val =>{
+      console.log("set storage user id : "+json.id);
+      this.varier.forward(false, json.id);
+    });    
   }
 
   showLoginError(message) {
