@@ -6,6 +6,7 @@ import { ContactRequestTable } from '../../providers/api/contactrequest';
 import { StudentTable } from '../../providers/api/student';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
 import { Storage } from '@ionic/storage';
+import { Events } from 'ionic-angular/util/events';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class ContactRequestPage implements OnResultComplete {
   accId;
 
   constructor(public storage: Storage, public navCtrl: NavController, public translate: TranslateService, public toastCtrl: ToastController, public ContactRequestTable: ContactRequestTable,
-    public StudentTable: StudentTable) {
+    public StudentTable: StudentTable, public events:Events) {
     ContactRequestTable.setSrcClass(this);
     StudentTable.setSrcClass(this);
   }
@@ -53,6 +54,7 @@ export class ContactRequestPage implements OnResultComplete {
         var contactbody = json.body;
         contactbody.request = true;
         var contactid = json.id;
+        this.events.publish("user-added", contactid);
         this.ContactRequestTable.update(contactid, contactbody, "reload-request", this.onComplete);
         break;
 

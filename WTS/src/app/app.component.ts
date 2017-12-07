@@ -91,7 +91,7 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      /**
+      /*      
 
       //background service that runs, when the app is closed.
       this.bgMode.on("enable").subscribe(() => {

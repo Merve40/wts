@@ -16,7 +16,8 @@ export class DataProvider implements OnResultComplete {
     user = [];
     userid;
 
-    constructor(public storage: Storage, public ContactRequestTable: ContactRequestTable, public StudentTable: StudentTable, public UniversityTable: UniversityTable, public CompanyTable: CompanyTable) {
+    constructor(public storage: Storage, public ContactRequestTable: ContactRequestTable, 
+        public StudentTable: StudentTable, public UniversityTable: UniversityTable, public CompanyTable: CompanyTable) {
         ContactRequestTable.setSrcClass(this);
         StudentTable.setSrcClass(this);
         UniversityTable.setSrcClass(this);
@@ -25,6 +26,8 @@ export class DataProvider implements OnResultComplete {
     }
 
     onComplete(src, json) {
+        // console.log("this in dataprovider: ");
+        // console.log(this.UniversityTable);
         switch (src) {
             case "contact-query":
                 if (json[0] == null) return;

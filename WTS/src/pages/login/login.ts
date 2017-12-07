@@ -57,10 +57,17 @@ export class LoginPage implements OnResultComplete {
 
     //registers the device token for Push Notifications
     /*
-    if(json.body.Token.length == 0){
-      this.fcm.getToken().then(token=>{
+    if (json.body.Token.length == 0) {
+      this.fcm.getToken().then(token => {
         json.body.Token = token;
         this.accountTable.update(json.id, json.body, "", this.onComplete);
+      });
+    } else {
+      this.fcm.getToken().then(token => {
+        if (json.body.Token != token) {
+          json.body.Token = token;
+          this.accountTable.update(json.id, json.body, "", this.onComplete);
+        }
       });
     }
     */
@@ -91,10 +98,10 @@ export class LoginPage implements OnResultComplete {
     if (json.body.Usergruppe == "gruppe_2") {
       this.events.publish("login", "delete");
     }
-    this.storage.set("user_id",  json.id).then(val =>{
-      console.log("set storage user id : "+json.id);
+    this.storage.set("user_id", json.id).then(val => {
+      console.log("set storage user id : " + json.id);
       this.varier.forward(false, json.id);
-    });    
+    });
   }
 
   showLoginError(message) {
