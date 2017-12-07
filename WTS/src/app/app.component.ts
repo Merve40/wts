@@ -69,14 +69,14 @@ export class MyApp {
     translate.get(['LOGINPAGE', 'PROFILEPAGE', 'LOGOUT', 'LISTSEARCHPAGE', 'MAPPAGE', 'CONTACTREQUESTPAGE', 'MESSAGES', 'NETWORK', 'SETTINGS', 'NEWSFEEDPAGE']).subscribe(translations => {
       this.pages = [
         { title: translations.PROFILEPAGE, component: "Varier" },
+        { title: translations.NEWSFEEDPAGE, component: NewsfeedPage },
         { title: translations.LISTSEARCHPAGE, component: ListSearchPage },
         { title: translations.MAPPAGE, component: MapPage },
-        { title: translations.CONTACTREQUESTPAGE, component: ContactRequestPage },
         { title: translations.MESSAGES, component: MessageListPage },
-        { title: translations.LOGOUT, component: LoginPage },
         { title: translations.NETWORK, component: Network },
+        { title: translations.CONTACTREQUESTPAGE, component: ContactRequestPage },
         { title: translations.SETTINGS, component: Settings },
-        { title: translations.NEWSFEEDPAGE, component: NewsfeedPage }
+        { title: translations.LOGOUT, component: LoginPage }
 
       ];
     });
