@@ -22,6 +22,7 @@ import { NewsfeedPage } from '../pages/newsfeed/newsfeed';
 import { MessagePage } from '../pages/message/message_item/message_item';
 import { MessageListPage } from '../pages/message/message_list/message_list';
 import { Network } from '../pages/network/network';
+import { Settings } from '../pages/settings/settings';
 
 import { Api } from '../providers/api/api';
 import { AccountTable } from '../providers/api/account';
@@ -51,6 +52,11 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { TranslateService } from '@ngx-translate/core';
 import { DataProvider } from '../providers/DataProvider';
+import { BlockTable } from '../providers/api/block';
+import { VisibilityTable } from '../providers/api/visibility';
+import { StudentNetwork } from '../pages/network/tabs/students/students';
+import { UniversityNetwork } from '../pages/network/tabs/universities/universities';
+import { CompanyNetwork } from '../pages/network/tabs/companies/companies';
 
 @NgModule({
   declarations: [
@@ -69,7 +75,11 @@ import { DataProvider } from '../providers/DataProvider';
     CompanyNetwork,
     UniversityNetwork,
     Network,
+    StudentNetwork,
+    UniversityNetwork,
+    CompanyNetwork,
     TabsAll,
+    Settings,
     NewsfeedPage
   ],
   imports: [
@@ -105,6 +115,10 @@ import { DataProvider } from '../providers/DataProvider';
     CompanyNetwork,
     UniversityNetwork,
     Network,
+    StudentNetwork,
+    UniversityNetwork,
+    CompanyNetwork,
+    Settings,
     TabsAll,
     NewsfeedPage
   ],
@@ -130,6 +144,8 @@ import { DataProvider } from '../providers/DataProvider';
     ScreenOrientation,
     ConversationTable,
     MessageTable,
+    BlockTable,
+    VisibilityTable,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

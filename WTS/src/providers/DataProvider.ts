@@ -64,21 +64,14 @@ export class DataProvider implements OnResultComplete {
 
             case "company-request":
                 if (json.body == null) return;
-                console.log("1");
-                console.log(json);
                 var company = new User(json.body.Account_Id, json.body.Unternehmen, json.body.Branche);
-                console.log(company);
                 company.usergroup = "group_2";
                 this.user.push(company);
                 break;
 
             case "university-request":
                 if (json.body == null) return;
-
-                console.log("2");
-                console.log(json);
                 var university = new User(json.body.Account_Id, json.body.Universität, json.body.Fachrichtungen);
-                console.log(university);
                 university.usergroup = "group_3";
                 this.user.push(university);
                 break;

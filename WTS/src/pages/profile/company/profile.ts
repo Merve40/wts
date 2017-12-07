@@ -13,52 +13,48 @@ import { OnResultComplete } from '../../../providers/api/OnResultComplete';
 export class CompanyProfilePage implements OnResultComplete {
 
   AccID: string;
-  
-  constructor(public storage:Storage, public navCtrl: NavController, public navParams: NavParams, public AdressTable:AdressTable, 
+
+  constructor(public storage: Storage, public navCtrl: NavController, public navParams: NavParams, public AdressTable: AdressTable,
     public AccountTable: AccountTable, public CompanyTable: CompanyTable) {
     AccountTable.setSrcClass(this);
     AdressTable.setSrcClass(this);
     CompanyTable.setSrcClass(this);
     this.AccID = navParams.get("userId");
     // Abfrage der lokal gespeicherten 'user_id'
-      this.loadData();
+    this.loadData();
   }
 
 
   onComplete(src, json) {
 
-    console.log(json.body);
-
     //Auslesen der Daten aus Tabelle Student where AccID = AccID
     if (src == "company-abfrage") {
-        var body = json.body;
+      var body = json.body;
 
-        document.getElementById("company").innerText = body.Unternehmen;
-        document.getElementById("branches").innerText = body.Branche;
-        document.getElementById("link").innerText = body.Webseite;
-      }
-
-      //Auslesen der Daten aus Tabelle Account
-      if(src == "account-abfrage") {
-        var body = json.body;
-        var adresse_id = body.Adresse_id;
-       
-        //Verschachtelte Abfrage Account mit Adresse
-        this.AdressTable.getById(adresse_id, "adresse-abfrage", this.onComplete);
-      }
-  
-      //Auslesen der Daten aus Tabelle Adresse
-      if(src == "adresse-abfrage"){
-        console.log("Started adresse abfrage");
-        var body = json.body;
-        var adresse = body.Straße + ', ' + body.PLZ + ', ' + body.Land;
-        console.log("Adresse: "+ adresse);
-        document.getElementById("address").innerText = adresse;
-      }
+      document.getElementById("company").innerText = body.Unternehmen;
+      document.getElementById("branches").innerText = body.Branche;
+      document.getElementById("link").innerText = body.Webseite;
     }
 
-  loadData(){
-    this.CompanyTable.getByValue("Account_id", this.AccID, "company-abfrage", this.onComplete);
-    this.AccountTable.getById(this.AccID, "account-abfrage", this.onComplete);    
+    //Auslesen der Daten aus Tabelle Account
+    if (src == "account-abfrage") {
+      var body = json.body;
+      var adresse_id = body.Adresse_id;
+
+      //Verschachtelte Abfrage Account mit Adresse
+      this.AdressTable.getById(adresse_id, "adresse-abfrage", this.onComplete);
+    }
+
+    //Auslesen der Daten aus Tabelle Adresse
+    if (src == "adresse-abfrage") {
+      var body = json.body;
+      var adresse = body.Straße + ', ' + body.PLZ + ', ' + body.Land;
+      document.getElementById("address").innerText = adresse;
+    }
+  }
+
+  loadData() {
+    this.CompanyTable.getByValue("Account_Id", this.AccID, "company-abfrage", this.onComplete);
+    this.AccountTable.getById(this.AccID, "account-abfrage", this.onComplete);
   }
 }

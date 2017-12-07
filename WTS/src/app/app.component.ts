@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
@@ -16,12 +16,14 @@ import { MessagePage } from '../pages/message/message_item/message_item';
 import { MessageListPage } from '../pages/message/message_list/message_list';
 import { AccountTable } from '../providers/api/account';
 import { Network } from '../pages/network/network';
+import { Settings } from '../pages/settings/settings';
 
 import { TranslateService } from '@ngx-translate/core';
 
 // import firebase from 'firebase';
 import { Storage } from '@ionic/storage';
 import { Globalization } from '@ionic-native/globalization';
+
 
 
 @Component({
@@ -34,16 +36,22 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any }>;
 
-  constructor(public varier:Varier, public storage: Storage, public platform: Platform, public statusBar: StatusBar,
+  constructor(public varier: Varier, public storage: Storage, public platform: Platform, public statusBar: StatusBar,
     public splashScreen: SplashScreen, public screenOrientation: ScreenOrientation,
     public translate: TranslateService, public fcm: FCM, public bgMode: BackgroundMode,
-    public accountTable: AccountTable, global:Globalization) {
+    public accountTable: AccountTable, global: Globalization, public events: Events) {
 
     accountTable.setSrcClass(this);
     this.initializeApp();
 
+    //this event is only fired when usergroup company is being logged in
+    //changes the menu-item in the side-bar
+    this.events.subscribe("login", usergroup => {
+      this.pages.splice(7, 1);
+    });
+
     //global.getPreferredLanguage().then(result => console.log("This is my language result "+result));
-    
+
     //global.getPreferredLanguage().then(result => switch (result){
     //   case 'de':
     //     translate.use('de')
@@ -54,21 +62,22 @@ export class MyApp {
     //   default: 
     //   translate.setDefaultLang('en');
     // }
-    
+
     // used for an example of ngFor and navigation
     // Labels & Pages in navigationbar in upper left corner
 
-    translate.get(['LOGINPAGE', 'PROFILEPAGE', 'LOGOUT', 'LISTSEARCHPAGE', 'MAPPAGE', 'CONTACTREQUESTPAGE', 'MESSAGES', 'NETWORK', 'NEWSFEEDPAGE']).subscribe(translations => {
+    translate.get(['LOGINPAGE', 'PROFILEPAGE', 'LOGOUT', 'LISTSEARCHPAGE', 'MAPPAGE', 'CONTACTREQUESTPAGE', 'MESSAGES', 'NETWORK', 'SETTINGS', 'NEWSFEEDPAGE']).subscribe(translations => {
       this.pages = [
         { title: translations.PROFILEPAGE, component: "Varier" },
         { title: translations.LISTSEARCHPAGE, component: ListSearchPage },
         { title: translations.MAPPAGE, component: MapPage },
         { title: translations.CONTACTREQUESTPAGE, component: ContactRequestPage },
         { title: translations.MESSAGES, component: MessageListPage },
-        { title: translations.LOGOUT, component: LoginPage }, 
+        { title: translations.LOGOUT, component: LoginPage },
         { title: translations.NETWORK, component: Network },
+        { title: translations.SETTINGS, component: Settings },
         { title: translations.NEWSFEEDPAGE, component: NewsfeedPage }
-        
+
       ];
     });
 
@@ -149,7 +158,7 @@ export class MyApp {
 
     if (page.component === "Varier") {
       this.varier.forward(false, undefined);
-  } else {
+    } else {
       this.nav.setRoot(page.component);
     }
 

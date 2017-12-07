@@ -14,7 +14,8 @@ export class TabsAll {
 
     users = [];
 
-    constructor(public dataProvider: DataProvider, public app: App, ) {
+    constructor(public dataProvider: DataProvider, public app: App ) {
+        console.log("1");
         this.users = dataProvider.getUser();
     }
 

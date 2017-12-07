@@ -1,0 +1,80 @@
+<div class="full">
+    <ion-header class="header">
+        <ion-navbar>
+            <button ion-button menuToggle>
+                <ion-icon name="menu"></ion-icon>
+            </button>
+            <ion-title>{{ 'SETTINGS' | translate }}</ion-title>
+        </ion-navbar>
+    </ion-header>
+
+
+    <ion-content class="settings">
+
+        <ion-list>
+            <ion-item no-lines>
+                <ion-label class="profilesettings" stacked color="wts_blue"><h2>{{ 'PROFILESETTINGS' | translate }}</h2>
+                </ion-label>
+            </ion-item>
+
+            <ion-item text-wrap >
+                <ion-label class="visibility" stacked color="wts_blue"><h2>{{ 'VISIBILITY' | translate }} </h2>
+                </ion-label>
+            </ion-item>
+
+            <ion-item text-wrap>
+                <ion-label class="address" stacked color="wts_blue">{{ 'ADDRESS' | translate }}</ion-label>
+                <ion-label class="addressdescription space" stacked color="wts_grey">{{ 'ADDRESSDESC' | translate }}</ion-label>
+                <ion-toggle [(ngModel)]="addresstoggle.toggle" (ionChange)="changeSetting(addresstoggle)" ></ion-toggle>
+            </ion-item>
+
+            <ion-item text-wrap >
+                <ion-label class="email" stacked color="wts_blue">{{ 'EMAIL' | translate }}</ion-label>
+                <ion-label class="emailsdescription space" stacked color="wts_grey">{{ 'EMAILDESC' | translate }}</ion-label>
+                <ion-toggle [(ngModel)]="emailtoggle.toggle" (ionChange)="changeSetting(emailtoggle)"></ion-toggle>
+            </ion-item>
+
+            <ion-item>
+                <ion-label class="personal" stacked color="wts_blue">{{ 'PROFILEPAGE' | translate }}</ion-label>
+                <ion-label class="personaldescription space" stacked color="wts_grey">{{ 'PERSONALDESC' | translate }}</ion-label>
+                <ion-toggle [(ngModel)]="personaltoggle.toggle" (ionChange)="changeSetting(personaltoggle)"></ion-toggle>
+            </ion-item>
+
+            <ion-item text-wrap>
+                <ion-label class="studies" stacked color="wts_blue">{{ 'STUDYINFO' | translate }}</ion-label>
+                <ion-label class="personaldescription space" stacked color="wts_grey">{{ 'STUDYDESC' | translate }}</ion-label>
+                <ion-toggle [(ngModel)]="studytoggle.toggle" (ionChange)="changeSetting(studytoggle)"></ion-toggle>
+            </ion-item>
+
+            <!-- <ion-item>
+                <ion-label class="workexperience" stacked color="wts_blue">{{ 'WORKEXPERIENCE' | translate }}</ion-label>
+                <ion-toggle [(ngModel)]="experiencetoggle"></ion-toggle>
+            </ion-item> -->
+        </ion-list>
+
+        <!-- Below are the account settings -->
+        <!-- <ion-list>
+            <ion-item no-lines>
+                <ion-label class="accountsettings" stacked color="wts_blue"><h2>{{ 'ACCOUNTSETTINGS' | translate }}</h2>
+                </ion-label>
+            </ion-item>
+
+            <ion-item text-wrap>
+                    <ion-label class="access" stacked color="wts_blue"><h2>{{ 'ACCESS' | translate }} </h2>
+                    </ion-label>
+                </ion-item>
+    
+                <ion-item text-wrap>
+                    <ion-label class="push" stacked color="wts_blue">{{ 'PUSH' | translate }}</ion-label>
+                    <ion-label class="pushdescription space" stacked color="wts_grey">{{ 'PUSHDESC' | translate }}</ion-label>
+                    <ion-toggle [(ngModel)]="pushtoggle"></ion-toggle>
+                </ion-item>
+
+                <ion-item text-wrap>
+                        <ion-label class="gps" stacked color="wts_blue">{{ 'GPS' | translate }}</ion-label>
+                        <ion-label class="gpsdescription space" stacked color="wts_grey">{{ 'GPSDESC' | translate }}</ion-label>
+                        <ion-toggle [(ngModel)]="gpstoggle"></ion-toggle>
+                    </ion-item>
+        </ion-list> -->
+    </ion-content>
+</div>

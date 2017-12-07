@@ -17,8 +17,8 @@ export class ContactRequestPage implements OnResultComplete {
   students = [];
   accId;
 
-  constructor(public storage: Storage, public navCtrl: NavController, public translate: TranslateService, public toastCtrl: ToastController, public ContactRequestTable: ContactRequestTable, 
-              public StudentTable: StudentTable) {
+  constructor(public storage: Storage, public navCtrl: NavController, public translate: TranslateService, public toastCtrl: ToastController, public ContactRequestTable: ContactRequestTable,
+    public StudentTable: StudentTable) {
     ContactRequestTable.setSrcClass(this);
     StudentTable.setSrcClass(this);
   }
@@ -27,25 +27,32 @@ export class ContactRequestPage implements OnResultComplete {
     switch (src) {
       case "contact-request":
         for (var i = 0; i < json.length; i++) {
-          if(json[i].body == null){
+          if (json[i].body == null) {
             break;
           }
-          else{
-          var sender = json[i].body.sender;
-          var request = json[i].body.request;
-          if(request == false){
-          this.StudentTable.getByValue("Account_Id", sender, "account-request", this.onComplete);
-        }}};
+          
+          else {
+            var sender = json[i].body.sender;
+            var request = json[i].body.request;
+            console.log(json[i]);
+            if (request == false) {
+              console.log("sender: "+sender);
+              //TODO: für alle User implementieren!!
+              this.StudentTable.getByValue("Account_Id", sender, "account-request", this.onComplete);
+            }
+          }
+        };
         break;
 
       case "account-request":
+        console.log(json);
         this.students.push(new User(json.body.Account_Id, json.body.Name + " " + json.body.Nachname, json.body.Uni));
         break;
 
       case "accept-request":
         var contactbody = json.body;
-        var contactid = json.id;
         contactbody.request = true;
+        var contactid = json.id;
         this.ContactRequestTable.update(contactid, contactbody, "reload-request", this.onComplete);
         break;
 
@@ -55,6 +62,12 @@ export class ContactRequestPage implements OnResultComplete {
           this.showContactAddedMessage(value);
         });
       this.storage.get("user_id").then((id) => this.searchForRequests(id));
+        break;
+        
+      case "delete-request":
+       console.log(json.id);
+       var contactId = json.id;
+       this.ContactRequestTable.delete(contactId, "delete-contact", this.onComplete);
     }
   }
 
@@ -69,6 +82,10 @@ export class ContactRequestPage implements OnResultComplete {
 
   accept(id) {
     this.ContactRequestTable.getByValue("sender", id, "accept-request", this.onComplete);
+  }
+
+  removeRequest(id){
+    this.ContactRequestTable.getByValue("sender", id, "delete-request", this.onComplete);
   }
 
   searchForRequests(id) {

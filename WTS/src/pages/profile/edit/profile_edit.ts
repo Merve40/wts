@@ -10,6 +10,7 @@ import { Student_PassionTable } from '../../../providers/api/student_passion';
 import { PassionTable } from '../../../providers/api/passion';
 import { StudentProfilePage } from '../student/profile';
 
+
 import * as moment from 'moment';
 
 /**
@@ -59,6 +60,7 @@ export class Profile_EditPage {
    * Saves the changes made in profile to database
    */
   save() {
+ 
     if (this.studentjson.body.Uni != this.Uni)
       this.studentjson.body.Uni = this.Uni;
     if (this.studentjson.body.Abschluss != this.Abschluss)
@@ -93,16 +95,19 @@ export class Profile_EditPage {
             position: 'top'
           });
           toast.present();
-        });
+        });      
       }
     });
-
+    console.log(this.studentjson.body.Geb_Datum);
+   // this.events.publish('StudentProfilePage');
+    this.navCtrl.pop();  
   }
 
   discardChanges() {
-    this.StudentTable.getByValue("Account_id", this.accID, "student-abfrage", this.onComplete);
-    this.navCtrl.setRoot(StudentProfilePage);
+   // this.StudentTable.getByValue("Account_id", this.accID, "student-abfrage", this.onComplete);
+    this.navCtrl.pop();
   }
+  
 
   onComplete(src, json) {
     //Auslesen der Daten aus Tabelle Student where AccID = AccID

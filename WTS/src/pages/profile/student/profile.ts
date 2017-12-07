@@ -11,6 +11,8 @@ import { SkillTable } from '../../../providers/api/skill';
 import { Student_PassionTable } from '../../../providers/api/student_passion';
 import { PassionTable } from '../../../providers/api/passion';
 import { OnResultComplete } from '../../../providers/api/OnResultComplete';
+import { BlockTable } from '../../../providers/api/block';
+import { VisibilityTable } from '../../../providers/api/visibility';
 
 @Component({
   selector: 'page-profile',
@@ -21,11 +23,28 @@ export class StudentProfilePage implements OnResultComplete {
   accID: string;
   accID_extern: string;
   isOwn: boolean;
-  hasContact:boolean;
+
+  //visibility settings
+  addressIsVisible: boolean = true;
+  mailIsVisible: boolean = true;
+  personalIsVisible: boolean = true;
+  studyIsVisible: boolean = true;
+  blocks = [];
+
+  hasContact: boolean;
+  canRemove: boolean;
+  contactId: string;
   @ViewChild('myButton') button: Button;
   @ViewChild('myButton2') button2: Button;
 
-  constructor(public storage: Storage, public navCtrl: NavController, public navParams: NavParams, public AdressTable: AdressTable, public ContactRequestTable: ContactRequestTable, public StudentTable: StudentTable, public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable, public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
+  constructor(public storage: Storage, public navCtrl: NavController, public navParams: NavParams,
+    public AdressTable: AdressTable, public ContactRequestTable: ContactRequestTable, public StudentTable: StudentTable,
+    public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable,
+    public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable, public blockTable: BlockTable,
+    public visibility: VisibilityTable) {
+
+    visibility.setSrcClass(this);
+    blockTable.setSrcClass(this);
     StudentTable.setSrcClass(this);
     AccountTable.setSrcClass(this);
     AdressTable.setSrcClass(this);
@@ -38,9 +57,10 @@ export class StudentProfilePage implements OnResultComplete {
     this.accID = navParams.get("userId");
     this.isOwn = navParams.get("isOwn");
     this.hasContact = navParams.get("hasContact");
+    this.canRemove = !this.isOwn && this.hasContact;
 
     console.log("Profile.ts: IsOwn is: " + this.isOwn);
-    console.log("Has Contact ? "+this.hasContact);
+    console.log("Has Contact ? " + this.hasContact);
     this.load();
   }
 
@@ -52,6 +72,14 @@ export class StudentProfilePage implements OnResultComplete {
       this.AccountTable.getById(this.accID, "account-abfrage", this.onComplete);
       this.StudentPassionTable.filterByValue("Account_Id", this.accID, "passionStudent-abfrage", this.onComplete);
       this.StudentSkillTable.filterByValue("Account_Id", this.accID, "skill-abfrage", this.onComplete);
+
+      this.storage.get("user_id").then((id) => {
+        this.accID_extern = id;
+        this.ContactRequestTable.filterByValue("receiver", this.accID_extern, "receiversearch-query", this.onComplete);
+      });
+
+      this.fetchVisibility();
+
     } else {
       console.log("Profile is own, printed in profile.ts");
       this.StudentTable.getByValue("Account_Id", this.accID, "student-abfrage", this.onComplete);
@@ -61,51 +89,118 @@ export class StudentProfilePage implements OnResultComplete {
     }
   }
 
+  sendRequest() {
+    //Account-ID des aufgerufenene Profils
+    //var receiver_id = this.accID_extern;
+    var contact = {
+      sender: this.accID_extern,
+      request: false,
+      receiver: this.accID
+    }
+    this.ContactRequestTable.push(contact, "contactrequest", this.onComplete);
+  }
+
+  removeContact() {
+    console.log(" contact ID : " + this.contactId);
+    this.ContactRequestTable.delete(this.contactId, "delete-contact", this.onComplete);
+  }
+
   edit() {
     this.navCtrl.push(Profile_EditPage, { userId: this.accID });
   }
 
-  contactRequest() {
-    this.storage.get("user_id").then((id) => this.sendRequest(id));
+  /**
+   * Retrieves visibility blocks for displaying/hiding profile information.
+   */
+  fetchVisibility() {
+    var blockNames = ["Persönlich", "Email", "Studium", "Adresse"];
+
+    for (var i = 0; i < blockNames.length; i++) {
+      this.blockTable.getByValue("Block_Name", blockNames[i], "" + i, (src, json) => {
+
+        this.blocks.push(json);
+        var index = +src;
+        //if the last entry was fetched then do the next request
+        if (index + 1 == blockNames.length) {
+          this.visibility.filterByValue("Account_Id", this.accID, "data", this.onComplete);
+        }
+
+      });
+    }
   }
 
+  /**
+   * Sets the boolean values to the corresponding value in DB.
+   * @param json data in JSON-Format
+   */
+  configureVisibility(json) {
+    console.log(json);
+    if (json[0].body != null) {
+      //loads all visibility settings by the current users account id
+      for (let obj of json) {
+        //iterates through the blocks to find the specific block and set it's boolean value 
+        for (let block of this.blocks) {
 
+          if (obj.body.Block_Id == block.id) {
+            if (block.body.Block_Name == "Persönlich") {
+              this.personalIsVisible = obj.body.Sichtbar;
+              break;
 
-  sendRequest(id) {
-    //Account-ID des aufgerufenene Profils
-    this.accID_extern = id;
-    this.ContactRequestTable.filterByValue("receiver", this.accID_extern, "receiversearch-query", this.onComplete);
+            } else if (block.body.Block_Name == "Email") {
+              this.mailIsVisible = obj.body.Sichtbar;
+              break;
+
+            } else if (block.body.Block_Name == "Studium") {
+              this.studyIsVisible = obj.body.Sichtbar;
+              break;
+
+            } else if (block.body.Block_Name == "Adresse") {
+              this.addressIsVisible = obj.body.Sichtbar;
+              break;
+
+            }
+          }
+        }
+      }
+    }
   }
 
   onComplete(src, json) {
 
+    if (src == "data") {
+      this.configureVisibility(json);
+    }
+
+    if (src == "contactrequest") {
+      this.contactId = json.name;
+      this.hasContact = true;
+      this.canRemove = !this.isOwn && this.hasContact;
+    }
+
     if (src == "receiversearch-query") {
-      if (json.body == null) {
+      console.log(json);
+      if (json[0].body == null) {
         this.ContactRequestTable.filterByValue("sender", this.accID_extern, "sendersearch-query", this.onComplete);
       }
       else {
         var found = false;
-        for (var i = 0; i < json.body.length; i++) {
-          if (json.body.sender == this.accID) {
+        for (var i = 0; i < json.length; i++) {
+          if (json[i].body.sender == this.accID) {
             found = true;
+            this.contactId = json[i].id;
             console.log(found);
             break;
           }
         }
         if (found == false) {
-          var receiver_id = this.accID;
-          var contact = {
-            sender: this.accID_extern,
-            request: false,
-            receiver: receiver_id
-          }
-          this.ContactRequestTable.push(contact, "contactrequest", this.onComplete);
+          this.ContactRequestTable.filterByValue("sender", this.accID_extern, "sendersearch-query", this.onComplete);
         }
       }
     }
 
     if (src == "sendersearch-query") {
-      if (json.body == null) {
+      console.log(json);
+      if (json[0].body == null) {
         var receiver_id = this.accID;
         var contact = {
           sender: this.accID_extern,
@@ -116,25 +211,30 @@ export class StudentProfilePage implements OnResultComplete {
       }
       else {
         var found = false;
-        for (var i = 0; i < json.body.length; i++) {
-          if (json.body.receiver == this.accID) {
+        for (var i = 0; i < json.length; i++) {
+          if (json[i].body.receiver == this.accID) {
             found = true;
+            this.contactId = json[i].id;
             console.log(found);
             break;
           }
         }
         if (found == false) {
-          var receiver_id = this.accID;
-          var contact = {
-            sender: this.accID_extern,
-            request: false,
-            receiver: receiver_id
-          }
-          this.ContactRequestTable.push(contact, "contactrequest", this.onComplete);
+          this.hasContact = false;
+          this.canRemove = !this.isOwn && this.hasContact;
+        } else {
+          this.hasContact = true;
+          this.canRemove = !this.isOwn && this.hasContact;
         }
       }
 
     }
+
+    if (src == "delete-contact") {
+      this.hasContact = false;
+      this.canRemove = !this.isOwn && this.hasContact;
+    }
+
 
     //Auslesen der Daten aus Tabelle Student where AccID = AccID
     if (src == "student-abfrage") {
@@ -142,19 +242,28 @@ export class StudentProfilePage implements OnResultComplete {
       var name = json.body.Name + " " + json.body.Nachname;
 
       document.getElementById("name").innerText = name;
-      document.getElementById("dateOfBirth").innerText = body.Geb_Datum == "" || body.Geb_Datum == null ? "01.01.1971" : body.Geb_Datum;
-      document.getElementById("uni").innerText = body.Uni;
-      document.getElementById("studyProgram").innerText = body.Studiengang;
-      document.getElementById("degree").innerText = body.Abschluss;
-      document.getElementById("studyProgress").innerText = body.Semester;
-      document.getElementById("endOfStudy").innerText = body.Abschluss_Datum;
+      if(this.personalIsVisible){
+        document.getElementById("dateOfBirth").innerText = body.Geb_Datum == "" || body.Geb_Datum == null ? "01.01.1971" : body.Geb_Datum;
+      }
+      
+      if(this.studyIsVisible){
+        document.getElementById("uni").innerText = body.Uni;
+        document.getElementById("studyProgram").innerText = body.Studiengang;
+        document.getElementById("degree").innerText = body.Abschluss;
+        document.getElementById("studyProgress").innerText = body.Semester;
+        document.getElementById("endOfStudy").innerText = body.Abschluss_Datum;
+      }
+
     }
     //Auslesen der Daten aus Tabelle Account
     if (src == "account-abfrage") {
       var body = json.body;
       var adresse_id = body.Adresse_id;
 
-      document.getElementById("email").innerText = body.Email;
+      if(this.addressIsVisible){
+        document.getElementById("email").innerText = body.Email;
+      }
+
       //Verschachtelte Abfrage Account mit Adresse
       this.AdressTable.getById(adresse_id, "adresse-abfrage", this.onComplete);
     }
@@ -164,7 +273,9 @@ export class StudentProfilePage implements OnResultComplete {
       var body = json.body;
       var adresse = body.Straße + ', ' + body.PLZ + ', ' + body.Land;
 
-      document.getElementById("address").innerText = adresse;
+      if(this.addressIsVisible){
+        document.getElementById("address").innerText = adresse;
+      }
     }
     //Auslesen der Daten aus Tabelle Leidenschaft
     if (src == "passionStudent-abfrage") {
@@ -185,7 +296,9 @@ export class StudentProfilePage implements OnResultComplete {
             if (num + 1 < json.length) {
               passions += ", ";
             } else {
-              document.getElementById("interests").innerText = passions;
+              if(this.personalIsVisible){
+                document.getElementById("interests").innerText = passions;
+              }
             }
 
           }
@@ -194,7 +307,9 @@ export class StudentProfilePage implements OnResultComplete {
         }
 
       } else {
-        document.getElementById("interests").className = "hidden";
+        if(this.personalIsVisible){
+          document.getElementById("interests").className = "hidden";
+        }
       }
     }
 
@@ -216,7 +331,9 @@ export class StudentProfilePage implements OnResultComplete {
             if (num + 1 < json.length) {
               skills += ", ";
             } else {
-              document.getElementById("skills").innerText = skills;
+              if(this.personalIsVisible){
+                document.getElementById("skills").innerText = skills;
+              }
             }
           }
 
@@ -224,7 +341,9 @@ export class StudentProfilePage implements OnResultComplete {
         }
 
       } else {
-        document.getElementById("skills").className = "hidden";
+        if(this.personalIsVisible){
+          document.getElementById("skills").className = "hidden";
+        }
       }
     }
   }

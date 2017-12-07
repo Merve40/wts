@@ -6,7 +6,11 @@
   "config_munge": {
     "files": {}
   },
-  "installed_plugins": {},
+  "installed_plugins": {
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.wts"
+    }
+  },
   "dependent_plugins": {
     "cordova-plugin-device": {
       "PACKAGE_NAME": "com.wts"

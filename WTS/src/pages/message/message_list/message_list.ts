@@ -3,8 +3,9 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
 import { OnResultComplete } from '../../../providers/api/OnResultComplete';
-import { ConversationTable } from '../../../providers/api/conversation';
+import { ConversationTable } from '../../../providers/api/conversation'
 import { MessagePage } from '../message_item/message_item';
+import { MessageTable } from '../../../providers/api/message';
 
 export interface MessageItem {
     id: string;
@@ -21,6 +22,7 @@ export interface ConversationItem {
         Account_Id_2: string;
     }
 }
+
 /**
  * Page for displaying all conversations.
  */
@@ -35,14 +37,17 @@ export class MessageListPage implements OnResultComplete {
     users: MessageItem[] = new Array();
 
     constructor(public navCtrl: NavController, public navparams: NavParams, public translate: TranslateService,
-        public storage: Storage, public conversationTable: ConversationTable) {
+        public storage: Storage, public conversationTable: ConversationTable, public messageTable: MessageTable) {
 
         conversationTable.setSrcClass(this);
         this.storage.get("user_id").then((id) => {
             this.accID = id;
             this.conversationTable.filterByValue("Account_Id_1", id, "query", this.onComplete);
             this.conversationTable.filterByValue("Account_Id_2", this.accID, "query2", this.onComplete);
+            
         });
+        messageTable.setSrcClass(this);
+
     }
 
     /**
@@ -52,7 +57,7 @@ export class MessageListPage implements OnResultComplete {
      * @param name name of the receiver
      */
     openMessage(id, name) {
-        this.navCtrl.setRoot(MessagePage, { id: id, name: name });
+        this.navCtrl.push(MessagePage, { id: id, name: name });
     }
 
     onComplete(flag: string, json: any) {
@@ -68,6 +73,7 @@ export class MessageListPage implements OnResultComplete {
                     : js.Universität ? js.Universität
                         : "John Doe";
         }
+        
 
         if (flag == "query") {
             console.log("query");
@@ -75,12 +81,11 @@ export class MessageListPage implements OnResultComplete {
             if (json[0].body) {
                 var arr: ConversationItem[] = json as ConversationItem[];
                 this.messageArray.push.apply(this.messageArray, arr);
-
                 for (var i = 0; i < this.messageArray.length; i++) {
                     this.conversationTable.getUserTypeByAccountId(json[i].body.Account_Id_2, "" + i, (f, _json) => {
                         var name = getName(_json.body);
                         var _id = json[parseInt(f)].id;
-                        this.users.push({ id: _id, userName: name, img: "", lastMessage: "hello", dateTime: "06.11.2017" });
+                        this.users.push({ id: _id, userName: name, img: "", lastMessage: "", dateTime: "07.12.2017" });
                     });
                 }
             }
@@ -93,9 +98,9 @@ export class MessageListPage implements OnResultComplete {
 
                 for (var i = 0; i < this.messageArray.length; i++) {
                     this.conversationTable.getUserTypeByAccountId(json[i].body.Account_Id_1, "" + i, (f, _json) => {
-                        var name = getName(_json.body);
-                        var _id = json[parseInt(f)].id;
-                        this.users.push({ id: _id, userName: name, img: "", lastMessage: "hello", dateTime: "06.11.2017" });
+                        var name = getName(_json.body)
+                        var _id = json[parseInt(f)].id; 
+                        this.users.push({ id: _id, userName: name, img: "", lastMessage: "", dateTime: "07.12.2017" });
                     });
                 }
             }
