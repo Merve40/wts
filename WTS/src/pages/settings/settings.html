@@ -34,15 +34,15 @@
                 <ion-toggle [(ngModel)]="emailtoggle.toggle" (ionChange)="changeSetting(emailtoggle)"></ion-toggle>
             </ion-item>
 
-            <ion-item>
-                <ion-label class="personal" stacked color="wts_blue">{{ 'PROFILEPAGE' | translate }}</ion-label>
-                <ion-label class="personaldescription space" stacked color="wts_grey">{{ 'PERSONALDESC' | translate }}</ion-label>
+            <ion-item text-wrap >
+                <ion-label  class="personal" stacked color="wts_blue">{{ 'PROFILEPAGE' | translate }}</ion-label>
+                <ion-label   class="personaldescription space" stacked color="wts_grey">{{ 'PERSONALDESC' | translate }}</ion-label>
                 <ion-toggle [(ngModel)]="personaltoggle.toggle" (ionChange)="changeSetting(personaltoggle)"></ion-toggle>
             </ion-item>
 
             <ion-item text-wrap>
                 <ion-label class="studies" stacked color="wts_blue">{{ 'STUDYINFO' | translate }}</ion-label>
-                <ion-label class="personaldescription space" stacked color="wts_grey">{{ 'STUDYDESC' | translate }}</ion-label>
+                <ion-label class="studydescription space" stacked color="wts_grey">{{ 'STUDYDESC' | translate }}</ion-label>
                 <ion-toggle [(ngModel)]="studytoggle.toggle" (ionChange)="changeSetting(studytoggle)"></ion-toggle>
             </ion-item>
 
