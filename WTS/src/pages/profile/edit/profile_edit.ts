@@ -65,7 +65,7 @@ export class Profile_EditPage {
       this.studentjson.body.Uni = this.Uni;
     if (this.studentjson.body.Abschluss != this.Abschluss)
       this.studentjson.body.Abschluss = this.Abschluss;
-    if (this.studentjson.body.Abschluss_Datum != this.Abschluss_Datum)
+    if (this.studentjson.body.Abschluss_Datum != this.Abschluss_Datum){}
       var date = moment(this.Abschluss_Datum, "YYYY-MM-DD").format("DD.MM.YYYY");
     this.studentjson.body.Abschluss_Datum = date;
     if (this.studentjson.body.Geb_Datum != this.Geb_Datum)
@@ -90,7 +90,7 @@ export class Profile_EditPage {
         
         this.translate.get("SAVED_CHANGES").subscribe( value =>{
           const toast = this.toastCtrl.create({
-            message: "Änderungen wurden gespeichert",
+            message: value.SAVED_CHANGES,
             duration: 3000,
             position: 'top'
           });
@@ -98,13 +98,12 @@ export class Profile_EditPage {
         });      
       }
     });
-    console.log(this.studentjson.body.Geb_Datum);
-   // this.events.publish('StudentProfilePage');
-    this.navCtrl.pop();  
+    this.navCtrl.popToRoot();
+    this.navCtrl.setRoot(StudentProfilePage, { userId: this.accID, isOwn: true, hasContact: true });
+    
   }
 
   discardChanges() {
-   // this.StudentTable.getByValue("Account_id", this.accID, "student-abfrage", this.onComplete);
     this.navCtrl.pop();
   }
   

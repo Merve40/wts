@@ -17,7 +17,7 @@ export class ContactRequestPage implements OnResultComplete {
   students = [];
   accId;
 
-  constructor(public storage: Storage, public navCtrl: NavController, public translate: TranslateService, public toastCtrl: ToastController, public ContactRequestTable: ContactRequestTable,
+  constructor(public storage: Storage, public translate: TranslateService, public toastCtrl: ToastController, public ContactRequestTable: ContactRequestTable,
     public StudentTable: StudentTable) {
     ContactRequestTable.setSrcClass(this);
     StudentTable.setSrcClass(this);
