@@ -91,7 +91,7 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-
+      /**
 
       //background service that runs, when the app is closed.
       this.bgMode.on("enable").subscribe(() => {
@@ -127,7 +127,8 @@ export class MyApp {
 
       });
 
-
+      */
+      
       //var orient = this.screenOrientation.ORIENTATIONS.PORTRAIT;
       //ionViewWillUnload(this.orient);
       //console.log(this.screenOrientation.lock(orient));
