@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { App } from 'ionic-angular/components/app/app';
 import { StudentProfilePage } from '../../../profile/student/profile';
 import { DataProvider } from '../../../../providers/DataProvider';
+import { Events } from 'ionic-angular';
 
 @Component({
     selector: 'student-tab',
@@ -11,12 +12,16 @@ export class StudentNetwork {
 
     students = [];
 
-    constructor(public dataProvider: DataProvider, public app: App) {
+    constructor(public dataProvider: DataProvider, public app: App, public events:Events) {
         console.log("start");
-        dataProvider.getUser().forEach(element => {
-            console.log("checkelements");
-            if (element.usergroup == "group_1")
-                this.students.push(element);
+        this.students = dataProvider.getStudents();
+
+        events.subscribe("contact-added", senderId =>{
+            dataProvider.getNewUser(senderId).then((user)=>{
+                if(user.usergroup == "group_1"){
+                    this.students.push();
+                }                
+            });            
         });
     }
 

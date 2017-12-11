@@ -5,7 +5,7 @@ import { StudentProfilePage } from '../../../profile/student/profile';
 import { CompanyProfilePage } from '../../../profile/company/profile';
 import { UniProfilePage } from '../../../profile/university/profile';
 import { DataProvider } from '../../../../providers/DataProvider';
-import { Events } from 'ionic-angular/util/events';
+import { Events } from 'ionic-angular';
 import { ContactRequestTable } from '../../../../providers/api/contactrequest';
 import { AccountTable } from '../../../../providers/api/account';
 
@@ -20,18 +20,12 @@ export class TabsAll {
     constructor(public dataProvider: DataProvider, public app: App, public events:Events, 
         public contactTable:ContactRequestTable, public accountTable:AccountTable ) {
         console.log("1");
-        // this.contactTable.setSrcClass(this);
-        // this.accountTable.setSrcClass(this);
         this.users = dataProvider.getUser();
 
-        events.subscribe("user-added", contactId =>{
-            // this.users = dataProvider.getUser();
-            // contactTable.getById(contactId, "", (src, json)=>{
-            //     var sender = json.body.sender;
-            //     accountTable.getById(sender, "", (flag, _json)=>{
-
-            //     });
-            // });
+        events.subscribe("contact-added", senderId =>{
+            dataProvider.getNewUser(senderId).then((user)=>{
+                this.users.push();
+            });            
         });
     }
 

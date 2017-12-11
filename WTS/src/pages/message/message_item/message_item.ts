@@ -1,9 +1,10 @@
-import { NavController, NavParams, Content } from 'ionic-angular';
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { NavController, NavParams, Content, ToastController } from 'ionic-angular';
+import { Component, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
 import { OnResultComplete } from '../../../providers/api/OnResultComplete';
 import { MessageTable } from '../../../providers/api/message';
+import { Events } from 'ionic-angular/util/events';
 
 /**
  * Page for displaying conversation.
@@ -23,17 +24,25 @@ export class MessagePage implements OnResultComplete {
     name: string;
 
     constructor(public navCtrl: NavController, public navparams: NavParams, public translate: TranslateService,
-        public storage: Storage, public messageTable: MessageTable) {
+        public storage: Storage, public messageTable: MessageTable, public events: Events, public zone: NgZone,
+        public toastCtrl: ToastController) {
 
         this.messageTable.setSrcClass(this);
         this.id = navparams.get('id');
         this.name = navparams.get('name');
-        storage.get("user_id").then((_id) => {
-            this.accId = _id;
-            messageTable.getByKeyValueSortedBy("Konversation_Id", this.id, "Zeitstempel", "nachrichten-abfrage",
-                this.onComplete, 0, true, 15);
-        });
 
+        events.subscribe("message-added", (data) => {
+            console.log("event: message-added");
+          
+            if (data.conversationId == this.id) {
+                zone.run(() => {
+                    this.messageList.push({ text: data.content, isOwner: false });
+                    this.scrollToBottom();
+                });
+            }else{
+                this.showMessage("You have a new message"); 
+            }
+        });
     }
 
     onComplete(flag: string, json: any) {
@@ -67,7 +76,8 @@ export class MessagePage implements OnResultComplete {
             Inhalt: this.message,
             Konversation_Id: this.id,
             Sender_Id: this.accId,
-            Zeitstempel: this.messageTable.TIMESTAMP
+            Zeitstempel: this.messageTable.TIMESTAMP,
+            HasSent: false
         }
         this.messageTable.push(msg, "", this.onComplete);
         this.message = "";
@@ -80,16 +90,30 @@ export class MessagePage implements OnResultComplete {
     }
 
     ngAfterViewInit() {
+        this.storage.get("user_id").then((_id) => {
+            this.accId = _id;
+            this.messageTable.getByKeyValueSortedBy("Konversation_Id", this.id, "Zeitstempel", "nachrichten-abfrage",
+                this.onComplete, 0, true, 15);
+        });
         this.userName.nativeElement.innerText = this.name;
     }
 
     ionViewDidEnter() {
-        this.scrollToBottom();
+        // this.scrollToBottom();
     }
 
     scrollToBottom() {
         setTimeout(() => {
             this.content.scrollToBottom();
         });
+    }
+
+    showMessage(message) {
+        const toast = this.toastCtrl.create({
+            message: message,
+            duration: 3000,
+            position: 'top'
+        });
+        toast.present();
     }
 }

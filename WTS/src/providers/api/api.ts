@@ -85,7 +85,6 @@ export class Api {
 
         let response = this.http.post(_url, body);
         response.forEach(_obj => {
-            console.log(_obj.text());
             var json = JSON.parse(_obj.text());
             func.apply(src, [source, json]);
             return _obj;

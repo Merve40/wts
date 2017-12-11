@@ -14,7 +14,7 @@ import { StudentProfilePage } from '../pages/profile/student/profile';
 import { UniProfilePage } from '../pages/profile/university/profile';
 import { CompanyProfilePage } from '../pages/profile/company/profile';
 import { Varier } from '../providers/varier';
-import { ContactRequestPage } from '../pages/Contact_request/contact_request';
+import { ContactRequestPage } from '../pages/contact_request/contact_request';
 import { Profile_EditPage } from '../pages/profile/edit/profile_edit';
 import { ListSearchPage } from '../pages/list_search/list_search';
 import { MapPage } from '../pages/map/map';

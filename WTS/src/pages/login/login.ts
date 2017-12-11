@@ -8,7 +8,7 @@ import { FCM } from '@ionic-native/fcm';
 
 import { Varier } from '../../providers/varier';
 import * as CryptoJS from 'crypto-js';
-import { Events } from 'ionic-angular/util/events';
+import { Events, Platform } from 'ionic-angular';
 
 /**
  * Page for Log-In
@@ -22,7 +22,8 @@ export class LoginPage implements OnResultComplete {
   password: string;
 
   constructor(public storage: Storage, public toastCtrl: ToastController, public accountTable: AccountTable,
-    public translate: TranslateService, public fcm: FCM, public varier: Varier, public events: Events) {
+    public translate: TranslateService, public fcm: FCM, public varier: Varier, public events: Events,
+    public platform: Platform) {
     accountTable.setSrcClass(this);
   }
 
@@ -56,21 +57,22 @@ export class LoginPage implements OnResultComplete {
   validateUser(json: any) {
 
     //registers the device token for Push Notifications
-    /*
-    if (json.body.Token.length == 0) {
-      this.fcm.getToken().then(token => {
-        json.body.Token = token;
-        this.accountTable.update(json.id, json.body, "", this.onComplete);
-      });
-    } else {
-      this.fcm.getToken().then(token => {
-        if (json.body.Token != token) {
+    if (this.platform.is('cordova')) {
+      if (json.body.Token.length == 0) {
+        this.fcm.getToken().then(token => {
           json.body.Token = token;
           this.accountTable.update(json.id, json.body, "", this.onComplete);
-        }
-      });
+        });
+      } else {
+        this.fcm.getToken().then(token => {
+          if (json.body.Token != token) {
+            json.body.Token = token;
+            this.accountTable.update(json.id, json.body, "", this.onComplete);
+          }
+        });
+      }
     }
-    */
+
     var encrypted = this.encrypt(this.password);
 
     if (json.body.Passwort == encrypted) {

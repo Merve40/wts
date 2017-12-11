@@ -76,8 +76,6 @@ export class MessageListPage implements OnResultComplete {
         
 
         if (flag == "query") {
-            console.log("query");
-            console.log(json);
             if (json[0].body) {
                 var arr: ConversationItem[] = json as ConversationItem[];
                 this.messageArray.push.apply(this.messageArray, arr);

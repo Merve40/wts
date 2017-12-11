@@ -14,9 +14,12 @@ import { Storage } from '@ionic/storage';
 export class DataProvider implements OnResultComplete {
 
     user = [];
+    students = [];
+    companies = [];
+    universities = [];
     userid;
 
-    constructor(public storage: Storage, public ContactRequestTable: ContactRequestTable, 
+    constructor(public storage: Storage, public ContactRequestTable: ContactRequestTable,
         public StudentTable: StudentTable, public UniversityTable: UniversityTable, public CompanyTable: CompanyTable) {
         ContactRequestTable.setSrcClass(this);
         StudentTable.setSrcClass(this);
@@ -26,8 +29,6 @@ export class DataProvider implements OnResultComplete {
     }
 
     onComplete(src, json) {
-        // console.log("this in dataprovider: ");
-        // console.log(this.UniversityTable);
         switch (src) {
             case "contact-query":
                 if (json[0] == null) return;
@@ -63,6 +64,7 @@ export class DataProvider implements OnResultComplete {
                 console.log(student);
                 student.usergroup = "group_1";
                 this.user.push(student);
+                this.students.push(student);
                 break;
 
             case "company-request":
@@ -70,6 +72,7 @@ export class DataProvider implements OnResultComplete {
                 var company = new User(json.body.Account_Id, json.body.Unternehmen, json.body.Branche);
                 company.usergroup = "group_2";
                 this.user.push(company);
+                this.companies.push(company);
                 break;
 
             case "university-request":
@@ -77,6 +80,7 @@ export class DataProvider implements OnResultComplete {
                 var university = new User(json.body.Account_Id, json.body.Universität, json.body.Fachrichtungen);
                 university.usergroup = "group_3";
                 this.user.push(university);
+                this.universities.push(university);
                 break;
         }
     }
@@ -89,6 +93,45 @@ export class DataProvider implements OnResultComplete {
 
     public getUser() {
         return this.user;
+    }
+
+    public getStudents(): User[] {
+        return this.students;
+    }
+
+    public getCompanies(): User[] {
+        return this.companies;
+    }
+
+    public getUniversities(): User[] {
+        return this.universities;
+    }
+
+    public getNewUser(id: string): Promise<User> {
+        return new Promise<User>((resolve, reject) => {
+            this.StudentTable.getUserTypeByAccountId(id, "", (src, json) => {
+
+                var user;
+                if (json.type == "gruppe_1") {
+                    user = new User(id, json.body.Name + " " + json.body.Nachname, json.body.Uni);
+                    user.usergroup = "group_1";
+                    resolve(user);
+
+                } else if (json.type == "gruppe_2") {
+                    user = new User(id, json.body.Unternehmen, json.body.Branche);
+                    user.usergroup = "group_2";
+                    resolve(user);
+
+                } else if (json.type == "gruppe_3") {
+                    user = new User(id, json.body.Universität, json.body.Fachrichtungen);
+                    user.usergroup = "group_3";
+                    resolve(user);
+
+                } else {
+                    reject();
+                }
+            })
+        });
     }
 
 }
