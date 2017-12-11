@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { App } from 'ionic-angular/components/app/app';
 import { UniProfilePage } from '../../../profile/university/profile';
 import { NavController } from 'ionic-angular/navigation/nav-controller';
-import { DataProvider } from '../../../../providers/DataProvider';
+import { DataProvider, UserGroup } from '../../../../providers/DataProvider';
 import { Events } from 'ionic-angular';
 
 @Component({
@@ -14,10 +14,12 @@ export class UniversityNetwork {
     universities = [];
 
     constructor(public dataProvider: DataProvider, public app: App, public events:Events) {
-        console.log("uni");
-        this.universities = dataProvider.getUniversities();
+        console.log("uni-tab");
+        dataProvider.getUsersByGroup(UserGroup.UNIVERSITY).then((users)=>{
+            this.universities = users;
+        });
 
-        events.subscribe("contact-added", senderId =>{
+        events.subscribe("contact-accepted", senderId =>{
             dataProvider.getNewUser(senderId).then((user)=>{
                 if(user.usergroup == "group_3"){
                     this.universities.push();

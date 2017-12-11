@@ -26,7 +26,8 @@ import { Globalization } from '@ionic-native/globalization';
 
 enum PushCategory {
   MESSAGE = 'message',
-  CONTACT = 'contact-request'
+  CONTACT = 'contact-request',
+  CONTACT_ACCEPTED = 'contact-accepted'
 }
 
 @Component({
@@ -123,7 +124,7 @@ export class MyApp {
             });
           });
         });
-      } 
+      }
     });
 
     if (!this.bgMode.isActive()) {
@@ -147,8 +148,10 @@ export class MyApp {
         //TODO open page
         if (data.category == PushCategory.CONTACT) {
           this.nav.setRoot(ContactRequestPage);
-        }else if(data.category == PushCategory.MESSAGE){
+        } else if (data.category == PushCategory.MESSAGE) {
           this.nav.setRoot(MessageListPage);
+        } else if (data.category == PushCategory.CONTACT_ACCEPTED) {
+          this.nav.setRoot(Network);
         }
 
 
@@ -175,6 +178,14 @@ export class MyApp {
           } else {
             //TODO: translation + show sender name 
             showMessage("You have a new message");
+          }
+
+        } else if (data.category == PushCategory.CONTACT_ACCEPTED) {
+          console.log("PushCategory: CONTACT_ACCEPTED");
+          if(this.nav.last().instance instanceof Network){
+            this.events.publish("contact-accepted", data.senderId);
+          }else{ 
+            showMessage("Your request got accepted!");
           }
         }
       }

@@ -7,110 +7,107 @@ import { UniversityTable } from '../providers/api/university';
 import { OnResultComplete } from '../providers/api/OnResultComplete';
 import { Storage } from '@ionic/storage';
 
+export enum UserGroup {
+    STUDENT = 'group_1',
+    COMPANY = 'group_2',
+    UNIVERSITY = 'group_3',
+    ALL = 'all'
+}
+
+enum Contacter {
+    SENDER = 'sender',
+    RECEIVER = 'receiver'
+}
+
 /**
- * Service Class for getting Network information
+ * Service Class for getting Contacts within the Network
  */
 @Injectable()
-export class DataProvider implements OnResultComplete {
-
-    user = [];
-    students = [];
-    companies = [];
-    universities = [];
-    userid;
+export class DataProvider {
 
     constructor(public storage: Storage, public ContactRequestTable: ContactRequestTable,
         public StudentTable: StudentTable, public UniversityTable: UniversityTable, public CompanyTable: CompanyTable) {
+
         ContactRequestTable.setSrcClass(this);
         StudentTable.setSrcClass(this);
         UniversityTable.setSrcClass(this);
         CompanyTable.setSrcClass(this);
-        this.storage.get("user_id").then((id) => this.searchForAllContacts(id));
+        console.log("contructing DataProvider");
     }
 
-    onComplete(src, json) {
-        switch (src) {
-            case "contact-query":
-                if (json[0] == null) return;
+    /**
+     * Retrieves users by the provided user-group.
+     * User-group can be: ALL, STUDENT, COMPANY or UNIVERSITY
+     * 
+     * @param group UserGroup
+     * @returns a promise containing a list of users
+     */
+    public getUsersByGroup(group: UserGroup): Promise<User[]> {
+        return new Promise<User[]>((resolve, reject) => {
+            this.storage.get('user_id').then(id => {
+                var array: User[] = [];
+                this.getByUsergroup(id, group, Contacter.SENDER).then((users) => {
+                    array = users;
+                    return this.getByUsergroup(id, group, Contacter.RECEIVER);
+                }).then((users) => {
+                    var arr = array.concat(users);
+                    resolve(arr);
+                });
+            });
+        });
+    }
+
+    /**
+     * Retrieves contacts filtered by 'sender' or 'receiver'.
+     * 
+     * @param id ID of the current user
+     * @param group UserGroup
+     * @param contacter 'receiver' or 'sender'
+     */
+    private getByUsergroup(id, group: UserGroup, contacter: Contacter): Promise<User[]> {
+        return new Promise<User[]>((resolve, reject) => {
+            var array: User[] = [];
+            this.ContactRequestTable.filterByValue(contacter, id, "", (src, json) => {
+                //promise gets rejected if data is empty
+                if (json[0].body == null) {
+                    reject();
+                }
+                var promises: Promise<User>[] = [];
+                //retrieves a promise for each retrieval and pushes it onto the promises
                 for (var i = 0; i < json.length; i++) {
-                    if (json[i].body == null) {
-                        break;
+                    var userId;
+                    if (contacter == Contacter.RECEIVER) {
+                        userId = json[i].body.sender;
+                    } else {
+                        userId = json[i].body.receiver;
                     }
-                    else {
-                        var sender = json[i].body.sender;
-                        var receiver = json[i].body.receiver;
-                        var request = json[i].body.request;
-                        if (request == true) {
-                            if (sender != this.userid) {
-                                this.StudentTable.getByValue("Account_Id", sender, "student-request", this.onComplete);
-                                this.UniversityTable.getByValue("Account_Id", sender, "university-request", this.onComplete);
-                                this.CompanyTable.getByValue("Account_Id", sender, "company-request", this.onComplete);
-                            } else if (receiver != this.userid) {
-                                this.StudentTable.getByValue("Account_Id", receiver, "student-request", this.onComplete);
-                                this.UniversityTable.getByValue("Account_Id", receiver, "university-request", this.onComplete);
-                                this.CompanyTable.getByValue("Account_Id", receiver, "company-request", this.onComplete);
-                            }
+                    promises.push(this.getNewUser(userId));
+                }
+                //combines all promises and iterates over it
+                //once the iteration is done, the array is returned by the resolve() callback
+                Promise.all(promises).then((users) => {
+                    users.forEach(user => {
+                        if (group == 'all') {
+                            array.push(user);
+                        } else if (user.usergroup == group) {
+                            array.push(user);
                         }
-                    }
-                };
-                break;
-
-            case "student-request":
-                if (json.body == null) return;
-
-                console.log("0");
-                console.log(json);
-                var student = new User(json.body.Account_Id, json.body.Name + " " + json.body.Nachname, json.body.Uni);
-                console.log(student);
-                student.usergroup = "group_1";
-                this.user.push(student);
-                this.students.push(student);
-                break;
-
-            case "company-request":
-                if (json.body == null) return;
-                var company = new User(json.body.Account_Id, json.body.Unternehmen, json.body.Branche);
-                company.usergroup = "group_2";
-                this.user.push(company);
-                this.companies.push(company);
-                break;
-
-            case "university-request":
-                if (json.body == null) return;
-                var university = new User(json.body.Account_Id, json.body.Universität, json.body.Fachrichtungen);
-                university.usergroup = "group_3";
-                this.user.push(university);
-                this.universities.push(university);
-                break;
-        }
+                    });
+                    resolve(array);
+                });
+            });
+        });
     }
 
-    searchForAllContacts(id) {
-        this.userid = id
-        this.ContactRequestTable.filterByValue("receiver", id, "contact-query", this.onComplete);
-        this.ContactRequestTable.filterByValue("sender", id, "contact-query", this.onComplete);
-    }
-
-    public getUser() {
-        return this.user;
-    }
-
-    public getStudents(): User[] {
-        return this.students;
-    }
-
-    public getCompanies(): User[] {
-        return this.companies;
-    }
-
-    public getUniversities(): User[] {
-        return this.universities;
-    }
-
+    /**
+     * Retrieves a user to add to the list and wraps it into a Promis
+     * 
+     * @param id ID of the new user to retrieve
+     * @returns Promise containing the new user 
+     */
     public getNewUser(id: string): Promise<User> {
         return new Promise<User>((resolve, reject) => {
             this.StudentTable.getUserTypeByAccountId(id, "", (src, json) => {
-
                 var user;
                 if (json.type == "gruppe_1") {
                     user = new User(id, json.body.Name + " " + json.body.Nachname, json.body.Uni);
@@ -133,7 +130,6 @@ export class DataProvider implements OnResultComplete {
             })
         });
     }
-
 }
 
 class User {

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { App } from 'ionic-angular/components/app/app';
 import { CompanyProfilePage } from '../../../profile/company/profile';
 import { NavController } from 'ionic-angular/navigation/nav-controller';
-import { DataProvider } from '../../../../providers/DataProvider';
+import { DataProvider, UserGroup } from '../../../../providers/DataProvider';
 import { Events } from 'ionic-angular';
 
 
@@ -15,9 +15,12 @@ export class CompanyNetwork {
     companies = [];
 
     constructor(public dataProvider: DataProvider, public app: App, public events:Events) {
-        this.companies = dataProvider.getCompanies();
+        console.log("company-tab");
+        dataProvider.getUsersByGroup(UserGroup.COMPANY).then((users)=>{
+            this.companies = users;
+        });
 
-        events.subscribe("contact-added", senderId =>{
+        events.subscribe("contact-accepted", senderId =>{
             dataProvider.getNewUser(senderId).then((user)=>{
                 if(user.usergroup == "group_2"){
                     this.companies.push();

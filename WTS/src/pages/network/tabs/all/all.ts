@@ -1,11 +1,10 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular/navigation/nav-controller';
+import { Component, NgZone } from '@angular/core';
+import { NavController, Events } from 'ionic-angular';
 import { App } from 'ionic-angular/components/app/app';
 import { StudentProfilePage } from '../../../profile/student/profile';
 import { CompanyProfilePage } from '../../../profile/company/profile';
 import { UniProfilePage } from '../../../profile/university/profile';
-import { DataProvider } from '../../../../providers/DataProvider';
-import { Events } from 'ionic-angular';
+import { DataProvider, UserGroup } from '../../../../providers/DataProvider';
 import { ContactRequestTable } from '../../../../providers/api/contactrequest';
 import { AccountTable } from '../../../../providers/api/account';
 
@@ -17,15 +16,17 @@ export class TabsAll {
 
     users = [];
 
-    constructor(public dataProvider: DataProvider, public app: App, public events:Events, 
-        public contactTable:ContactRequestTable, public accountTable:AccountTable ) {
-        console.log("1");
-        this.users = dataProvider.getUser();
+    constructor(public dataProvider: DataProvider, public app: App, public events: Events,
+        public contactTable: ContactRequestTable, public accountTable: AccountTable, zone: NgZone) {
+        console.log("all-tab");
+        dataProvider.getUsersByGroup(UserGroup.ALL).then((users) => {
+            this.users = users;
+        });
 
-        events.subscribe("contact-added", senderId =>{
-            dataProvider.getNewUser(senderId).then((user)=>{
+        events.subscribe("contact-accepted", senderId => {
+            dataProvider.getNewUser(senderId).then((user) => {
                 this.users.push();
-            });            
+            });
         });
     }
 
@@ -45,7 +46,7 @@ export class TabsAll {
         }
     }
 
-    loadMore(event){
-        
+    loadMore(event) {
+
     }
 }
