@@ -68,6 +68,7 @@
   "GPSDESC": "Enables the app to identify your location via GPS.",
   "ALL":"All",
   "STUDENTS": "Students",
+  "SETPIN": "Set Pin",  
   "COMPANIES":"Companies",
   "UNIVERSITIES":"Universities",
   "MY_PROFILE":"My Profile",
