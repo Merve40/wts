@@ -88,6 +88,7 @@ export class ContactRequestPage implements OnResultComplete {
 
   accept(item: User) {
     item.json.body.request = true;
+    item.json.body.Zeitstempel = this.ContactRequestTable.TIMESTAMP;
     this.ContactRequestTable.update(item.json.id, item.json.body, "", (s, j) => { });
     var index = this.students.indexOf(item);
     if (index > -1) {

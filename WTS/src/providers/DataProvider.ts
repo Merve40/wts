@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { ContactRequestTable } from '../providers/api/contactrequest';
 import { Storage } from '@ionic/storage';
 
+import * as moment from 'moment';
+
 export enum UserGroup {
     STUDENT = 'group_1',
     COMPANY = 'group_2',
@@ -71,7 +73,7 @@ export class DataProvider {
                     } else {
                         userId = json[i].body.receiver;
                     }
-                    promises.push(this.getNewUser(userId));
+                    promises.push(this.getNewUser(userId, json[i].body.Zeitstempel));
                 }
                 //combines all promises and iterates over it
                 //once the iteration is done, the array is returned by the resolve() callback
@@ -95,23 +97,26 @@ export class DataProvider {
      * @param id ID of the new user to retrieve
      * @returns Promise containing the new user 
      */
-    public getNewUser(id: string): Promise<User> {
+    public getNewUser(id: string, timestamp:string): Promise<User> {
         return new Promise<User>((resolve, reject) => {
             this.ContactRequestTable.getUserTypeByAccountId(id, "", (src, json) => {
                 var user;
                 if (json.type == "gruppe_1") {
                     user = new User(id, json.body.Name + " " + json.body.Nachname, json.body.Uni);
                     user.usergroup = "group_1";
+                    user.timestamp = this.convertToDate(timestamp);
                     resolve(user);
 
                 } else if (json.type == "gruppe_2") {
                     user = new User(id, json.body.Unternehmen, json.body.Branche);
                     user.usergroup = "group_2";
+                    user.timestamp = this.convertToDate(timestamp);
                     resolve(user);
 
                 } else if (json.type == "gruppe_3") {
                     user = new User(id, json.body.Universität, json.body.Fachrichtungen);
                     user.usergroup = "group_3";
+                    user.timestamp = this.convertToDate(timestamp);
                     resolve(user);
 
                 } else {
@@ -120,6 +125,11 @@ export class DataProvider {
             })
         });
     }
+
+    private convertToDate(timestamp:string):string{
+        var longFormat =+timestamp; 
+        return moment(longFormat).format("DD.MM.YYYY");
+    }
 }
 
 class User {
@@ -127,6 +137,7 @@ class User {
     name: string;
     description: string;
     usergroup: string;
+    timestamp:string;
     constructor(id: string, name: string, description: string) {
         this.id = id;
         this.name = name;
