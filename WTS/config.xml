@@ -2,7 +2,7 @@
 <widget id="com.wts" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>MyApp</name>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://145.93.84.155:8101" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -82,6 +82,7 @@
     <allow-navigation href="http://145.93.80.207:8100" />
     <allow-navigation href="http://192.168.2.116:8100" />
     <allow-navigation href="http://145.93.80.207:8100" />
+    <allow-navigation href="http://145.93.84.155:8101" />
     <engine name="ios" spec="^4.5.1" />
     <plugin name="cordova-plugin-firebase" spec="^0.1.24" />
     <plugin name="ionic-plugin-keyboard" spec="~2.2.1" />
