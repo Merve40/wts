@@ -24,25 +24,25 @@
 
             <ion-item text-wrap>
                 <ion-label class="address" stacked color="wts_blue">{{ 'ADDRESS' | translate }}</ion-label>
-                <ion-label class="addressdescription space" stacked color="wts_grey">{{ 'ADDRESSDESC' | translate }}</ion-label>
+                <ion-label class="addressdescription" fixed stacked color="wts_grey"><small>{{ 'ADDRESSDESC' | translate }}</small></ion-label>
                 <ion-toggle [(ngModel)]="addresstoggle.toggle" (ionChange)="changeSetting(addresstoggle)" ></ion-toggle>
             </ion-item>
 
             <ion-item text-wrap >
                 <ion-label class="email" stacked color="wts_blue">{{ 'EMAIL' | translate }}</ion-label>
-                <ion-label class="emailsdescription space" stacked color="wts_grey">{{ 'EMAILDESC' | translate }}</ion-label>
+                <ion-label class="emailsdescription" fixed color="wts_grey"><small>{{ 'EMAILDESC' | translate }}</small></ion-label>
                 <ion-toggle [(ngModel)]="emailtoggle.toggle" (ionChange)="changeSetting(emailtoggle)"></ion-toggle>
             </ion-item>
 
-            <ion-item text-wrap >
+            <ion-item text-wrap>
                 <ion-label  class="personal" stacked color="wts_blue">{{ 'PROFILEPAGE' | translate }}</ion-label>
-                <ion-label   class="personaldescription space" stacked color="wts_grey">{{ 'PERSONALDESC' | translate }}</ion-label>
+                <ion-label  class="personaldescription" fixed color="wts_grey"><small>{{ 'PERSONALDESC' | translate }}</small></ion-label>
                 <ion-toggle [(ngModel)]="personaltoggle.toggle" (ionChange)="changeSetting(personaltoggle)"></ion-toggle>
             </ion-item>
 
             <ion-item text-wrap>
                 <ion-label class="studies" stacked color="wts_blue">{{ 'STUDYINFO' | translate }}</ion-label>
-                <ion-label class="studydescription space" stacked color="wts_grey">{{ 'STUDYDESC' | translate }}</ion-label>
+                <ion-label class="studydescription" fixed color="wts_grey"><small>{{ 'STUDYDESC' | translate }}</small></ion-label>
                 <ion-toggle [(ngModel)]="studytoggle.toggle" (ionChange)="changeSetting(studytoggle)"></ion-toggle>
             </ion-item>
 
