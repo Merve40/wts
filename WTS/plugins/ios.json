@@ -6,27 +6,10 @@
   "config_munge": {
     "files": {}
   },
-<<<<<<< Updated upstream
-  "installed_plugins": {
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.wts"
-    },
-=======
   "installed_plugins": {},
   "dependent_plugins": {
->>>>>>> Stashed changes
     "cordova-plugin-device": {
       "PACKAGE_NAME": "com.wts"
-    },
-    "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "com.wts"
-    },
-    "cordova-plugin-background-mode": {
-      "PACKAGE_NAME": "com.wts"
-    },
-    "cordova-plugin-fcm": {
-      "PACKAGE_NAME": "com.wts"
     }
-  },
-  "dependent_plugins": {}
+  }
 }
