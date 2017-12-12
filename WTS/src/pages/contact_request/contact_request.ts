@@ -28,7 +28,7 @@ export class ContactRequestPage implements OnResultComplete {
       zone.run(() => {
         this.StudentTable.getUserTypeByAccountId(data.sender, "", (src, _json) => {
           console.log("event: contact-requested");
-          var body = { sender: data.sender, request: false, receiver: data.receiver };
+          var body = { sender: data.sender, request: false, receiver: data.receiver, message: data.message };
           var user = this.addUser({ id: data.contactId, body: body }, _json);
           this.students.push(user);
         });
@@ -45,10 +45,12 @@ export class ContactRequestPage implements OnResultComplete {
           var sender = json[i].body.sender;
           var request = json[i].body.request;
           if (!request) {
-            var data = json[i];
-
-            this.StudentTable.getUserTypeByAccountId(sender, "", (src, _json) => {
+           
+            this.StudentTable.getUserTypeByAccountId(sender, ""+i, (src, _json) => {
+              var index = parseInt(src);
+              var data = json[index];
               var user = this.addUser(data, _json);
+              
               this.students.push(user);
             });
           }
@@ -68,6 +70,7 @@ export class ContactRequestPage implements OnResultComplete {
 
     }
     user.json = data;
+    user.message = data.body.message;
     return user;
   }
 
@@ -117,6 +120,7 @@ class User {
   id: string;
   name: string;
   description: string;
+  message:string;
   json: any;
   constructor(id: string, name: string, description: string) {
     this.id = id;
