@@ -1,0 +1,6 @@
+<ion-content style="text-align: center;" class="no-scroll">
+    <ion-label stacked color="wts_blue">Your Message</ion-label>
+    <ion-input class="input-message" type="text" [(ngModel)]='message'></ion-input>
+    <button class="modal-button" ion-button color="wts_grey" (click)="sendRequest()">send request</button>
+    <ion-label class="warn" *ngIf="invalid" stacked color="wts_blue">Please put your message!</ion-label>
+</ion-content>

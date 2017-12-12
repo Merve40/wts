@@ -60,13 +60,12 @@
     "rxjs": "5.4.3",
     "sw-toolbox": "3.6.0",
     "typings": "^2.1.1",
-    "zone.js": "0.8.18",
-    "cordova-ios": "^4.5.1"
+    "zone.js": "0.8.18"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.0.0",
     "@types/node": "^8.0.51",
-    "typescript": "2.3.4"
+    "typescript": "2.6.2"
   },
   "description": "An Ionic project",
   "cordova": {
@@ -81,8 +80,6 @@
       "cordova-plugin-background-mode": {},
       "cordova-plugin-fcm": {}
     },
-    "platforms": [
-      "ios"
-    ]
+    "platforms": []
   }
 }

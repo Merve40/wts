@@ -1,31 +1,33 @@
 <div class="full">
-    <ion-header class="header">
-      <ion-navbar>Kontaktanfragen
-        <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-        </button>
-      </ion-navbar>
-    </ion-header>
-  
-    <ion-content padding>
-      <ion-list>
-        <ion-item *ngFor = "let item of students;">
-            <ion-item ion-item (click)="test">
-                <ion-avatar item-start>
-                    <img src='assets/img/dog.jpeg' alt="your image">                  
-                </ion-avatar>
-                <h2>{{item.name}}</h2>
-                <p>{{item.description}}</p>
-                <div class="buttondiv">  
-                  <button #myButton id="edit" ion-button editProfile ion-button color="wts_grey" (click)="accept(item)"> 
-                    <ion-icon id="contactcheck"name="checkmark"> Annehmen </ion-icon> 
-                  </button>  
-                </div>
-                  <button #myButton id="contactrequest" ion-button editProfile ion-button color="wts_grey" (click)="removeRequest(item)"> 
-                    <ion-icon id="contactdecline"name="close"> Ablehnen </ion-icon> 
-                  </button>  
-              </ion-item>
+  <ion-header class="header">
+    <ion-navbar>Kontaktanfragen
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-navbar>
+  </ion-header>
+
+  <ion-content padding>
+    <ion-list>
+      <ion-item *ngFor="let item of students;">
+        <ion-item ion-item (click)="test">
+          <ion-avatar item-start>
+            <img src='assets/img/dog.jpeg' alt="your image">
+          </ion-avatar>
+          <h2>{{item.name}}</h2>
+          <p>{{item.description}}</p>
+          <p>{{item.message}}</p>
+          <div class="buttondiv">
+            <button #myButton id="edit" ion-button editProfile ion-button color="wts_grey" (click)="accept(item)">
+              <ion-icon id="contactcheck" name="checkmark"> Annehmen </ion-icon>
+            </button>
+            <button #myButton id="contactrequest" ion-button editProfile ion-button color="wts_grey" (click)="removeRequest(item)">
+              <ion-icon id="contactdecline" name="close"> Ablehnen </ion-icon>
+            </button>
+          </div>
+
         </ion-item>
-      </ion-list>
-    </ion-content>
-  </div>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</div>

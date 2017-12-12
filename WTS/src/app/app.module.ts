@@ -11,6 +11,7 @@ import { Globalization } from '@ionic-native/globalization';
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { StudentProfilePage } from '../pages/profile/student/profile';
+import { ModalContact } from '../pages/profile/student/modal/modal_contact';
 import { UniProfilePage } from '../pages/profile/university/profile';
 import { CompanyProfilePage } from '../pages/profile/company/profile';
 import { Varier } from '../providers/varier';
@@ -77,6 +78,7 @@ import { VisibilityTable } from '../providers/api/visibility';
     CompanyNetwork,
     TabsAll,
     Settings,
+    ModalContact,
     NewsfeedPage
   ],
   imports: [
@@ -117,6 +119,7 @@ import { VisibilityTable } from '../providers/api/visibility';
     CompanyNetwork,
     Settings,
     TabsAll,
+    ModalContact,
     NewsfeedPage
   ],
   providers: [

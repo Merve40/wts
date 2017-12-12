@@ -6,6 +6,8 @@ import { Table } from './table';
 export interface Kontaktanfrage {
     receiver: string;
     sender: string;
+    request:boolean;
+    message:string;
 }
 
 @Injectable()

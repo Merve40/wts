@@ -78,10 +78,30 @@ npm install --save moment
 ```
 
 Cloud Messaging / Push
-```
+```bash
 cordova plugin add cordova-plugin-fcm
 ```
 Globalization
+```bash
 npm install --save @ionic-native/globalization
+```
+
+## Update typescript:
+```bash
+npm install typescript -g
+```
+
+retrieve typescript version:
+```bash
+tsc -v
+```
+go to your WTS project, replace the `typescript`-version in `package.json` and execute the following commands:
+```bash
+npm cache clean --force
+```
+
+delete the folder `node_modules` and execute this:
+```bash
+npm install
 ```
 
