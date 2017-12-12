@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Button } from 'ionic-angular';
+import { NavController, NavParams, Button, ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Profile_EditPage } from '../edit/profile_edit'
 import { StudentTable } from '../../../providers/api/student';
@@ -13,6 +13,7 @@ import { PassionTable } from '../../../providers/api/passion';
 import { OnResultComplete } from '../../../providers/api/OnResultComplete';
 import { BlockTable } from '../../../providers/api/block';
 import { VisibilityTable } from '../../../providers/api/visibility';
+import { ModalContact } from './modal/modal_contact';
 
 @Component({
   selector: 'page-profile',
@@ -41,7 +42,7 @@ export class StudentProfilePage implements OnResultComplete {
     public AdressTable: AdressTable, public ContactRequestTable: ContactRequestTable, public StudentTable: StudentTable,
     public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable,
     public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable, public blockTable: BlockTable,
-    public visibility: VisibilityTable) {
+    public visibility: VisibilityTable, public modal: ModalController,) {
 
     visibility.setSrcClass(this);
     blockTable.setSrcClass(this);
@@ -90,14 +91,21 @@ export class StudentProfilePage implements OnResultComplete {
   }
 
   sendRequest() {
-    //Account-ID des aufgerufenene Profils
-    //var receiver_id = this.accID_extern;
-    var contact = {
-      sender: this.accID_extern,
-      request: false,
-      receiver: this.accID
-    }
-    this.ContactRequestTable.push(contact, "contactrequest", this.onComplete);
+    // var contact = {
+    //   sender: this.accID_extern,
+    //   request: false,
+    //   receiver: this.accID,  
+    //   message:""
+    // } 
+    // this.ContactRequestTable.push(contact, "contactrequest", this.onComplete);
+    let contactModal = this.modal.create(ModalContact, {receiver: this.accID});
+    
+    contactModal.onDidDismiss(data=>{
+      if(data){
+        this.ContactRequestTable.push(data, "contactrequest", this.onComplete);
+      }
+    });
+    contactModal.present();
   }
 
   removeContact() {
@@ -205,7 +213,8 @@ export class StudentProfilePage implements OnResultComplete {
         var contact = {
           sender: this.accID_extern,
           request: false,
-          receiver: receiver_id
+          receiver: receiver_id,
+          message: ""
         }
         this.ContactRequestTable.push(contact, "contactrequest", this.onComplete);
       }

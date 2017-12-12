@@ -48,6 +48,17 @@ $colors: (
 $background-ios-color: #E5E9ED;
 $background-md-color: #E5E9ED;
 $background-wp-color: #E5E9ED;
+
+
+//Modal Sass Variables
+
+$modal-inset-min-width: 200px;
+$modal-inset-min-height-small: 200px;
+$modal-inset-min-height-large: 200px;
+$modal-inset-width: 230px;
+$modal-inset-height-small: 250px;
+$modal-inset-height-large: 150px;
+
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
