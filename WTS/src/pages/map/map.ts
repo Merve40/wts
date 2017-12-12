@@ -37,20 +37,13 @@ export class MapPage implements OnResultComplete {
 
     var url = "http://www.ynfynyty.net/mapapp/api/create.aspx?mapid=509&pwc=hg67UH!&backwardurl=www.testing.worktostudent.com";
 
-    try {
-      var info = this.httpClient.get(url);
-      info
-        .subscribe(data => {
-          console.log('my data: ', data);
-        },error =>{
-          console.log('my error: ', error)
-        })
-    }
-    catch (err) {
-      console.log("error");
-      document.getElementById("demo").innerHTML = err.message;
-      //console.log('my error: ', err);
-    }
+    var info = this.httpClient.get(url);
+    info
+      .subscribe(data => {
+        console.log('my data: ', data);
+      }, error => {
+        console.log('my error: ', error)
+      })
 
   }
 }
