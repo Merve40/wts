@@ -1,10 +1,5 @@
-import { Component, ViewChild, Injectable } from '@angular/core';
-import { AccountTable } from '../providers/api/account';
+import { Injectable } from '@angular/core';
 import { ContactRequestTable } from '../providers/api/contactrequest';
-import { StudentTable } from '../providers/api/student';
-import { CompanyTable } from '../providers/api/company';
-import { UniversityTable } from '../providers/api/university';
-import { OnResultComplete } from '../providers/api/OnResultComplete';
 import { Storage } from '@ionic/storage';
 
 export enum UserGroup {
@@ -25,13 +20,8 @@ enum Contacter {
 @Injectable()
 export class DataProvider {
 
-    constructor(public storage: Storage, public ContactRequestTable: ContactRequestTable,
-        public StudentTable: StudentTable, public UniversityTable: UniversityTable, public CompanyTable: CompanyTable) {
-
+    constructor(public storage: Storage, public ContactRequestTable: ContactRequestTable) {
         ContactRequestTable.setSrcClass(this);
-        StudentTable.setSrcClass(this);
-        UniversityTable.setSrcClass(this);
-        CompanyTable.setSrcClass(this);
         console.log("contructing DataProvider");
     }
 
@@ -107,7 +97,7 @@ export class DataProvider {
      */
     public getNewUser(id: string): Promise<User> {
         return new Promise<User>((resolve, reject) => {
-            this.StudentTable.getUserTypeByAccountId(id, "", (src, json) => {
+            this.ContactRequestTable.getUserTypeByAccountId(id, "", (src, json) => {
                 var user;
                 if (json.type == "gruppe_1") {
                     user = new User(id, json.body.Name + " " + json.body.Nachname, json.body.Uni);
