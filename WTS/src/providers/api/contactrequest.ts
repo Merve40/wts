@@ -8,6 +8,7 @@ export interface Kontaktanfrage {
     sender: string;
     request:boolean;
     message:string;
+    Zeitstempel:any;
 }
 
 @Injectable()

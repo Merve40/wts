@@ -32,7 +32,8 @@ export class ModalContact {
                 receiver: this.receiver,
                 sender: id,
                 request: false,
-                message: this.message
+                message: this.message,
+                Zeitstempel: this.AccountTable.TIMESTAMP
             };
 
             this.getUserAccount(id).then((user) => {

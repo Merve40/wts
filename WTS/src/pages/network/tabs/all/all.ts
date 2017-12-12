@@ -23,8 +23,8 @@ export class TabsAll {
             this.users = users;
         });
 
-        events.subscribe("contact-accepted", senderId => {
-            dataProvider.getNewUser(senderId).then((user) => {
+        events.subscribe("contact-accepted", data => {
+            dataProvider.getNewUser(data.senderId, data.timestamp).then((user) => {
                 this.users.push();
             });
         });
