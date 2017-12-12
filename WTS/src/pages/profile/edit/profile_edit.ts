@@ -61,27 +61,17 @@ export class Profile_EditPage {
    */
   save() {
  
-    if (this.studentjson.body.Uni != this.Uni)
       this.studentjson.body.Uni = this.Uni;
-    if (this.studentjson.body.Abschluss != this.Abschluss)
       this.studentjson.body.Abschluss = this.Abschluss;
-    if (this.studentjson.body.Abschluss_Datum != this.Abschluss_Datum){}
       var date = moment(this.Abschluss_Datum, "YYYY-MM-DD").format("DD.MM.YYYY");
-    this.studentjson.body.Abschluss_Datum = date;
-    if (this.studentjson.body.Geb_Datum != this.Geb_Datum)
-      var date = moment(this.Geb_Datum, "YYYY-MM-DD").format("DD.MM.YYYY");
-    this.studentjson.body.Geb_Datum = date;
-    if (this.studentjson.body.Studiengang != this.Studiengang)
+      this.studentjson.body.Abschluss_Datum = date;
+      var birthdate = moment(this.Geb_Datum, "YYYY-MM-DD").format("DD.MM.YYYY");
+      this.studentjson.body.Geb_Datum = date;
       this.studentjson.body.Studiengang = this.Studiengang;
-    if (this.studentjson.body.Semester != this.Semester)
       this.studentjson.body.Semester = this.Semester;
-    if (this.studentjson.body.Nachname != this.Nachname)
       this.studentjson.body.Nachname = this.Nachname;
-    if (this.studentjson.body.Name != this.Name)
       this.studentjson.body.Name = this.Name;
-    if (this.studentjson.body.Beschaftigung != this.Beschaftigung)
       this.studentjson.body.Beschaftigung = this.Beschaftigung;
-    if (this.studentjson.body.Beschreibung != this.Beschreibung)
       this.studentjson.body.Beschreibung = this.Beschreibung;
     //Date-Korrektheit hier überprüfen
 

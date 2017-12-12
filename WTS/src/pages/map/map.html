@@ -5,10 +5,17 @@
         <ion-icon name="menu"></ion-icon>
       </button>
     </ion-navbar>
-    
+
   </ion-header>
 
   <ion-content class="map">
-     <iframe src="http://ynfynyty.net/MapApp/mobile.aspx?uid=509" height="100%" width="100%" frameborder="0" id="places"></iframe> 
+    <div class="button">
+      <button ion-button editProfile ion-button color="wts_grey" (click)="openSetPinPage()" style="height:42px">
+        <ion-icon name="close"> {{ 'SETPIN' | translate }}</ion-icon>
+      </button>
+    </div>
+    <div class="map">
+      <iframe src="http://ynfynyty.net/MapApp/mobile.aspx?uid=509" frameborder="0" id="places"></iframe>
+    </div>
   </ion-content>
 </div>
