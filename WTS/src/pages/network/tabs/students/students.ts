@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { App } from 'ionic-angular/components/app/app';
 import { StudentProfilePage } from '../../../profile/student/profile';
-import { DataProvider } from '../../../../providers/DataProvider';
+import { DataProvider, UserGroup } from '../../../../providers/DataProvider';
+import { Events } from 'ionic-angular';
 
 @Component({
     selector: 'student-tab',
@@ -11,12 +12,18 @@ export class StudentNetwork {
 
     students = [];
 
-    constructor(public dataProvider: DataProvider, public app: App) {
-        console.log("start");
-        dataProvider.getUser().forEach(element => {
-            console.log("checkelements");
-            if (element.usergroup == "group_1")
-                this.students.push(element);
+    constructor(public dataProvider: DataProvider, public app: App, public events:Events) {
+        console.log("student-tab");
+        dataProvider.getUsersByGroup(UserGroup.STUDENT).then((users)=>{
+            this.students = users;
+        });
+
+        events.subscribe("contact-accepted", senderId =>{
+            dataProvider.getNewUser(senderId).then((user)=>{
+                if(user.usergroup == "group_1"){
+                    this.students.push();
+                }                
+            });            
         });
     }
 
@@ -26,5 +33,9 @@ export class StudentNetwork {
      */
     navigateToUserProfile(id: string) {
         this.app.getRootNav().push(StudentProfilePage, { userId: id });
+    }
+
+    loadMore(event){
+        
     }
 }

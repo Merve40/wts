@@ -10,6 +10,7 @@ export interface Message {
     Konversation_Id: string;
     Sender_Id: string;
     Zeitstempel:any;
+    HasSent:boolean;
 }
 
 @Injectable()

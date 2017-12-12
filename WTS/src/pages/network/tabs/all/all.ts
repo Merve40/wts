@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular/navigation/nav-controller';
+import { Component, NgZone } from '@angular/core';
+import { NavController, Events } from 'ionic-angular';
 import { App } from 'ionic-angular/components/app/app';
 import { StudentProfilePage } from '../../../profile/student/profile';
 import { CompanyProfilePage } from '../../../profile/company/profile';
 import { UniProfilePage } from '../../../profile/university/profile';
-import { DataProvider } from '../../../../providers/DataProvider';
+import { DataProvider, UserGroup } from '../../../../providers/DataProvider';
+import { ContactRequestTable } from '../../../../providers/api/contactrequest';
+import { AccountTable } from '../../../../providers/api/account';
 
 @Component({
     selector: 'all-tab',
@@ -14,9 +16,18 @@ export class TabsAll {
 
     users = [];
 
-    constructor(public dataProvider: DataProvider, public app: App ) {
-        console.log("1");
-        this.users = dataProvider.getUser();
+    constructor(public dataProvider: DataProvider, public app: App, public events: Events,
+        public contactTable: ContactRequestTable, public accountTable: AccountTable, zone: NgZone) {
+        console.log("all-tab");
+        dataProvider.getUsersByGroup(UserGroup.ALL).then((users) => {
+            this.users = users;
+        });
+
+        events.subscribe("contact-accepted", senderId => {
+            dataProvider.getNewUser(senderId).then((user) => {
+                this.users.push();
+            });
+        });
     }
 
     /**
@@ -33,5 +44,9 @@ export class TabsAll {
         } else if (group == "group_3") {
             this.app.getRootNav().push(UniProfilePage, { userId: id });
         }
+    }
+
+    loadMore(event) {
+
     }
 }

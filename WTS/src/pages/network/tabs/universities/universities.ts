@@ -2,7 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { App } from 'ionic-angular/components/app/app';
 import { UniProfilePage } from '../../../profile/university/profile';
 import { NavController } from 'ionic-angular/navigation/nav-controller';
-import { DataProvider } from '../../../../providers/DataProvider';
+import { DataProvider, UserGroup } from '../../../../providers/DataProvider';
+import { Events } from 'ionic-angular';
 
 @Component({
     selector: 'university-tab',
@@ -12,14 +13,19 @@ export class UniversityNetwork {
 
     universities = [];
 
-    constructor(public dataProvider: DataProvider, public app: App) {
-        dataProvider.getUser().forEach(element => {
-            console.log("checkelements");
-            if (element.usergroup == "group_3")
-                this.universities.push(element);
+    constructor(public dataProvider: DataProvider, public app: App, public events:Events) {
+        console.log("uni-tab");
+        dataProvider.getUsersByGroup(UserGroup.UNIVERSITY).then((users)=>{
+            this.universities = users;
         });
-        console.log("uni");
-        console.log(this.universities);
+
+        events.subscribe("contact-accepted", senderId =>{
+            dataProvider.getNewUser(senderId).then((user)=>{
+                if(user.usergroup == "group_3"){
+                    this.universities.push();
+                }                
+            });            
+        });
     }
 
     /**
@@ -28,5 +34,9 @@ export class UniversityNetwork {
      */
     navigateToUserProfile(id: string) {
         this.app.getRootNav().push(UniProfilePage, { userId: id });
+    }
+
+    loadMore(event){
+        
     }
 }

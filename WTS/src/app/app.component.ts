@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, Events } from 'ionic-angular';
+import { Nav, Platform, Events, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
@@ -8,7 +8,7 @@ import { BackgroundMode } from '@ionic-native/background-mode';
 
 import { LoginPage } from '../pages/login/login';
 import { Varier } from '../providers/varier';
-import { ContactRequestPage } from '../pages/Contact_request/contact_request';
+import { ContactRequestPage } from '../pages/contact_request/contact_request';
 import { ListSearchPage } from '../pages/list_search/list_search';
 import { MapPage } from '../pages/map/map';
 import { NewsfeedPage } from '../pages/newsfeed/newsfeed';
@@ -24,7 +24,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
 import { Globalization } from '@ionic-native/globalization';
 
-
+enum PushCategory {
+  MESSAGE = 'message',
+  CONTACT = 'contact-request',
+  CONTACT_ACCEPTED = 'contact-accepted'
+}
 
 @Component({
   templateUrl: 'app.html'
@@ -39,13 +43,13 @@ export class MyApp {
   constructor(public varier: Varier, public storage: Storage, public platform: Platform, public statusBar: StatusBar,
     public splashScreen: SplashScreen, public screenOrientation: ScreenOrientation,
     public translate: TranslateService, public fcm: FCM, public bgMode: BackgroundMode,
-    public accountTable: AccountTable, global: Globalization, public events: Events) {
+    public accountTable: AccountTable, global: Globalization, public events: Events, public toastCtrl: ToastController) {
 
     accountTable.setSrcClass(this);
     this.initializeApp();
 
     //this event is only fired when usergroup company is being logged in
-    //changes the menu-item in the side-bar
+    //changes the menu-items in the side-bar
     this.events.subscribe("login", usergroup => {
       this.pages.splice(7, 1);
     });
@@ -80,62 +84,17 @@ export class MyApp {
 
       ];
     });
-
-    // console.log(this.nav.getActive());
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      /**
-
-      //background service that runs, when the app is closed.
-      this.bgMode.on("enable").subscribe(() => {
-
-        //updates the device token, if user uses a new device
-        if (typeof (FCM) !== "undefined") {
-          this.fcm.onTokenRefresh().forEach(token => {
-            console.log("on token refresh..");
-            this.storage.get("user_id").then(id => {
-              console.log("got user id: " + id);
-              this.accountTable.getById(id, "", (source, json) => {
-                json.body.Token = token;
-                this.accountTable.update(id, json, "", (src, res) => { });
-              });
-            });
-          });
-        }
-      });
-
-      if (!this.bgMode.isActive()) {
-        //activates the background service if it is not running yet
-        this.bgMode.enable();
+      //push notification is only initialized when app is deployed on a device or emulator
+      if (this.platform.is('cordova')) {
+        this.initializePushNotification();
       }
-
-      this.fcm.onNotification().subscribe((data) => {
-        console.log("==== RECEIVED NOTIFICATION : " + JSON.stringify(data));
-        if (data.wasTapped) {
-          //TODO: open page; params: konversation id & name
-          console.log("tapped!");
-        } else {
-          console.log("not tapped!");
-        }
-
-      });
-
-      */
-      
-      //var orient = this.screenOrientation.ORIENTATIONS.PORTRAIT;
-      //ionViewWillUnload(this.orient);
-      //console.log(this.screenOrientation.lock(orient));
-      //console.log(this.screenOrientation.type);
-
-      // var orient = this.screenOrientation.ORIENTATIONS.PORTRAIT;
-      // this.screenOrientation.lock(orient);
 
     });
     // firebase.initializeApp({
@@ -146,31 +105,106 @@ export class MyApp {
     //   storageBucket: "worktostudents.appspot.com",
     //   messagingSenderId: "542302693567"
     // });
-
-
-
   }
 
-  openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
+  /**
+   * Initializes push notifications and creates a background service.
+   */
+  initializePushNotification() {
+    //background service that runs, when the app is closed.
+    this.bgMode.on("enable").subscribe(() => {
+      //updates the device token, if user uses a new device
+      if (typeof (FCM) !== "undefined") {
 
-    if (page.component === "Varier") {
-      this.varier.forward(false, undefined);
-    }else if(page.component == LoginPage){
-      this.storage.clear();
-      this.nav.setRoot(page.component);
-    } else {
-      this.nav.setRoot(page.component);
+        this.fcm.onTokenRefresh().forEach(token => {
+          this.storage.get("user_id").then(id => {
+            this.accountTable.getById(id, "", (source, json) => {
+              json.body.Token = token;
+              this.accountTable.update(id, json, "", (src, res) => { });
+            });
+          });
+        });
+      }
+    });
+
+    if (!this.bgMode.isActive()) {
+      //activates the background service if it is not running yet
+      this.bgMode.enable();
     }
 
+    let showMessage = (message) => {
+      const toast = this.toastCtrl.create({
+        message: message,
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
+    }
+
+    this.fcm.onNotification().subscribe((data) => {
+      console.log("==== RECEIVED NOTIFICATION ====");
+      console.log(JSON.stringify(data));
+      if (data.wasTapped) {
+        //TODO open page
+        if (data.category == PushCategory.CONTACT) {
+          this.nav.setRoot(ContactRequestPage);
+        } else if (data.category == PushCategory.MESSAGE) {
+          this.nav.setRoot(MessageListPage);
+        } else if (data.category == PushCategory.CONTACT_ACCEPTED) {
+          this.nav.setRoot(Network);
+        }
+
+
+      } else {
+        console.log("not tapped!");
+        if (data.category == PushCategory.CONTACT) { //handles contact notification
+          console.log("PushCategory: Message");
+
+          // if ContactRequestPage is in foreground
+          if (this.nav.last().instance instanceof ContactRequestPage) {
+            this.events.publish("contact-requested", data);
+
+          } else {
+            //TODO: translation + show sender name 
+            showMessage("You have a new contact-request!");
+          }
+
+        } else if (data.category == PushCategory.MESSAGE) { //handles message notification
+
+          // if MessagePage is in foreground
+          if (this.nav.last().instance instanceof MessagePage) {
+            console.log("PushCategory: Message");
+            this.events.publish("message-added", data);
+          } else {
+            //TODO: translation + show sender name 
+            showMessage("You have a new message");
+          }
+
+        } else if (data.category == PushCategory.CONTACT_ACCEPTED) {
+          console.log("PushCategory: CONTACT_ACCEPTED");
+          if(this.nav.last().instance instanceof Network){
+            this.events.publish("contact-accepted", data.senderId);
+          }else{ 
+            showMessage("Your request got accepted!");
+          }
+        }
+      }
+    });
   }
 
-  //   ionViewWillUnload(orientation:any){
-  //        this.screenOrientation.lock(orientation);
+  /**
+   * Navigates to the page from the menu-bar
+   * @param page 
+   */
+  openPage(page) {
+    if (page.component === "Varier") {
+      this.varier.forward(false, undefined);
+    } else {
+      if (page.component == LoginPage) {
+        this.storage.clear();
+      }
+      this.nav.setRoot(page.component);
+    }
+  }
 
-  //     setTimeout(function() {
-  //         this.screenOrientation.unlock();    
-  //     }, 300);        
-  //   }
 }
