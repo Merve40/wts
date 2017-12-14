@@ -20,8 +20,8 @@ export class CompanyNetwork {
             this.companies = users;
         });
 
-        events.subscribe("contact-accepted", senderId =>{
-            dataProvider.getNewUser(senderId).then((user)=>{
+        events.subscribe("contact-accepted", data =>{
+            dataProvider.getNewUser(data.senderId, data.timestamp).then((user)=>{
                 if(user.usergroup == "group_2"){
                     this.companies.push();
                 }                

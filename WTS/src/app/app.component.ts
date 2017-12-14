@@ -183,7 +183,7 @@ export class MyApp {
         } else if (data.category == PushCategory.CONTACT_ACCEPTED) {
           console.log("PushCategory: CONTACT_ACCEPTED");
           if(this.nav.last().instance instanceof Network){
-            this.events.publish("contact-accepted", data.senderId);
+            this.events.publish("contact-accepted", data);
           }else{ 
             showMessage("Your request got accepted!");
           }

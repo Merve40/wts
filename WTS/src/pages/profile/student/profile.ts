@@ -91,13 +91,6 @@ export class StudentProfilePage implements OnResultComplete {
   }
 
   sendRequest() {
-    // var contact = {
-    //   sender: this.accID_extern,
-    //   request: false,
-    //   receiver: this.accID,  
-    //   message:""
-    // } 
-    // this.ContactRequestTable.push(contact, "contactrequest", this.onComplete);
     let contactModal = this.modal.create(ModalContact, {receiver: this.accID});
     
     contactModal.onDidDismiss(data=>{
@@ -214,7 +207,8 @@ export class StudentProfilePage implements OnResultComplete {
           sender: this.accID_extern,
           request: false,
           receiver: receiver_id,
-          message: ""
+          message: "",
+          Zeitstempel: this.ContactRequestTable.TIMESTAMP
         }
         this.ContactRequestTable.push(contact, "contactrequest", this.onComplete);
       }
