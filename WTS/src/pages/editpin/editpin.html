@@ -1,0 +1,56 @@
+<div class="full">
+    <ion-header class="header">
+        <ion-navbar>
+            <button ion-button menuToggle>
+                <ion-icon name="menu"></ion-icon>
+            </button>
+            <ion-title>{{ 'EDITPINPAGE' | translate }}</ion-title>
+        </ion-navbar>
+    </ion-header>
+
+
+    <ion-content class="edit-pin">
+
+        <ion-list>
+
+            <ion-item>
+                <ion-label class="pin-name" stacked color="wts_blue">{{ 'NAME' | translate }}</ion-label>
+                <ion-input type="pin-name" [(ngModel)]="name"></ion-datetime>
+            </ion-item>
+            <ion-item>
+                <ion-label class="pin-email" stacked color="wts_blue">{{ 'EMAIL' | translate }}</ion-label>
+                <ion-input type="pin-email" [(ngModel)]='email'></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label class="key1" stacked color="wts_blue">{{ 'KEY' | translate }} 1</ion-label>
+                <ion-input type="key1" [(ngModel)]='key1'></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label class="key2" stacked color="wts_blue">{{ 'KEY' | translate }} 2</ion-label>
+                <ion-input type="key2" [(ngModel)]='key2'></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label class="key3" stacked color="wts_blue">{{ 'KEY' | translate }} 3</ion-label>
+                <ion-input type="key3" [(ngModel)]='key3'></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label class="key4" stacked color="wts_blue">{{ 'KEY' | translate }} 4</ion-label>
+                <ion-input type="key4" [(ngModel)]='key4'></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label class="key5" stacked color="wts_blue">{{ 'KEY' | translate }} 5</ion-label>
+                <ion-input type="key5" [(ngModel)]='key5'></ion-input>
+            </ion-item>
+
+
+
+
+            <button ion-button editProfile ion-button color="wts_grey" (click)="save()">
+                <ion-icon name="done-all"> {{ 'SAVECHANGES' | translate }}</ion-icon>
+            </button>
+            <button ion-button editProfile ion-button color="wts_grey" (click)="discardChanges()">
+                <ion-icon name="close"> {{ 'DISCARDCHANGES' | translate }}</ion-icon>
+            </button>
+        </ion-list>
+    </ion-content>
+</div>
