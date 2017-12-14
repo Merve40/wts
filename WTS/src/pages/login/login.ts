@@ -97,9 +97,8 @@ export class LoginPage implements OnResultComplete {
   }
 
   navigateToUserProfile(json: any) {
-    if (json.body.Usergruppe == "gruppe_2") {
-      this.events.publish("login", "delete");
-    }
+    this.events.publish("login", json.body.Usergruppe);
+
     this.storage.set("user_id", json.id).then(val => {
       console.log("set storage user id : " + json.id);
       this.varier.forward(false, json.id);

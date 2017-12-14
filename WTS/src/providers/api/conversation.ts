@@ -6,6 +6,7 @@ import { Table } from './table';
 export interface Conversation {
     Account_id1: string;
     Account_id2: string;
+    Zeitstempel: any;
 }
 
 @Injectable()

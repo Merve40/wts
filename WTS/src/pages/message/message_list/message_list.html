@@ -12,14 +12,17 @@
 
     <ion-list>
       <ion-item *ngFor="let item of users;">
-        <ion-item ion-item (click)="openMessage(item.id, item.userName)">
+        <ion-item ion-item (click)="openMessage(item)">
           <ion-avatar item-start>
             <img src='assets/img/dog.jpeg' alt="your image">
           </ion-avatar>
-          <h2>{{item.userName}}</h2>
+          <div class="icon-div">
+            <h2>{{item.userName}}</h2>
+            <ion-icon class="icon-alignment" *ngIf="!item.read" name="mail"></ion-icon>
+            <ion-icon class="icon-alignment" *ngIf="item.read" name="mail-open"></ion-icon>
+          </div>
           <div>
-            <p style="display:inline-block;">{{item.lastMessage}}</p>
-            <p style="display:inline-block; float:right;">{{item.dateTime}}</p>
+            <p>{{item.dateTime}}</p>
           </div>
 
         </ion-item>
