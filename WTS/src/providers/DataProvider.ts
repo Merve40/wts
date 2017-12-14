@@ -62,18 +62,20 @@ export class DataProvider {
             this.ContactRequestTable.filterByValue(contacter, id, "", (src, json) => {
                 //promise gets rejected if data is empty
                 if (json[0].body == null) {
-                    reject();
+                    return;
                 }
                 var promises: Promise<User>[] = [];
                 //retrieves a promise for each retrieval and pushes it onto the promises
                 for (var i = 0; i < json.length; i++) {
-                    var userId;
-                    if (contacter == Contacter.RECEIVER) {
-                        userId = json[i].body.sender;
-                    } else {
-                        userId = json[i].body.receiver;
+                    if (json[i] && json[i].body) {
+                        var userId;
+                        if (contacter == Contacter.RECEIVER) {
+                            userId = json[i].body.sender;
+                        } else {
+                            userId = json[i].body.receiver;
+                        }
+                        promises.push(this.getNewUser(userId, json[i].body.Zeitstempel));
                     }
-                    promises.push(this.getNewUser(userId, json[i].body.Zeitstempel));
                 }
                 //combines all promises and iterates over it
                 //once the iteration is done, the array is returned by the resolve() callback
@@ -97,9 +99,12 @@ export class DataProvider {
      * @param id ID of the new user to retrieve
      * @returns Promise containing the new user 
      */
-    public getNewUser(id: string, timestamp:string): Promise<User> {
+    public getNewUser(id: string, timestamp: string): Promise<User> {
         return new Promise<User>((resolve, reject) => {
             this.ContactRequestTable.getUserTypeByAccountId(id, "", (src, json) => {
+                if(json.body == null){
+                    return;
+                }
                 var user;
                 if (json.type == "gruppe_1") {
                     user = new User(id, json.body.Name + " " + json.body.Nachname, json.body.Uni);
@@ -126,8 +131,8 @@ export class DataProvider {
         });
     }
 
-    private convertToDate(timestamp:string):string{
-        var longFormat =+timestamp; 
+    private convertToDate(timestamp: string): string {
+        var longFormat = +timestamp;
         return moment(longFormat).format("DD.MM.YYYY");
     }
 }
@@ -137,7 +142,7 @@ class User {
     name: string;
     description: string;
     usergroup: string;
-    timestamp:string;
+    timestamp: string;
     constructor(id: string, name: string, description: string) {
         this.id = id;
         this.name = name;
