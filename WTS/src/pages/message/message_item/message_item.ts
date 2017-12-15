@@ -22,6 +22,7 @@ export class MessagePage implements OnResultComplete {
     accId: string;
     id: string;
     name: string;
+    imgSource:any;
 
     constructor(public navCtrl: NavController, public navparams: NavParams, public translate: TranslateService,
         public storage: Storage, public messageTable: MessageTable, public events: Events, public zone: NgZone,
@@ -30,6 +31,7 @@ export class MessagePage implements OnResultComplete {
         this.messageTable.setSrcClass(this);
         this.id = navparams.get('id');
         this.name = navparams.get('name');
+        this.imgSource = navparams.get('imgSource');
 
         events.subscribe("message-added", (data) => {
             console.log("event: message-added");

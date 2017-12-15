@@ -150,8 +150,6 @@ export class MyApp {
       this.bgMode.enable();
     }
 
-    var savedBadges: boolean = false;
-
     //background service that runs, when the app is closed.
     this.bgMode.on("enable").subscribe(() => {
 

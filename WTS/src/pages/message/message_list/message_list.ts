@@ -15,6 +15,7 @@ export interface MessageItem {
     lastMessage: string;
     dateTime: string;
     read: boolean;
+    imgSource: string;
 }
 
 export interface ConversationItem {
@@ -51,8 +52,8 @@ export class MessageListPage implements OnResultComplete {
 
         events.subscribe('message-received', (data) => {
             console.log("MessageListPage: reloading conversations");
-            this.unreadMessages[data.conversationId] = {message: data.content, timestamp: data.Zeitstempel};
-            this.load().then(()=>{});
+            this.unreadMessages[data.conversationId] = { message: data.content, timestamp: data.Zeitstempel };
+            this.load().then(() => { });
         });
     }
 
@@ -79,7 +80,7 @@ export class MessageListPage implements OnResultComplete {
     openMessage(user) {
         user.read = true;
         this.events.publish("message-read", user.id);
-        this.navCtrl.push(MessagePage, { id: user.id, name: user.userName });
+        this.navCtrl.push(MessagePage, { id: user.id, name: user.userName, imgSource: user.imgSource });
     }
 
     onComplete(flag: string, json: any) {
@@ -105,7 +106,10 @@ export class MessageListPage implements OnResultComplete {
                     this.conversationTable.getUserTypeByAccountId(json[i].body.Account_Id_2, "" + i, (f, _json) => {
                         var name = getName(_json.body);
                         var _id = json[parseInt(f)].id;
-                        var usr = { id: _id, userName: name, img: "", lastMessage: "", dateTime: "07.12.2017", read: true };
+                        var usr = {
+                            id: _id, userName: name, img: "", lastMessage: "", dateTime: "07.12.2017", read: true,
+                            imgSource: this.getImageByGroup(_json.type)
+                        };
                         usr.dateTime = moment(json[parseInt(f)].Zeitstempel).format("HH:mm DD.MM.YYYY");
 
                         if (this.unreadMessages[_id]) {
@@ -126,7 +130,10 @@ export class MessageListPage implements OnResultComplete {
                     this.conversationTable.getUserTypeByAccountId(json[i].body.Account_Id_1, "" + i, (f, _json) => {
                         var name = getName(_json.body)
                         var _id = json[parseInt(f)].id;
-                        var usr = { id: _id, userName: name, img: "", lastMessage: "", dateTime: "07.12.2017", read: true };
+                        var usr = {
+                            id: _id, userName: name, img: "", lastMessage: "", dateTime: "07.12.2017", read: true,
+                            imgSource: this.getImageByGroup(_json.type)
+                        };
                         usr.dateTime = moment(json[parseInt(f)].Zeitstempel).format("HH:mm DD.MM.YYYY");
 
                         if (this.unreadMessages[_id]) {
@@ -138,6 +145,16 @@ export class MessageListPage implements OnResultComplete {
             }
         }
 
+    }
+
+    getImageByGroup(group: string) {
+        if (group == "gruppe_1") {
+            return "assets/img/student-image.png";
+        } else if (group == "gruppe_2") {
+            return "assets/icon/company3.png";
+        } else if (group == "gruppe_3") {
+            return "assets/icon/university2.png";
+        }
     }
 
     ngAfterViewInit() {

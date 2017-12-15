@@ -109,18 +109,21 @@ export class DataProvider {
                 if (json.type == "gruppe_1") {
                     user = new User(id, json.body.Name + " " + json.body.Nachname, json.body.Uni);
                     user.usergroup = "group_1";
+                    user.imgSource = "assets/img/student-image.png";
                     user.timestamp = this.convertToDate(timestamp);
                     resolve(user);
 
                 } else if (json.type == "gruppe_2") {
                     user = new User(id, json.body.Unternehmen, json.body.Branche);
                     user.usergroup = "group_2";
+                    user.imgSource = "assets/icon/company3.png";
                     user.timestamp = this.convertToDate(timestamp);
                     resolve(user);
 
                 } else if (json.type == "gruppe_3") {
                     user = new User(id, json.body.Universität, json.body.Fachrichtungen);
                     user.usergroup = "group_3";
+                    user.imgSource = "assets/icon/university2.png";
                     user.timestamp = this.convertToDate(timestamp);
                     resolve(user);
 
@@ -143,6 +146,7 @@ class User {
     description: string;
     usergroup: string;
     timestamp: string;
+    imgSource:string;
     constructor(id: string, name: string, description: string) {
         this.id = id;
         this.name = name;

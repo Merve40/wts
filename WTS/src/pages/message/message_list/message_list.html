@@ -14,7 +14,7 @@
       <ion-item *ngFor="let item of users;">
         <ion-item ion-item (click)="openMessage(item)">
           <ion-avatar item-start>
-            <img src='assets/img/dog.jpeg' alt="your image">
+            <img src='{{item.imgSource}}' alt="your image">
           </ion-avatar>
           <div class="icon-div">
             <h2>{{item.userName}}</h2>
