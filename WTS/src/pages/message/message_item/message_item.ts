@@ -17,12 +17,12 @@ export class MessagePage implements OnResultComplete {
 
     @ViewChild(Content) content: Content;
     @ViewChild("userName", { read: ElementRef }) userName: ElementRef;
-    messageList: any = [];
+    messageList: { id: string, text: string, isOwner: boolean }[] = [];
     message: any;
     accId: string;
     id: string;
     name: string;
-    imgSource:any;
+    imgSource: any;
 
     constructor(public navCtrl: NavController, public navparams: NavParams, public translate: TranslateService,
         public storage: Storage, public messageTable: MessageTable, public events: Events, public zone: NgZone,
@@ -33,18 +33,20 @@ export class MessagePage implements OnResultComplete {
         this.name = navparams.get('name');
         this.imgSource = navparams.get('imgSource');
 
-        events.subscribe("message-added", (data) => {
-            console.log("event: message-added");
-          
-            if (data.conversationId == this.id) {
-                zone.run(() => {
-                    this.messageList.push({ text: data.content, isOwner: false });
-                    this.scrollToBottom();
-                });
-            }else{
-                this.showMessage("You have a new message"); 
-            }
-        });
+        // events.subscribe("message-added", (data) => {
+        //     console.log("event: message-added");
+
+        //     if (data.conversationId == this.id) {
+        //         zone.run(() => {
+        //             this.messageList.push({ text: data.content, isOwner: false });
+        //             this.scrollToBottom();
+        //         });
+        //     }else{
+        //         this.showMessage("You have a new message"); 
+        //     }
+        // });
+
+
     }
 
     onComplete(flag: string, json: any) {
@@ -60,9 +62,10 @@ export class MessagePage implements OnResultComplete {
                 } else {
                     isOwner = false;
                 }
-                this.messageList.push({ text: item.Inhalt, isOwner: isOwner });
+                this.messageList.push({ id: json[i].id, text: item.Inhalt, isOwner: isOwner });
             }
             this.scrollToBottom();
+            this.subscribeToMessageEvent();
         }
     }
 
@@ -71,7 +74,7 @@ export class MessagePage implements OnResultComplete {
      * @param event 
      */
     send(event) {
-        this.messageList.push({ text: this.message, isOwner: true, style: "" });
+
         var msg = {
             Anhang_Id: "",
             Betreff: "",
@@ -81,9 +84,11 @@ export class MessagePage implements OnResultComplete {
             Zeitstempel: this.messageTable.TIMESTAMP,
             HasSent: false
         }
-        this.messageTable.push(msg, "", this.onComplete);
-        this.message = "";
-        this.scrollToBottom();
+        this.messageTable.push(msg, "", (src, json) => {
+            this.messageList.push({ id: json.name, text: msg.Inhalt, isOwner: true });
+            this.scrollToBottom();
+        });
+        this.message = "";      
         console.log(msg);
     }
 
@@ -117,5 +122,22 @@ export class MessagePage implements OnResultComplete {
             position: 'top'
         });
         toast.present();
+    }
+
+    subscribeToMessageEvent() {
+        this.messageTable.onMessageReceived(this.id, (event) => {
+            console.log("onMessageReceived");
+            console.log(event);
+            var result = JSON.parse(event.data);
+            var path: string = result.path;
+            var id = path.substring(1, path.length);
+            console.log("id : " + id);
+            var data = result.data;
+            var lastMessage = this.messageList[this.messageList.length - 1];
+            if (path.length > 1 && id != lastMessage.id) {
+                this.messageList.push({ id: id, text: data.Inhalt, isOwner: false });
+                this.scrollToBottom();
+            }
+        });
     }
 }
