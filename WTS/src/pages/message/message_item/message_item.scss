@@ -5,7 +5,7 @@ message_item {
             position: absolute;
         }
 
-        div.main_bar{
+        .main_bar{
             height: 70px;
             width: 100%;
             top:0;
@@ -14,19 +14,19 @@ message_item {
             display: inline-flex;
         }
 
-        div.image_container{
+        .image_container{
             height: 100%;
             width: 70px;
             padding: 10px;
         }
 
-        div.image_bar{
+        .image_bar{
             height: 100%;
             width: 100%;
             position: relative;
         }
 
-        div.title_bar{
+        .title_bar{
             height: 100%;
             width: 85%;
             text-align: center;
@@ -37,13 +37,13 @@ message_item {
          
         }
 
-        div.message_content{
-            height: 85%;
+        .message_content{
+            height: 100%;
             width: 100%;
         }
 
         .scroll_view{
-            height: 78%;
+            height: 100%;
         }
 
         .txt{
@@ -73,22 +73,16 @@ message_item {
         }
 
 
-        div.text_bar{
+        .text_bar{
             width: 100%;
-            height:50px;
+            height:100%;
             bottom:0;
             left:0;
             position: absolute;
-            // background-color: #E5E9ED;
-            // background-color: brown;
+            background-color: #E5E9ED;
         }
 
-        // ion-scroll {
-        //     white-space: nowrap;
-        //     height: 79%;
-        // }
-
-        div.inner_bar{
+        .inner_bar{
             width: 100%;
             height: 50px;
             bottom:0;
@@ -101,7 +95,7 @@ message_item {
             margin-bottom: 3px;
         }
 
-        div.img_container{
+        .img_container{
             width: 45px;
             height: 45px;
             padding: 5px;
@@ -111,7 +105,7 @@ message_item {
             position: absolute;
         }
 
-        div.send_bar{
+        .send_bar{
             height: 100%;
             width: 100%;
         }

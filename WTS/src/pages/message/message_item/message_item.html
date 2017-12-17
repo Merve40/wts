@@ -1,50 +1,48 @@
-<div class="full">
-    <ion-header class="header">
-        <ion-navbar>
-            <button ion-button menuToggle>
-                <ion-icon name="menu"></ion-icon>
-            </button>
-            <ion-title>{{ 'MESSAGE' | translate }}</ion-title>
-        </ion-navbar>
-        <div class="main_bar">
-            <div class="image_container">
-                <div class="image_bar">
+<ion-header class="header">
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{ 'MESSAGE' | translate }}</ion-title>
+    </ion-navbar>
+    <div class="main_bar">
+        <div class="image_container">
+            <div class="image_bar">
+                <ion-avatar item-start>
+                    <img [src]='imgSource'>
+                </ion-avatar>
+            </div>
+        </div>
+
+        <div class="title_bar">
+            <ion-label #userName>test</ion-label>
+        </div>
+    </div>
+</ion-header>
+
+
+<ion-content id="content" #content style="height:100%;">
+    <div id="messageContent" class="message_content">
+        <div class="" *ngFor="let item of messageList;">
+            <!-- Display a message that is being received -->
+            <ion-label *ngIf="!item.isOwner" class="txt">{{item.text}}</ion-label>
+            <!-- Displays a message that is being sent -->
+            <ion-label *ngIf="item.isOwner" class="txt_owner">{{item.text}}</ion-label>
+        </div>
+    </div>
+</ion-content>
+
+<ion-footer style="background-color: #E5E9ED;">
+    <div class="text_bar">
+        <div class="inner_bar">
+            <ion-input id="msg" #msgInput [(ngModel)]="message" placeholder="type message" type="text" class="message"></ion-input>
+            <div class="img_container">
+                <div class="send_bar">
                     <ion-avatar item-start>
-                        <img [src]='imgSource'>
+                        <img (mousedown)="$event.preventDefault(); send($event)" src='assets/img/send_icon.png'>
                     </ion-avatar>
                 </div>
             </div>
-
-            <div class="title_bar">
-                <ion-label #userName>test</ion-label>
-            </div>
         </div>
-    </ion-header>
-
-
-    <ion-content id="content" #content class="" style="height:90%;">
-        <div id="messageContent" class="message_content">
-            <div class="" *ngFor="let item of messageList;">
-                <!-- Display a message that is being received -->
-                <ion-label *ngIf="!item.isOwner" class="txt">{{item.text}}</ion-label>
-                <!-- Displays a message that is being sent -->
-                <ion-label *ngIf="item.isOwner" class="txt_owner">{{item.text}}</ion-label>
-            </div>
-        </div>
-    </ion-content>
-
-    <ion-footer>
-        <div class="text_bar">
-            <div class="inner_bar">
-                <ion-input id="msg" #msgInput [(ngModel)]="message" placeholder="type message" type="text" class="message"></ion-input>
-                <div class="img_container">
-                    <div class="send_bar">
-                        <ion-avatar item-start>
-                            <img (mousedown)="$event.preventDefault(); send($event)" src='assets/img/send_icon.png'>
-                        </ion-avatar>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </ion-footer>
-</div>
+    </div>
+</ion-footer>
