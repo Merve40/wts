@@ -32,21 +32,6 @@ export class MessagePage implements OnResultComplete {
         this.id = navparams.get('id');
         this.name = navparams.get('name');
         this.imgSource = navparams.get('imgSource');
-
-        // events.subscribe("message-added", (data) => {
-        //     console.log("event: message-added");
-
-        //     if (data.conversationId == this.id) {
-        //         zone.run(() => {
-        //             this.messageList.push({ text: data.content, isOwner: false });
-        //             this.scrollToBottom();
-        //         });
-        //     }else{
-        //         this.showMessage("You have a new message"); 
-        //     }
-        // });
-
-
     }
 
     onComplete(flag: string, json: any) {
@@ -105,10 +90,6 @@ export class MessagePage implements OnResultComplete {
         this.userName.nativeElement.innerText = this.name;
     }
 
-    ionViewDidEnter() {
-        // this.scrollToBottom();
-    }
-
     scrollToBottom() {
         setTimeout(() => {
             this.content.scrollToBottom();
@@ -125,6 +106,7 @@ export class MessagePage implements OnResultComplete {
     }
 
     subscribeToMessageEvent() {
+        var self = this;
         this.messageTable.onMessageReceived(this.id, (event) => {
             console.log("onMessageReceived");
             console.log(event);
@@ -134,10 +116,36 @@ export class MessagePage implements OnResultComplete {
             console.log("id : " + id);
             var data = result.data;
             var lastMessage = this.messageList[this.messageList.length - 1];
-            if (path.length > 1 && id != lastMessage.id) {
+            if (path.length > 1 && id != lastMessage.id && data.Sender_Id != this.accId) {
                 this.messageList.push({ id: id, text: data.Inhalt, isOwner: false });
-                this.scrollToBottom();
+                console.log(self);
+                
+                self.scrollToBottom();
             }
         });
+    }
+}
+
+class MutexObject{
+
+    map = {};
+
+    requests:{callback:any}[] = [];
+    topics:string[] = [];
+
+    constructor(public object:any){
+    }
+
+    onAcquired(topic:string, callback:any):MutexObject{
+        this.requests.push({callback});
+        return this;
+    }
+
+    finish(){
+        
+    }
+
+    private execute(index:number, callback:any){
+        this.requests
     }
 }
