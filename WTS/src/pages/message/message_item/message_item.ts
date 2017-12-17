@@ -125,27 +125,3 @@ export class MessagePage implements OnResultComplete {
         });
     }
 }
-
-class MutexObject{
-
-    map = {};
-
-    requests:{callback:any}[] = [];
-    topics:string[] = [];
-
-    constructor(public object:any){
-    }
-
-    onAcquired(topic:string, callback:any):MutexObject{
-        this.requests.push({callback});
-        return this;
-    }
-
-    finish(){
-        
-    }
-
-    private execute(index:number, callback:any){
-        this.requests
-    }
-}
