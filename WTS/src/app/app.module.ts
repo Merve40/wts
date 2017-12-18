@@ -56,6 +56,7 @@ import { DataProvider } from '../providers/DataProvider';
 import { BlockTable } from '../providers/api/block';
 import { VisibilityTable } from '../providers/api/visibility';
 import { NotificationService } from '../providers/notification_service';
+import { EditPinPage } from '../pages/editpin/editpin';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { NotificationService } from '../providers/notification_service';
     Profile_EditPage,
     ListSearchPage,
     MapPage,
+    EditPinPage,
     ContactRequestPage,
     CompanyProfilePage,
     MessagePage,
@@ -107,6 +109,7 @@ import { NotificationService } from '../providers/notification_service';
     ListSearchPage,
     ContactRequestPage,
     MapPage,
+    EditPinPage,
     UniProfilePage,
     MessagePage,
     MessageListPage,
