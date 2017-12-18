@@ -55,6 +55,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { DataProvider } from '../providers/DataProvider';
 import { BlockTable } from '../providers/api/block';
 import { VisibilityTable } from '../providers/api/visibility';
+import { EditPinPage } from '../pages/editpin/editpin';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { VisibilityTable } from '../providers/api/visibility';
     Profile_EditPage,
     ListSearchPage,
     MapPage,
+    EditPinPage,
     ContactRequestPage,
     CompanyProfilePage,
     MessagePage,
@@ -106,6 +108,7 @@ import { VisibilityTable } from '../providers/api/visibility';
     ListSearchPage,
     ContactRequestPage,
     MapPage,
+    EditPinPage,
     UniProfilePage,
     MessagePage,
     MessageListPage,

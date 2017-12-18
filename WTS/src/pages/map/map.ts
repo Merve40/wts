@@ -8,7 +8,7 @@ import { SkillTable } from '../../providers/api/skill';
 import { Student_PassionTable } from '../../providers/api/student_passion';
 import { PassionTable } from '../../providers/api/passion';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
-import { HttpClient } from '@angular/common/http';
+import { EditPinPage } from '../editpin/editpin';
 
 @Component({
   selector: 'page-map',
@@ -17,7 +17,7 @@ import { HttpClient } from '@angular/common/http';
 export class MapPage implements OnResultComplete {
 
 
-  constructor(public navCtrl: NavController, public AdressTable: AdressTable, public StudentTable: StudentTable, public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable, public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable, public httpClient: HttpClient) {
+  constructor(public navCtrl: NavController, public AdressTable: AdressTable, public StudentTable: StudentTable, public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable, public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable) {
     StudentTable.setSrcClass(this);
     AccountTable.setSrcClass(this);
     AdressTable.setSrcClass(this);
@@ -34,17 +34,6 @@ export class MapPage implements OnResultComplete {
   }
 
   openSetPinPage() {
-
-    var url = "http://www.ynfynyty.net/mapapp/api/create.aspx?mapid=509&pwc=hg67UH!&backwardurl=www.testing.worktostudent.com";
-
-    var info = this.httpClient.get(url);
-    info
-      .subscribe(data => {
-        console.log('my data: ', data);
-      }, error => {
-        console.log('my error: ', error)
-      })
-
+    this.navCtrl.push(EditPinPage);
   }
 }
-

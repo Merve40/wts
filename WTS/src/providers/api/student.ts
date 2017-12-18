@@ -15,6 +15,7 @@ export interface Student{
     Semester: String;
     Studiengang: String;
     Uni: String;
+    PinSid: String;
     Vertiefung: String;
     Zeitstempel: String;
 }
