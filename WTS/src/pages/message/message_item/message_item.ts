@@ -5,6 +5,8 @@ import { Storage } from '@ionic/storage';
 import { OnResultComplete } from '../../../providers/api/OnResultComplete';
 import { MessageTable } from '../../../providers/api/message';
 import { Events } from 'ionic-angular/util/events';
+import { isPageActive } from '../../../app/app.component';
+import { NotificationService, NotificationEvent } from '../../../providers/notification_service';
 
 /**
  * Page for displaying conversation.
@@ -17,7 +19,7 @@ export class MessagePage implements OnResultComplete {
 
     @ViewChild(Content) content: Content;
     @ViewChild("userName", { read: ElementRef }) userName: ElementRef;
-    messageList: { id: string, text: string, isOwner: boolean }[] = [];
+    messageList: { text: string, isOwner: boolean }[] = [];
     message: any;
     accId: string;
     id: string;
@@ -26,7 +28,7 @@ export class MessagePage implements OnResultComplete {
 
     constructor(public navCtrl: NavController, public navparams: NavParams, public translate: TranslateService,
         public storage: Storage, public messageTable: MessageTable, public events: Events, public zone: NgZone,
-        public toastCtrl: ToastController) {
+        public toastCtrl: ToastController, public notificationService: NotificationService) {
 
         this.messageTable.setSrcClass(this);
         this.id = navparams.get('id');
@@ -41,13 +43,14 @@ export class MessagePage implements OnResultComplete {
 
             for (var i = 0; i < json.length; i++) {
                 var item = json[i].body;
+
                 var isOwner;
                 if (item.Sender_Id == this.accId) {
                     isOwner = true;
                 } else {
                     isOwner = false;
                 }
-                this.messageList.push({ id: json[i].id, text: item.Inhalt, isOwner: isOwner });
+                this.messageList.push({ text: item.Inhalt, isOwner: isOwner });
             }
             this.scrollToBottom();
             this.subscribeToMessageEvent();
@@ -59,7 +62,7 @@ export class MessagePage implements OnResultComplete {
      * @param event 
      */
     send(event) {
-
+        var self = this;
         var msg = {
             Anhang_Id: "",
             Betreff: "",
@@ -69,16 +72,10 @@ export class MessagePage implements OnResultComplete {
             Zeitstempel: this.messageTable.TIMESTAMP,
             HasSent: false
         }
-        this.messageTable.push(msg, "", (src, json) => {
-            this.messageList.push({ id: json.name, text: msg.Inhalt, isOwner: true });
-            this.scrollToBottom();
-        });
-        this.message = "";      
-        console.log(msg);
-    }
-
-    notification(data) {
-        console.log("in Message Page received notification : \n " + data);
+        this.messageTable.push(msg, "", (src, json) => {});
+        this.messageList.push({ text: msg.Inhalt, isOwner: true });
+        self.scrollToBottom();
+        this.message = "";
     }
 
     ngAfterViewInit() {
@@ -107,21 +104,13 @@ export class MessagePage implements OnResultComplete {
 
     subscribeToMessageEvent() {
         var self = this;
-        this.messageTable.onMessageReceived(this.id, (event) => {
-            console.log("onMessageReceived");
-            console.log(event);
-            var result = JSON.parse(event.data);
-            var path: string = result.path;
-            var id = path.substring(1, path.length);
-            console.log("id : " + id);
-            var data = result.data;
-            var lastMessage = this.messageList[this.messageList.length - 1];
-            if (path.length > 1 && id != lastMessage.id && data.Sender_Id != this.accId) {
-                this.messageList.push({ id: id, text: data.Inhalt, isOwner: false });
-                console.log(self);
-                
+
+        this.notificationService.subscribe(NotificationEvent.MESSAGE_RECEIVED, (fromServer, data) => {
+            if (fromServer) {
+                this.messageList.push({ text: data.content, isOwner: false });
                 self.scrollToBottom();
+                this.notificationService.notify(NotificationEvent.MESSAGE_RECEIVED, false, data);
             }
-        });
+        });       
     }
 }

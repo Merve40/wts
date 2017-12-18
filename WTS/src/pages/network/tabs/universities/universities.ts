@@ -4,6 +4,9 @@ import { UniProfilePage } from '../../../profile/university/profile';
 import { NavController } from 'ionic-angular/navigation/nav-controller';
 import { DataProvider, UserGroup } from '../../../../providers/DataProvider';
 import { Events } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+import { NotificationService, NotificationEvent } from '../../../../providers/notification_service';
+import { isPageActive } from '../../../../app/app.component';
 
 @Component({
     selector: 'university-tab',
@@ -13,18 +16,13 @@ export class UniversityNetwork {
 
     universities = [];
 
-    constructor(public dataProvider: DataProvider, public app: App, public events:Events) {
-        console.log("uni-tab");
+    constructor(public dataProvider: DataProvider, public app: App, public events:Events, public storage:Storage,
+                public notificationService:NotificationService) {
+       
+                    console.log("uni-tab");
         dataProvider.getUsersByGroup(UserGroup.UNIVERSITY).then((users)=>{
             this.universities = users;
-        });
-
-        events.subscribe("contact-accepted", data =>{
-            dataProvider.getNewUser(data.senderId, data.timestamp).then((user)=>{
-                if(user.usergroup == "group_3"){
-                    this.universities.push();
-                }                
-            });            
+            this.subscribe();
         });
     }
 
@@ -37,6 +35,20 @@ export class UniversityNetwork {
     }
 
     loadMore(event){
-        
+    }
+
+    subscribe() {
+        this.notificationService.subscribe(NotificationEvent.CONTACT_ACCEPTED, (fromServer, data) => {
+            if (!isPageActive(UniversityNetwork)) {
+                return;
+            }
+            if (fromServer) {
+                this.dataProvider.getNewUser(data.sender, data.timestamp).then(user => {
+                    this.universities.push(user);
+                });
+                this.notificationService.notify(NotificationEvent.CONTACT_ACCEPTED, false, data);
+            }
+
+        });
     }
 }

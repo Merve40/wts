@@ -3,6 +3,9 @@ import { Base } from './base';
 import { Api } from './api';
 import { Table } from './table';
 
+import * as EventSource from 'eventsource';
+import { eventNames } from 'cluster';
+
 export interface Conversation {
     Account_id1: string;
     Account_id2: string;
@@ -23,6 +26,5 @@ export class ConversationTable extends Base {
     push(account: Conversation, source: string, func: Function) {
         this.api.post(this, account, source, func, this.srcClass);
     }
-
 }
 

@@ -5,8 +5,9 @@ import { Storage } from '@ionic/storage';
 import { OnResultComplete } from '../../../providers/api/OnResultComplete';
 import { ConversationTable } from '../../../providers/api/conversation'
 import { MessagePage } from '../message_item/message_item';
-import { MessageTable } from '../../../providers/api/message';
 import * as moment from 'moment';
+import { isPageActive } from '../../../app/app.component';
+import { NotificationService, NotificationEvent } from '../../../providers/notification_service';
 
 export interface MessageItem {
     id: string;
@@ -36,25 +37,17 @@ export interface ConversationItem {
 })
 export class MessageListPage implements OnResultComplete {
 
-    unreadMessages = {};
     accID: string;
     messageArray: ConversationItem[] = new Array();
     users: MessageItem[] = new Array();
 
     constructor(public navCtrl: NavController, public navparams: NavParams, public translate: TranslateService,
-        public storage: Storage, public conversationTable: ConversationTable, public messageTable: MessageTable,
-        public events: Events) {
+        public storage: Storage, public conversationTable: ConversationTable, public events: Events,
+        public notificationService:NotificationService) {
 
         conversationTable.setSrcClass(this);
-        messageTable.setSrcClass(this);
+        console.log("created message-list page..");
 
-        this.unreadMessages = this.navparams.get("unreadMessages");
-
-        events.subscribe('message-received', (data) => {
-            console.log("MessageListPage: reloading conversations");
-            this.unreadMessages[data.conversationId] = { message: data.content, timestamp: data.Zeitstempel };
-            this.load().then(() => { });
-        });
     }
 
     load(): Promise<void> {
@@ -64,7 +57,7 @@ export class MessageListPage implements OnResultComplete {
             this.storage.get("user_id").then((id) => {
                 this.accID = id;
                 this.conversationTable.filterByValue("Account_Id_1", id, "query", this.onComplete);
-                this.conversationTable.filterByValue("Account_Id_2", id, "query2", this.onComplete);
+                
                 resolve();
             });
         });
@@ -79,7 +72,9 @@ export class MessageListPage implements OnResultComplete {
      */
     openMessage(user) {
         user.read = true;
-        this.events.publish("message-read", user.id);
+
+        //notifies everyone listening on this topic that message was read
+        this.notificationService.notify(NotificationEvent.MESSAGE_RECEIVED, false, user.id);
         this.navCtrl.push(MessagePage, { id: user.id, name: user.userName, imgSource: user.imgSource });
     }
 
@@ -99,7 +94,7 @@ export class MessageListPage implements OnResultComplete {
 
 
         if (flag == "query") {
-            if (json[0].body) {
+            if (json[0] && json[0].body) {
                 var arr: ConversationItem[] = json as ConversationItem[];
                 this.messageArray.push.apply(this.messageArray, arr);
                 for (var i = 0; i < this.messageArray.length; i++) {
@@ -112,13 +107,14 @@ export class MessageListPage implements OnResultComplete {
                         };
                         usr.dateTime = moment(json[parseInt(f)].Zeitstempel).format("HH:mm DD.MM.YYYY");
 
-                        if (this.unreadMessages[_id]) {
+                        if (this.notificationService.conversations[_id]) {
                             usr.read = false;
                         }
                         this.users.push(usr);
                     });
                 }
             }
+            this.conversationTable.filterByValue("Account_Id_2", this.accID, "query2", this.onComplete);
 
         } else if (flag == "query2") {
 
@@ -136,13 +132,14 @@ export class MessageListPage implements OnResultComplete {
                         };
                         usr.dateTime = moment(json[parseInt(f)].Zeitstempel).format("HH:mm DD.MM.YYYY");
 
-                        if (this.unreadMessages[_id]) {
+                        if (this.notificationService.conversations[_id]) {
                             usr.read = false;
                         }
                         this.users.push(usr);
                     });
                 }
             }
+            this.subscribeToConversationEvent();
         }
 
     }
@@ -159,5 +156,19 @@ export class MessageListPage implements OnResultComplete {
 
     ngAfterViewInit() {
         this.load();
+    }
+
+    subscribeToConversationEvent(){
+        console.log("subscribed to changes");
+        var self = this;
+        this.notificationService.subscribe(NotificationEvent.MESSAGE_RECEIVED, (fromServer,data)=>{
+            if(fromServer){
+                if(!isPageActive(MessageListPage)){
+                    return;
+                }
+                var user = self.users.find(usr => usr.id == data.conversationId);
+                user.read = false;
+            }
+        });
     }
 }

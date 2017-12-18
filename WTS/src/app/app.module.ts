@@ -55,6 +55,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { DataProvider } from '../providers/DataProvider';
 import { BlockTable } from '../providers/api/block';
 import { VisibilityTable } from '../providers/api/visibility';
+import { NotificationService } from '../providers/notification_service';
 
 @NgModule({
   declarations: [
@@ -146,6 +147,7 @@ import { VisibilityTable } from '../providers/api/visibility';
     MessageTable,
     BlockTable,
     VisibilityTable,
+    NotificationService,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

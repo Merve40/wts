@@ -7,6 +7,8 @@ import { StudentTable } from '../../providers/api/student';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
 import { Storage } from '@ionic/storage';
 import { Events } from 'ionic-angular';
+import { isPageActive } from '../../app/app.component';
+import { NotificationService, NotificationEvent } from '../../providers/notification_service';
 
 
 @Component({
@@ -19,21 +21,9 @@ export class ContactRequestPage implements OnResultComplete {
   accId;
 
   constructor(public storage: Storage, public navCtrl: NavController, public translate: TranslateService, public toastCtrl: ToastController, public ContactRequestTable: ContactRequestTable,
-    public StudentTable: StudentTable, public events: Events, public zone: NgZone) {
+    public StudentTable: StudentTable, public events: Events, public zone: NgZone, public notificationService:NotificationService) {
     ContactRequestTable.setSrcClass(this);
     StudentTable.setSrcClass(this);
-
-    //is triggered when a new contact-request is made
-    events.subscribe("contact-requested", (data) => {
-      zone.run(() => {
-        this.StudentTable.getUserTypeByAccountId(data.sender, "", (src, _json) => {
-          console.log("event: contact-requested");
-          var body = { sender: data.sender, request: false, receiver: data.receiver, message: data.message };
-          var user = this.addUser({ id: data.contactId, body: body }, _json);
-          this.students.push(user);
-        });
-      });
-    });
   }
 
   onComplete(src, json) {
@@ -45,12 +35,12 @@ export class ContactRequestPage implements OnResultComplete {
           var sender = json[i].body.sender;
           var request = json[i].body.request;
           if (!request) {
-           
-            this.StudentTable.getUserTypeByAccountId(sender, ""+i, (src, _json) => {
+
+            this.StudentTable.getUserTypeByAccountId(sender, "" + i, (src, _json) => {
               var index = parseInt(src);
               var data = json[index];
               var user = this.addUser(data, _json);
-              
+
               this.students.push(user);
             });
           }
@@ -114,14 +104,30 @@ export class ContactRequestPage implements OnResultComplete {
 
   ngAfterViewInit() {
     console.log("AfterView");
-    this.storage.get("user_id").then((id) => this.searchForRequests(id));
+    this.storage.get("user_id").then((id) => {
+      this.searchForRequests(id);
+
+      this.notificationService.subscribe(NotificationEvent.CONTACT_REQUESTED, (fromServer, data)=>{
+        if (!isPageActive(ContactRequestPage)) {
+          return;
+        }
+
+        this.StudentTable.getUserTypeByAccountId(data.body.sender, "", (src, _json) => {
+          console.log("event: contact-requested");
+          var body = { sender: data.sender, request: false, receiver: data.receiver, message: data.message };
+          var user = this.addUser({ id: data.id, body: body }, _json);
+          this.students.push(user);
+          this.notificationService.notify(NotificationEvent.CONTACT_REQUESTED, false, data);
+        });
+      });
+    });
   }
 }
 class User {
   id: string;
   name: string;
   description: string;
-  message:string;
+  message: string;
   json: any;
   constructor(id: string, name: string, description: string) {
     this.id = id;
