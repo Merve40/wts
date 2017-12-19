@@ -159,13 +159,34 @@ import { EditPinPage } from '../pages/editpin/editpin';
   ]
 })
 export class AppModule {
-  constructor(translate: TranslateService, global:Globalization) {
+  constructor(translate: TranslateService, global: Globalization) {
     // this language will be used as a fallback when a translation isn't found in the current language
     translate.setDefaultLang('en');
 
     // the lang to use, if the lang isn't available, it will use the current loader to get them
     translate.use('en');
-  } 
+
+    var sprache;
+    global.getPreferredLanguage().then(result => {
+      sprache = result.value;
+      console.log("NEXUS 10 Device Language is: " + sprache);
+    }
+    )
+
+
+    // global.getPreferredLanguage().then(result => switch(result) {
+    //   case '{"value":"de-DE"}':
+    //     translate.use('de')
+    //     break;
+    //   case '{"value":"en-US"}':
+    //     translate.use('en')
+    //     break;
+    //   default:
+    //     translate.setDefaultLang('en');
+    // }
+
+
+    } 
  }
 
 export function createTranslateLoader(http: HttpClient) {
