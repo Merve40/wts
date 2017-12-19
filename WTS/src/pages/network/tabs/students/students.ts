@@ -33,9 +33,6 @@ export class StudentNetwork {
         this.app.getRootNav().push(StudentProfilePage, { userId: id });
     }
 
-    loadMore(event){
-    }
-
     subscribe() {
         this.notificationService.subscribe(NotificationEvent.CONTACT_ACCEPTED, (fromServer, data) => {
             if (!isPageActive(StudentNetwork)) {

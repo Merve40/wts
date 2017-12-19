@@ -36,9 +36,6 @@ export class CompanyNetwork {
         this.app.getRootNav().push(CompanyProfilePage, { userId: id });
     }
 
-    loadMore(event) {
-    }
-
     subscribe() {
         this.notificationService.subscribe(NotificationEvent.CONTACT_ACCEPTED, (fromServer, data) => {
             if (!isPageActive(CompanyNetwork)) {

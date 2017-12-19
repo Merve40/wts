@@ -80,6 +80,8 @@ export class MessageListPage implements OnResultComplete {
 
     onComplete(flag: string, json: any) {
 
+        console.log(this.users);
+
         if (!json) {
             return;
         }
@@ -94,8 +96,6 @@ export class MessageListPage implements OnResultComplete {
                     : js.Universität ? js.Universität
                         : "John Doe";
         }
-
-
         if (flag == "query") {
             if (json.length > 0) {
                 var arr: ConversationItem[] = json as ConversationItem[];
@@ -108,7 +108,7 @@ export class MessageListPage implements OnResultComplete {
                             id: _id, userName: name, img: "", lastMessage: "", dateTime: "07.12.2017", read: true,
                             imgSource: this.getImageByGroup(_json.type)
                         };
-                        usr.dateTime = moment(json[parseInt(f)].Zeitstempel).format("HH:mm DD.MM.YYYY");
+                        usr.dateTime = moment(json[parseInt(f)].body.Zeitstempel).format("HH:mm DD.MM.YYYY");
 
                         if (this.notificationService.conversations[_id]) {
                             usr.read = false;
@@ -133,7 +133,7 @@ export class MessageListPage implements OnResultComplete {
                             id: _id, userName: name, img: "", lastMessage: "", dateTime: "07.12.2017", read: true,
                             imgSource: this.getImageByGroup(_json.type)
                         };
-                        usr.dateTime = moment(json[parseInt(f)].Zeitstempel).format("HH:mm DD.MM.YYYY");
+                        usr.dateTime = moment(json[parseInt(f)].body.Zeitstempel).format("HH:mm DD.MM.YYYY");
 
                         if (this.notificationService.conversations[_id]) {
                             usr.read = false;
@@ -144,7 +144,6 @@ export class MessageListPage implements OnResultComplete {
             }
             this.subscribeToConversationEvent();
         }
-
     }
 
     getImageByGroup(group: string) {
@@ -158,7 +157,11 @@ export class MessageListPage implements OnResultComplete {
     }
 
     ngAfterViewInit() {
-        this.load();
+        this.load().then(function () {
+            console.log("sortUsers");
+            //TODO
+            //this.sortUsers();
+        });
     }
 
     subscribeToConversationEvent() {
@@ -173,5 +176,17 @@ export class MessageListPage implements OnResultComplete {
                 user.read = false;
             }
         });
+    }
+
+    sortUsers() {
+
+        console.log("sorting");
+        console.log(this.users);
+        this.users.sort(function (a, b) {
+            if (a.dateTime < b.dateTime) return -1;
+            if (a.dateTime > b.dateTime) return 1;
+            return 0;
+        })
+        console.log(this.users);
     }
 }

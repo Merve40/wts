@@ -34,9 +34,6 @@ export class UniversityNetwork {
         this.app.getRootNav().push(UniProfilePage, { userId: id });
     }
 
-    loadMore(event){
-    }
-
     subscribe() {
         this.notificationService.subscribe(NotificationEvent.CONTACT_ACCEPTED, (fromServer, data) => {
             if (!isPageActive(UniversityNetwork)) {
