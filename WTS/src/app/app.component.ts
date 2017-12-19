@@ -268,12 +268,17 @@ export class MyApp {
   }
 
 
+
   setAppLanguage(global, translate) {
     global.getPreferredLanguage().then(result => console.log("This is my language result " + result));
     var sprache;
-    sprache = global.getPreferredLanguage()
+    global.getPreferredLanguage().then(result => {
+      sprache = result;
+      console.log("NEXUS 10 Device Language is: " + sprache);
+    }
+
+    ) // result is a promise
     //sprache = 'de'
-    console.log("NEXUS 10 Device Language is: " + JSON.stringify(sprache));
 
 
     //  sprache.then(result => switch (result){
