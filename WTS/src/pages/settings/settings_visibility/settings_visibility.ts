@@ -1,5 +1,14 @@
 import { Component } from '@angular/core';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
+import { Storage } from '@ionic/storage';
+import { BlockTable } from '../../../providers/api/block';
+import { VisibilityTable } from '../../../providers/api/visibility';
+
+interface Group {
+    student: boolean,
+    company: boolean,
+    university: boolean
+}
 
 @Component({
     selector: "settings-visibility",
@@ -7,67 +16,139 @@ import { NavParams } from 'ionic-angular/navigation/nav-params';
 })
 export class SettingsVisibility {
 
-    isExtern:boolean;
+    /**
+     * Data saves block-ids for each visibility-setting
+     */
+    data = {
+        personal: {
+            student: undefined,
+            company: undefined,
+            university: undefined
+        },
 
-    addressToggled:boolean = false; 
-    personalToggled:boolean = false;
-    studyToggled:boolean = false;
-    emailToggled:boolean = false;
+        study : {
+            student: undefined,
+            company: undefined,
+            university: undefined
+        },
 
-    toggle1 = false;
-    toggle2 = false;
-    toggle3 = false;
+        address : {
+            student: undefined,
+            company: undefined,
+            university: undefined
+        },
 
-    constructor(public navparams:NavParams){
-        this.isExtern = navparams.get("isExtern");
+        email : {
+            student: undefined,
+            company: undefined,
+            university: undefined
+        }
     }
 
-    changeSetting(number) {
+    /**
+     * Blocks saves actual value (true or false), which is corresponding to the data object
+     */
+    blocks = {
+        personal: {
+            student: undefined,
+            company: undefined,
+            university: undefined
+        },
 
+        study : {
+            student: undefined,
+            company: undefined,
+            university: undefined
+        },
+
+        address : {
+            student: undefined,
+            company: undefined,
+            university: undefined
+        },
+
+        email : {
+            student: undefined,
+            company: undefined,
+            university: undefined
+        }
+    }
+
+    addressToggled: boolean = false;
+    personalToggled: boolean = false;
+    studyToggled: boolean = false;
+    emailToggled: boolean = false;
+
+    isExtern: boolean;
+    prefix: string;
+
+    accID:string;
+
+    constructor(public navparams: NavParams, public storage:Storage, public blockTable:BlockTable, 
+                public visibilityTable:VisibilityTable) {
+
+        this.blockTable.setSrcClass(this);
+        this.visibilityTable.setSrcClass(this);
+                    
+        this.isExtern = navparams.get("isExtern");
+        if (this.isExtern) {
+            this.prefix = "extern_";
+        } else {
+            this.prefix = "intern_";
+        }
+    }
+
+    changeSetting(key) {
+        this.setValueByString(key);
     }
 
     toggleBlock(number) {
-        if(number == 0){
+        if (number == 0) {
             this.personalToggled = !this.personalToggled;
-        } else if(number == 1){
+        } else if (number == 1) {
             this.studyToggled = !this.studyToggled;
-        }else if(number == 2){
+        } else if (number == 2) {
             this.addressToggled = !this.addressToggled;
-        }else if(number == 3){
+        } else if (number == 3) {
             this.emailToggled = !this.emailToggled;
+        }
+    }
+
+    /**
+     * 
+     * @param key 
+     */
+    setValueByString(key:string){
+        var obj = key.replace("blocks.", "");
+        var keys = obj.split('.');
+
+        var value = this.blocks[keys[0]][keys[1]];
+        var blockId = this.data[keys[0]][keys[1]];
+        var group = this.getGroup(key);
+        //saves value into server
+
+    }
+
+    /**
+     * 
+     * @param key 
+     */
+    loadValueByString(blockId:string,key:string, value:boolean){
+        var obj = key.replace(this.prefix+"_", "");
+        var keys = obj.split('_');
+        console.log(this.blocks[keys[0]][keys[1]]);
+        this.blocks[keys[0]][keys[1]] = value;
+        this.data[keys[0]][keys[1]] = blockId;
+    }
+
+    getGroup(key:string){
+        if(key.includes("student")){
+            return "gruppe_1";
+        } else if(key.includes("company")){
+            return "gruppe_2";
+        }else if(key.includes("university")){
+            return "gruppe_3";
         }
     }
 }
 
-enum VisibilityBlock {
-    //INTERN-STUDENT
-    INTERN_STUDENT_ADDRESS = "intern_student_address",
-    INTERN_STUDENT_EMAIL = "intern_student_email",
-    INTERN_STUDENT_STUDY = "intern_student_study",
-    INTERN_STUDENT_PERSONAL = "intern_student_personal",
-    //INTERN-COMPANY
-    INTERN_COMPANY_ADDRESS = "intern_company_address",
-    INTERN_COMPANY_EMAIL = "intern_company_email",
-    INTERN_COMPANY_STUDY = "intern_company_study",
-    INTERN_COMPANY_PERSONAL = "intern_company_personal",
-    //INTERN-UNI
-    INTERN_UNI_ADDRESS = "intern_uni_address",
-    INTERN_UNI_EMAIL = "intern_uni_email",
-    INTERN_UNI_STUDY = "intern_uni_study",
-    INTERN_UNI_PERSONAL = "intern_company_personal",
-    //EXTERN-STUDENT
-    EXTERN_STUDENT_ADDRESS = "extern_student_address",
-    EXTERN_STUDENT_EMAIL = "extern_student_email",
-    EXTERN_STUDENT_STUDY = "extern_student_study",
-    EXTERN_STUDENT_PERSONAL = "extern_student_personal",
-    //EXTERN-COMPANY
-    EXTERN_COMPANY_ADDRESS = "extern_company_address",
-    EXTERN_COMPANY_EMAIL = "extern_company_email",
-    EXTERN_COMPANY_STUDY = "extern_company_study",
-    EXTERN_COMPANY_PERSONAL = "extern_company_personal",
-    //EXTERN-UNI
-    EXTERN_UNI_ADDRESS = "extern_uni_address",
-    EXTERN_UNI_EMAIL = "extern_uni_email",
-    EXTERN_UNI_STUDY = "extern_uni_study",
-    EXTERN_UNI_PERSONAL = "extern_uni_personal",
-  }
