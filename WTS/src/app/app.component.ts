@@ -274,7 +274,7 @@ export class MyApp {
     var sprache;
     global.getPreferredLanguage().then(result => {
       sprache = result;
-      console.log("NEXUS 10 Device Language is: " + sprache);
+      console.log("NEXUS 10 Device Language is: " + JSON.stringify(sprache));
     }
 
     ) // result is a promise

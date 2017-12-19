@@ -42,6 +42,7 @@
     "cordova-plugin-device-orientation": "^1.0.7",
     "cordova-plugin-fcm": "^2.1.2",
     "cordova-plugin-firebase": "^0.1.24",
+    "cordova-plugin-globalization": "^1.0.8",
     "cordova-plugin-ionic-webview": "^1.1.11",
     "cordova-plugin-screen-orientation": "^2.0.1",
     "cordova-plugin-splashscreen": "^4.1.0",
