@@ -269,28 +269,24 @@ export class MyApp {
 
 
 
-  setAppLanguage(global, translate) {
-    global.getPreferredLanguage().then(result => console.log("This is my language result " + result));
-    var sprache;
-    global.getPreferredLanguage().then(result => {
-      sprache = result;
-      console.log("NEXUS 10 Device Language is: " + JSON.stringify(sprache));
-    }
+  setAppLanguage(global, translate){
+   //  var sprache;
+  // global.getPreferredLanguage().then(result => {sprache = result;
+  //   console.log("NEXUS 10 Device Language is: "+ sprache);
+    
+  // }
 
-    ) // result is a promise
-    //sprache = 'de'
-
-
-    //  sprache.then(result => switch (result){
-    //    case 'de':
-    //     translate.use('de')
-    //      break;
-    //    case 'en':
-    //      translate.use('en')
-    //      break;
-    //    default: 
-    //    translate.setDefaultLang('en');
-    //  }
+  // )
+  //  sprache.then(result => switch (result){
+  //    case 'de':
+  //     translate.use('de')
+  //      break;
+  //    case 'en':
+  //      translate.use('en')
+  //      break;
+  //    default: 
+  //    translate.setDefaultLang('en');
+  //  }
   }
 
 
