@@ -269,7 +269,7 @@ export class MyApp {
 
 
   setAppLanguage(global){
-  //global.getPreferredLanguage().then(result => console.log("This is my language result "+result));
+  global.getPreferredLanguage().then(result => console.log("This is my language result "+result));
   //  global.getPreferredLanguage().then(result => switch (result){
   //    case 'de':
   //     translate.use('de')
