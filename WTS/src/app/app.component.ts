@@ -66,9 +66,8 @@ export class MyApp {
     public notificationService: NotificationService) {
 
     accountTable.setSrcClass(this);
-    this.initializeApp();
+    this.initializeApp(global);
 
-    this.setAppLanguage(global);
 
     translate.get(['LOGINPAGE', 'PROFILEPAGE', 'LOGOUT', 'LISTSEARCHPAGE', 'MAPPAGE', 'CONTACTREQUESTPAGE', 'MESSAGES', 'NETWORK', 'SETTINGS', 'NEWSFEEDPAGE']).subscribe(translations => {
       this.studentPages = [
@@ -128,7 +127,7 @@ export class MyApp {
     }
   }
 
-  initializeApp() {
+  initializeApp(global) {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
@@ -136,6 +135,7 @@ export class MyApp {
       //push notification is only initialized when app is deployed on a device or emulator
       if (this.platform.is('cordova')) {
         this.initializePushNotification();
+        this.setAppLanguage(global);
       }
     });
 
@@ -269,7 +269,7 @@ export class MyApp {
 
 
   setAppLanguage(global){
-  global.getPreferredLanguage().then(result => console.log("This is my language result "+result));
+  //global.getPreferredLanguage().then(result => console.log("This is my language result "+result));
   //  global.getPreferredLanguage().then(result => switch (result){
   //    case 'de':
   //     translate.use('de')
