@@ -84,6 +84,8 @@
       "cordova-plugin-background-mode": {},
       "cordova-plugin-fcm": {}
     },
-    "platforms": []
+    "platforms": [
+      "ios"
+    ]
   }
 }

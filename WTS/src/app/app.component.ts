@@ -135,7 +135,7 @@ export class MyApp {
       //push notification is only initialized when app is deployed on a device or emulator
       if (this.platform.is('cordova')) {
         this.initializePushNotification();
-        //his.setAppLanguage(global, translate);
+        this.setAppLanguage(global, translate);
       }
     });
 
@@ -268,28 +268,28 @@ export class MyApp {
   }
 
 
-  setAppLanguage(global, translate){
-  global.getPreferredLanguage().then(result => console.log("This is my language result "+result));
-   var sprache;
-   sprache = global.getPreferredLanguage()
-  //sprache = 'de'
-    console.log("NEXUS 10 Device Language is: "+ sprache);
+  setAppLanguage(global, translate) {
+    global.getPreferredLanguage().then(result => console.log("This is my language result " + result));
+    var sprache;
+    sprache = global.getPreferredLanguage()
+    //sprache = 'de'
+    console.log("NEXUS 10 Device Language is: " + JSON.stringify(sprache));
 
 
-  //  sprache.then(result => switch (result){
-  //    case 'de':
-  //     translate.use('de')
-  //      break;
-  //    case 'en':
-  //      translate.use('en')
-  //      break;
-  //    default: 
-  //    translate.setDefaultLang('en');
-  //  }
+    //  sprache.then(result => switch (result){
+    //    case 'de':
+    //     translate.use('de')
+    //      break;
+    //    case 'en':
+    //      translate.use('en')
+    //      break;
+    //    default: 
+    //    translate.setDefaultLang('en');
+    //  }
   }
 
 
-} 
+}
 export function isPageActive(page): boolean {
   return this.nav.last().instance instanceof page;
 }
