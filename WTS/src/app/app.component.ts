@@ -135,7 +135,7 @@ export class MyApp {
       //push notification is only initialized when app is deployed on a device or emulator
       if (this.platform.is('cordova')) {
         this.initializePushNotification();
-        //his.setAppLanguage(global, translate);
+        this.setAppLanguage(global, translate);
       }
     });
 
@@ -289,7 +289,7 @@ export class MyApp {
   }
 
 
-} 
+}
 export function isPageActive(page): boolean {
   return this.nav.last().instance instanceof page;
 }
