@@ -13,15 +13,26 @@
 
         <ion-list>
             <ion-item no-lines>
-                <ion-label class="profilesettings" stacked color="wts_blue"><h2>{{ 'PROFILESETTINGS' | translate }}</h2>
+                <ion-label class="profilesettings" stacked color="wts_blue">
+                    <h2>{{ 'PROFILESETTINGS' | translate }}</h2>
                 </ion-label>
             </ion-item>
 
-            <ion-item text-wrap >
-                <ion-label class="visibility" stacked color="wts_blue"><h2>{{ 'VISIBILITY' | translate }} </h2>
+            <ion-item text-wrap>
+                <ion-label class="visibility" stacked color="wts_blue">
+                    <h2>{{ 'VISIBILITY' | translate }} </h2>
                 </ion-label>
             </ion-item>
 
+            <ion-item text-wrap>
+                <ion-label (click)="navigateToVisibility(true)" class="network-extern">Außerhalb des Netzwerks</ion-label>
+            </ion-item>
+
+            <ion-item text-wrap>
+                <ion-label (click)="navigateToVisibility(false)" class="network-intern">Innerhalb des Netzwerks</ion-label>
+            </ion-item>
+
+            <!-- 
             <ion-item text-wrap>
                 <ion-label class="address" stacked color="wts_blue">{{ 'ADDRESS' | translate }}</ion-label>
                 <ion-label class="addressdescription" fixed stacked color="wts_grey"><small>{{ 'ADDRESSDESC' | translate }}</small></ion-label>
