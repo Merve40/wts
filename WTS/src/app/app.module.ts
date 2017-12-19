@@ -194,7 +194,7 @@ export class AppModule {
         }
 
       });
-
+    }
   //     var sprache;
   //     global.getPreferredLanguage().then(result => {
   //       sprache = result.value;
@@ -218,7 +218,8 @@ export class AppModule {
   //       }
   //     });
   //   }
-  // }
+
+}
 }
 
 export function createTranslateLoader(http: HttpClient) {

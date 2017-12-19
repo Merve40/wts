@@ -24,6 +24,14 @@
       </button>
     </div>
 
+    <div id="maildiv">
+      <button #mailButton *ngIf="canSend" id = "mail" ion-button color="wts_grey" (click)="mail()">
+        <!-- Insert mail icon here -->
+        <ion-icon class="icon-alignment" name="mail"></ion-icon>
+      </button>
+    </div>
+    
+
 
     <ion-list>
       <ion-item no-lines>
