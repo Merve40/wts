@@ -1,26 +1,28 @@
-.block-address{
+.padded{
+    padding: 5px;
+    background-color: #E5E9ED;
+}
+
+.block{
     padding: 10px;
-    background-color: pink;
-}
-
-.content-visibility{
-
-}
-
-.list{
-    background-color: brown;
 }
 
 .block-lbl{
     display:inline-flex;
     width: 100%;
-    background-color: brown;
 }
 
 .block-dropdown-icon{
-    width: 25px;
-    position: fixed;
-    right: 0;
-    margin-right: 20px;
-    align-items: center;
+    width: 8%;
+    position: relative;
+}
+
+.dropdown-image{
+    width: 100%;
+    margin-top: 35%;
+    margin-bottom: 35%;
+}
+
+.separator{
+    border-top: 1px solid #bfbfbf;
 }

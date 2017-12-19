@@ -66,7 +66,7 @@ export class MyApp {
     public notificationService: NotificationService) {
 
     accountTable.setSrcClass(this);
-    this.initializeApp(global, translate);
+    this.initializeApp();
 
 
     translate.get(['LOGINPAGE', 'PROFILEPAGE', 'LOGOUT', 'LISTSEARCHPAGE', 'MAPPAGE', 'CONTACTREQUESTPAGE', 'MESSAGES', 'NETWORK', 'SETTINGS', 'NEWSFEEDPAGE']).subscribe(translations => {
@@ -127,7 +127,7 @@ export class MyApp {
     }
   }
 
-  initializeApp(global, translate) {
+  initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
@@ -135,7 +135,6 @@ export class MyApp {
       //push notification is only initialized when app is deployed on a device or emulator
       if (this.platform.is('cordova')) {
         this.initializePushNotification();
-        //his.setAppLanguage(global, translate);
       }
     });
 
@@ -267,29 +266,7 @@ export class MyApp {
     }
   }
 
-
-  setAppLanguage(global, translate){
-  global.getPreferredLanguage().then(result => console.log("This is my language result "+result));
-   var sprache;
-   sprache = global.getPreferredLanguage()
-  //sprache = 'de'
-    console.log("NEXUS 10 Device Language is: "+ sprache);
-
-
-  //  sprache.then(result => switch (result){
-  //    case 'de':
-  //     translate.use('de')
-  //      break;
-  //    case 'en':
-  //      translate.use('en')
-  //      break;
-  //    default: 
-  //    translate.setDefaultLang('en');
-  //  }
-  }
-
-
-} 
+}
 export function isPageActive(page): boolean {
   return this.nav.last().instance instanceof page;
 }

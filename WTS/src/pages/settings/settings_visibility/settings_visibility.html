@@ -1,4 +1,4 @@
-<div class="full">
+<div class="full padded">
     <ion-header>
         <ion-navbar>
             <button ion-button menuToggle>
@@ -8,32 +8,121 @@
         </ion-navbar>
     </ion-header>
 
-
-    <ion-content class="content-visibility">
-
-        <div class="block-address">
-            <div class="block-lbl" (click)="toggleBlock(1)">
-                <ion-label  color="wts_blue">Address</ion-label>
+    <ion-content>
+        <div class="block">
+            <div class="block-lbl" (click)="toggleBlock(0)">
+                <ion-label color="wts_blue">Personal</ion-label>
                 <ion-avatar class="block-dropdown-icon" item-start>
-                    <img src='assets/icon/dropdown.png' alt="your image">
+                    <img class="dropdown-image" src='assets/icon/dropdown.png' alt="your image">
                 </ion-avatar>
             </div>
 
-            <ion-list class="list" *ngIf="addressToggled">
-                <ion-item>
-                    <ion-label>Students</ion-label>
-                    <ion-toggle [(ngModel)]="toggle1" (ionChange)="changeSetting(1)"></ion-toggle>
-                </ion-item>
-                <ion-item>
-                    <ion-label>Companies</ion-label>
-                    <ion-toggle [(ngModel)]="toggle2" (ionChange)="changeSetting(2)"></ion-toggle>
-                </ion-item>
-                <ion-item>
-                    <ion-label>Universities</ion-label>
-                    <ion-toggle [(ngModel)]="toggle3" (ionChange)="changeSetting(3)"></ion-toggle>
-                </ion-item>
-            </ion-list>
+            <div class="separator"></div>
+
+            <div *ngIf="personalToggled">
+                <ion-list>
+                    <ion-item>
+                        <ion-label>Students</ion-label>
+                        <ion-toggle [(ngModel)]="blocks.personal.student" (ionChange)="changeSetting('blocks.personal.student')"></ion-toggle>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Companies</ion-label>
+                        <ion-toggle [(ngModel)]="blocks.personal.company" (ionChange)="changeSetting('blocks.personal.company')"></ion-toggle>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Universities</ion-label>
+                        <ion-toggle [(ngModel)]="blocks.personal.university" (ionChange)="changeSetting('blocks.personal.university')"></ion-toggle>
+                    </ion-item>
+                </ion-list>
+            </div>
         </div>
-   
+
+        <div class="block">
+            <div class="block-lbl" (click)="toggleBlock(1)">
+                <ion-label color="wts_blue">Study</ion-label>
+                <ion-avatar class="block-dropdown-icon" item-start>
+                    <img class="dropdown-image" src='assets/icon/dropdown.png' alt="your image">
+                </ion-avatar>
+            </div>
+
+            <div class="separator"></div>
+
+            <div *ngIf="studyToggled">
+                <ion-list>
+                    <ion-item>
+                        <ion-label>Students</ion-label>
+                        <ion-toggle [(ngModel)]="blocks.study.student" (ionChange)="changeSetting('blocks.study.student')"></ion-toggle>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Companies</ion-label>
+                        <ion-toggle [(ngModel)]="blocks.study.company" (ionChange)="changeSetting('blocks.study.company')"></ion-toggle>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Universities</ion-label>
+                        <ion-toggle [(ngModel)]="blocks.study.university" (ionChange)="changeSetting('blocks.study.university')"></ion-toggle>
+                    </ion-item>
+                </ion-list>
+            </div>
+
+        </div>
+
+        <div class="block">
+            <div class="block-lbl" (click)="toggleBlock(2)">
+                <ion-label color="wts_blue">Address</ion-label>
+                <ion-avatar class="block-dropdown-icon" item-start>
+                    <img class="dropdown-image" src='assets/icon/dropdown.png' alt="your image">
+                </ion-avatar>
+            </div>
+
+            <div class="separator"></div>
+
+            <div *ngIf="addressToggled">
+                <ion-list>
+                    <ion-item>
+                        <ion-label>Students</ion-label>
+                        <ion-toggle [(ngModel)]="blocks.address.student" (ionChange)="changeSetting('blocks.address.student')"></ion-toggle>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Companies</ion-label>
+                        <ion-toggle [(ngModel)]="blocks.address.company" (ionChange)="changeSetting('blocks.address.company')"></ion-toggle>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Universities</ion-label>
+                        <ion-toggle [(ngModel)]="blocks.address.university" (ionChange)="changeSetting('blocks.address.university')"></ion-toggle>
+                    </ion-item>
+                </ion-list>
+            </div>
+
+        </div>
+
+        <div class="block">
+            <div class="block-lbl" (click)="toggleBlock(3)">
+                <ion-label color="wts_blue">Email</ion-label>
+                <ion-avatar class="block-dropdown-icon" item-start>
+                    <img class="dropdown-image" src='assets/icon/dropdown.png' alt="your image">
+                </ion-avatar>
+            </div>
+
+            <div class="separator"></div>
+
+            <div *ngIf="emailToggled">
+                <ion-list>
+                    <ion-item>
+                        <ion-label>Students</ion-label>
+                        <ion-toggle [(ngModel)]="blocks.email.student" (ionChange)="changeSetting('blocks.email.student')"></ion-toggle>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Companies</ion-label>
+                        <ion-toggle [(ngModel)]="blocks.email.company" (ionChange)="changeSetting('blocks.email.company')"></ion-toggle>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Universities</ion-label>
+                        <ion-toggle [(ngModel)]="blocks.email.university" (ionChange)="changeSetting('blocks.email.university')"></ion-toggle>
+                    </ion-item>
+                </ion-list>
+            </div>
+
+        </div>
+
     </ion-content>
 </div>
