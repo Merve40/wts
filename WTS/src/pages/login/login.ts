@@ -29,7 +29,6 @@ export class LoginPage implements OnResultComplete {
 
   login() {
     if (this.email && this.password) {
-
       this.accountTable.getByValue("Email", this.email.toLowerCase(), "1", this.onComplete);
     }
     else {
@@ -41,6 +40,11 @@ export class LoginPage implements OnResultComplete {
   }
 
   onComplete(source, json) {
+    
+    if(!json){
+      return;
+    }
+    
     if (source == "1") {
       if (json.body == null) {
         this.translate.get('INCORRECTLOGIN').subscribe(
@@ -50,6 +54,7 @@ export class LoginPage implements OnResultComplete {
       }
       else {
         this.validateUser(json);
+        
       }
     }
   }
@@ -88,7 +93,6 @@ export class LoginPage implements OnResultComplete {
       }
 
     } else {
-      console.log("Input was not correct");
       this.translate.get('INCORRECTLOGIN').subscribe(
         value => {
           this.showLoginError(value);
@@ -97,10 +101,9 @@ export class LoginPage implements OnResultComplete {
   }
 
   navigateToUserProfile(json: any) {
-    this.events.publish("login", json.body.Usergruppe);
+    this.events.publish("login", json.id, json.body.Usergruppe);
 
     this.storage.set("user_id", json.id).then(val => {
-      console.log("set storage user id : " + json.id);
       this.varier.forward(false, json.id);
     });
   }
@@ -116,7 +119,6 @@ export class LoginPage implements OnResultComplete {
 
   encrypt(password) {
     var hash = CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex);
-    console.log(hash);
     return hash;
   }
 

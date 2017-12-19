@@ -38,12 +38,9 @@ message_item {
         }
 
         .message_content{
-            height: 100%;
             width: 100%;
-        }
-
-        .scroll_view{
-            height: 100%;
+            height: 75%;
+            // position: relative;
         }
 
         .txt{
@@ -75,7 +72,7 @@ message_item {
 
         .text_bar{
             width: 100%;
-            height:100%;
+            height:50px;
             bottom:0;
             left:0;
             position: absolute;

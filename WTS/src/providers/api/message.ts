@@ -29,19 +29,4 @@ export class MessageTable extends Base {
     push(message: Message, source: string, func: Function) {
         this.api.post(this, message, source, func, this.srcClass);
     }
-
-    onMessageReceived(conversationId:string, callback){
-        console.log("creating event-source");
-        var url = "https://worktostudents.firebaseio.com/Nachricht"
-            +".json?orderBy=\"Konversation_Id\"&equalTo=\""+conversationId+"\"&limitToLast=1";
-        var eventSource = new EventSource(url); //EventSource is a basic library, thus integrated in Javascript
-        
-        if(eventSource != null || eventSource != undefined){
-            console.log("created event-source successfully..");
-            // eventSource.addEventListener("patch", callback);
-            eventSource.addEventListener("put", callback);
-            // eventSource.onmessage = callback;
-        }
-        
-    }
 }

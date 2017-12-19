@@ -28,6 +28,10 @@ export class UniProfilePage implements OnResultComplete {
 
   onComplete(src, json) {
 
+    if(!json){
+      return;
+    }
+
     //Auslesen der Daten aus Tabelle Student where AccID = AccID
     if (src == "uni-abfrage") {
         var body = json.body;

@@ -60,8 +60,8 @@ export class DataProvider {
         return new Promise<User[]>((resolve, reject) => {
             var array: User[] = [];
             this.ContactRequestTable.filterByValue(contacter, id, "", (src, json) => {
-                //promise gets rejected if data is empty
-                if (json[0].body == null) {
+
+                if (!json) {
                     return;
                 }
                 var promises: Promise<User>[] = [];
@@ -102,7 +102,7 @@ export class DataProvider {
     public getNewUser(id: string, timestamp: string): Promise<User> {
         return new Promise<User>((resolve, reject) => {
             this.ContactRequestTable.getUserTypeByAccountId(id, "", (src, json) => {
-                if(json.body == null){
+                if (!json) {
                     return;
                 }
                 var user;
@@ -146,7 +146,7 @@ class User {
     description: string;
     usergroup: string;
     timestamp: string;
-    imgSource:string;
+    imgSource: string;
     constructor(id: string, name: string, description: string) {
         this.id = id;
         this.name = name;

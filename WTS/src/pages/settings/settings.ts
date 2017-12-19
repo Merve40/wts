@@ -75,9 +75,13 @@ export class Settings implements OnResultComplete {
   onComplete(src, json) {
     //Auslesen der Daten aus Tabelle Student where AccID = AccID
 
+    if(!json){
+      return;
+    }
+
     if (src == "data") {
       console.log(json);
-      if (json[0].body != null) {
+      if (json.length > 0) {
         //loads all visibility settings by the current users account id
         for (let obj of json) {
           this.visibilityBlocks.push(obj);
@@ -124,6 +128,10 @@ export class Settings implements OnResultComplete {
 
     for (var i = 0; i < blockNames.length; i++) {
       this.blockTable.getByValue("Block_Name", blockNames[i], "" + i, (src, json) => {
+
+        if(!json){
+          return;
+        }
 
         this.blocks.push(json);
         var index = +src;

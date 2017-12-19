@@ -8,6 +8,10 @@ import { StudentNetwork } from './tabs/students/students';
 import { CompanyNetwork } from './tabs/companies/companies';
 import { UniversityNetwork } from './tabs/universities/universities';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { Storage } from '@ionic/storage';
+import { DataProvider } from '../../providers/DataProvider';
+import { isPageActive } from '../../app/app.component';
+import { NotificationService, NotificationEvent } from '../../providers/notification_service';
 
 /**
  * Page for displaying all contacts within the social network.
@@ -20,7 +24,7 @@ export class Network {
 
   @ViewChild(Tabs) tabs: Tabs;
 
-  index:any = 0;
+  index: any = 0;
 
   //each page is corresping to a tab
   page: any = TabsAll;
@@ -41,5 +45,5 @@ export class Network {
     console.log(ev);
     this.index = ev.index;
   }
-
+  
 }

@@ -31,7 +31,7 @@ export class Api {
      * @param src source class to use the 'this' identifier within the callback function
      */
     public delete(base: Base, id: string, source: string, func: Function, src: any): void {
-        if(!id || id.trim().length == 0){
+        if (!id || id.trim().length == 0) {
             return;
         }
         let tbl = base.table.toString();
@@ -311,10 +311,10 @@ export class Api {
      * @param func callback function to be called once the result is returned from the server
      * @param src source class to use the 'this' identifier within the callback function
      */
-    getByKeyValueSortedBy(body:any, flag:string, func:Function, src:any):void{
+    getByKeyValueSortedBy(body: any, flag: string, func: Function, src: any): void {
         var _url = "https://us-central1-worktostudents.cloudfunctions.net/sortBy";
-        var response = this.http.post(_url, body); 
-        response.forEach((obj)=>{
+        var response = this.http.post(_url, body);
+        response.forEach((obj) => {
             var json = JSON.parse(obj.text());
             func.apply(src, [flag, json]);
             return obj;
@@ -325,48 +325,24 @@ export class Api {
      * Retrieves the object with it'S id and returns the inner body.
      * @param json 
      */
-    private getInnerJson(json: string): any {
-        var _id = this.getJsonId(json);
-        var removeOuter = json.substr(1, json.length);
-        var start = removeOuter.indexOf("{") + 1;
-        var end = removeOuter.lastIndexOf("}") + 1;
-
-        var substr = json.substr(start, (end - start));
-
-        if (substr.length > 1) {
-            var _body = JSON.parse(substr);
-            return { id: _id, body: _body };
-        } else {
-            return { id: "", body: null };
+    private getInnerJson(data: string): any {
+        var json = JSON.parse(data);
+        if(!json){
+            return null;
         }
+        var id = Object.keys(json)[0];
+        var obj = {id, body: json[id]};
+        console.log(obj);
+        return obj;
     }
 
     private getInnerJsonArray(jarray: string) {
-        var removeOuter = jarray.substr(1, jarray.length - 2);
-        var replaced = removeOuter.split("},").join("} , ");
-
-        var arr = replaced.split(" , ");
-        var innerArr = [];
-
-        for (var i = 0; i < arr.length; i++) {
-            arr[i] = "{" + arr[i] + "}";
-            var json = this.getInnerJson(arr[i]);
-
-            innerArr.push(json);
+        var arr = [];
+        var jsonArray = JSON.parse(jarray);
+        for(var key in jsonArray){
+            arr.push({ id: key, body: jsonArray[key] });
         }
-        return innerArr;
-
+        console.log(arr);
+        return arr;
     }
-
-    private getJsonId(json: string): string {
-        var replaced = json.split("{").join(" ")
-            .split("}").join(" ")
-            .split(":").join(" ")
-            .split("\"").join(" ")
-            .split(",").join(" ")
-            .trim();
-        var id = replaced.split(" ")[0].trim();
-        return id;
-    }
-
 }

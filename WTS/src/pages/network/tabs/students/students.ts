@@ -3,6 +3,10 @@ import { App } from 'ionic-angular/components/app/app';
 import { StudentProfilePage } from '../../../profile/student/profile';
 import { DataProvider, UserGroup } from '../../../../providers/DataProvider';
 import { Events } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+import { NotificationService, NotificationEvent } from '../../../../providers/notification_service';
+import { isPageActive } from '../../../../app/app.component';
+
 
 @Component({
     selector: 'student-tab',
@@ -12,18 +16,12 @@ export class StudentNetwork {
 
     students = [];
 
-    constructor(public dataProvider: DataProvider, public app: App, public events:Events) {
+    constructor(public dataProvider: DataProvider, public app: App, public events:Events, public storage:Storage, 
+        public notificationService:NotificationService) {
         console.log("student-tab");
         dataProvider.getUsersByGroup(UserGroup.STUDENT).then((users)=>{
             this.students = users;
-        });
-
-        events.subscribe("contact-accepted", data =>{
-            dataProvider.getNewUser(data.senderId, data.timestamp).then((user)=>{
-                if(user.usergroup == "group_1"){
-                    this.students.push();
-                }                
-            });            
+            this.subscribe();
         });
     }
 
@@ -36,6 +34,19 @@ export class StudentNetwork {
     }
 
     loadMore(event){
-        
+    }
+
+    subscribe() {
+        this.notificationService.subscribe(NotificationEvent.CONTACT_ACCEPTED, (fromServer, data) => {
+            if (!isPageActive(StudentNetwork)) {
+                return;
+            }
+            if (fromServer) {
+                this.dataProvider.getNewUser(data.sender, data.timestamp).then(user => {
+                    this.students.push(user);
+                });
+                this.notificationService.notify(NotificationEvent.CONTACT_ACCEPTED, false, data);
+            }
+        });
     }
 }

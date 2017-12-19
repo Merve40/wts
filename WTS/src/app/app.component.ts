@@ -23,6 +23,7 @@ import { TranslateService } from '@ngx-translate/core';
 // import firebase from 'firebase';
 import { Storage } from '@ionic/storage';
 import { Globalization } from '@ionic-native/globalization';
+import { NotificationService, parseEvent, NotificationEvent } from '../providers/notification_service';
 
 enum PushCategory {
   MESSAGE = 'message',
@@ -32,7 +33,8 @@ enum PushCategory {
 
 enum Badge {
   MESSAGE = 'message',
-  CONTACT_REQUEST = 'contact'
+  CONTACT_REQUEST = 'contact',
+  NETWORK = 'network'
 }
 
 interface Page {
@@ -49,6 +51,7 @@ interface Page {
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
+  accId: string;
   unreadMessages = {};
   rootPage: any = LoginPage;
 
@@ -59,20 +62,11 @@ export class MyApp {
   constructor(public varier: Varier, public storage: Storage, public platform: Platform, public statusBar: StatusBar,
     public splashScreen: SplashScreen, public screenOrientation: ScreenOrientation,
     public translate: TranslateService, public fcm: FCM, public bgMode: BackgroundMode,
-    public accountTable: AccountTable, global: Globalization, public events: Events, public toastCtrl: ToastController) {
+    public accountTable: AccountTable, global: Globalization, public events: Events, public toastCtrl: ToastController,
+    public notificationService: NotificationService) {
 
     accountTable.setSrcClass(this);
     this.initializeApp();
-
-    //this event is only fired when usergroup company is being logged in
-    //changes the menu-items in the side-bar
-    this.events.subscribe("login", usergroup => {
-      if (usergroup == "gruppe_1") {
-        this.pages = this.studentPages;
-      } else if (usergroup == "gruppe_2") {
-        this.pages = this.companyPages;
-      }
-    });
 
     translate.get(['LOGINPAGE', 'PROFILEPAGE', 'LOGOUT', 'LISTSEARCHPAGE', 'MAPPAGE', 'CONTACTREQUESTPAGE', 'MESSAGES', 'NETWORK', 'SETTINGS', 'NEWSFEEDPAGE']).subscribe(translations => {
       this.studentPages = [
@@ -81,7 +75,7 @@ export class MyApp {
         { title: translations.LISTSEARCHPAGE, component: ListSearchPage, badgeName: '', badge: 0, badgeVisible: false },
         { title: translations.MAPPAGE, component: MapPage, badgeName: '', badge: 0, badgeVisible: false },
         { title: translations.MESSAGES, component: MessageListPage, badgeName: Badge.MESSAGE, badge: 0, badgeVisible: false },
-        { title: translations.NETWORK, component: Network, badgeName: '', badge: 0, badgeVisible: false },
+        { title: translations.NETWORK, component: Network, badgeName: Badge.NETWORK, badge: 0, badgeVisible: false },
         { title: translations.CONTACTREQUESTPAGE, component: ContactRequestPage, badgeName: Badge.CONTACT_REQUEST, badge: 0, badgeVisible: false },
         { title: translations.SETTINGS, component: Settings, badgeName: '', badge: 0, badgeVisible: false },
         { title: translations.LOGOUT, component: LoginPage, badgeName: '', badge: 0, badgeVisible: false }
@@ -90,6 +84,46 @@ export class MyApp {
       this.companyPages.splice(7, 1);
     });
 
+    //this event is only fired when usergroup company is being logged in
+    //changes the menu-items in the side-bar
+    this.events.subscribe("login", (id, usergroup) => {
+      this.accId = id;
+
+      if (usergroup == "gruppe_1") {
+        this.pages = this.studentPages;
+      } else if (usergroup == "gruppe_2") {
+        this.pages = this.companyPages;
+      }
+
+      //sets the amount of unanswered contact-requests
+      this.initalizeMenu();
+    });
+
+  }
+
+  initalizeMenu() {
+    var amount = this.notificationService.contactRequests;
+    var page = this.pages.find(p => p.badgeName == Badge.CONTACT_REQUEST);
+
+    if (amount) {
+      page.badge = amount;
+      page.badgeVisible = true;
+    }
+
+    var messages = this.notificationService.messages;
+    var mPage = this.pages.find(p => p.badgeName == Badge.MESSAGE);
+
+    if (messages) {
+      mPage.badge = messages;
+      mPage.badgeVisible = true;
+    }
+
+    var newContacts = this.notificationService.newContacts;
+    var cPage = this.pages.find(p => p.badgeName == Badge.NETWORK);
+    if (newContacts) {
+      cPage.badge = newContacts;
+      cPage.badgeVisible = true;
+    }
   }
 
   initializeApp() {
@@ -101,42 +135,34 @@ export class MyApp {
       if (this.platform.is('cordova')) {
         this.initializePushNotification();
       }
-
-    });
-    this.events.subscribe("message-read", (conversationId) => {
-      this.updateBadge(Badge.MESSAGE, false);
-      delete this.unreadMessages[conversationId];
-    });
-    this.events.subscribe("contact-request-viewed", () => {
-      this.updateBadge(Badge.CONTACT_REQUEST, false, 0);
     });
 
-    //restores badges and unreadMessages after application is opened
-    this.platform.resume.subscribe(() => {
-
-      this.pages.forEach((page) => {
-        if (page.badgeName) {
-          this.storage.get(page.badgeName).then((badge) => {
-            page.badge = badge;
-          });
-        }
-      });
-
-      this.storage.get("unread-messages").then(data => {
-        this.unreadMessages = data;
-      });
+    //initializing events
+    this.notificationService.subscribe(NotificationEvent.MESSAGE_RECEIVED, (data) => {
+      var page = this.pages.find(p => p.badgeName == Badge.MESSAGE);
+      page.badge = this.notificationService.messages;
+      page.badgeVisible = false;
+      if (this.notificationService.messages) {
+        page.badgeVisible = true;
+      }
     });
 
-    //saves badges before application is closed
-    this.platform.pause.subscribe(() => {
+    this.notificationService.subscribe(NotificationEvent.CONTACT_REQUESTED, (data) => {
+      var page = this.pages.find(p => p.badgeName == Badge.CONTACT_REQUEST);
+      page.badge = this.notificationService.contactRequests;
+      page.badgeVisible = false;
+      if (this.notificationService.contactRequests) {
+        page.badgeVisible = true;
+      }
+    });
 
-      this.pages.forEach(p => {
-        if (p.badgeName) {
-          this.storage.set(p.badgeName, p.badge);
-        }
-      });
-
-      this.storage.set("unread-messages", this.unreadMessages);
+    this.notificationService.subscribe(NotificationEvent.CONTACT_ACCEPTED, (data) => {
+      var page = this.pages.find(p => p.badgeName == Badge.NETWORK);
+      page.badge = this.notificationService.newContacts;
+      page.badgeVisible = false;
+      if (this.notificationService.newContacts) {
+        page.badgeVisible = true;
+      }
     });
   }
 
@@ -179,63 +205,46 @@ export class MyApp {
 
     this.fcm.onNotification().subscribe((data) => {
       console.log("==== RECEIVED NOTIFICATION ====");
-      console.log(JSON.stringify(data));
+
+      var event: NotificationEvent = parseEvent(data.category);
       if (data.wasTapped) {
+
         //TODO open page
         if (data.category == PushCategory.CONTACT) {
-          this.nav.setRoot(ContactRequestPage);
-          
+
+          this.notificationService.notify(event, true, data);
+
         } else if (data.category == PushCategory.MESSAGE) {
-          this.updateBadge(Badge.MESSAGE, true);
-          this.unreadMessages[data.conversationId] = {message: data.content, timestamp: data.Zeitstempel};
-          this.nav.setRoot(MessageListPage);
+
+          this.notificationService.notify(event, true, data);
 
         } else if (data.category == PushCategory.CONTACT_ACCEPTED) {
-          this.updateBadge(Badge.CONTACT_REQUEST, true);
-          this.nav.setRoot(Network);
+
+          this.notificationService.notify(event, true, data);
         }
 
 
       } else {
         console.log("not tapped!");
-        if (data.category == PushCategory.CONTACT) { //handles contact notification
+
+        if (data.category == PushCategory.CONTACT) {
+
           console.log("PushCategory: Contact-Request");
-          this.updateBadge(Badge.CONTACT_REQUEST, true);
+          this.notificationService.notify(event, true, data);
+          showMessage("You have a new contact request");
 
-          // if ContactRequestPage is in foreground
-          if (this.nav.last().instance instanceof ContactRequestPage) {
-            this.events.publish("contact-requested", data);
+        } else if (data.category == PushCategory.MESSAGE) {
 
-          } else {
-            //TODO: translation + show sender name 
-            showMessage("You have a new contact-request!");
-          }
-
-        } else if (data.category == PushCategory.MESSAGE) { //handles message notification
           console.log("PushCategory: Message");
-          this.updateBadge(Badge.MESSAGE, true);
-          this.unreadMessages[data.conversationId] = {message: data.content, timestamp: data.Zeitstempel};
-          // if MessagePage is in foreground
-          if (this.nav.last().instance instanceof MessagePage) {
-            this.events.publish("message-added", data);
-            
-          } else if(this.nav.last().instance instanceof MessageListPage){
-            console.log("event:message-received");  
-            this.events.publish("message-received", data);      
-               
-
-          } else {
-            //TODO: translation + show sender name 
-            showMessage("You have a new message");
-          }
+          this.notificationService.notify(event, true, data);
+          showMessage("You have a new message");
 
         } else if (data.category == PushCategory.CONTACT_ACCEPTED) {
+
           console.log("PushCategory: CONTACT_ACCEPTED");
-          if (this.nav.last().instance instanceof Network) {
-            this.events.publish("contact-accepted", data);
-          } else {
-            showMessage("Your request got accepted!");
-          }
+          this.notificationService.notify(event, true, data);
+          showMessage("Your contact request got accepted");
+
         }
       }
     });
@@ -248,48 +257,14 @@ export class MyApp {
   openPage(page) {
     if (page.component === "Varier") {
       this.varier.forward(false, undefined);
-    } else if (page.component == MessageListPage) {
-      this.nav.setRoot(page.component, { unreadMessages: this.unreadMessages });
     } else {
       if (page.component == LoginPage) {
-        this.storage.clear();
+        this.storage.set("user_id", undefined);
       }
       this.nav.setRoot(page.component);
     }
   }
-
-  /**
-   * Updates the badge number on the menu bar.
-   * 
-   * @param badge Badge Item e.g. MessagePage 
-   * @param doIncrement boolean
-   */
-  updateBadge(badge: Badge, doIncrement: boolean, badgeNumber?: number): void {
-    this.pages.forEach(page => {
-      if (page.badgeName == badge) {
-        if (badgeNumber) {
-          page.badge = badgeNumber;
-          if (doIncrement) {
-            page.badgeVisible = true;
-          } else {
-            page.badgeVisible = false;
-          }
-          return;
-
-        } else if (doIncrement) {
-          page.badge = page.badge + 1;
-          page.badgeVisible = true;
-          return;
-
-        } else {
-          page.badge = page.badge - 1;
-          if (page.badge == 0) {
-            page.badgeVisible = false;
-          }
-          return;
-        }
-      }
-    });
-  }
-
+}
+export function isPageActive(page): boolean {
+  return this.nav.last().instance instanceof page;
 }
