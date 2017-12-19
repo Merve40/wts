@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { OnResultComplete } from '../../providers/api/OnResultComplete';
 import { BlockTable } from '../../providers/api/block';
 import { Storage } from '@ionic/storage';
+import { SettingsVisibility } from './settings_visibility/settings_visibility';
 
 
 /**
@@ -48,6 +49,11 @@ export class Settings implements OnResultComplete {
     this.visibility.setSrcClass(this);
     this.storage.get("user_id").then(id => this.loadData(id));
 
+  }
+
+  navigateToVisibility(isExtern){
+    console.log("clicked!");
+    this.navCtrl.push(SettingsVisibility);
   }
 
   /**
