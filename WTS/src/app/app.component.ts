@@ -68,6 +68,8 @@ export class MyApp {
     accountTable.setSrcClass(this);
     this.initializeApp();
 
+    this.setAppLanguage(global);
+
     translate.get(['LOGINPAGE', 'PROFILEPAGE', 'LOGOUT', 'LISTSEARCHPAGE', 'MAPPAGE', 'CONTACTREQUESTPAGE', 'MESSAGES', 'NETWORK', 'SETTINGS', 'NEWSFEEDPAGE']).subscribe(translations => {
       this.studentPages = [
         { title: translations.PROFILEPAGE, component: "Varier", badgeName: '', badge: 0, badgeVisible: false },
@@ -264,7 +266,24 @@ export class MyApp {
       this.nav.setRoot(page.component);
     }
   }
-}
+
+
+  setAppLanguage(global){
+  global.getPreferredLanguage().then(result => console.log("This is my language result "+result));
+  //  global.getPreferredLanguage().then(result => switch (result){
+  //    case 'de':
+  //     translate.use('de')
+  //      break;
+  //    case 'en':
+  //      translate.use('en')
+  //      break;
+  //    default: 
+  //    translate.setDefaultLang('en');
+  //  }
+  }
+
+
+} 
 export function isPageActive(page): boolean {
   return this.nav.last().instance instanceof page;
 }
