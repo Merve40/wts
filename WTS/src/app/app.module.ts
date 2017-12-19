@@ -172,7 +172,7 @@ export class AppModule {
       var sprache;
       global.getPreferredLanguage().then(result => {
         sprache = result.value;
-        //console.log("Device Language is: " + sprache);
+        console.log("Device Language is: " + sprache);
 
         switch (sprache) {
           case 'de-DE':
