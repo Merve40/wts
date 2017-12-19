@@ -66,7 +66,7 @@ export class Profile_EditPage {
       var date = moment(this.Abschluss_Datum, "YYYY-MM-DD").format("DD.MM.YYYY");
       this.studentjson.body.Abschluss_Datum = date;
       var birthdate = moment(this.Geb_Datum, "YYYY-MM-DD").format("DD.MM.YYYY");
-      this.studentjson.body.Geb_Datum = date;
+      this.studentjson.body.Geb_Datum = birthdate;
       this.studentjson.body.Studiengang = this.Studiengang;
       this.studentjson.body.Semester = this.Semester;
       this.studentjson.body.Nachname = this.Nachname;
