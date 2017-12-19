@@ -161,22 +161,6 @@ export class AppModule {
 
     // the lang to use, if the lang isn't available, it will use the current loader to get them
     translate.use('en');
-    //global.getPreferredLanguage().then(result => console.log("MEINE SPRACHE IST "+result));
-
-    global.getPreferredLanguage().then(result => switch (result){
-      //     case 'de':{
-      //       translate.use('de')
-      //       break;
-      //     }
-      //     case 'en':{
-      //       translate.use('en')
-      //       break;
-      //     }
-      //     default: {
-      //     translate.setDefaultLang('en');
-      //   }};
-
-
   } 
  }
 
