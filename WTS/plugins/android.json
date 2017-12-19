@@ -24,6 +24,9 @@
     },
     "cordova-plugin-fcm": {
       "PACKAGE_NAME": "com.wts"
+    },
+    "cordova-plugin-globalization": {
+      "PACKAGE_NAME": "com.wts"
     }
   },
   "dependent_plugins": {}

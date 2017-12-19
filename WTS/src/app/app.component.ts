@@ -268,6 +268,7 @@ export class MyApp {
   }
 
 
+
   setAppLanguage(global, translate){
    //  var sprache;
   // global.getPreferredLanguage().then(result => {sprache = result;

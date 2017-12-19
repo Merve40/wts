@@ -50,7 +50,7 @@
   "cordova-plugin-splashscreen": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-splashscreen@4.1.0"
+      "id": "cordova-plugin-splashscreen@~4.0.1"
     },
     "is_top_level": true,
     "variables": {}
@@ -71,26 +71,10 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-statusbar": {
+  "cordova-plugin-globalization": {
     "source": {
       "type": "registry",
-      "id": "https://github.com/apache/cordova-plugin-statusbar.git"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-splashscreen": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-splashscreen@~4.0.1"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-splashscreen": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-splashscreen@~4.0.1"
+      "id": "cordova-plugin-globalization@^1.0.8"
     },
     "is_top_level": true,
     "variables": {}
