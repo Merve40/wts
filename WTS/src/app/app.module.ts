@@ -59,6 +59,7 @@ import { BlockTable } from '../providers/api/block';
 import { VisibilityTable } from '../providers/api/visibility';
 import { NotificationService } from '../providers/notification_service';
 import { EditPinPage } from '../pages/editpin/editpin';
+import { Platform } from 'ionic-angular/platform/platform';
 
 @NgModule({
   declarations: [
@@ -159,50 +160,42 @@ import { EditPinPage } from '../pages/editpin/editpin';
   ]
 })
 export class AppModule {
-  constructor(translate: TranslateService, global: Globalization) {
+  constructor(translate: TranslateService, global: Globalization, platform: Platform) {
     // this language will be used as a fallback when a translation isn't found in the current language
-   //translate.setDefaultLang('en');
+    translate.setDefaultLang('en');
 
     // the lang to use, if the lang isn't available, it will use the current loader to get them
     //translate.use('en');
 
-    var sprache;
-    global.getPreferredLanguage().then(result => {
-      sprache = result.value;
-      console.log("NEXUS 10 Device Language is: " + sprache);
+    if (platform.is('cordova')) {
 
-      switch(sprache){
-        case 'de-DE':
-        translate.use('de')
-        break;
-        
-        case 'en-US':
-        translate.use('en');
-        break;
+      var sprache;
+      global.getPreferredLanguage().then(result => {
+        sprache = result.value;
+        console.log("NEXUS 10 Device Language is: " + sprache);
 
-        default: 
-        translate.use('en');
+        switch (sprache) {
+          case 'de-DE':
+            translate.use('de')
+            break;
+
+          case 'en-US':
+            translate.use('en');
+            break;
+
+          case 'en-GB':
+            translate.use('en');
+            break;
+
+          default:
+            translate.use('en');
+        }
       }
-
+      )
 
     }
-    )
-
-
-    // global.getPreferredLanguage().then(result => switch(result) {
-    //   case '{"value":"de-DE"}':
-    //     translate.use('de')
-    //     break;
-    //   case '{"value":"en-US"}':
-    //     translate.use('en')
-    //     break;
-    //   default:
-    //     translate.setDefaultLang('en');
-    // }
-
-
-    } 
- }
+  }
+}
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
