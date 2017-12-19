@@ -27,6 +27,10 @@ export class CompanyProfilePage implements OnResultComplete {
 
   onComplete(src, json) {
 
+    if(!json){
+      return;
+    }
+
     //Auslesen der Daten aus Tabelle Student where AccID = AccID
     if (src == "company-abfrage") {
       var body = json.body;

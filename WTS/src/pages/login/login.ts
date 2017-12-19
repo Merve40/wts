@@ -40,6 +40,11 @@ export class LoginPage implements OnResultComplete {
   }
 
   onComplete(source, json) {
+    
+    if(!json){
+      return;
+    }
+    
     if (source == "1") {
       if (json.body == null) {
         this.translate.get('INCORRECTLOGIN').subscribe(

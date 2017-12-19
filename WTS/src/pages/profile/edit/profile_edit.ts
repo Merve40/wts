@@ -99,6 +99,10 @@ export class Profile_EditPage {
   
 
   onComplete(src, json) {
+    if(!json){
+      return;
+    }
+    
     //Auslesen der Daten aus Tabelle Student where AccID = AccID
     if (src == "student-abfrage") {
       console.log(json);

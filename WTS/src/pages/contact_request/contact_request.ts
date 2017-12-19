@@ -21,29 +21,31 @@ export class ContactRequestPage implements OnResultComplete {
   accId;
 
   constructor(public storage: Storage, public navCtrl: NavController, public translate: TranslateService, public toastCtrl: ToastController, public ContactRequestTable: ContactRequestTable,
-    public StudentTable: StudentTable, public events: Events, public zone: NgZone, public notificationService:NotificationService) {
+    public StudentTable: StudentTable, public events: Events, public zone: NgZone, public notificationService: NotificationService) {
     ContactRequestTable.setSrcClass(this);
     StudentTable.setSrcClass(this);
   }
 
   onComplete(src, json) {
+
+    if(!json){
+      return;
+    }
     if (src == "contact-request") {
       for (var i = 0; i < json.length; i++) {
-        if (json[i].body == null) {
-          break;
-        } else {
-          var sender = json[i].body.sender;
-          var request = json[i].body.request;
-          if (!request) {
 
-            this.StudentTable.getUserTypeByAccountId(sender, "" + i, (src, _json) => {
-              var index = parseInt(src);
-              var data = json[index];
-              var user = this.addUser(data, _json);
+        var sender = json[i].body.sender;
+        var request = json[i].body.request;
+        if (!request) {
 
-              this.students.push(user);
-            });
-          }
+          this.StudentTable.getUserTypeByAccountId(sender, "" + i, (src, _json) => {
+            var index = parseInt(src);
+            var data = json[index];
+            var user = this.addUser(data, _json);
+
+            this.students.push(user);
+          });
+
         }
       }
     }
@@ -107,7 +109,7 @@ export class ContactRequestPage implements OnResultComplete {
     this.storage.get("user_id").then((id) => {
       this.searchForRequests(id);
 
-      this.notificationService.subscribe(NotificationEvent.CONTACT_REQUESTED, (fromServer, data)=>{
+      this.notificationService.subscribe(NotificationEvent.CONTACT_REQUESTED, (fromServer, data) => {
         if (!isPageActive(ContactRequestPage)) {
           return;
         }

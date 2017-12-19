@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { MapPage } from '../Map/map';
+import { MapPage } from '../map/map';
 import { StudentTable } from '../../providers/api/student';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';

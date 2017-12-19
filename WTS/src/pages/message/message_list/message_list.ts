@@ -43,7 +43,7 @@ export class MessageListPage implements OnResultComplete {
 
     constructor(public navCtrl: NavController, public navparams: NavParams, public translate: TranslateService,
         public storage: Storage, public conversationTable: ConversationTable, public events: Events,
-        public notificationService:NotificationService) {
+        public notificationService: NotificationService) {
 
         conversationTable.setSrcClass(this);
         console.log("created message-list page..");
@@ -57,7 +57,7 @@ export class MessageListPage implements OnResultComplete {
             this.storage.get("user_id").then((id) => {
                 this.accID = id;
                 this.conversationTable.filterByValue("Account_Id_1", id, "query", this.onComplete);
-                
+
                 resolve();
             });
         });
@@ -80,6 +80,9 @@ export class MessageListPage implements OnResultComplete {
 
     onComplete(flag: string, json: any) {
 
+        if (!json) {
+            return;
+        }
         /**
          * Since the usergroup is not known during the query, 
          * the name is composed by checking all cases for each usergroup.
@@ -94,7 +97,7 @@ export class MessageListPage implements OnResultComplete {
 
 
         if (flag == "query") {
-            if (json[0] && json[0].body) {
+            if (json.length > 0) {
                 var arr: ConversationItem[] = json as ConversationItem[];
                 this.messageArray.push.apply(this.messageArray, arr);
                 for (var i = 0; i < this.messageArray.length; i++) {
@@ -118,7 +121,7 @@ export class MessageListPage implements OnResultComplete {
 
         } else if (flag == "query2") {
 
-            if (json[0].body) {
+            if (json.length > 0) {
                 var arr: ConversationItem[] = json as ConversationItem[];
                 this.messageArray.push.apply(this.messageArray, arr);
 
@@ -158,12 +161,12 @@ export class MessageListPage implements OnResultComplete {
         this.load();
     }
 
-    subscribeToConversationEvent(){
+    subscribeToConversationEvent() {
         console.log("subscribed to changes");
         var self = this;
-        this.notificationService.subscribe(NotificationEvent.MESSAGE_RECEIVED, (fromServer,data)=>{
-            if(fromServer){
-                if(!isPageActive(MessageListPage)){
+        this.notificationService.subscribe(NotificationEvent.MESSAGE_RECEIVED, (fromServer, data) => {
+            if (fromServer) {
+                if (!isPageActive(MessageListPage)) {
                     return;
                 }
                 var user = self.users.find(usr => usr.id == data.conversationId);

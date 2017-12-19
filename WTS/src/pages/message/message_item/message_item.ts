@@ -37,6 +37,9 @@ export class MessagePage implements OnResultComplete {
     }
 
     onComplete(flag: string, json: any) {
+        if (!json) {
+            return;
+        }
 
         // retrieves all messages corresponding to the conversation id, sorted by the timestamp
         if (flag == "nachrichten-abfrage") {
@@ -72,7 +75,7 @@ export class MessagePage implements OnResultComplete {
             Zeitstempel: this.messageTable.TIMESTAMP,
             HasSent: false
         }
-        this.messageTable.push(msg, "", (src, json) => {});
+        this.messageTable.push(msg, "", (src, json) => { });
         this.messageList.push({ text: msg.Inhalt, isOwner: true });
         self.scrollToBottom();
         this.message = "";
@@ -111,6 +114,6 @@ export class MessagePage implements OnResultComplete {
                 self.scrollToBottom();
                 this.notificationService.notify(NotificationEvent.MESSAGE_RECEIVED, false, data);
             }
-        });       
+        });
     }
 }
