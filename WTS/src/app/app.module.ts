@@ -24,6 +24,8 @@ import { MessagePage } from '../pages/message/message_item/message_item';
 import { MessageListPage } from '../pages/message/message_list/message_list';
 import { Network } from '../pages/network/network';
 import { Settings } from '../pages/settings/settings';
+import { SettingsVisibility } from '../pages/settings/settings_visibility/settings_visibility';
+
 
 import { Api } from '../providers/api/api';
 import { AccountTable } from '../providers/api/account';
@@ -81,6 +83,7 @@ import { EditPinPage } from '../pages/editpin/editpin';
     CompanyNetwork,
     TabsAll,
     Settings,
+    SettingsVisibility,
     ModalContact,
     NewsfeedPage
   ],
@@ -92,7 +95,7 @@ import { EditPinPage } from '../pages/editpin/editpin';
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     SuperTabsModule.forRoot(),
-        TranslateModule.forRoot({
+    TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: (createTranslateLoader),
@@ -122,6 +125,7 @@ import { EditPinPage } from '../pages/editpin/editpin';
     UniversityNetwork,
     CompanyNetwork,
     Settings,
+    SettingsVisibility,
     TabsAll,
     ModalContact,
     NewsfeedPage
@@ -161,22 +165,6 @@ export class AppModule {
 
     // the lang to use, if the lang isn't available, it will use the current loader to get them
     translate.use('en');
-    //global.getPreferredLanguage().then(result => console.log("MEINE SPRACHE IST "+result));
-
-    global.getPreferredLanguage().then(result => switch (result){
-      //     case 'de':{
-      //       translate.use('de')
-      //       break;
-      //     }
-      //     case 'en':{
-      //       translate.use('en')
-      //       break;
-      //     }
-      //     default: {
-      //     translate.setDefaultLang('en');
-      //   }};
-
-
   } 
  }
 
