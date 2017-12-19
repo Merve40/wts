@@ -190,9 +190,7 @@ export class AppModule {
           default:
             translate.use('en');
         }
-      }
-      )
-
+      });
     }
   }
 }
