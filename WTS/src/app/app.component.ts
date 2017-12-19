@@ -139,8 +139,11 @@ export class MyApp {
     });
 
     //initializing events
-    this.notificationService.subscribe(NotificationEvent.MESSAGE_RECEIVED, (data) => {
+    this.notificationService.subscribe(NotificationEvent.MESSAGE_RECEIVED, (fromServer,data) => {
+      console.log("received notification..");
       var page = this.pages.find(p => p.badgeName == Badge.MESSAGE);
+      console.log("page found : "); 
+      console.log(page);
       page.badge = this.notificationService.messages;
       page.badgeVisible = false;
       if (this.notificationService.messages) {
@@ -148,7 +151,7 @@ export class MyApp {
       }
     });
 
-    this.notificationService.subscribe(NotificationEvent.CONTACT_REQUESTED, (data) => {
+    this.notificationService.subscribe(NotificationEvent.CONTACT_REQUESTED, (fromServer,data) => {
       var page = this.pages.find(p => p.badgeName == Badge.CONTACT_REQUEST);
       page.badge = this.notificationService.contactRequests;
       page.badgeVisible = false;
@@ -157,7 +160,7 @@ export class MyApp {
       }
     });
 
-    this.notificationService.subscribe(NotificationEvent.CONTACT_ACCEPTED, (data) => {
+    this.notificationService.subscribe(NotificationEvent.CONTACT_ACCEPTED, (fromServer, data) => {
       var page = this.pages.find(p => p.badgeName == Badge.NETWORK);
       page.badge = this.notificationService.newContacts;
       page.badgeVisible = false;

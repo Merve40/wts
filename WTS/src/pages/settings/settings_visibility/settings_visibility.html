@@ -4,14 +4,15 @@
             <button ion-button menuToggle>
                 <ion-icon name="menu"></ion-icon>
             </button>
-            <ion-title>{{ 'SETTINGS' | translate }}</ion-title>
+            <ion-title *ngIf="!isExtern">{{ 'WITHIN_NETWORK' | translate }}</ion-title>
+            <ion-title *ngIf="isExtern">{{ 'OUTSIDE_NETWORK' | translate }}</ion-title>
         </ion-navbar>
     </ion-header>
 
     <ion-content>
         <div class="block">
             <div class="block-lbl" (click)="toggleBlock(0)">
-                <ion-label color="wts_blue">Personal</ion-label>
+                <ion-label color="wts_blue">{{ 'PERSONAL' | translate }}</ion-label>
                 <ion-avatar class="block-dropdown-icon" item-start>
                     <img class="dropdown-image" src='assets/icon/dropdown.png' alt="your image">
                 </ion-avatar>
@@ -22,15 +23,15 @@
             <div *ngIf="personalToggled">
                 <ion-list>
                     <ion-item>
-                        <ion-label>Students</ion-label>
+                        <ion-label>{{ 'STUDENTS' | translate }}</ion-label>
                         <ion-toggle [(ngModel)]="blocks.personal.student" (ionChange)="changeSetting('blocks.personal.student')"></ion-toggle>
                     </ion-item>
                     <ion-item>
-                        <ion-label>Companies</ion-label>
+                        <ion-label>{{ 'COMPANIES' | translate }}</ion-label>
                         <ion-toggle [(ngModel)]="blocks.personal.company" (ionChange)="changeSetting('blocks.personal.company')"></ion-toggle>
                     </ion-item>
                     <ion-item>
-                        <ion-label>Universities</ion-label>
+                        <ion-label>{{ 'UNIVERSITIES' | translate }}</ion-label>
                         <ion-toggle [(ngModel)]="blocks.personal.university" (ionChange)="changeSetting('blocks.personal.university')"></ion-toggle>
                     </ion-item>
                 </ion-list>
@@ -39,7 +40,7 @@
 
         <div class="block">
             <div class="block-lbl" (click)="toggleBlock(1)">
-                <ion-label color="wts_blue">Study</ion-label>
+                <ion-label color="wts_blue">{{ 'STUDYINFO' | translate }}</ion-label>
                 <ion-avatar class="block-dropdown-icon" item-start>
                     <img class="dropdown-image" src='assets/icon/dropdown.png' alt="your image">
                 </ion-avatar>
@@ -50,15 +51,15 @@
             <div *ngIf="studyToggled">
                 <ion-list>
                     <ion-item>
-                        <ion-label>Students</ion-label>
+                        <ion-label>{{ 'STUDENTS' | translate }}</ion-label>
                         <ion-toggle [(ngModel)]="blocks.study.student" (ionChange)="changeSetting('blocks.study.student')"></ion-toggle>
                     </ion-item>
                     <ion-item>
-                        <ion-label>Companies</ion-label>
+                        <ion-label>{{ 'COMPANIES' | translate }}</ion-label>
                         <ion-toggle [(ngModel)]="blocks.study.company" (ionChange)="changeSetting('blocks.study.company')"></ion-toggle>
                     </ion-item>
                     <ion-item>
-                        <ion-label>Universities</ion-label>
+                        <ion-label>{{ 'UNIVERSITIES' | translate }}</ion-label>
                         <ion-toggle [(ngModel)]="blocks.study.university" (ionChange)="changeSetting('blocks.study.university')"></ion-toggle>
                     </ion-item>
                 </ion-list>
@@ -68,7 +69,7 @@
 
         <div class="block">
             <div class="block-lbl" (click)="toggleBlock(2)">
-                <ion-label color="wts_blue">Address</ion-label>
+                <ion-label color="wts_blue">{{ 'ADDRESS' | translate }}</ion-label>
                 <ion-avatar class="block-dropdown-icon" item-start>
                     <img class="dropdown-image" src='assets/icon/dropdown.png' alt="your image">
                 </ion-avatar>
@@ -79,15 +80,15 @@
             <div *ngIf="addressToggled">
                 <ion-list>
                     <ion-item>
-                        <ion-label>Students</ion-label>
+                        <ion-label>{{ 'STUDENTS' | translate }}</ion-label>
                         <ion-toggle [(ngModel)]="blocks.address.student" (ionChange)="changeSetting('blocks.address.student')"></ion-toggle>
                     </ion-item>
                     <ion-item>
-                        <ion-label>Companies</ion-label>
+                        <ion-label>{{ 'COMPANIES' | translate }}</ion-label>
                         <ion-toggle [(ngModel)]="blocks.address.company" (ionChange)="changeSetting('blocks.address.company')"></ion-toggle>
                     </ion-item>
                     <ion-item>
-                        <ion-label>Universities</ion-label>
+                        <ion-label>{{ 'UNIVERSITIES' | translate }}</ion-label>
                         <ion-toggle [(ngModel)]="blocks.address.university" (ionChange)="changeSetting('blocks.address.university')"></ion-toggle>
                     </ion-item>
                 </ion-list>
@@ -97,7 +98,7 @@
 
         <div class="block">
             <div class="block-lbl" (click)="toggleBlock(3)">
-                <ion-label color="wts_blue">Email</ion-label>
+                <ion-label color="wts_blue">{{ 'EMAIL' | translate }}</ion-label>
                 <ion-avatar class="block-dropdown-icon" item-start>
                     <img class="dropdown-image" src='assets/icon/dropdown.png' alt="your image">
                 </ion-avatar>
@@ -108,15 +109,15 @@
             <div *ngIf="emailToggled">
                 <ion-list>
                     <ion-item>
-                        <ion-label>Students</ion-label>
+                        <ion-label>{{ 'STUDENTS' | translate }}</ion-label>
                         <ion-toggle [(ngModel)]="blocks.email.student" (ionChange)="changeSetting('blocks.email.student')"></ion-toggle>
                     </ion-item>
                     <ion-item>
-                        <ion-label>Companies</ion-label>
+                        <ion-label>{{ 'COMPANIES' | translate }}</ion-label>
                         <ion-toggle [(ngModel)]="blocks.email.company" (ionChange)="changeSetting('blocks.email.company')"></ion-toggle>
                     </ion-item>
                     <ion-item>
-                        <ion-label>Universities</ion-label>
+                        <ion-label>{{ 'UNIVERSITIES' | translate }}</ion-label>
                         <ion-toggle [(ngModel)]="blocks.email.university" (ionChange)="changeSetting('blocks.email.university')"></ion-toggle>
                     </ion-item>
                 </ion-list>

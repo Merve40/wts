@@ -17,10 +17,10 @@
         <ion-icon id="iconedit" name="create"> {{ 'EDIT' | translate }} </ion-icon>
       </button>
       <button #myButton2 *ngIf="!hasContact" id="contactrequest" ion-button editProfile ion-button color="wts_grey" (click)="sendRequest()">
-        <ion-icon id="contact" name="md-add"> Kontaktanfrage </ion-icon>
+        <ion-icon id="contact" name="md-add"> {{ 'ADD_CONTACT' | translate }} </ion-icon>
       </button>
       <button *ngIf="canRemove" ion-button editProfile ion-button color="wts_grey" (click)="removeContact()">
-        <ion-icon id="contact" name="md-add"> Kontakt entfernen </ion-icon>
+        <ion-icon id="contact" name="md-add">{{ 'REMOVE_CONTACT' | translate }} </ion-icon>
       </button>
     </div>
 
@@ -95,7 +95,7 @@
       </ion-item>
 
       <ion-item *ngIf="addressIsVisible">
-        <ion-label stacked color="wts_blue">{{ 'ADDRES' | translate }}</ion-label>
+        <ion-label stacked color="wts_blue">{{ 'ADDRESS' | translate }}</ion-label>
         <ion-label id="address"></ion-label>
       </ion-item>
     </ion-list>
