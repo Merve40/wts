@@ -51,9 +51,8 @@ export class Settings implements OnResultComplete {
 
   }
 
-  navigateToVisibility(isExtern){
-    console.log("clicked!");
-    this.navCtrl.push(SettingsVisibility);
+  navigateToVisibility(isExtern) {
+    this.navCtrl.push(SettingsVisibility, { isExtern });
   }
 
   /**
@@ -81,7 +80,7 @@ export class Settings implements OnResultComplete {
   onComplete(src, json) {
     //Auslesen der Daten aus Tabelle Student where AccID = AccID
 
-    if(!json){
+    if (!json) {
       return;
     }
 
@@ -135,7 +134,7 @@ export class Settings implements OnResultComplete {
     for (var i = 0; i < blockNames.length; i++) {
       this.blockTable.getByValue("Block_Name", blockNames[i], "" + i, (src, json) => {
 
-        if(!json){
+        if (!json) {
           return;
         }
 
@@ -151,7 +150,7 @@ export class Settings implements OnResultComplete {
 
   }
 
-  isContact(id, userId):boolean{
+  isContact(id, userId): boolean {
     //TODO
     return false
   }
