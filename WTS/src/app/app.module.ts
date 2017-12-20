@@ -162,62 +162,62 @@ import { Platform } from 'ionic-angular/platform/platform';
 export class AppModule {
   constructor(translate: TranslateService, global: Globalization, platform: Platform) {
     // this language will be used as a fallback when a translation isn't found in the current language
-    translate.setDefaultLang('en');
+    //translate.setDefaultLang('en');
 
     // the lang to use, if the lang isn't available, it will use the current loader to get them
     //translate.use('en');
 
-    if (platform.is('cordova')) {
+    //if (platform.is('cordova')) {
 
-      var region;
+    //   var region;
 
-      global.getLocaleName().then(result => {
-        region = result.value;
-        console.log("Device Region is: " + result);
-        console.log("Device Region.Value is: " + region);
+    //   global.getLocaleName().then(result => {
+    //     region = result.value;
+    //     console.log("Device Region is: " + result);
+    //     console.log("Device Region.Value is: " + region);
 
-        switch (region) {
-          case 'de-DE':
-            translate.use('de')
-            break;
+    //     switch (region) {
+    //       case 'de-DE':
+    //         translate.use('de')
+    //         break;
 
-          case 'en-US':
-            translate.use('en');
-            break;
+    //       case 'en-US':
+    //         translate.use('en');
+    //         break;
 
-          case 'en-GB':
-            translate.use('en');
-            break;
+    //       case 'en-GB':
+    //         translate.use('en');
+    //         break;
 
-          default:
-            translate.use('en');
-        }
+    //       default:
+    //         translate.use('en');
+    //     }
 
-      });
-    }
-  //     var sprache;
-  //     global.getPreferredLanguage().then(result => {
-  //       sprache = result.value;
-  //       console.log("Device Language is: " + sprache);
+    //   });
+    // }
+//       var sprache;
+//       global.getPreferredLanguage().then(result => {
+//         sprache = result.value;
+//         console.log("Device Language is: " + sprache);
 
-  //       switch (sprache) {
-  //         case 'de-DE':
-  //           translate.use('de')
-  //           break;
+//         switch (sprache) {
+//           case 'de-DE':
+//             translate.use('de')
+//             break;
 
-  //         case 'en-US':
-  //           translate.use('en');
-  //           break;
+//           case 'en-US':
+//             translate.use('en');
+//             break;
 
-  //         case 'en-GB':
-  //           translate.use('en');
-  //           break;
+//           case 'en-GB':
+//             translate.use('en');
+//             break;
 
-  //         default:
-  //           translate.use('en');
-  //       }
-  //     });
-  //   }
+//           default:
+//             translate.use('en');
+//         }
+//       });
+//     }
 
 }
 }

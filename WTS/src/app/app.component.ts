@@ -68,6 +68,29 @@ export class MyApp {
     accountTable.setSrcClass(this);
     this.initializeApp();
 
+    
+    var sprache;
+    global.getPreferredLanguage().then(result => {
+      sprache = result.value;
+      console.log("Device Language is: " + sprache);
+
+      switch (sprache) {
+        case 'de-DE':
+          translate.use('de')
+          break;
+
+        case 'en-US':
+          translate.use('en');
+          break;
+
+        case 'en-GB':
+          translate.use('en');
+          break;
+
+        default:
+          translate.use('en');
+      }
+    });
 
     translate.get(['LOGINPAGE', 'PROFILEPAGE', 'LOGOUT', 'LISTSEARCHPAGE', 'MAPPAGE', 'CONTACTREQUESTPAGE', 'MESSAGES', 'NETWORK', 'SETTINGS', 'NEWSFEEDPAGE']).subscribe(translations => {
       this.studentPages = [
