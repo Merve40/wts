@@ -22,6 +22,9 @@
       <button *ngIf="canRemove" ion-button editProfile ion-button color="wts_grey" (click)="removeContact()">
         <ion-icon id="contact" name="md-add">{{ 'REMOVE_CONTACT' | translate }} </ion-icon>
       </button>
+      <button #myButton *ngIf="!isOwn" id="message" ion-button editProfile ion-button color="wts_grey" (click)="sendMessage()">
+          <ion-icon id="message" name="msg"> {{ 'SENDMESSAGE' | translate }} </ion-icon>
+        </button>
     </div>
 
     <div id="maildiv">

@@ -14,11 +14,26 @@ import { OnResultComplete } from '../../../providers/api/OnResultComplete';
 import { BlockTable } from '../../../providers/api/block';
 import { VisibilityTable } from '../../../providers/api/visibility';
 import { ModalContact } from './modal/modal_contact';
+import { MessagePage } from '../../message/message_item/message_item';
+import { NotificationService, NotificationEvent } from '../../../providers/notification_service';
+
+
+export interface MessageItem {
+  id: string;
+  userName: string;
+  img: string;
+  lastMessage: string;
+  dateTime: string;
+  read: boolean;
+  imgSource: string;
+}
+
 
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html'
 })
+
 export class StudentProfilePage implements OnResultComplete {
 
   accID: string;
@@ -41,7 +56,7 @@ export class StudentProfilePage implements OnResultComplete {
     public AdressTable: AdressTable, public ContactRequestTable: ContactRequestTable, public StudentTable: StudentTable,
     public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable,
     public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable, public blockTable: BlockTable,
-    public visibility: VisibilityTable, public modal: ModalController, ) {
+    public visibility: VisibilityTable, public modal: ModalController, public notificationService: NotificationService) {
 
     visibility.setSrcClass(this);
     blockTable.setSrcClass(this);
@@ -110,6 +125,17 @@ export class StudentProfilePage implements OnResultComplete {
       }
     });
     contactModal.present();
+  }
+
+  sendMessage(){
+    var user = {
+      id: this.accID_extern, userName: document.getElementById("name").innerText, img: "", lastMessage: "", dateTime: "07.12.2017", read: true,
+      imgSource: "assets/img/student-image.png"};
+    user.read = true;
+    
+            //notifies everyone listening on this topic that message was read
+            this.notificationService.notify(NotificationEvent.MESSAGE_RECEIVED, false, user.id);
+            this.navCtrl.push(MessagePage, { id: user.id, name: user.userName, imgSource: user.imgSource });
   }
 
   removeContact() {
