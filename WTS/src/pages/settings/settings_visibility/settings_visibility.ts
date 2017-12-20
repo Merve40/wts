@@ -17,7 +17,7 @@ interface Group {
 export class SettingsVisibility {
 
     /**
-     * Data saves block-ids for each visibility-setting
+     * Data saves json-objects from the db for each visibility-setting
      */
     data = {
         personal: {
@@ -91,6 +91,8 @@ export class SettingsVisibility {
         this.visibilityTable.setSrcClass(this);
                     
         this.isExtern = navparams.get("isExtern");
+        this.accID = navparams.get("userId");
+
         if (this.isExtern) {
             this.prefix = "extern_";
         } else {
@@ -114,6 +116,14 @@ export class SettingsVisibility {
         }
     }
 
+    loadData(){
+        for(var block in this.blocks){
+            if(this.blocks.hasOwnProperty(block)){
+                
+            }
+        }
+    }
+    
     /**
      * 
      * @param key 
@@ -123,32 +133,23 @@ export class SettingsVisibility {
         var keys = obj.split('.');
 
         var value = this.blocks[keys[0]][keys[1]];
-        var blockId = this.data[keys[0]][keys[1]];
-        var group = this.getGroup(key);
-        //saves value into server
-
+        var json = this.data[keys[0]][keys[1]];
+       
+        //saves value into the database
+        json.body.Sichtbar = value;
+        this.visibilityTable.update(json.id, json.body, "", (src,js)=>{});
     }
 
     /**
      * 
      * @param key 
      */
-    loadValueByString(blockId:string,key:string, value:boolean){
+    loadValueByString(json, key:string, value:boolean){
         var obj = key.replace(this.prefix+"_", "");
         var keys = obj.split('_');
         console.log(this.blocks[keys[0]][keys[1]]);
         this.blocks[keys[0]][keys[1]] = value;
-        this.data[keys[0]][keys[1]] = blockId;
-    }
-
-    getGroup(key:string){
-        if(key.includes("student")){
-            return "gruppe_1";
-        } else if(key.includes("company")){
-            return "gruppe_2";
-        }else if(key.includes("university")){
-            return "gruppe_3";
-        }
+        this.data[keys[0]][keys[1]] = json;
     }
 }
 

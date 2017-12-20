@@ -6,7 +6,6 @@
   "config_munge": {
     "files": {}
   },
-<<<<<<< HEAD
   "installed_plugins": {
     "cordova-plugin-splashscreen": {
       "PACKAGE_NAME": "com.wts"
@@ -18,13 +17,9 @@
       "PACKAGE_NAME": "com.wts"
     }
   },
-  "dependent_plugins": {}
-=======
-  "installed_plugins": {},
   "dependent_plugins": {
     "cordova-plugin-device": {
       "PACKAGE_NAME": "com.wts"
     }
   }
->>>>>>> 38f0ee0f09defb7474901d76855da6d838c51912
 }

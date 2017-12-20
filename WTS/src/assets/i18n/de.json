@@ -55,6 +55,8 @@
   "PROFILESETTINGS": "Profileinstellungen",
   "ACCOUNTSETTINGS": "Accounteinstellungen",
   "VISIBILITY": "Sichtbarkeit",
+  "WITHIN_NETWORK":"Within the Network",
+  "OUTSIDE_NETWORK":"Outside of the Network",
   "WORKEXPERIENCE": "Arbeitserfahrung",
   "STUDYINFO": "Studium",
   "SETPIN": "Pin setzen",
@@ -72,5 +74,13 @@
   "COMPANIES":"Unternehmen",
   "UNIVERSITIES":"Universitäten",
   "MY_PROFILE":"Mein Profil",
+  "PERSONAL":"Persönliche Informationen",
+  "YOUR_MESSAGE":"Deine Nachricht",
+  "SEND_REQUEST":"Kontakt anfragen",
+  "WARNING_MESSAGE":"Bitte schreibe eine Nachricht!",
+  "ACCEPT":"Akzeptieren",
+  "REJECT":"Ablehnen",
+  "REMOVE_CONTACT":"Kontakt entfernen",
+  "ADD_CONTACT":"Kontakt anfragen",
   "PROFILE": "Profil"
  }

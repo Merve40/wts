@@ -175,14 +175,8 @@ export class AppModule {
         region = result.value;
         console.log("Device Region is: " + result);
         console.log("Device Region.Value is: " + region);
-      })
 
-      var sprache;
-      global.getPreferredLanguage().then(result => {
-        sprache = result.value;
-        console.log("Device Language is: " + sprache);
-
-        switch (sprache) {
+        switch (region) {
           case 'de-DE':
             translate.use('de')
             break;
@@ -198,9 +192,34 @@ export class AppModule {
           default:
             translate.use('en');
         }
+
       });
     }
-  }
+  //     var sprache;
+  //     global.getPreferredLanguage().then(result => {
+  //       sprache = result.value;
+  //       console.log("Device Language is: " + sprache);
+
+  //       switch (sprache) {
+  //         case 'de-DE':
+  //           translate.use('de')
+  //           break;
+
+  //         case 'en-US':
+  //           translate.use('en');
+  //           break;
+
+  //         case 'en-GB':
+  //           translate.use('en');
+  //           break;
+
+  //         default:
+  //           translate.use('en');
+  //       }
+  //     });
+  //   }
+
+}
 }
 
 export function createTranslateLoader(http: HttpClient) {

@@ -1,6 +1,6 @@
 <div class="full">
   <ion-header class="header">
-    <ion-navbar>Kontaktanfragen
+    <ion-navbar>{{'CONTACTREQUESTPAGE' | translate }}
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
@@ -19,10 +19,10 @@
           <p>{{item.message}}</p>
           <div class="buttondiv">
             <button #myButton id="edit" ion-button editProfile ion-button color="wts_grey" (click)="accept(item)">
-              <ion-icon id="contactcheck" name="checkmark"> Annehmen </ion-icon>
+              <ion-icon id="contactcheck" name="checkmark"> {{'ACCEPT' | translate }} </ion-icon>
             </button>
             <button #myButton id="contactrequest" ion-button editProfile ion-button color="wts_grey" (click)="removeRequest(item)">
-              <ion-icon id="contactdecline" name="close"> Ablehnen </ion-icon>
+              <ion-icon id="contactdecline" name="close"> {{'REJECT' | translate }} </ion-icon>
             </button>
           </div>
 

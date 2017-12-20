@@ -24,22 +24,6 @@ export class Settings implements OnResultComplete {
 
   accID: string; // AccountID die wir aus dem Login entnehmen
 
-  personaltoggle = {
-    toggle: true,
-    block: undefined
-  }
-  studytoggle = {
-    toggle: true,
-    block: undefined
-  }
-  emailtoggle = {
-    toggle: true,
-    block: undefined
-  }
-  addresstoggle = {
-    toggle: true,
-    block: undefined
-  }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public translate: TranslateService,
     public toastCtrl: ToastController, public blockTable: BlockTable, public visibility: VisibilityTable,
@@ -52,7 +36,7 @@ export class Settings implements OnResultComplete {
   }
 
   navigateToVisibility(isExtern) {
-    this.navCtrl.push(SettingsVisibility, { isExtern });
+    this.navCtrl.push(SettingsVisibility, { isExtern, userId:this.accID });
   }
 
   /**
@@ -96,27 +80,27 @@ export class Settings implements OnResultComplete {
 
             if (obj.body.Block_Id == block.id) {
 
-              if (block.body.Block_Name == "personal") {
-                this.personaltoggle.toggle = obj.body.Sichtbar;
-                this.personaltoggle.block = obj;
-                break;
+              // if (block.body.Block_Name == "personal") {
+              //   this.personaltoggle.toggle = obj.body.Sichtbar;
+              //   this.personaltoggle.block = obj;
+              //   break;
 
-              } else if (block.body.Block_Name == "email") {
-                this.emailtoggle.toggle = obj.body.Sichtbar;
-                this.emailtoggle.block = obj;
-                break;
+              // } else if (block.body.Block_Name == "email") {
+              //   this.emailtoggle.toggle = obj.body.Sichtbar;
+              //   this.emailtoggle.block = obj;
+              //   break;
 
-              } else if (block.body.Block_Name == "study") {
-                this.studytoggle.toggle = obj.body.Sichtbar;
-                this.studytoggle.block = obj;
-                break;
+              // } else if (block.body.Block_Name == "study") {
+              //   this.studytoggle.toggle = obj.body.Sichtbar;
+              //   this.studytoggle.block = obj;
+              //   break;
 
-              } else if (block.body.Block_Name == "address") {
-                this.addresstoggle.toggle = obj.body.Sichtbar;
-                this.addresstoggle.block = obj;
-                break;
+              // } else if (block.body.Block_Name == "address") {
+              //   this.addresstoggle.toggle = obj.body.Sichtbar;
+              //   this.addresstoggle.block = obj;
+              //   break;
 
-              }
+              // }
             }
           }
 

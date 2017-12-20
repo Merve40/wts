@@ -25,11 +25,11 @@
             </ion-item>
 
             <ion-item text-wrap>
-                <ion-label (click)="navigateToVisibility(true)" class="network-extern">Außerhalb des Netzwerks</ion-label>
+                <ion-label (click)="navigateToVisibility(true)" class="network-extern">{{ 'OUTSIDE_NETWORK' | translate }} </ion-label>
             </ion-item>
 
             <ion-item text-wrap>
-                <ion-label (click)="navigateToVisibility(false)" class="network-intern">Innerhalb des Netzwerks</ion-label>
+                <ion-label (click)="navigateToVisibility(false)" class="network-intern">{{ 'WITHIN_NETWORK' | translate }} </ion-label>
             </ion-item>
 
             <!-- 

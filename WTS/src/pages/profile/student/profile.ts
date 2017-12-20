@@ -35,8 +35,7 @@ export class StudentProfilePage implements OnResultComplete {
   hasContact: boolean;
   canRemove: boolean;
   contactId: string;
-  @ViewChild('myButton') button: Button;
-  @ViewChild('myButton2') button2: Button;
+  canSend: boolean;
 
   constructor(public storage: Storage, public navCtrl: NavController, public navParams: NavParams,
     public AdressTable: AdressTable, public ContactRequestTable: ContactRequestTable, public StudentTable: StudentTable,
@@ -59,9 +58,12 @@ export class StudentProfilePage implements OnResultComplete {
     this.isOwn = navParams.get("isOwn");
     this.hasContact = navParams.get("hasContact");
     this.canRemove = !this.isOwn && this.hasContact;
+    this.canSend = navParams.get("canSend");
+    
 
     console.log("Profile.ts: IsOwn is: " + this.isOwn);
     console.log("Has Contact ? " + this.hasContact);
+    console.log("Can Send:"+ this.canSend);
     this.load();
   }
 
@@ -89,6 +91,15 @@ export class StudentProfilePage implements OnResultComplete {
       this.StudentSkillTable.filterByValue("Account_Id", this.accID, "skill-abfrage", this.onComplete);
     }
   }
+
+  mail(){
+    var reveiverID = this.accID
+    //var senderID = 
+    //Wenn Chat besteht: Chat öffnen
+    //this.navigateToUserProfile()
+    //Ansonsten: NEuen Chat aufmachen
+  }
+
 
   sendRequest() {
     let contactModal = this.modal.create(ModalContact, { receiver: this.accID });
