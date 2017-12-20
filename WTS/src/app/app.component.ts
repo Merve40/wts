@@ -79,6 +79,14 @@ export class MyApp {
           translate.use('de')
           break;
 
+        case 'de':
+        translate.use('de')
+        break;
+
+        case 'Deutsch':
+        translate.use('de')
+        break;
+
         case 'en-US':
           translate.use('en');
           break;
@@ -87,9 +95,25 @@ export class MyApp {
           translate.use('en');
           break;
 
+        case 'en-IN':
+          translate.use('en');
+          break;
+
+        case 'en-AU':
+          translate.use('en');
+          break;
+        
+        case 'en-US':
+          translate.use('en');
+          break;
+
+        case 'en':
+        translate.use('en')
+        break;
+
         default:
-          //translate.use('en');
-          translate.use('de');
+          translate.use('en');
+          //translate.use('de');
       }
     });
 
