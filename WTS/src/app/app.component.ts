@@ -88,7 +88,8 @@ export class MyApp {
           break;
 
         default:
-          translate.use('en');
+          //translate.use('en');
+          translate.use('de');
       }
     });
 

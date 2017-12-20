@@ -202,7 +202,7 @@ export class AppModule {
 
 //         switch (sprache) {
 //           case 'de-DE':
-//             translate.use('de')
+translate.use('de')
 //             break;
 
 //           case 'en-US':
