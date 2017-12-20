@@ -16,6 +16,7 @@ import { VisibilityTable } from '../../../providers/api/visibility';
 import { ModalContact } from './modal/modal_contact';
 import { MessagePage } from '../../message/message_item/message_item';
 import { NotificationService, NotificationEvent } from '../../../providers/notification_service';
+import { ConversationTable } from '../../../providers/api/conversation';
 
 
 export interface MessageItem {
@@ -26,6 +27,14 @@ export interface MessageItem {
   dateTime: string;
   read: boolean;
   imgSource: string;
+}
+export interface ConversationItem {
+  id: string;
+  body: {
+    Account_Id_1: string;
+    Account_Id_2: string;
+    Zeitstempel: any;
+  }
 }
 
 
@@ -56,7 +65,8 @@ export class StudentProfilePage implements OnResultComplete {
     public AdressTable: AdressTable, public ContactRequestTable: ContactRequestTable, public StudentTable: StudentTable,
     public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable,
     public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable, public blockTable: BlockTable,
-    public visibility: VisibilityTable, public modal: ModalController, public notificationService: NotificationService) {
+    public visibility: VisibilityTable, public modal: ModalController, public notificationService: NotificationService,
+    public conversationTable: ConversationTable) {
 
     visibility.setSrcClass(this);
     blockTable.setSrcClass(this);
@@ -68,17 +78,18 @@ export class StudentProfilePage implements OnResultComplete {
     PassionTable.setSrcClass(this);
     StudentPassionTable.setSrcClass(this);
     ContactRequestTable.setSrcClass(this);
+    conversationTable.setSrcClass(this);
 
     this.accID = navParams.get("userId");
     this.isOwn = navParams.get("isOwn");
     this.hasContact = navParams.get("hasContact");
     this.canRemove = !this.isOwn && this.hasContact;
     this.canSend = navParams.get("canSend");
-    
+
 
     console.log("Profile.ts: IsOwn is: " + this.isOwn);
     console.log("Has Contact ? " + this.hasContact);
-    console.log("Can Send:"+ this.canSend);
+    console.log("Can Send:" + this.canSend);
     this.load();
   }
 
@@ -107,7 +118,7 @@ export class StudentProfilePage implements OnResultComplete {
     }
   }
 
-  mail(){
+  mail() {
     var reveiverID = this.accID
     //var senderID = 
     //Wenn Chat besteht: Chat öffnen
@@ -127,15 +138,20 @@ export class StudentProfilePage implements OnResultComplete {
     contactModal.present();
   }
 
-  sendMessage(){
+  getConversation() {
+    this.conversationTable.filterByValue("Account_Id_1", this.accID, "conversation", this.onComplete);
+  }
+
+  sendMessage(convId) {
     var user = {
-      id: this.accID_extern, userName: document.getElementById("name").innerText, img: "", lastMessage: "", dateTime: "07.12.2017", read: true,
-      imgSource: "assets/img/student-image.png"};
+      id: convId, userName: document.getElementById("name").innerText, img: "", lastMessage: "", dateTime: "07.12.2017", read: true,
+      imgSource: "assets/img/student-image.png"
+    };
     user.read = true;
-    
-            //notifies everyone listening on this topic that message was read
-            this.notificationService.notify(NotificationEvent.MESSAGE_RECEIVED, false, user.id);
-            this.navCtrl.push(MessagePage, { id: user.id, name: user.userName, imgSource: user.imgSource });
+
+    //notifies everyone listening on this topic that message was read
+    this.notificationService.notify(NotificationEvent.MESSAGE_RECEIVED, false, user.id);
+    this.navCtrl.push(MessagePage, { id: user.id, name: user.userName, imgSource: user.imgSource });
   }
 
   removeContact() {
@@ -155,7 +171,7 @@ export class StudentProfilePage implements OnResultComplete {
 
     for (var i = 0; i < blockNames.length; i++) {
       this.blockTable.getByValue("Block_Name", blockNames[i], "" + i, (src, json) => {
-        if(!json){
+        if (!json) {
           return;
         }
         this.blocks.push(json);
@@ -205,7 +221,7 @@ export class StudentProfilePage implements OnResultComplete {
 
   onComplete(src, json) {
 
-    if(!json){
+    if (!json) {
       return;
     }
 
@@ -389,6 +405,31 @@ export class StudentProfilePage implements OnResultComplete {
           document.getElementById("skills").className = "hidden";
         }
       }
+    }
+
+    if (src == "conversation") {
+      if (json.length > 0) {
+        var arr: ConversationItem[] = json as ConversationItem[];
+        arr.forEach(element => {
+          if (element.body.Account_Id_2 == this.accID_extern) {
+            this.sendMessage(element.id);
+            return;
+          }
+        });
+      }
+      this.conversationTable.filterByValue("Account_Id_2", this.accID, "conversation2", this.onComplete);
+    }
+    if (src == "conversation2") {
+      if (json.length > 0) {
+        var arr: ConversationItem[] = json as ConversationItem[];
+        arr.forEach(element => {
+          if (element.body.Account_Id_1 == this.accID_extern) {
+            this.sendMessage(element.id);
+            return;
+          }
+        });
+      }
+      //TODO new conversation
     }
   }
 }

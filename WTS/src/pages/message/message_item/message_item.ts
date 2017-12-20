@@ -37,6 +37,8 @@ export class MessagePage implements OnResultComplete {
     }
 
     onComplete(flag: string, json: any) {
+        console.log("onComplete");
+        console.log(json);
         if (!json) {
             return;
         }
@@ -84,6 +86,7 @@ export class MessagePage implements OnResultComplete {
     ngAfterViewInit() {
         this.storage.get("user_id").then((_id) => {
             this.accId = _id;
+            console.log(this.id);
             this.messageTable.getByKeyValueSortedBy("Konversation_Id", this.id, "Zeitstempel", "nachrichten-abfrage",
                 this.onComplete, 0, true, 15);
         });
