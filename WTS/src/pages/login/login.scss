@@ -1,64 +1,79 @@
 page-login {
     
-    div.top{
+    .top{
         margin-top: 25px;
         text-align: center;        
     }
     
-    div.middle{
-        font-size: 20px;
+    .middle{
+        font-size: 130%;
         margin: auto;
-        margin-top: 50px;
-        width: 70%;
-        height: 50%;
-        // background-color: aqua;
+        margin-top: 25%;
+        width: 80%;
+
     }
 
-    div.bottom{
-        width: 90%;
-        margin: auto;
-        // bottom: 15px;
-        // position: fixed;
-        position: relative;
-        margin-bottom: 15px;
+    label {
+        align-content: center;
     }
 
-    div.logo {
-      padding-top: 20px;
-      text-align: center;
+    .bottom{
+        height: 10%;
+        width: 100%;
+        position: fixed;
+        bottom: 10px;
+        margin: 0 auto;
+        float: left;
+        padding-right: 20px;
     }
 
-    div.full {
+    .logo {
+        padding-top: 20px;
+        text-align: center;
+    }
+
+    .padded{
+        padding: 10px;
+    }
+
+    .full {
         height: 100%;
         width: 100%;
         position: relative;
     }
 
-    div.login {
+    .login {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
 
-    div.registerlink{
+    .registerlink{
         text-align: center;
     }
 
     a {
-    color: #00274C;
+        font-size: 120%;
+        color: #00274C;
     }
 
-    div.emailfield{
+    .emailfield{
+        width: 100%;
         padding-bottom:  10px;
+        
     }
 
-    div.passwordfield{
-        padding-bottom: 5px;
+    .passwordfield{
+        width: 100%;
+        vertical-align: middle;
+        padding-bottom: 10px;
     }
 
     .button{
-       margin-bottom: 5px;
-       background-color: #002b4d;
+        height: 60%;
+        font-size: 150%;
+        margin-bottom: 5px;
+        background-color: #002b4d;
     }
 }

@@ -23,7 +23,7 @@ export class ContactRequestPage implements OnResultComplete {
   constructor(public storage: Storage, public navCtrl: NavController, public translate: TranslateService, public toastCtrl: ToastController, public ContactRequestTable: ContactRequestTable,
     public StudentTable: StudentTable, public events: Events, public zone: NgZone, public notificationService: NotificationService) {
     ContactRequestTable.setSrcClass(this);
-    StudentTable.setSrcClass(this);
+    StudentTable.setSrcClass(this); 
   }
 
   onComplete(src, json) {
