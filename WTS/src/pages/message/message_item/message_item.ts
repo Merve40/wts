@@ -67,6 +67,10 @@ export class MessagePage implements OnResultComplete {
      * @param event 
      */
     send(event) {
+        if(this.message == "") return;
+        console.log("id:"+this.id);
+
+
         var self = this;
         var msg = {
             Anhang_Id: "",
