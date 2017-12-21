@@ -339,7 +339,7 @@ export class StudentProfilePage implements OnResultComplete {
       }
     }
 
-    if (src == "conversation") {
+    else if (src == "conversation") {
       if (json.length > 0) {
         var arr: ConversationItem[] = json as ConversationItem[];
         arr.forEach(element => {
@@ -351,7 +351,7 @@ export class StudentProfilePage implements OnResultComplete {
       }
       this.conversationTable.filterByValue("Account_Id_2", this.accID, "conversation2", this.onComplete);
     }
-    if (src == "conversation2") {
+    else if (src == "conversation2") {
       if (json.length > 0) {
         var arr: ConversationItem[] = json as ConversationItem[];
         arr.forEach(element => {
