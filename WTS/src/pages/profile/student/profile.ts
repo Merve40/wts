@@ -64,9 +64,9 @@ export class StudentProfilePage implements OnResultComplete {
   constructor(public storage: Storage, public navCtrl: NavController, public navParams: NavParams,
     public AdressTable: AdressTable, public ContactRequestTable: ContactRequestTable, public StudentTable: StudentTable,
     public AccountTable: AccountTable, public StudentSkillTable: Student_SkillTable, public SkillTable: SkillTable,
-    public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable, public modal: ModalController, 
-    public notificationService: NotificationService, public conversationTable: ConversationTable, 
-    public visibilityService:VisibilityService) {
+    public PassionTable: PassionTable, public StudentPassionTable: Student_PassionTable, public modal: ModalController,
+    public notificationService: NotificationService, public conversationTable: ConversationTable,
+    public visibilityService: VisibilityService) {
 
     StudentTable.setSrcClass(this);
     AccountTable.setSrcClass(this);
@@ -142,10 +142,8 @@ export class StudentProfilePage implements OnResultComplete {
       id: convId, userName: document.getElementById("name").innerText, img: "", lastMessage: "", dateTime: "07.12.2017", read: true,
       imgSource: "assets/img/student-image.png"
     };
-    user.read = true;
 
     //notifies everyone listening on this topic that message was read
-    this.notificationService.notify(NotificationEvent.MESSAGE_RECEIVED, false, user.id);
     this.navCtrl.push(MessagePage, { id: user.id, name: user.userName, imgSource: user.imgSource });
   }
 
@@ -345,7 +343,7 @@ export class StudentProfilePage implements OnResultComplete {
       if (json.length > 0) {
         var arr: ConversationItem[] = json as ConversationItem[];
         arr.forEach(element => {
-          if (element.body.Account_Id_2 == this.accID_extern) {
+          if (element.body.Account_Id_2 == this.accID) {
             this.sendMessage(element.id);
             return;
           }
@@ -357,27 +355,38 @@ export class StudentProfilePage implements OnResultComplete {
       if (json.length > 0) {
         var arr: ConversationItem[] = json as ConversationItem[];
         arr.forEach(element => {
-          if (element.body.Account_Id_1 == this.accID_extern) {
+          if (element.body.Account_Id_1 == this.accID) {
             this.sendMessage(element.id);
             return;
           }
         });
       }
+      //creates new conversation, if it does not exist already
+      this.storage.get("user_id").then(id => {
+        var conversation = {
+          Account_Id_1: id,
+          Account_Id_2: this.accID,
+          Zeitstempel: this.conversationTable.TIMESTAMP
+        };
+        this.conversationTable.push(conversation, "", (src, js) => {
+          this.sendMessage(js.name);
+        });
+      });
     }
   }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     console.log("loading..");
-    if(!this.isOwn){
-      this.visibilityService.load(this.accID).then(blocks =>{
+    if (!this.isOwn) {
+      this.visibilityService.load(this.accID).then(blocks => {
         blocks.forEach(block => {
-          if(block.key == "address"){
+          if (block.key == "address") {
             this.addressIsVisible = block.value;
-          }else if(block.key == "study"){
+          } else if (block.key == "study") {
             this.studyIsVisible = block.value;
-          }else if(block.key == "email"){
+          } else if (block.key == "email") {
             this.mailIsVisible = block.value;
-          }else if(block.key == "personal"){
+          } else if (block.key == "personal") {
             this.personalIsVisible = block.value;
           }
         });
@@ -385,7 +394,7 @@ export class StudentProfilePage implements OnResultComplete {
       });
 
 
-    }else{
+    } else {
       this.load();
     }
   }

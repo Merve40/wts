@@ -13,16 +13,16 @@
   <ion-content class="profile">
 
     <div id="buttondiv">
-      <button #myButton *ngIf="isOwn" id="edit" ion-button editProfile ion-button color="wts_grey" (click)="edit()">
+      <button #myButton *ngIf="isOwn" id="edit" ion-button editProfile color="wts_grey" (click)="edit()">
         <ion-icon id="iconedit" name="create"> {{ 'EDIT' | translate }} </ion-icon>
       </button>
-      <button #myButton2 *ngIf="!hasContact" id="contactrequest" ion-button editProfile ion-button color="wts_grey" (click)="sendRequest()">
+      <button #myButton2 *ngIf="!hasContact" id="contactrequest" ion-button editProfile color="wts_grey" (click)="sendRequest()">
         <ion-icon id="contact" name="md-add"> {{ 'ADD_CONTACT' | translate }} </ion-icon>
       </button>
-      <button *ngIf="canRemove" ion-button editProfile ion-button color="wts_grey" (click)="removeContact()">
-        <ion-icon id="contact" name="md-add">{{ 'REMOVE_CONTACT' | translate }} </ion-icon>
+      <button *ngIf="canRemove" ion-button editProfile color="wts_grey" (click)="removeContact()">
+        <ion-icon id="contact" name="md-remove">{{ 'REMOVE_CONTACT' | translate }} </ion-icon>
       </button>
-      <button #myButton *ngIf="!isOwn" id="message" ion-button editProfile ion-button color="wts_grey" (click)="getConversation()">
+      <button #myButton *ngIf="!isOwn" id="message" ion-button editProfile color="wts_grey" (click)="getConversation()">
           <ion-icon id="message" name="msg"> {{ 'SENDMESSAGE' | translate }} </ion-icon>
         </button>
     </div>
