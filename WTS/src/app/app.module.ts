@@ -58,6 +58,7 @@ import { DataProvider } from '../providers/DataProvider';
 import { BlockTable } from '../providers/api/block';
 import { VisibilityTable } from '../providers/api/visibility';
 import { NotificationService } from '../providers/notification_service';
+import { VisibilityService } from '../providers/visibility_service';
 import { EditPinPage } from '../pages/editpin/editpin';
 import { Platform } from 'ionic-angular/platform/platform';
 
@@ -156,6 +157,7 @@ import { Platform } from 'ionic-angular/platform/platform';
     BlockTable,
     VisibilityTable,
     NotificationService,
+    VisibilityService,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
@@ -195,31 +197,31 @@ export class AppModule {
 
     //   });
     // }
-//       var sprache;
-//       global.getPreferredLanguage().then(result => {
-//         sprache = result.value;
-//         console.log("Device Language is: " + sprache);
+    //       var sprache;
+    //       global.getPreferredLanguage().then(result => {
+    //         sprache = result.value;
+    //         console.log("Device Language is: " + sprache);
 
-//         switch (sprache) {
-//           case 'de-DE':
-translate.use('de')
-//             break;
+    //         switch (sprache) {
+    //           case 'de-DE':
+    translate.use('de')
+    //             break;
 
-//           case 'en-US':
-//             translate.use('en');
-//             break;
+    //           case 'en-US':
+    //             translate.use('en');
+    //             break;
 
-//           case 'en-GB':
-//             translate.use('en');
-//             break;
+    //           case 'en-GB':
+    //             translate.use('en');
+    //             break;
 
-//           default:
-//             translate.use('en');
-//         }
-//       });
-//     }
+    //           default:
+    //             translate.use('en');
+    //         }
+    //       });
+    //     }
 
-}
+  }
 }
 
 export function createTranslateLoader(http: HttpClient) {

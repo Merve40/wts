@@ -7,8 +7,8 @@ import * as EventSource from 'eventsource';
 import { eventNames } from 'cluster';
 
 export interface Conversation {
-    Account_id1: string;
-    Account_id2: string;
+    Account_Id_1: string;
+    Account_Id_2: string;
     Zeitstempel: any;
 }
 

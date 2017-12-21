@@ -101,6 +101,7 @@ export class MessageListPage implements OnResultComplete {
                 var arr: ConversationItem[] = json as ConversationItem[];
                 this.messageArray.push.apply(this.messageArray, arr);
                 for (var i = 0; i < this.messageArray.length; i++) {
+                    if (!json[i]) return;
                     this.conversationTable.getUserTypeByAccountId(json[i].body.Account_Id_2, "" + i, (f, _json) => {
                         var name = getName(_json.body);
                         var _id = json[parseInt(f)].id;
@@ -126,6 +127,7 @@ export class MessageListPage implements OnResultComplete {
                 this.messageArray.push.apply(this.messageArray, arr);
 
                 for (var i = 0; i < this.messageArray.length; i++) {
+                    if (!json[i]) return;
                     this.conversationTable.getUserTypeByAccountId(json[i].body.Account_Id_1, "" + i, (f, _json) => {
                         var name = getName(_json.body)
                         var _id = json[parseInt(f)].id;

@@ -3,11 +3,12 @@ import { NavParams } from 'ionic-angular/navigation/nav-params';
 import { Storage } from '@ionic/storage';
 import { BlockTable } from '../../../providers/api/block';
 import { VisibilityTable } from '../../../providers/api/visibility';
+import { resolve } from 'path';
 
 interface Group {
     student: boolean,
     company: boolean,
-    university: boolean
+    uni: boolean
 }
 
 @Component({
@@ -23,25 +24,25 @@ export class SettingsVisibility {
         personal: {
             student: undefined,
             company: undefined,
-            university: undefined
+            uni: undefined
         },
 
-        study : {
+        study: {
             student: undefined,
             company: undefined,
-            university: undefined
+            uni: undefined
         },
 
-        address : {
+        address: {
             student: undefined,
             company: undefined,
-            university: undefined
+            uni: undefined
         },
 
-        email : {
+        email: {
             student: undefined,
             company: undefined,
-            university: undefined
+            uni: undefined
         }
     }
 
@@ -52,25 +53,25 @@ export class SettingsVisibility {
         personal: {
             student: undefined,
             company: undefined,
-            university: undefined
+            uni: undefined
         },
 
-        study : {
+        study: {
             student: undefined,
             company: undefined,
-            university: undefined
+            uni: undefined
         },
 
-        address : {
+        address: {
             student: undefined,
             company: undefined,
-            university: undefined
+            uni: undefined
         },
 
-        email : {
+        email: {
             student: undefined,
             company: undefined,
-            university: undefined
+            uni: undefined
         }
     }
 
@@ -82,14 +83,14 @@ export class SettingsVisibility {
     isExtern: boolean;
     prefix: string;
 
-    accID:string;
+    accID: string;
 
-    constructor(public navparams: NavParams, public storage:Storage, public blockTable:BlockTable, 
-                public visibilityTable:VisibilityTable) {
+    constructor(public navparams: NavParams, public storage: Storage, public blockTable: BlockTable,
+        public visibilityTable: VisibilityTable) {
 
         this.blockTable.setSrcClass(this);
         this.visibilityTable.setSrcClass(this);
-                    
+
         this.isExtern = navparams.get("isExtern");
         this.accID = navparams.get("userId");
 
@@ -98,6 +99,8 @@ export class SettingsVisibility {
         } else {
             this.prefix = "intern_";
         }
+        console.log(this.prefix);
+        this.load();
     }
 
     changeSetting(key) {
@@ -116,38 +119,58 @@ export class SettingsVisibility {
         }
     }
 
-    loadData(){
-        for(var block in this.blocks){
-            if(this.blocks.hasOwnProperty(block)){
-                
-            }
-        }
+    load() {
+        this.visibilityTable.filterByValue("Account_Id", this.accID, "", (src, jsonArray) => {
+            jsonArray.forEach(json => {
+                if (!json) return;
+
+                this.blockTable.getById(json.body.Block_Id, "", (src, block) => {
+                    if (!block) return;
+
+                    var blockName: string = block.body.Block_Name;
+                    if (blockName.startsWith(this.prefix)) {
+                        this.loadValueByString(json, blockName, json.body.Sichtbar);
+                    }
+                });
+            });
+        });
     }
-    
+
     /**
      * 
      * @param key 
      */
-    setValueByString(key:string){
-        var obj = key.replace("blocks.", "");
+    setValueByString(key: string) {
+
+        var obj = key.replace(/blocks./i, "");
         var keys = obj.split('.');
 
         var value = this.blocks[keys[0]][keys[1]];
         var json = this.data[keys[0]][keys[1]];
-       
+        if (!json) {
+            return;
+        }
+
         //saves value into the database
         json.body.Sichtbar = value;
-        this.visibilityTable.update(json.id, json.body, "", (src,js)=>{});
+        this.visibilityTable.update(json.id, json.body, "", (src, js) => { });
+
+
     }
 
     /**
      * 
      * @param key 
      */
-    loadValueByString(json, key:string, value:boolean){
-        var obj = key.replace(this.prefix+"_", "");
+    loadValueByString(json, key: string, value: boolean) {
+        var pattern;
+        if (this.isExtern) {
+            pattern = /extern_/i;
+        } else {
+            pattern = /intern_/i;
+        }
+        var obj = key.replace(pattern, '');
         var keys = obj.split('_');
-        console.log(this.blocks[keys[0]][keys[1]]);
         this.blocks[keys[0]][keys[1]] = value;
         this.data[keys[0]][keys[1]] = json;
     }
