@@ -15,6 +15,7 @@ export class Api {
     limitTo = "limitToFirst=";
     and = "&";
     quote = "\"";
+    startAt="startAt=";
     endAt = "endAt=";
     restStirng = "\uff8f";
 
@@ -260,9 +261,12 @@ export class Api {
             .concat(this.orderBy)
             .concat(this.quote).concat(key).concat(this.quote)
             .concat(this.and)
+            .concat(this.startAt)
+            .concat(this.quote).concat(value).concat(this.quote)
+            .concat(this.and)
             .concat(this.endAt)
             .concat(this.quote).concat(value).concat(this.restStirng).concat(this.quote);
-
+        console.log(_url);
         var response = this.http.get(_url);
         response.forEach(obj => {
             var res = this.getInnerJsonArray(obj.text());

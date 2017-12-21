@@ -24,6 +24,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
 import { Globalization } from '@ionic-native/globalization';
 import { NotificationService, parseEvent, NotificationEvent } from '../providers/notification_service';
+import { VisibilityService } from '../providers/visibility_service';
 
 enum PushCategory {
   MESSAGE = 'message',
@@ -63,7 +64,7 @@ export class MyApp {
     public splashScreen: SplashScreen, public screenOrientation: ScreenOrientation,
     public translate: TranslateService, public fcm: FCM, public bgMode: BackgroundMode,
     public accountTable: AccountTable, global: Globalization, public events: Events, public toastCtrl: ToastController,
-    public notificationService: NotificationService) {
+    public notificationService: NotificationService, public visibilityService:VisibilityService) {
 
     accountTable.setSrcClass(this);
     this.initializeApp();
@@ -143,6 +144,8 @@ export class MyApp {
       } else if (usergroup == "gruppe_2") {
         this.pages = this.companyPages;
       }
+
+      this.visibilityService.initialize(id, usergroup);
 
       //sets the amount of unanswered contact-requests
       this.initalizeMenu();

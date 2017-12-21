@@ -74,7 +74,10 @@ export class DataProvider {
                         } else {
                             userId = json[i].body.receiver;
                         }
-                        promises.push(this.getNewUser(userId, json[i].body.Zeitstempel));
+
+                        if(json[i].body.request){
+                            promises.push(this.getNewUser(userId, json[i].body.Zeitstempel));
+                        }
                     }
                 }
                 //combines all promises and iterates over it
