@@ -56,8 +56,10 @@ export class NotificationService {
 
         if (event == NotificationEvent.MESSAGE_RECEIVED) {
             if (fromServer) {
+                this.messages+=1;
                 this.conversations[data.conversationId] = { message: data.message, timestamp: data.timestamp };
             } else {
+                this.messages-=1;
                 delete this.conversations[data];
             }
 

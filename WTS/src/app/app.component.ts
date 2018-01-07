@@ -194,7 +194,7 @@ export class MyApp {
       console.log("received notification..");
       var page = this.pages.find(p => p.badgeName == Badge.MESSAGE);
       console.log("page found : "); 
-      console.log(page);
+      console.log(JSON.stringify(page));
       page.badge = this.notificationService.messages;
       page.badgeVisible = false;
       if (this.notificationService.messages) {
@@ -262,6 +262,7 @@ export class MyApp {
       console.log("==== RECEIVED NOTIFICATION ====");
 
       var event: NotificationEvent = parseEvent(data.category);
+      console.log(event);
       if (data.wasTapped) {
 
         //TODO open page

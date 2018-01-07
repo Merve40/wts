@@ -112,7 +112,11 @@ export class MessagePage implements OnResultComplete {
         var self = this;
 
         this.notificationService.subscribe(NotificationEvent.MESSAGE_RECEIVED, (fromServer, data) => {
+
             if (fromServer) {
+                if (!isPageActive(MessagePage)) {
+                    return;
+                }
                 this.messageList.push({ text: data.content, isOwner: false });
                 self.scrollToBottom();
                 this.notificationService.notify(NotificationEvent.MESSAGE_RECEIVED, false, data);
