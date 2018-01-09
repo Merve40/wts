@@ -70,51 +70,39 @@ export class MyApp {
     this.initializeApp();
 
     
-    var sprache;
+    var deviceLang;
     global.getPreferredLanguage().then(result => {
-      sprache = result.value;
-      console.log("Device Language is: " + sprache);
-
-      switch (sprache) {
+      deviceLang = result.value;
+      switch (deviceLang) {
         case 'de-DE':
           translate.use('de')
           break;
-
         case 'de':
         translate.use('de')
         break;
-
         case 'Deutsch':
         translate.use('de')
         break;
-
         case 'en-US':
           translate.use('en');
           break;
-
         case 'en-GB':
           translate.use('en');
           break;
-
         case 'en-IN':
           translate.use('en');
           break;
-
         case 'en-AU':
           translate.use('en');
-          break;
-        
+          break;        
         case 'en-US':
           translate.use('en');
           break;
-
         case 'en':
         translate.use('en')
         break;
-
         default:
           translate.use('en');
-          //translate.use('de');
       }
     });
 
