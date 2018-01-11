@@ -69,54 +69,57 @@ export class MyApp {
     accountTable.setSrcClass(this);
     this.initializeApp();
 
-    
-    var sprache;
-    global.getPreferredLanguage().then(result => {
-      sprache = result.value;
-      console.log("Device Language is: " + sprache);
-
-      switch (sprache) {
-        case 'de-DE':
+    if(this.platform.is("cordova")){
+      var sprache;
+      global.getPreferredLanguage().then(result => {
+        sprache = result.value;
+        console.log("Device Language is: " + sprache);
+  
+        switch (sprache) {
+          case 'de-DE':
+            translate.use('de')
+            break;
+  
+          case 'de':
           translate.use('de')
           break;
-
-        case 'de':
-        translate.use('de')
-        break;
-
-        case 'Deutsch':
-        translate.use('de')
-        break;
-
-        case 'en-US':
-          translate.use('en');
+  
+          case 'Deutsch':
+          translate.use('de')
           break;
-
-        case 'en-GB':
-          translate.use('en');
+  
+          case 'en-US':
+            translate.use('en');
+            break;
+  
+          case 'en-GB':
+            translate.use('en');
+            break;
+  
+          case 'en-IN':
+            translate.use('en');
+            break;
+  
+          case 'en-AU':
+            translate.use('en');
+            break;
+          
+          case 'en-US':
+            translate.use('en');
+            break;
+  
+          case 'en':
+          translate.use('en')
           break;
-
-        case 'en-IN':
-          translate.use('en');
-          break;
-
-        case 'en-AU':
-          translate.use('en');
-          break;
-        
-        case 'en-US':
-          translate.use('en');
-          break;
-
-        case 'en':
-        translate.use('en')
-        break;
-
-        default:
-          translate.use('en');
-          //translate.use('de');
-      }
-    });
+  
+          default:
+            translate.use('en');
+            //translate.use('de');
+        }
+      });
+    }
+    
+    
 
     translate.get(['LOGINPAGE', 'PROFILEPAGE', 'LOGOUT', 'LISTSEARCHPAGE', 'MAPPAGE', 'CONTACTREQUESTPAGE', 'MESSAGES', 'NETWORK', 'SETTINGS', 'NEWSFEEDPAGE']).subscribe(translations => {
       this.studentPages = [
