@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>228</y>
+      <w>126</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+MessageItem
+--
+id: String
+userName: String
+img: String
+lastMessage: String:
+dateTime: String
+read: boolean
+imgSource: String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>330</x>
+      <y>168</y>
+      <w>126</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>MessagePage
+--
+content: Content
+userName: ElementRef
+messageList
+message
+accId
+id
+name
+imgSource
+--
+onComplete(flag, json)
+send(event)
+ngAfterViewInit()
+scrollToBottom()
+showMessage(message)
+subscribeToMessageEvent()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>36</x>
+      <y>528</y>
+      <w>126</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>Login
+--
+email: String
+password: String
+--
+login()
+onComplete(source,json)
+validateUser(json)
+navigateToUserProfile(json)
+showLoginError(message)
+encrypt(password)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>156</y>
+      <w>126</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+ConversationItem
+--
+id: String
+body
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>186</x>
+      <y>156</y>
+      <w>126</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>MessageListPage
+--
+accID: String
+messageArray: ConversationItem[]
+users: MessageItem[]
+--
+load(): Promise&lt;void&gt;
+openMessage(user)
+getImageByGroup(group)
+ngAfterViewInit()
+subscirbeToConversationEvent()
+sortUsers()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>330</x>
+      <y>12</y>
+      <w>126</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>OnResultComplete
+--
+-id: Long
+_-ClassAttribute: Long_
+--
+#Operation(i: int): int
+/+AbstractOperation()/
+--
+Responsibilities
+-- Resp1
+*-- Resp2*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>234</x>
+      <y>120</y>
+      <w>132</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>200.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>120</x>
+      <y>228</y>
+      <w>78</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>120</x>
+      <y>168</y>
+      <w>78</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>618</x>
+      <y>60</y>
+      <w>132</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>ContactRequestPage
+--
+students: Array
+accId
+--
+onComplete(source,json)
+addUser(data,_json) : User
+showContactAddedMessage()
+accept(item)
+removeRequest(item)
+searchForRequests(id)
+ngAfterViewInit()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>378</x>
+      <y>120</y>
+      <w>36</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;40.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>534</x>
+      <y>246</y>
+      <w>162</w>
+      <h>186</h>
+    </coordinates>
+    <panel_attributes>ListSearchPage
+--
+result: []
+filter : String
+pagesize : Int
+isBusy: Boolean
+searchObject: Sring
+searchParameterStudent : String
+searchParameterUniversity : String
+infinityScroll
+accID
+--
+onComplete(source,json)
+search()
+searchForUser()
+searchForStudents()
+searchForUniversity()
+navigateToUserProfile(id)
+(ngAfterViewInit)
+loadMore(infinityScroll)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>426</x>
+      <y>126</y>
+      <w>216</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;340.0;200.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>780</x>
+      <y>240</y>
+      <w>162</w>
+      <h>198</h>
+    </coordinates>
+    <panel_attributes>InnerClass
+User
+--
+result: Array
+filter : String
+pagesize : Int
+isBusy: Boolean
+searchObject: Sring
+searchParameterStudent : String
+searchParameterUniversity : String
+infinityScroll
+accID
+--
+onComplete(source,json)
+search()
+searchForUser()
+searchForStudents()
+searchForUniversity()
+navigateToUserProfile(id)
+(ngAfterViewInit)
+loadMore(infinityScroll)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>678</x>
+      <y>162</y>
+      <w>192</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>300.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>282</y>
+      <w>102</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>450</x>
+      <y>84</y>
+      <w>180</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;20.0;280.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>258</x>
+      <y>426</y>
+      <w>126</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>Network
+--
+index: any
+page: any
+pageStudent: any
+pageCompaney: any
+currentTab: Tab
+--
+onSelect(ev)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>492</x>
+      <y>480</y>
+      <w>126</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>Network
+--
+index: any
+page: any
+pageStudent: any
+pageCompaney: any
+currentTab: Tab
+--
+onSelect(ev)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>486</x>
+      <y>12</y>
+      <w>126</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>NewsfeedPage
+--
+(onComplete())
+(ngAfterViewInit())
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>450</x>
+      <y>42</y>
+      <w>48</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
+  </element>
+</diagram>
