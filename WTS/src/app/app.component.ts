@@ -242,7 +242,7 @@ export class MyApp {
           this.storage.get("user_id").then(id => {
             this.accountTable.getById(id, "", (source, json) => {
               json.body.Token = token;
-              this.accountTable.update(id, json, "", (src, res) => { });
+              this.accountTable.update(id, json.body, "", (src, res) => { });
             });
           });
         });
