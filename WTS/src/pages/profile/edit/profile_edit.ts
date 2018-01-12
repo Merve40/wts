@@ -72,8 +72,6 @@ export class Profile_EditPage {
       this.studentjson.body.Nachname = this.Nachname;
       this.studentjson.body.Name = this.Name;
       this.studentjson.body.Beschaftigung = this.Beschaftigung;
-      this.studentjson.body.Beschreibung = this.Beschreibung;
-    //Date-Korrektheit hier überprüfen
 
     this.StudentTable.update(this.studentjson.id, this.studentjson.body, "", function (flag, json) {
       if(json){
