@@ -1,10 +1,7 @@
 # wts
 Work To Students
 
-This github contains all relevant data to the project Work-to-Students.
-In the folder WTS the code can be found.
-In the folder Screenshots screenshots from a Nexus 10 Tablet and Smartphone with Android can be found.
-In the folder Poster the poster which was created for Presentation purpose can be found.
-In the GroupDossier folger all necessary documents, such as analysis and design artefacts & results related to the function, research and activities of  all group members, are located. 
+This is a project is intended for our Software Factory Module at Fontys University of Applied Sciences.
+As of 16th January this project will be discontinued on this repository.
 
-From the 16th of January 2018 on the project group is not any longer responsible for the content of this github.
+The entire code can be found under the *WTS* folder, the rest includes screenshots taken from a smartphone & tablet and some confuration files.
