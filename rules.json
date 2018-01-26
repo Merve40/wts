@@ -1,0 +1,60 @@
+{
+  "rules": {
+    ".read": "auth != true",
+    ".write": "auth != true",
+    "Account":{
+      ".indexOn": [".value", "Email","Passwort", "Usergruppe", "Adresse_id" ],
+        "Usergruppe":{
+          ".indexOn": [".value"]
+        }
+    },
+    "Adresse":{
+      ".indexOn": ["Ort","PLZ", "Land"]
+    },
+    "Anhang":{
+      ".indexOn": ["Account_Id", "Anhang", "Beschreibug", "Datei_Name", "Datei_Typ"]
+    },
+    "Block": {
+      ".indexOn":["Block_Name"]
+    },
+    "Fähigkeit":{
+      ".indexOn": ["Fähigkeit"]
+    },
+    "Leidenschaft":{
+      ".indexOn": ["Leidenschaft"]
+    },
+    "Konversation":{
+      ".indexOn": ["Account_Id_1", "Account_Id_2"]
+    },
+    "Nachricht":{
+      ".indexOn": ["Anhang_Id", "Betreff", "Inhalt", "Konversation_Id", "Sender_Id", "Zeitstempel"]
+    },
+    "Profil_Info":{
+      ".indexOn": ["Block_Id", "Info"]
+    },
+    "Sichtbarkeit":{
+      ".indexOn": ["Account_Id", "Block_Id", "Gruppe_Id", "Sichtbar"]
+    },
+    "Student":{
+      ".indexOn": ["Account_Id","Abschluss", "Abschluss_Datum", "Beschäftigung", "Name", "Nachname", "Semester", "Studiengang", "Uni"]
+    },
+    "Student_Fähigkeit":{
+      ".indexOn": ["Account_Id", "Fähigkeit_Id"]
+    },
+    "Student_Leidenschaft":{
+      ".indexOn": ["Account_Id", "Leidenschaft_Id"]
+    },
+    "Universität":{
+      ".indexOn": ["Account_Id","Fachrichtungen","Universität"]
+    },
+    "Unternehmen":{
+      ".indexOn": ["Account_Id","Branche", "Unternehmen","Webseite"]
+    },
+    "User_Gruppe":{
+      ".indexOn": ["Gruppe"]
+    },
+    "Kontaktanfragen":{
+      ".indexOn": ["sender", "receiver"]
+    }
+  }
+}
